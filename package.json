@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "scripts": {
+    "postinstall": "pulp dep install",
+    "build": "pulp build",
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "bower": "^1.7.2",
+    "gulp": "^3.9.0",
+    "gulp-jsvalidate": "^2.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-purescript": "^0.8.0",
+    "pulp": "^4.5.0",
+    "purescript": "^0.7.6",
+    "rimraf": "^2.4.1"
+  },
+  "name": "purescript-pux",
+  "description": "[![Latest release](http://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/releases) [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux) [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/koa-router)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexmingoia/purescript-pux.git"
+  },
+  "keywords": [
+    "purescript",
+    "react",
+    "elm",
+    "flux",
+    "redux",
+    "frp",
+    "virtual-dom"
+  ],
+  "author": "Alexander C. Mingoia",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/alexmingoia/purescript-pux/issues"
+  }
+}

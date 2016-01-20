@@ -1,0 +1,9 @@
+language: node_js
+sudo: false
+node_js:
+  - "5"
+install:
+  - npm install bower gulp -g
+  - npm install && bower install
+script:
+  - gulp

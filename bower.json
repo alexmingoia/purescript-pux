@@ -1,0 +1,27 @@
+{
+  "name": "purescript-pux",
+  "authors": [
+    "Alexander Mingoia <talk@alexmingoia.com>"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexmingoia/purescript-pux.git"
+  },
+  "dependencies": {
+    "purescript-signal": "~4.2.0",
+    "purescript-globals": "~0.2.2"
+  },
+  "devDependencies": {
+    "purescript-console": "~0.1.1",
+    "purescript-aff": "~0.14.0",
+    "purescript-affjax": "~0.10.1"
+  }
+}
