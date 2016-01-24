@@ -23,5 +23,8 @@
     "purescript-console": "~0.1.1",
     "purescript-aff": "~0.14.0",
     "purescript-affjax": "~0.10.1"
+  },
+  "resolutions": {
+    "purescript-aff": "~0.14.0"
   }
 }

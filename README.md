@@ -12,6 +12,7 @@ A PureScript FRP interface to React.
 - Server-side rendering
 - React 0.14 support
 
+
 - [Getting Started](#getting-started)
 - [Documentation](https://github.com/alexmingoia/purescript-pux/tree/master/docs/Pux.md)
 - Examples:
