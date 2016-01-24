@@ -6,12 +6,12 @@
 
 A PureScript FRP interface to React.
 
-- Build React UIs as a fold of actions to state via
-  [`purescript-signal`](https://github.com/bodil/purescript-signal/)
+- Build React UIs as a fold of actions to state via [`purescript-signal`](https://github.com/bodil/purescript-signal/)
 - Type-safe routing
 - Server-side rendering
 - React 0.14 support
 
+---
 
 - [Getting Started](#getting-started)
 - [Documentation](https://github.com/alexmingoia/purescript-pux/tree/master/docs/Pux.md)
