@@ -1,5 +1,4 @@
 {
-  "private": true,
   "scripts": {
     "postinstall": "pulp dep install",
     "build": "pulp build",
