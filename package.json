@@ -6,7 +6,7 @@
     "book:prepare": "gitbook install",
     "book:build": "npm run book:prepare && gitbook build -g alexmingoia/purescript-pux",
     "book:watch": "npm run book:prepare && gitbook serve",
-    "book:publish": "npm run book:clean && npm run book:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.'",
+    "book:publish": "npm run book:clean && npm run book:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "build": "gulp psc",
     "test": "gulp test"
   },
@@ -22,7 +22,6 @@
     "rimraf": "^2.4.1"
   },
   "name": "purescript-pux",
-  "description": "[![Latest release](http://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/releases) [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux) [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/koa-router)",
   "version": "0.0.1",
   "main": "index.js",
   "directories": {
