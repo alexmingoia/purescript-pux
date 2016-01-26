@@ -1,0 +1,20 @@
+{
+  "gitbook": "2.x.x",
+  "title": "purescript-pux",
+  "description": "A PureScript FRP interface to React.",
+  "plugins": [
+    "-sharing",
+    "code_tomorrow_scheme",
+    "github",
+    "edit-link"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/alexmingoia/purescript-pux/tree/master",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/alexmingoia/purescript-pux"
+    }
+  }
+}

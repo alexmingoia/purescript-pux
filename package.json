@@ -1,11 +1,18 @@
 {
   "scripts": {
     "postinstall": "pulp dep install",
-    "build": "pulp build",
+    "docs:api": "gulp docs",
+    "book:clean": "rm -rf _book",
+    "book:prepare": "gitbook install",
+    "book:build": "npm run book:prepare && gitbook build -g alexmingoia/purescript-pux",
+    "book:watch": "npm run book:prepare && gitbook serve",
+    "book:publish": "npm run book:clean && npm run book:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.'",
+    "build": "gulp psc",
     "test": "gulp test"
   },
   "devDependencies": {
     "bower": "^1.7.2",
+    "gitbook-cli": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-jsvalidate": "^2.1.0",
     "gulp-plumber": "^1.0.1",
