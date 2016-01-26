@@ -40,7 +40,7 @@
 -- |   urlSignal <- sampleUrl
 -- |   let routeSignal = urlSignal ~> match
 -- |
--- |   renderToDOM (ElementId "app") =<< app
+-- |   renderToDOM "#app" =<< app
 -- |     { state: { currentRoute: Home }
 -- |     , update: update
 -- |     , view: home

@@ -9,7 +9,7 @@ app :: forall eff state action. Config eff state action -> Eff (chan :: Chan, do
 Initialize a Pux application.
 
 ```purescript
-main = renderToDOM (ElementId "app") =<< app
+main = renderToDOM "#app" =<< app
   { state: initialState
   , view: view
   , update: update

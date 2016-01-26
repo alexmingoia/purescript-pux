@@ -23,7 +23,7 @@ import Signal.Channel (channel, subscribe, Chan(), Channel())
 -- | Initialize a Pux application.
 -- |
 -- | ```purescript
--- | main = renderToDOM (ElementId "app") =<< app
+-- | main = renderToDOM "#app" =<< app
 -- |   { state: initialState
 -- |   , view: view
 -- |   , update: update

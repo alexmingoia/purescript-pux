@@ -61,7 +61,7 @@ view state children = div $ do
     button ! onClick (send Increment) $ text "Increment"
     button ! onClick (send Decrement) $ text "Decrement"
 
-main = renderToDOM (ElementId "app") =<< app
+main = renderToDOM "#app" =<< app
   { state: initialState
   , update: update
   , view: view
@@ -190,7 +190,7 @@ update action state input =
 Finally, we render our application to the DOM:
 
 ```purescript
-main = renderToDOM (ElementId "app") =<< app
+main = renderToDOM "#app" =<< app
   { state: initialState
   , view: view
   , update: update
