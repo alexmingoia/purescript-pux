@@ -14,7 +14,7 @@ A PureScript FRP interface to React.
 ---
 
 - [Guide](http://alexmingoia.github.io/purescript-pux)
-- [API](https://github.com/alexmingoia/purescript-pux/tree/master/docs/API/Pux.md)
+- [API Reference](http://alexmingoia.github.io/purescript-pux/docs/API/Pux.html)
 - Examples:
   - [Basic counter](https://github.com/alexmingoia/purescript-pux/tree/master/examples/basic/)
   - [AJAX](https://github.com/alexmingoia/purescript-pux/tree/master/examples/ajax/)
