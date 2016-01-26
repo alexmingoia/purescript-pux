@@ -52,7 +52,7 @@ import Pux.React.Types
 -- |
 -- | For example, `onKeyUp` provides the `KeyboardEvent` object:
 -- |
--- | ```purscript
+-- | ```purescript
 -- | data Action = KeyUp KeyboardEvent
 -- |
 -- | type State = { lastKeyPressed :: String }

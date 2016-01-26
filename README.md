@@ -9,7 +9,7 @@ A PureScript FRP interface to React.
 - Build React UIs as a fold of actions to state via [`purescript-signal`](https://github.com/bodil/purescript-signal/)
 - Type-safe routing
 - Server-side rendering
-- React 0.14 support
+- Hot-reloading of components
 
 ---
 
@@ -22,8 +22,9 @@ A PureScript FRP interface to React.
 
 ## Installation
 
-`bower install purescript-pux` or clone the boilerplate repository, which
-installs a skeleton Pux app along with webpack and gulp tasks for live
+`bower install purescript-pux` or clone the
+[boilerplate repository](https://github.com/alexmingoia/purescript-pux-boilerplate/),
+which installs a skeleton Pux app along with webpack and gulp tasks for hot
 reloading:
 
 ```sh
@@ -144,7 +145,7 @@ mouse position, etc.
 
 For example, `onKeyUp` provides the `KeyboardEvent` object:
 
-```purscript
+```purescript
 data Action = KeyUp KeyboardEvent
 
 type State = { lastKeyPressed :: String }
