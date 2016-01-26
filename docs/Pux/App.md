@@ -3,7 +3,7 @@
 #### `app`
 
 ``` purescript
-app :: forall eff state action. Config eff state action -> Eff (chan :: Chan, dom :: DOM | eff) ReactElement
+app :: forall eff state action. Config eff state action -> Eff (chan :: Chan, dom :: DOM | eff) ReactClass
 ```
 
 Initialize a Pux application.

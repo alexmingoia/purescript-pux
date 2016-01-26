@@ -16,14 +16,14 @@ import Signal.Channel (Chan())
 import Pux.React.Types
 
 foreign import renderFF :: forall eff.
-                           ReactElement ->
+                           ReactClass ->
                            Element ->
                            Eff (dom :: DOM | eff) Unit
 
 -- | Renders an application in the DOM element found using given `ElementId`.
 renderToDOM :: forall eff.
                String ->
-               ReactElement ->
+               ReactClass ->
                Eff (chan :: Chan, dom :: DOM | eff) Unit
 renderToDOM selector app = do
   container <- findContainer selector

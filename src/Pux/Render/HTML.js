@@ -6,7 +6,7 @@ exports.renderToStringFF = function (component) {
   return function (container) {
     return function () {
       var ReactDOMServer = require('react-dom/server');
-      return ReactDOMServer.renderToString(component, container);
+      return ReactDOMServer.renderToString(React.createElement(component), container);
     };
   };
 };

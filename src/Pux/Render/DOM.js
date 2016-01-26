@@ -5,7 +5,7 @@
 exports.renderFF = function (component) {
   return function (container) {
     return function () {
-      ReactDOM.render(component, container);
+      ReactDOM.render(React.createElement(component), container);
       return function () {};
     };
   };

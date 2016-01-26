@@ -33,7 +33,7 @@ import Signal.Channel (channel, subscribe, Chan(), Channel())
 -- | ```
 app :: forall eff state action.
        Config eff state action ->
-       Eff (chan :: Chan, dom :: DOM | eff) ReactElement
+       Eff (chan :: Chan, dom :: DOM | eff) ReactClass
 app config = do
   actionChannel <- channel Nil
   let actionSignal = subscribe actionChannel

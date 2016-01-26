@@ -7,6 +7,7 @@ import Prelude (Unit())
 foreign import data Event :: *
 foreign import data Attr :: *
 
+foreign import data ReactClass :: *
 foreign import data ReactElement :: *
 foreign import data ReactThis :: *
 foreign import data EventListener :: * -> *

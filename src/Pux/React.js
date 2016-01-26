@@ -10,7 +10,7 @@ exports.getInputFF = function (ctx) {
 
 exports.writeStateFF = function (ctx) {
   return function (state) {
-    ctx.replaceState(state);
+    ctx.setState(state);
     return function () {
       return function () {};
     };
@@ -19,14 +19,16 @@ exports.writeStateFF = function (ctx) {
 
 exports.makeReactComponentFF = function (render) {
   return function (componentWillMount) {
-    return React.createElement(React.createClass({
-      componentWillMount: function () {
-        componentWillMount(this)();
-      },
-      render: function () {
-        return render(this)(this.state)();
-      }
-    }));
+    var Component = function Component() {};
+    Component.prototype = Object.create(React.Component.prototype);
+    Component.displayName = 'Pux';
+    Component.prototype.componentWillMount = function () {
+      componentWillMount(this)();
+    };
+    Component.prototype.render = function () {
+      return render(this)(this.state)();
+    };
+    return Component;
   };
 };
 

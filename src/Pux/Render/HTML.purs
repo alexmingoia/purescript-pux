@@ -8,11 +8,11 @@ import Pux.React.Types
 import Signal.Channel (Chan())
 
 foreign import renderToStringFF :: forall eff.
-                                   ReactElement ->
+                                   ReactClass ->
                                    Eff (dom :: DOM | eff) String
 
 -- | Returns HTML for a given application.
 renderToHTML :: forall eff.
-               ReactElement ->
+               ReactClass ->
                Eff (chan :: Chan, dom :: DOM | eff) String
 renderToHTML app = renderToStringFF app

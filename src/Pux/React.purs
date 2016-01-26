@@ -16,7 +16,7 @@ foreign import writeStateFF :: forall eff state.
 foreign import makeReactComponentFF :: forall eff state.
                                        ReactRender eff state ->
                                        ReactComponentWillMount eff ->
-                                       ReactElement
+                                       ReactClass
 
 foreign import makeAttrFF :: forall val. String -> val -> Attr
 foreign import makeAttrWithObjFF :: forall vals. String -> { | vals } -> Attr
