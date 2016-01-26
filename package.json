@@ -16,7 +16,7 @@
   },
   "name": "purescript-pux",
   "description": "[![Latest release](http://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/releases) [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux) [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/koa-router)",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "directories": {
     "doc": "docs",
