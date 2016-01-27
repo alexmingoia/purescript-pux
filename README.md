@@ -25,7 +25,10 @@ A PureScript FRP interface to React.
 Pux is a simple FRP interface for building web applications with React,
 inspired by the
 [Elm app architecture](https://github.com/evancz/elm-architecture-tutorial)
-and [Flux](https://facebook.github.io/flux/).
+and [Flux](https://facebook.github.io/flux/). Views are produced from a global
+state atom, which is updated by a function that folds actions from input.
+Rendering is handled by React, and PureScript provides functional type-safe
+application code.
 
 Pux applications consist of:
 

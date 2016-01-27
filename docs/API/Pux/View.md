@@ -100,14 +100,6 @@ Semigroup Attrs
 Monoid Attrs
 ```
 
-#### `EventOpt`
-
-``` purescript
-data EventOpt
-  = PreventDefault
-  | StopPropagation
-```
-
 #### `Handler`
 
 ``` purescript

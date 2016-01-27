@@ -20,6 +20,8 @@ Start the watch script and example app using `npm run watch`, and visit
 
 ## Pulp
 
+If you're using pulp or bower, Pux is available as `purescript-pux`:
+
 ```sh
 pulp dep i purescript-pux
 ```

@@ -5,8 +5,10 @@ with the appropriate render function.
 
 ## In the browser
 
+`renderToDOM` calls `ReactDOM.render()` with the container element selected
+using the given selector.
+
 ```purescript
-import Control.Bind ((=<<))
 import Pux (app)
 import Pux.Render.DOM (renderToDOM)
 
@@ -21,8 +23,9 @@ main = renderToDOM "#app" =<< app
 
 ## On the server
 
+`renderToHTML` calls `ReactDOMServer.renderToString()`.
+
 ```purescript
-import Control.Bind ((=<<))
 import Pux (app)
 import Pux.Render.HTML (renderToHTML)
 

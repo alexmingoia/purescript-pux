@@ -2,7 +2,6 @@ module Pux.View
   ( (!)
   , Attrs(..)
   , Attributable
-  , EventOpt(..)
   , Handler(..)
   , VDomM(..)
   , VDom()
@@ -106,8 +105,6 @@ instance bindVDomM :: Bind VDomM where
 instance monadVDomM :: Monad VDomM
 
 data Attrs = Attrs (Array Attr) (Array MakeHandler)
-
-data EventOpt = PreventDefault | StopPropagation
 
 -- | A handler is a collection of actions and effects.
 data Handler ev action eff = Handler (List action) (List (ev -> Eff eff Unit))

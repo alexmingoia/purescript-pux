@@ -1,6 +1,5 @@
 # Table of Contents
 
-- [Introduction](/README.md)
 - [Getting Started](/docs/GettingStarted.md)
 - [Views](/docs/Views.md)
 - [Actions](/docs/actions/README.md)

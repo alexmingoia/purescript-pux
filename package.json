@@ -1,13 +1,14 @@
 {
   "scripts": {
     "postinstall": "pulp dep install",
+    "build:clean": "rm -rf dist output",
     "docs:api": "gulp docs",
     "book:clean": "rm -rf _book",
     "book:prepare": "gitbook install",
     "book:build": "npm run book:prepare && gitbook build -g alexmingoia/purescript-pux",
     "book:watch": "npm run book:prepare && gitbook serve",
     "book:publish": "npm run book:clean && npm run book:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
-    "build": "gulp psc",
+    "build": "gulp build",
     "test": "gulp test"
   },
   "devDependencies": {

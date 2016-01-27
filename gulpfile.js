@@ -22,7 +22,7 @@ gulp.task('jsvalidate', function () {
     .pipe(jsValidate());
 });
 
-gulp.task('psc', function() {
+gulp.task('build', function() {
   return purescript.psc({
     src: sources,
     ffi: foreigns
@@ -45,15 +45,7 @@ gulp.task('docs', function() {
   })
 })
 
-gulp.task('dotPsci', function() {
-  return purescript.psci({
-    src: sources,
-    ffi: foreigns
-  })
-  .pipe(gulp.dest('.'))
-})
-
-gulp.task('test', ['psc'], function() {
+gulp.task('test', ['build'], function() {
   return purescript.pscBundle({ src: "output/**/*.js" });
 });
 
