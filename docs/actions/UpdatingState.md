@@ -10,7 +10,7 @@ state to produce a new state. This fold function is known as "update" or
 asynchronous state changes), and returns a new state and collection of
 effects to run.
 
-{%purs%}
+```purescript
 update :: forall eff. Update eff State Action
 update action state input =
   case action of
@@ -20,14 +20,14 @@ update action state input =
     Decrement ->
       { state: state { counter = state.counter - 1 }
       , effects: [] }
-{%endpurs%}
+```
 
 ## Effects
 
 A series of effects can be run for any action. For example, logging to the
 console:
 
-{%purs%}
+```purescript
 update :: forall eff. Update (console :: CONSOLE | eff) State Action
 update action state input =
   case action of
@@ -37,11 +37,11 @@ update action state input =
     Decrement ->
       { state: state { counter = state.counter - 1 }
       , effects: [ do log "decrement" ] }
-{%endpurs%}
+```
 
 Another popular use case is AJAX requests:
 
-{%purs%}
+```purescript
 update :: forall eff. Update
     ( ajax :: AJAX
     , err :: EXCEPTION
@@ -63,4 +63,4 @@ update action state input =
               (Right newState) -> S.send input (singleton (ReceiveData newState))
         ]
       }
-{%endpurs%}
+```

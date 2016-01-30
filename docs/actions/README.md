@@ -5,9 +5,9 @@ state. Actions don't actually make changes to state - that's the job of the
 `Update` function, which interprets actions by updating the state and
 performing effects.
 
-{%purs%}
+```purescript
 data Action = AddTodo Todo | EditTodo Todo | DeleteTodo UUID
-{%endpurs%}
+```
 
 - [Sending Actions](/SendingActions.md)
 - [Updating State](/UpdatingState.md)
