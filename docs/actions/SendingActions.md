@@ -4,17 +4,17 @@
 
 Actions are created by delegating handlers to event attributes:
 
-```purescript
+{%purs%}
 button ! onClick (send (DeleteTodo todo.id)) $ text "delete"
-```
+{%endpurs%}
 
 `send` creates a handler that sends actions to input. There are also
 other handlers for preventing the default event behavior or its propagation,
 which can be combined using append:
 
-```purescript
+{%purs%}
 a ! onClick (send (DeleteTodo todo.id) <> preventDefault) $ text "delete"
-```
+{%endpurs%}
 
 ## Actions with event data
 
@@ -25,7 +25,7 @@ provide an object which contains event information.
 For example, `onKeyUp` provides the `KeyboardEvent` object, which contains
 information about the key pressed:
 
-```purescript
+{%purs%}
 data Action = KeyUp KeyboardEvent
 
 type State = { lastKeyPressed :: String }
@@ -39,7 +39,7 @@ update action state input = case action of
 view state children = div $ do
   p $ "Last key pressed: " ++ state.lastKeyPressed
   input ! onKeyUp (send KeyUp) ! placeholder "Type something"
-```
+{%endpurs%}
 
 To learn which events provide extra action arguments, refer to the
-[`Pux.DOM.HTML.Attributes`](/docs/Pux/DOM/HTML/Attributes.md) type signatures.
+[`Pux.DOM.HTML.Attributes`](../API/Pux/DOM/HTML/Attributes.md) type signatures.

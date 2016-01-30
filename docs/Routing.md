@@ -7,17 +7,17 @@ location changes. These are provided by `Pux.Router`.
 URL changes are mapped to an action or actions. A data type for routes is used
 to contain the matched URL along with parameter and query data.
 
-```purescript
+{%purs%}
 data Action = PageView Route
 
 data Route = Home | Users | User Int | NotFound
-```
+{%endpurs%}
 
 We also need a function that constructs a route action from a url, which we
 build using routing applicatives and pass to `router` to return the
 matched route:
 
-```purescript
+{%purs%}
 match :: String -> Action
 match url = PageView $ fromMaybe NotFound $ router url
   Home <$ end
@@ -25,7 +25,7 @@ match url = PageView $ fromMaybe NotFound $ router url
   Users <$ (lit "users") <* end
   <|>
   User <$> (lit "users" *> int) <* end
-```
+{%endpurs%}
 
 `Pux.Router` provides applicatives `lit`, `str`, `num`, `int`, `bool`, `param`,
 `params`, `any`, and `end` for mapping url parts to route values.
@@ -37,7 +37,7 @@ As you can see above, `lit` matches a literal string, and its value is ignored.
 Now that we have a function for making a route from a url, we can map it over
 the url signal provided by `sampleUrl`:
 
-```purescript
+{%purs%}
 main = do
   urlSignal <- sampleUrl
   let routeSignal = urlSignal ~> match
@@ -48,26 +48,26 @@ main = do
     , view: home
     , inputs: [routeSignal]
     }
-```
+{%endpurs%}
 
 Everytime the location changes, we can update our state with the current route,
 which includes any captured path or query parameters:
 
-```purescript
+{%purs%}
 update :: forall eff. Update eff State Action
 update action state input = case action of
   (PageView route) ->
     { state: { currentRoute: route }
     , effects: []
     }
-```
+{%endpurs%}
 
 Finally, we might want to create links to our routes and show different
 views for them. The `link` attribute can be used to push a new location to
 HTML5 history, and a simple case expression is used to determine the
 correct view:
 
-```purescript
+{%purs%}
 view :: View State
 view state children = div $ do
   div $ case state.currentRoute of
@@ -80,4 +80,4 @@ view state children = div $ do
     li $ a ! link "/users" $ text "Users"
     li $ a ! link "/users/123" $ text "User 123"
     li $ a ! link "/foobar" $ text "Not found"
-```
+{%endpurs%}

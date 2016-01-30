@@ -8,7 +8,7 @@ with the appropriate render function.
 `renderToDOM` calls `ReactDOM.render()` with the container element selected
 using the given selector.
 
-```purescript
+{%purs%}
 import Pux (app)
 import Pux.Render.DOM (renderToDOM)
 
@@ -19,13 +19,13 @@ main = renderToDOM "#app" =<< app
   -- | additional action signals to merge into input
   , inputs: []
   }
-```
+{%endpurs%}
 
 ## On the server
 
 `renderToHTML` calls `ReactDOMServer.renderToString()`.
 
-```purescript
+{%purs%}
 import Pux (app)
 import Pux.Render.HTML (renderToHTML)
 
@@ -36,4 +36,4 @@ main = renderToHTML =<< app
   -- | additional action signals to merge into input
   , inputs: []
   }
-```
+{%endpurs%}

@@ -4,7 +4,9 @@
   "description": "A PureScript FRP interface to React.",
   "plugins": [
     "-sharing",
-    "code_tomorrow_scheme",
+    "-highlight",
+    "purs-example",
+    "prism",
     "github",
     "edit-link"
   ],

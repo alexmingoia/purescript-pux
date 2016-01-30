@@ -2,14 +2,14 @@
 
 A Pux view has type `View State` and produces a virtual DOM from the state:
 
-```purescript
+{%purs%}
 view :: View State
 view state children = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do
     button ! onClick (send Increment) $ text "Increment"
     button ! onClick (send Decrement) $ text "Decrement"
-```
+{%endpurs%}
 
 Views are constructed using `VDom`, a monadic DSL for constructing React
 virtual DOM using `do` notation. Pux provides constructors for all the elements
