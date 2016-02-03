@@ -8,7 +8,7 @@ A PureScript FRP interface to React.
 
 - Build React UIs as a fold of actions to state via [`purescript-signal`](https://github.com/bodil/purescript-signal/)
 - Type-safe routing
-- Server-side rendering (~~isomorphic~~ universal applications)
+- Server-side rendering (isomorphic applications)
 - Hot-reloading of components
 
 ---
