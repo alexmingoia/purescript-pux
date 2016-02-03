@@ -96,7 +96,8 @@ function makeProps(props) {
 exports.makeReactElementFF = function (tagName) {
   return function (props) {
     return function (children) {
-      return React.createElement(tagName, props.length > 0 ? makeProps(props) : null, children);
+      var args = [tagName, props.length > 0 ? makeProps(props) : null].concat(children);
+      return React.createElement.apply(React, args);
     }
   }
 };

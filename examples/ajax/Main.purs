@@ -13,7 +13,6 @@ import Data.Foreign
 import Data.Foreign.Class
 import Network.HTTP.Affjax
 import Pux
-import Pux.DOM
 import Pux.DOM.HTML.Elements (div, p, button, text)
 import Pux.DOM.HTML.Attributes (onClick, send)
 import Pux.Render.DOM
@@ -62,8 +61,8 @@ update action state input =
         ]
       }
 
-view :: View State
-view (State state) children = div $ do
+view :: State -> VirtualDOM
+view (State state) = div $ do
   p $ text state.message
   p $ do
     button ! onClick (send RequestData) $ text "Fetch data"

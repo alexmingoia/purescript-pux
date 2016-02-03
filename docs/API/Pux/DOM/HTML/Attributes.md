@@ -7,8 +7,8 @@ import Pux
 import Pux.DOM.HTML.Elements (div, p, button, text)
 import Pux.DOM.HTML.Attributes (onClick, send)
 
-view :: View State
-view state children = div $ do
+view :: State -> VirtualDOM
+view state = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do
     button ! onClick (send Increment) $ text "Increment"

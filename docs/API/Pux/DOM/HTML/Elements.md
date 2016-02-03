@@ -7,8 +7,8 @@ import Pux
 import Pux.DOM.HTML.Elements (div, p, button, text)
 import Pux.DOM.HTML.Attributes (onClick, send)
 
-view :: View State
-view state children = div $ do
+view :: State -> VirtualDOM
+view state = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do
     button ! onClick (send Increment) $ text "Increment"
@@ -18,691 +18,691 @@ view state children = div $ do
 #### `parent`
 
 ``` purescript
-parent :: String -> VDom -> VDom
+parent :: String -> VirtualDOM -> VirtualDOM
 ```
 
 #### `leaf`
 
 ``` purescript
-leaf :: String -> VDom
+leaf :: String -> VirtualDOM
 ```
 
 #### `text`
 
 ``` purescript
-text :: String -> VDom
+text :: String -> VirtualDOM
 ```
 
 #### `a`
 
 ``` purescript
-a :: VDom -> VDom
+a :: VirtualDOM -> VirtualDOM
 ```
 
 #### `abbr`
 
 ``` purescript
-abbr :: VDom -> VDom
+abbr :: VirtualDOM -> VirtualDOM
 ```
 
 #### `address`
 
 ``` purescript
-address :: VDom -> VDom
+address :: VirtualDOM -> VirtualDOM
 ```
 
 #### `area`
 
 ``` purescript
-area :: VDom
+area :: VirtualDOM
 ```
 
 #### `article`
 
 ``` purescript
-article :: VDom -> VDom
+article :: VirtualDOM -> VirtualDOM
 ```
 
 #### `aside`
 
 ``` purescript
-aside :: VDom -> VDom
+aside :: VirtualDOM -> VirtualDOM
 ```
 
 #### `audio`
 
 ``` purescript
-audio :: VDom -> VDom
+audio :: VirtualDOM -> VirtualDOM
 ```
 
 #### `b`
 
 ``` purescript
-b :: VDom -> VDom
+b :: VirtualDOM -> VirtualDOM
 ```
 
 #### `base`
 
 ``` purescript
-base :: VDom
+base :: VirtualDOM
 ```
 
 #### `bdi`
 
 ``` purescript
-bdi :: VDom -> VDom
+bdi :: VirtualDOM -> VirtualDOM
 ```
 
 #### `bdo`
 
 ``` purescript
-bdo :: VDom -> VDom
+bdo :: VirtualDOM -> VirtualDOM
 ```
 
 #### `big`
 
 ``` purescript
-big :: VDom -> VDom
+big :: VirtualDOM -> VirtualDOM
 ```
 
 #### `blockquote`
 
 ``` purescript
-blockquote :: VDom -> VDom
+blockquote :: VirtualDOM -> VirtualDOM
 ```
 
 #### `body`
 
 ``` purescript
-body :: VDom -> VDom
+body :: VirtualDOM -> VirtualDOM
 ```
 
 #### `br`
 
 ``` purescript
-br :: VDom
+br :: VirtualDOM
 ```
 
 #### `button`
 
 ``` purescript
-button :: VDom -> VDom
+button :: VirtualDOM -> VirtualDOM
 ```
 
 #### `canvas`
 
 ``` purescript
-canvas :: VDom -> VDom
+canvas :: VirtualDOM -> VirtualDOM
 ```
 
 #### `caption`
 
 ``` purescript
-caption :: VDom -> VDom
+caption :: VirtualDOM -> VirtualDOM
 ```
 
 #### `cite`
 
 ``` purescript
-cite :: VDom -> VDom
+cite :: VirtualDOM -> VirtualDOM
 ```
 
 #### `code`
 
 ``` purescript
-code :: VDom -> VDom
+code :: VirtualDOM -> VirtualDOM
 ```
 
 #### `col`
 
 ``` purescript
-col :: VDom
+col :: VirtualDOM
 ```
 
 #### `colgroup`
 
 ``` purescript
-colgroup :: VDom -> VDom
+colgroup :: VirtualDOM -> VirtualDOM
 ```
 
 #### `data_`
 
 ``` purescript
-data_ :: VDom -> VDom
+data_ :: VirtualDOM -> VirtualDOM
 ```
 
 #### `datalist`
 
 ``` purescript
-datalist :: VDom -> VDom
+datalist :: VirtualDOM -> VirtualDOM
 ```
 
 #### `dd`
 
 ``` purescript
-dd :: VDom -> VDom
+dd :: VirtualDOM -> VirtualDOM
 ```
 
 #### `del`
 
 ``` purescript
-del :: VDom -> VDom
+del :: VirtualDOM -> VirtualDOM
 ```
 
 #### `details`
 
 ``` purescript
-details :: VDom -> VDom
+details :: VirtualDOM -> VirtualDOM
 ```
 
 #### `dfn`
 
 ``` purescript
-dfn :: VDom -> VDom
+dfn :: VirtualDOM -> VirtualDOM
 ```
 
 #### `dialog`
 
 ``` purescript
-dialog :: VDom -> VDom
+dialog :: VirtualDOM -> VirtualDOM
 ```
 
 #### `div`
 
 ``` purescript
-div :: VDom -> VDom
+div :: VirtualDOM -> VirtualDOM
 ```
 
 #### `dl`
 
 ``` purescript
-dl :: VDom -> VDom
+dl :: VirtualDOM -> VirtualDOM
 ```
 
 #### `dt`
 
 ``` purescript
-dt :: VDom -> VDom
+dt :: VirtualDOM -> VirtualDOM
 ```
 
 #### `em`
 
 ``` purescript
-em :: VDom -> VDom
+em :: VirtualDOM -> VirtualDOM
 ```
 
 #### `embed`
 
 ``` purescript
-embed :: VDom
+embed :: VirtualDOM
 ```
 
 #### `fieldset`
 
 ``` purescript
-fieldset :: VDom -> VDom
+fieldset :: VirtualDOM -> VirtualDOM
 ```
 
 #### `figcaption`
 
 ``` purescript
-figcaption :: VDom -> VDom
+figcaption :: VirtualDOM -> VirtualDOM
 ```
 
 #### `figure`
 
 ``` purescript
-figure :: VDom -> VDom
+figure :: VirtualDOM -> VirtualDOM
 ```
 
 #### `footer`
 
 ``` purescript
-footer :: VDom -> VDom
+footer :: VirtualDOM -> VirtualDOM
 ```
 
 #### `form`
 
 ``` purescript
-form :: VDom -> VDom
+form :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h1`
 
 ``` purescript
-h1 :: VDom -> VDom
+h1 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h2`
 
 ``` purescript
-h2 :: VDom -> VDom
+h2 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h3`
 
 ``` purescript
-h3 :: VDom -> VDom
+h3 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h4`
 
 ``` purescript
-h4 :: VDom -> VDom
+h4 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h5`
 
 ``` purescript
-h5 :: VDom -> VDom
+h5 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `h6`
 
 ``` purescript
-h6 :: VDom -> VDom
+h6 :: VirtualDOM -> VirtualDOM
 ```
 
 #### `head`
 
 ``` purescript
-head :: VDom -> VDom
+head :: VirtualDOM -> VirtualDOM
 ```
 
 #### `header`
 
 ``` purescript
-header :: VDom -> VDom
+header :: VirtualDOM -> VirtualDOM
 ```
 
 #### `hr`
 
 ``` purescript
-hr :: VDom
+hr :: VirtualDOM
 ```
 
 #### `html`
 
 ``` purescript
-html :: VDom -> VDom
+html :: VirtualDOM -> VirtualDOM
 ```
 
 #### `i`
 
 ``` purescript
-i :: VDom -> VDom
+i :: VirtualDOM -> VirtualDOM
 ```
 
 #### `iframe`
 
 ``` purescript
-iframe :: VDom -> VDom
+iframe :: VirtualDOM -> VirtualDOM
 ```
 
 #### `img`
 
 ``` purescript
-img :: VDom
+img :: VirtualDOM
 ```
 
 #### `input`
 
 ``` purescript
-input :: VDom
+input :: VirtualDOM
 ```
 
 #### `ins`
 
 ``` purescript
-ins :: VDom -> VDom
+ins :: VirtualDOM -> VirtualDOM
 ```
 
 #### `kbd`
 
 ``` purescript
-kbd :: VDom -> VDom
+kbd :: VirtualDOM -> VirtualDOM
 ```
 
 #### `keygen`
 
 ``` purescript
-keygen :: VDom
+keygen :: VirtualDOM
 ```
 
 #### `label`
 
 ``` purescript
-label :: VDom -> VDom
+label :: VirtualDOM -> VirtualDOM
 ```
 
 #### `legend`
 
 ``` purescript
-legend :: VDom -> VDom
+legend :: VirtualDOM -> VirtualDOM
 ```
 
 #### `li`
 
 ``` purescript
-li :: VDom -> VDom
+li :: VirtualDOM -> VirtualDOM
 ```
 
 #### `link`
 
 ``` purescript
-link :: VDom
+link :: VirtualDOM
 ```
 
 #### `main`
 
 ``` purescript
-main :: VDom -> VDom
+main :: VirtualDOM -> VirtualDOM
 ```
 
 #### `map`
 
 ``` purescript
-map :: VDom -> VDom
+map :: VirtualDOM -> VirtualDOM
 ```
 
 #### `mark`
 
 ``` purescript
-mark :: VDom -> VDom
+mark :: VirtualDOM -> VirtualDOM
 ```
 
 #### `menu`
 
 ``` purescript
-menu :: VDom -> VDom
+menu :: VirtualDOM -> VirtualDOM
 ```
 
 #### `menuitem`
 
 ``` purescript
-menuitem :: VDom
+menuitem :: VirtualDOM
 ```
 
 #### `meta`
 
 ``` purescript
-meta :: VDom
+meta :: VirtualDOM
 ```
 
 #### `meter`
 
 ``` purescript
-meter :: VDom -> VDom
+meter :: VirtualDOM -> VirtualDOM
 ```
 
 #### `nav`
 
 ``` purescript
-nav :: VDom -> VDom
+nav :: VirtualDOM -> VirtualDOM
 ```
 
 #### `noscript`
 
 ``` purescript
-noscript :: VDom -> VDom
+noscript :: VirtualDOM -> VirtualDOM
 ```
 
 #### `object`
 
 ``` purescript
-object :: VDom -> VDom
+object :: VirtualDOM -> VirtualDOM
 ```
 
 #### `ol`
 
 ``` purescript
-ol :: VDom -> VDom
+ol :: VirtualDOM -> VirtualDOM
 ```
 
 #### `optgroup`
 
 ``` purescript
-optgroup :: VDom -> VDom
+optgroup :: VirtualDOM -> VirtualDOM
 ```
 
 #### `option`
 
 ``` purescript
-option :: VDom -> VDom
+option :: VirtualDOM -> VirtualDOM
 ```
 
 #### `output`
 
 ``` purescript
-output :: VDom -> VDom
+output :: VirtualDOM -> VirtualDOM
 ```
 
 #### `p`
 
 ``` purescript
-p :: VDom -> VDom
+p :: VirtualDOM -> VirtualDOM
 ```
 
 #### `param`
 
 ``` purescript
-param :: VDom
+param :: VirtualDOM
 ```
 
 #### `picture`
 
 ``` purescript
-picture :: VDom -> VDom
+picture :: VirtualDOM -> VirtualDOM
 ```
 
 #### `pre`
 
 ``` purescript
-pre :: VDom -> VDom
+pre :: VirtualDOM -> VirtualDOM
 ```
 
 #### `progress`
 
 ``` purescript
-progress :: VDom -> VDom
+progress :: VirtualDOM -> VirtualDOM
 ```
 
 #### `q`
 
 ``` purescript
-q :: VDom -> VDom
+q :: VirtualDOM -> VirtualDOM
 ```
 
 #### `rp`
 
 ``` purescript
-rp :: VDom -> VDom
+rp :: VirtualDOM -> VirtualDOM
 ```
 
 #### `rt`
 
 ``` purescript
-rt :: VDom -> VDom
+rt :: VirtualDOM -> VirtualDOM
 ```
 
 #### `ruby`
 
 ``` purescript
-ruby :: VDom -> VDom
+ruby :: VirtualDOM -> VirtualDOM
 ```
 
 #### `s`
 
 ``` purescript
-s :: VDom -> VDom
+s :: VirtualDOM -> VirtualDOM
 ```
 
 #### `samp`
 
 ``` purescript
-samp :: VDom -> VDom
+samp :: VirtualDOM -> VirtualDOM
 ```
 
 #### `script`
 
 ``` purescript
-script :: VDom -> VDom
+script :: VirtualDOM -> VirtualDOM
 ```
 
 #### `section`
 
 ``` purescript
-section :: VDom -> VDom
+section :: VirtualDOM -> VirtualDOM
 ```
 
 #### `select`
 
 ``` purescript
-select :: VDom -> VDom
+select :: VirtualDOM -> VirtualDOM
 ```
 
 #### `small`
 
 ``` purescript
-small :: VDom -> VDom
+small :: VirtualDOM -> VirtualDOM
 ```
 
 #### `source`
 
 ``` purescript
-source :: VDom
+source :: VirtualDOM
 ```
 
 #### `span`
 
 ``` purescript
-span :: VDom -> VDom
+span :: VirtualDOM -> VirtualDOM
 ```
 
 #### `strong`
 
 ``` purescript
-strong :: VDom -> VDom
+strong :: VirtualDOM -> VirtualDOM
 ```
 
 #### `style`
 
 ``` purescript
-style :: VDom -> VDom
+style :: VirtualDOM -> VirtualDOM
 ```
 
 #### `sub`
 
 ``` purescript
-sub :: VDom -> VDom
+sub :: VirtualDOM -> VirtualDOM
 ```
 
 #### `summary`
 
 ``` purescript
-summary :: VDom -> VDom
+summary :: VirtualDOM -> VirtualDOM
 ```
 
 #### `sup`
 
 ``` purescript
-sup :: VDom -> VDom
+sup :: VirtualDOM -> VirtualDOM
 ```
 
 #### `table`
 
 ``` purescript
-table :: VDom -> VDom
+table :: VirtualDOM -> VirtualDOM
 ```
 
 #### `tbody`
 
 ``` purescript
-tbody :: VDom -> VDom
+tbody :: VirtualDOM -> VirtualDOM
 ```
 
 #### `td`
 
 ``` purescript
-td :: VDom -> VDom
+td :: VirtualDOM -> VirtualDOM
 ```
 
 #### `textarea`
 
 ``` purescript
-textarea :: VDom -> VDom
+textarea :: VirtualDOM -> VirtualDOM
 ```
 
 #### `tfoot`
 
 ``` purescript
-tfoot :: VDom -> VDom
+tfoot :: VirtualDOM -> VirtualDOM
 ```
 
 #### `th`
 
 ``` purescript
-th :: VDom -> VDom
+th :: VirtualDOM -> VirtualDOM
 ```
 
 #### `thead`
 
 ``` purescript
-thead :: VDom -> VDom
+thead :: VirtualDOM -> VirtualDOM
 ```
 
 #### `time`
 
 ``` purescript
-time :: VDom -> VDom
+time :: VirtualDOM -> VirtualDOM
 ```
 
 #### `title`
 
 ``` purescript
-title :: VDom -> VDom
+title :: VirtualDOM -> VirtualDOM
 ```
 
 #### `tr`
 
 ``` purescript
-tr :: VDom -> VDom
+tr :: VirtualDOM -> VirtualDOM
 ```
 
 #### `track`
 
 ``` purescript
-track :: VDom
+track :: VirtualDOM
 ```
 
 #### `u`
 
 ``` purescript
-u :: VDom -> VDom
+u :: VirtualDOM -> VirtualDOM
 ```
 
 #### `ul`
 
 ``` purescript
-ul :: VDom -> VDom
+ul :: VirtualDOM -> VirtualDOM
 ```
 
 #### `var`
 
 ``` purescript
-var :: VDom -> VDom
+var :: VirtualDOM -> VirtualDOM
 ```
 
 #### `video`
 
 ``` purescript
-video :: VDom -> VDom
+video :: VirtualDOM -> VirtualDOM
 ```
 
 #### `wbr`
 
 ``` purescript
-wbr :: VDom
+wbr :: VirtualDOM
 ```
 
 

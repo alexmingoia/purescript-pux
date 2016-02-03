@@ -66,8 +66,8 @@
 -- | correct view:
 -- |
 -- | ```purescript
--- | view :: View State
--- | view state children = div $ do
+-- | view :: State -> VirtualDOM
+-- | view state = div $ do
 -- |   div $ case state.currentRoute of
 -- |     Home -> h1 $ text "Home"
 -- |     Users -> h1 $ text "Users"
@@ -116,7 +116,7 @@ import Data.Tuple (Tuple(..), fst, snd)
 import qualified Data.Map as M
 import DOM (DOM())
 import Pux.React.Types (Event())
-import Pux.View (Attrs(), Handler(..))
+import Pux.DOM (Attrs(), Handler(..))
 import Pux.DOM.HTML.Attributes (onClick, href)
 import Global (readFloat, isNaN)
 import Signal (constant, Signal())

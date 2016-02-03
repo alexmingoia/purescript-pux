@@ -5,8 +5,8 @@
 -- | import Pux.DOM.HTML.Elements (div, p, button, text)
 -- | import Pux.DOM.HTML.Attributes (onClick, send)
 -- |
--- | view :: View State
--- | view state children = div $ do
+-- | view :: State -> VirtualDOM
+-- | view state = div $ do
 -- |   p $ text ("Counter: " ++ show state.counter)
 -- |   p $ do
 -- |     button ! onClick (send Increment) $ text "Increment"
@@ -18,7 +18,7 @@ module Pux.DOM.HTML.Attributes where
 import Data.List
 import DOM (DOM())
 import Prelude
-import Pux.View
+import Pux.DOM
 import Pux.React
 import Pux.React.Types
 import Signal.Channel (Chan())

@@ -14,7 +14,7 @@ import Data.Maybe
 import Data.Maybe.Unsafe (fromJust)
 import DOM (DOM())
 import Prelude
-import Pux.View
+import Pux.DOM
 import Pux.React
 import Pux.React.Types
 import Signal (foldp, mergeMany, (~>), runSignal, Signal())
@@ -56,16 +56,17 @@ app config = do
         let renderSignal = effStateSignal ~> runEffects
         runSignal renderSignal
       render ctx state =
-        return $ renderVDom ctx $ config.view state.state (Return unit)
+        return $ renderToReact ctx $ config.view state.state
       component = makeReactComponentFF render componentWillMount
   pure component
 
 -- | Render React element from virtual dom tree, threading context through the
 -- | event handlers.
-renderVDom :: ReactThis -> VDom -> ReactElement
-renderVDom ctx vdom = makeReactElementFF "div" [] $ renderNode ctx vdom
+renderToReact :: ReactThis -> VirtualDOM -> ReactElement
+renderToReact ctx vdom = fromMaybe emptydiv $ A.head (renderNode ctx vdom)
+  where emptydiv = makeReactElementFF "div" [] []
 
-renderNode :: ReactThis -> VDom -> Array ReactElement
+renderNode :: ReactThis -> VirtualDOM -> Array ReactElement
 renderNode ctx (Node name (Just children) props handlers rest) =
   makeReactElementFF name (props <> map (renderHandler ctx) handlers)
     (renderNode ctx children) A.: renderNode ctx rest
@@ -81,12 +82,12 @@ renderHandler ctx mkhandler = mkhandler ctx
 
 type Config eff state action =
   { state :: state
-  , view :: View state
+  , view :: state -> VirtualDOM
   , update :: Update eff state action
   , inputs :: Array (Signal action)
   }
 
--- | `Input` is a channel which receives actions from the `View`.
+-- | `Input` is a channel which receives actions from the view.
 type Input action = Channel (List action)
 
 -- | `Update` receives actions from `Input`, the current state, the input

@@ -1,22 +1,21 @@
-## Module Pux.View
+## Module Pux.DOM
 
-#### `View`
+#### `VirtualDOM`
 
 ``` purescript
-type View state = state -> VDom -> VDom
+type VirtualDOM = VDomM Unit
 ```
 
-`View` is a rendering function that receives state, children, and returns
-a `VDom`. `VDom` is a monadic DSL for constructing React virtual DOM using
-`do` notation:
+A view is a rendering function that receives state and returns
+a `VirtualDOM`. `VirtualDOM` is a monadic DSL for constructing React
+virtual DOM using `do` notation:
 
 ```purescript
-import Pux (View())
 import Pux.DOM.HTML.Elements (div, p, button, text)
 import Pux.DOM.HTML.Attributes (onClick, send)
 
-view :: View State
-view state children = div $ do
+view :: State -> VirtualDOM
+view state = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do
     button ! onClick (send Increment) $ text "Increment"
@@ -51,7 +50,7 @@ update action state input = case action of
     , effects: []
     }
 
-view state children = div $ do
+view state = div $ do
   p $ "Last key pressed: " ++ state.lastKeyPressed
   input ! onKeyUp (send KeyUp) ! placeholder "Type something"
 ```
@@ -63,7 +62,7 @@ To learn which events provide extra action arguments, refer to the
 
 ``` purescript
 data VDomM a
-  = Node String (Maybe VDom) (Array Attr) (Array MakeHandler) (VDomM a)
+  = Node String (Maybe VirtualDOM) (Array Attr) (Array MakeHandler) (VDomM a)
   | Content String (VDomM a)
   | Return a
 ```
@@ -79,12 +78,6 @@ Bind VDomM
 Monad VDomM
 Attributable (VDomM a)
 Attributable (VDomM a -> VDomM a)
-```
-
-#### `VDom`
-
-``` purescript
-type VDom = VDomM Unit
 ```
 
 #### `Attrs`
@@ -134,5 +127,3 @@ Attributable (VDomM a -> VDomM a)
 ```
 
 _left-associative / precedence 4_
-
-

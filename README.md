@@ -8,7 +8,7 @@ A PureScript FRP interface to React.
 
 - Build React UIs as a fold of actions to state via [`purescript-signal`](https://github.com/bodil/purescript-signal/)
 - Type-safe routing
-- Server-side rendering
+- Server-side rendering (~~isomorphic~~ universal applications)
 - Hot-reloading of components
 
 ---
@@ -19,6 +19,13 @@ A PureScript FRP interface to React.
   - [Basic counter](https://github.com/alexmingoia/purescript-pux/tree/master/examples/basic/)
   - [AJAX](https://github.com/alexmingoia/purescript-pux/tree/master/examples/ajax/)
   - [Routing](https://github.com/alexmingoia/purescript-pux/tree/master/examples/routing/)
+
+What makes Pux different from Halogen and react-thermite?
+
+- Monadic DSL for creating views/virtual DOM
+- Routing out-of-the-box
+- Simpler API that resembles the Elm app architecture.
+- React 0.14+ support
 
 ## Introduction
 
@@ -34,7 +41,7 @@ Pux applications consist of:
 
 - A type for application state.
 - A type for actions taken by the user and sent to `Input`.
-- A `View` function, which produces HTML from the current state.
+- A view function, which produces HTML from the current state.
 - An `Update` function, which produces a new state from the signal of actions.
 
 ## Example
@@ -57,7 +64,7 @@ update action state input =
       { state: state { counter = state.counter - 1 }
       , effects: [ do log "decrement" ] }
 
-view :: View State
+view :: State -> VirtualDOM
 view state children = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do

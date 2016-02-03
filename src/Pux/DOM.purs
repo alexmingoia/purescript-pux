@@ -1,11 +1,10 @@
-module Pux.View
+module Pux.DOM
   ( (!)
   , Attrs(..)
   , Attributable
   , Handler(..)
   , VDomM(..)
-  , VDom()
-  , View()
+  , VirtualDOM()
   , with
   ) where
 
@@ -17,17 +16,16 @@ import Data.Monoid
 import Prelude
 import Pux.React.Types
 
--- | `View` is a rendering function that receives state, children, and returns
--- | a `VDom`. `VDom` is a monadic DSL for constructing React virtual DOM using
--- | `do` notation:
+-- | A view is a rendering function that receives state and returns
+-- | a `VirtualDOM`. `VirtualDOM` is a monadic DSL for constructing React
+-- | virtual DOM using `do` notation:
 -- |
 -- | ```purescript
--- | import Pux (View())
 -- | import Pux.DOM.HTML.Elements (div, p, button, text)
 -- | import Pux.DOM.HTML.Attributes (onClick, send)
 -- |
--- | view :: View State
--- | view state children = div $ do
+-- | view :: State -> VirtualDOM
+-- | view state = div $ do
 -- |   p $ text ("Counter: " ++ show state.counter)
 -- |   p $ do
 -- |     button ! onClick (send Increment) $ text "Increment"
@@ -62,21 +60,19 @@ import Pux.React.Types
 -- |     , effects: []
 -- |     }
 -- |
--- | view state children = div $ do
+-- | view state = div $ do
 -- |   p $ "Last key pressed: " ++ state.lastKeyPressed
 -- |   input ! onKeyUp (send KeyUp) ! placeholder "Type something"
 -- | ```
 -- |
 -- | To learn which events provide extra action arguments, refer to the
 -- | `Pux.DOM.HTML.Attributes` type signatures.
-type View state = state -> VDom -> VDom
+type VirtualDOM = VDomM Unit
 
 data VDomM a
-  = Node String (Maybe VDom) (Array Attr) (Array MakeHandler) (VDomM a)
+  = Node String (Maybe VirtualDOM) (Array Attr) (Array MakeHandler) (VDomM a)
   | Content String (VDomM a)
   | Return a
-
-type VDom = VDomM Unit
 
 instance semigroupVDomM :: Semigroup (VDomM a) where
   append x y = x *> y

@@ -68,8 +68,8 @@ HTML5 history, and a simple case expression is used to determine the
 correct view:
 
 ```purescript
-view :: View State
-view state children = div $ do
+view :: State -> VirtualDOM
+view state = div $ do
   div $ case state.currentRoute of
     Home -> h1 $ text "Home"
     Users -> h1 $ text "Users"

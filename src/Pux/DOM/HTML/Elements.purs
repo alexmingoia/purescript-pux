@@ -5,8 +5,8 @@
 -- | import Pux.DOM.HTML.Elements (div, p, button, text)
 -- | import Pux.DOM.HTML.Attributes (onClick, send)
 -- |
--- | view :: View State
--- | view state children = div $ do
+-- | view :: State -> VirtualDOM
+-- | view state = div $ do
 -- |   p $ text ("Counter: " ++ show state.counter)
 -- |   p $ do
 -- |     button ! onClick (send Increment) $ text "Increment"
@@ -17,349 +17,349 @@ module Pux.DOM.HTML.Elements where
 
 import Data.Maybe
 import Prelude (unit)
-import Pux.View
+import Pux.DOM
 
-parent :: String -> VDom -> VDom
+parent :: String -> VirtualDOM -> VirtualDOM
 parent el children = Node el (Just children) [] [] (Return unit)
 
-leaf :: String -> VDom
+leaf :: String -> VirtualDOM
 leaf el = Node el Nothing [] [] (Return unit)
 
-text :: String -> VDom
+text :: String -> VirtualDOM
 text str = Content str (Return unit)
 
-a :: VDom -> VDom
+a :: VirtualDOM -> VirtualDOM
 a = parent "a"
 
-abbr :: VDom -> VDom
+abbr :: VirtualDOM -> VirtualDOM
 abbr = parent "abbr"
 
-address :: VDom -> VDom
+address :: VirtualDOM -> VirtualDOM
 address = parent "address"
 
-area :: VDom
+area :: VirtualDOM
 area = leaf "area"
 
-article :: VDom -> VDom
+article :: VirtualDOM -> VirtualDOM
 article = parent "article"
 
-aside :: VDom -> VDom
+aside :: VirtualDOM -> VirtualDOM
 aside = parent "aside"
 
-audio :: VDom -> VDom
+audio :: VirtualDOM -> VirtualDOM
 audio = parent "audio"
 
-b :: VDom -> VDom
+b :: VirtualDOM -> VirtualDOM
 b = parent "b"
 
-base :: VDom
+base :: VirtualDOM
 base = leaf "base"
 
-bdi :: VDom -> VDom
+bdi :: VirtualDOM -> VirtualDOM
 bdi = parent "bdi"
 
-bdo :: VDom -> VDom
+bdo :: VirtualDOM -> VirtualDOM
 bdo = parent "bdo"
 
-big :: VDom -> VDom
+big :: VirtualDOM -> VirtualDOM
 big = parent "big"
 
-blockquote :: VDom -> VDom
+blockquote :: VirtualDOM -> VirtualDOM
 blockquote = parent "blockquote"
 
-body :: VDom -> VDom
+body :: VirtualDOM -> VirtualDOM
 body = parent "body"
 
-br :: VDom
+br :: VirtualDOM
 br = leaf "br"
 
-button :: VDom -> VDom
+button :: VirtualDOM -> VirtualDOM
 button = parent "button"
 
-canvas :: VDom -> VDom
+canvas :: VirtualDOM -> VirtualDOM
 canvas = parent "canvas"
 
-caption :: VDom -> VDom
+caption :: VirtualDOM -> VirtualDOM
 caption = parent "caption"
 
-cite :: VDom -> VDom
+cite :: VirtualDOM -> VirtualDOM
 cite = parent "cite"
 
-code :: VDom -> VDom
+code :: VirtualDOM -> VirtualDOM
 code = parent "code"
 
-col :: VDom
+col :: VirtualDOM
 col = leaf "col"
 
-colgroup :: VDom -> VDom
+colgroup :: VirtualDOM -> VirtualDOM
 colgroup = parent "colgroup"
 
-data_ :: VDom -> VDom
+data_ :: VirtualDOM -> VirtualDOM
 data_ = parent "data"
 
-datalist :: VDom -> VDom
+datalist :: VirtualDOM -> VirtualDOM
 datalist = parent "datalist"
 
-dd :: VDom -> VDom
+dd :: VirtualDOM -> VirtualDOM
 dd = parent "dd"
 
-del :: VDom -> VDom
+del :: VirtualDOM -> VirtualDOM
 del = parent "del"
 
-details :: VDom -> VDom
+details :: VirtualDOM -> VirtualDOM
 details = parent "details"
 
-dfn :: VDom -> VDom
+dfn :: VirtualDOM -> VirtualDOM
 dfn = parent "dfn"
 
-dialog :: VDom -> VDom
+dialog :: VirtualDOM -> VirtualDOM
 dialog = parent "dialog"
 
-div :: VDom -> VDom
+div :: VirtualDOM -> VirtualDOM
 div = parent "div"
 
-dl :: VDom -> VDom
+dl :: VirtualDOM -> VirtualDOM
 dl = parent "dl"
 
-dt :: VDom -> VDom
+dt :: VirtualDOM -> VirtualDOM
 dt = parent "dt"
 
-em :: VDom -> VDom
+em :: VirtualDOM -> VirtualDOM
 em = parent "em"
 
-embed :: VDom
+embed :: VirtualDOM
 embed = leaf "embed"
 
-fieldset :: VDom -> VDom
+fieldset :: VirtualDOM -> VirtualDOM
 fieldset = parent "fieldset"
 
-figcaption :: VDom -> VDom
+figcaption :: VirtualDOM -> VirtualDOM
 figcaption = parent "figcaption"
 
-figure :: VDom -> VDom
+figure :: VirtualDOM -> VirtualDOM
 figure = parent "figure"
 
-footer :: VDom -> VDom
+footer :: VirtualDOM -> VirtualDOM
 footer = parent "footer"
 
-form :: VDom -> VDom
+form :: VirtualDOM -> VirtualDOM
 form = parent "form"
 
-h1 :: VDom -> VDom
+h1 :: VirtualDOM -> VirtualDOM
 h1 = parent "h1"
 
-h2 :: VDom -> VDom
+h2 :: VirtualDOM -> VirtualDOM
 h2 = parent "h2"
 
-h3 :: VDom -> VDom
+h3 :: VirtualDOM -> VirtualDOM
 h3 = parent "h3"
 
-h4 :: VDom -> VDom
+h4 :: VirtualDOM -> VirtualDOM
 h4 = parent "h4"
 
-h5 :: VDom -> VDom
+h5 :: VirtualDOM -> VirtualDOM
 h5 = parent "h5"
 
-h6 :: VDom -> VDom
+h6 :: VirtualDOM -> VirtualDOM
 h6 = parent "h6"
 
-head :: VDom -> VDom
+head :: VirtualDOM -> VirtualDOM
 head = parent "head"
 
-header :: VDom -> VDom
+header :: VirtualDOM -> VirtualDOM
 header = parent "header"
 
-hr :: VDom
+hr :: VirtualDOM
 hr = leaf "hr"
 
-html :: VDom -> VDom
+html :: VirtualDOM -> VirtualDOM
 html = parent "html"
 
-i :: VDom -> VDom
+i :: VirtualDOM -> VirtualDOM
 i = parent "i"
 
-iframe :: VDom -> VDom
+iframe :: VirtualDOM -> VirtualDOM
 iframe = parent "iframe"
 
-img :: VDom
+img :: VirtualDOM
 img = leaf "img"
 
-input :: VDom
+input :: VirtualDOM
 input = leaf "input"
 
-ins :: VDom -> VDom
+ins :: VirtualDOM -> VirtualDOM
 ins = parent "ins"
 
-kbd :: VDom -> VDom
+kbd :: VirtualDOM -> VirtualDOM
 kbd = parent "kbd"
 
-keygen :: VDom
+keygen :: VirtualDOM
 keygen = leaf "keygen"
 
-label :: VDom -> VDom
+label :: VirtualDOM -> VirtualDOM
 label = parent "label"
 
-legend :: VDom -> VDom
+legend :: VirtualDOM -> VirtualDOM
 legend = parent "legend"
 
-li :: VDom -> VDom
+li :: VirtualDOM -> VirtualDOM
 li = parent "li"
 
-link :: VDom
+link :: VirtualDOM
 link = leaf "link"
 
-main :: VDom -> VDom
+main :: VirtualDOM -> VirtualDOM
 main = parent "main"
 
-map :: VDom -> VDom
+map :: VirtualDOM -> VirtualDOM
 map = parent "map"
 
-mark :: VDom -> VDom
+mark :: VirtualDOM -> VirtualDOM
 mark = parent "mark"
 
-menu :: VDom -> VDom
+menu :: VirtualDOM -> VirtualDOM
 menu = parent "menu"
 
-menuitem :: VDom
+menuitem :: VirtualDOM
 menuitem = leaf "menuitem"
 
-meta :: VDom
+meta :: VirtualDOM
 meta = leaf "meta"
 
-meter :: VDom -> VDom
+meter :: VirtualDOM -> VirtualDOM
 meter = parent "meter"
 
-nav :: VDom -> VDom
+nav :: VirtualDOM -> VirtualDOM
 nav = parent "nav"
 
-noscript :: VDom -> VDom
+noscript :: VirtualDOM -> VirtualDOM
 noscript = parent "noscript"
 
-object :: VDom -> VDom
+object :: VirtualDOM -> VirtualDOM
 object = parent "object"
 
-ol :: VDom -> VDom
+ol :: VirtualDOM -> VirtualDOM
 ol = parent "ol"
 
-optgroup :: VDom -> VDom
+optgroup :: VirtualDOM -> VirtualDOM
 optgroup = parent "optgroup"
 
-option :: VDom -> VDom
+option :: VirtualDOM -> VirtualDOM
 option = parent "option"
 
-output :: VDom -> VDom
+output :: VirtualDOM -> VirtualDOM
 output = parent "output"
 
-p :: VDom -> VDom
+p :: VirtualDOM -> VirtualDOM
 p = parent "p"
 
-param :: VDom
+param :: VirtualDOM
 param = leaf "param"
 
-picture :: VDom -> VDom
+picture :: VirtualDOM -> VirtualDOM
 picture = parent "picture"
 
-pre :: VDom -> VDom
+pre :: VirtualDOM -> VirtualDOM
 pre = parent "pre"
 
-progress :: VDom -> VDom
+progress :: VirtualDOM -> VirtualDOM
 progress = parent "progress"
 
-q :: VDom -> VDom
+q :: VirtualDOM -> VirtualDOM
 q = parent "q"
 
-rp :: VDom -> VDom
+rp :: VirtualDOM -> VirtualDOM
 rp = parent "rp"
 
-rt :: VDom -> VDom
+rt :: VirtualDOM -> VirtualDOM
 rt = parent "rt"
 
-ruby :: VDom -> VDom
+ruby :: VirtualDOM -> VirtualDOM
 ruby = parent "ruby"
 
-s :: VDom -> VDom
+s :: VirtualDOM -> VirtualDOM
 s = parent "s"
 
-samp :: VDom -> VDom
+samp :: VirtualDOM -> VirtualDOM
 samp = parent "samp"
 
-script :: VDom -> VDom
+script :: VirtualDOM -> VirtualDOM
 script = parent "script"
 
-section :: VDom -> VDom
+section :: VirtualDOM -> VirtualDOM
 section = parent "section"
 
-select :: VDom -> VDom
+select :: VirtualDOM -> VirtualDOM
 select = parent "select"
 
-small :: VDom -> VDom
+small :: VirtualDOM -> VirtualDOM
 small = parent "small"
 
-source :: VDom
+source :: VirtualDOM
 source = leaf "source"
 
-span :: VDom -> VDom
+span :: VirtualDOM -> VirtualDOM
 span = parent "span"
 
-strong :: VDom -> VDom
+strong :: VirtualDOM -> VirtualDOM
 strong = parent "strong"
 
-style :: VDom -> VDom
+style :: VirtualDOM -> VirtualDOM
 style = parent "style"
 
-sub :: VDom -> VDom
+sub :: VirtualDOM -> VirtualDOM
 sub = parent "sub"
 
-summary :: VDom -> VDom
+summary :: VirtualDOM -> VirtualDOM
 summary = parent "summary"
 
-sup :: VDom -> VDom
+sup :: VirtualDOM -> VirtualDOM
 sup = parent "sup"
 
-table :: VDom -> VDom
+table :: VirtualDOM -> VirtualDOM
 table = parent "table"
 
-tbody :: VDom -> VDom
+tbody :: VirtualDOM -> VirtualDOM
 tbody = parent "tbody"
 
-td :: VDom -> VDom
+td :: VirtualDOM -> VirtualDOM
 td = parent "td"
 
-textarea :: VDom -> VDom
+textarea :: VirtualDOM -> VirtualDOM
 textarea = parent "textarea"
 
-tfoot :: VDom -> VDom
+tfoot :: VirtualDOM -> VirtualDOM
 tfoot = parent "tfoot"
 
-th :: VDom -> VDom
+th :: VirtualDOM -> VirtualDOM
 th = parent "th"
 
-thead :: VDom -> VDom
+thead :: VirtualDOM -> VirtualDOM
 thead = parent "thead"
 
-time :: VDom -> VDom
+time :: VirtualDOM -> VirtualDOM
 time = parent "time"
 
-title :: VDom -> VDom
+title :: VirtualDOM -> VirtualDOM
 title = parent "title"
 
-tr :: VDom -> VDom
+tr :: VirtualDOM -> VirtualDOM
 tr = parent "tr"
 
-track :: VDom
+track :: VirtualDOM
 track = leaf "track"
 
-u :: VDom -> VDom
+u :: VirtualDOM -> VirtualDOM
 u = parent "u"
 
-ul :: VDom -> VDom
+ul :: VirtualDOM -> VirtualDOM
 ul = parent "ul"
 
-var :: VDom -> VDom
+var :: VirtualDOM -> VirtualDOM
 var = parent "var"
 
-video :: VDom -> VDom
+video :: VirtualDOM -> VirtualDOM
 video = parent "video"
 
-wbr :: VDom
+wbr :: VirtualDOM
 wbr = leaf "body"

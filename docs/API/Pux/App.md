@@ -21,7 +21,7 @@ main = renderToDOM "#app" =<< app
 #### `Config`
 
 ``` purescript
-type Config eff state action = { state :: state, view :: View state, update :: Update eff state action, inputs :: Array (Signal action) }
+type Config eff state action = { state :: state, view :: state -> VirtualDOM, update :: Update eff state action, inputs :: Array (Signal action) }
 ```
 
 #### `Input`
@@ -30,7 +30,7 @@ type Config eff state action = { state :: state, view :: View state, update :: U
 type Input action = Channel (List action)
 ```
 
-`Input` is a channel which receives actions from the `View`.
+`Input` is a channel which receives actions from the view.
 
 #### `Update`
 

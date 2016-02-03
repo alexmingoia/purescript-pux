@@ -35,12 +35,12 @@ gulp.task('docs', function() {
     docgen: {
       'Pux': 'docs/API/Pux.md',
       'Pux.App': 'docs/API/Pux/App.md',
+      'Pux.DOM': 'docs/API/Pux/DOM.md',
       'Pux.DOM.HTML.Attributes': 'docs/API/Pux/DOM/HTML/Attributes.md',
       'Pux.DOM.HTML.Elements': 'docs/API/Pux/DOM/HTML/Elements.md',
       'Pux.Render.DOM': 'docs/API/Pux/Render/DOM.md',
       'Pux.Render.HTML': 'docs/API/Pux/Render/HTML.md',
-      'Pux.Router': 'docs/API/Pux/Router.md',
-      'Pux.View': 'docs/API/Pux/View.md'
+      'Pux.Router': 'docs/API/Pux/Router.md'
     }
   })
 })

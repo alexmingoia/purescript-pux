@@ -5,7 +5,7 @@ import DOM (DOM())
 import Data.List
 import Prelude
 import Pux.React.Types
-import Pux.View
+import Pux.DOM
 import qualified Signal.Channel as S
 
 foreign import getInputFF :: forall eff input. ReactThis -> Eff eff input

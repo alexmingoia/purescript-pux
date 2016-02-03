@@ -26,8 +26,8 @@ update action state input =
       { state: state { counter = state.counter - 1 }
       , effects: [ do log "decrement" ] }
 
-view :: View State
-view state children = div $ do
+view :: State -> VirtualDOM
+view state = div $ do
   p $ text ("Counter: " ++ show state.counter)
   p $ do
     button ! onClick (send Increment) $ text "Increment"
