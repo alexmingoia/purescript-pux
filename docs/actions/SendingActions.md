@@ -36,7 +36,7 @@ update action state input = case action of
     , effects: []
     }
 
-view state children = div $ do
+view state = div $ do
   p $ "Last key pressed: " ++ state.lastKeyPressed
   input ! onKeyUp (send KeyUp) ! placeholder "Type something"
 ```
