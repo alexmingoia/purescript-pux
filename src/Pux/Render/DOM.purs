@@ -11,7 +11,7 @@ import DOM.HTML.Types (htmlDocumentToParentNode)
 import DOM.HTML.Window (document)
 import DOM.Node.ParentNode (querySelector)
 import DOM.Node.Types (Element())
-import Signal.Channel (Chan())
+import Signal.Channel (CHANNEL())
 
 import Pux.React.Types
 
@@ -24,7 +24,7 @@ foreign import renderFF :: forall eff.
 renderToDOM :: forall eff.
                String ->
                ReactClass ->
-               Eff (chan :: Chan, dom :: DOM | eff) Unit
+               Eff (channel :: CHANNEL, dom :: DOM | eff) Unit
 renderToDOM selector app = do
   container <- findContainer selector
   renderFF app container

@@ -5,7 +5,7 @@ import Prelude
 import Control.Monad.Eff (Eff())
 import DOM (DOM())
 import Pux.React.Types
-import Signal.Channel (Chan())
+import Signal.Channel (CHANNEL())
 
 foreign import renderToStringFF :: forall eff.
                                    ReactClass ->
@@ -14,5 +14,5 @@ foreign import renderToStringFF :: forall eff.
 -- | Returns HTML for a given application.
 renderToHTML :: forall eff.
                ReactClass ->
-               Eff (chan :: Chan, dom :: DOM | eff) String
+               Eff (channel :: CHANNEL, dom :: DOM | eff) String
 renderToHTML app = renderToStringFF app

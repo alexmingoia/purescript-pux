@@ -15,13 +15,13 @@
 
 module Pux.DOM.HTML.Attributes where
 
-import Data.List
+import Data.List (List(Nil), singleton)
 import DOM (DOM())
-import Prelude
-import Pux.DOM
-import Pux.React
-import Pux.React.Types
-import Signal.Channel (Chan())
+import Prelude (($), map)
+import Pux.DOM (Attrs, Handler(Handler))
+import Pux.React (makeAttr, makeAttrWithObj, makeHandler, stopPropagationFF, preventDefaultFF)
+import Pux.React.Types (Event)
+import Signal.Channel (CHANNEL())
 
 type MouseEvent =
   { pageX :: Number
@@ -60,106 +60,106 @@ preventDefault = Handler Nil $ singleton preventDefaultFF
 stopPropagation :: forall ev action eff. Handler ev action (dom :: DOM | eff)
 stopPropagation = Handler Nil $ singleton stopPropagationFF
 
-onCopy :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onCopy :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onCopy (Handler actions fx) = makeHandler "onCopy" fx $ \ev -> actions
 
-onCut :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onCut :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onCut (Handler actions fx) = makeHandler "onCut" fx $ \ev -> actions
 
-onPaste :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onPaste :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onPaste (Handler actions fx) = makeHandler "onPaste" fx $ \ev -> actions
 
-onKeyDown :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onKeyDown :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onKeyDown (Handler actions fx) = makeHandler "onKeyDown" fx $ \ev -> map (\a -> a ev) actions
 
-onKeyPress :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onKeyPress :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onKeyPress (Handler actions fx) = makeHandler "onKeyPress" fx $ \ev -> map (\a -> a ev) actions
 
-onKeyUp :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onKeyUp :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onKeyUp (Handler actions fx) = makeHandler "onKeyUp" fx $ \ev -> map (\a -> a ev) actions
 
-onFocus :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onFocus :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onFocus (Handler actions fx) = makeHandler "onFocus" fx $ \ev -> actions
 
-onBlur :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onBlur :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onBlur (Handler actions fx) = makeHandler "onBlur" fx $ \ev -> actions
 
-onChange :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onChange :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onChange (Handler actions fx) = makeHandler "onChange" fx $ \ev -> actions
 
-onInput :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onInput :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onInput (Handler actions fx) = makeHandler "onInput" fx $ \ev -> actions
 
-onSubmit :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onSubmit :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onSubmit (Handler actions fx) = makeHandler "onSubmit" fx $ \ev -> actions
 
-onClick :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onClick :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onClick (Handler actions fx) = makeHandler "onClick" fx $ \ev -> actions
 
-onDoubleClick :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDoubleClick :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDoubleClick (Handler actions fx) = makeHandler "onDoubleClick" fx $ \ev -> actions
 
-onDrag :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDrag :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDrag (Handler actions fx) = makeHandler "onDrag" fx $ \ev -> actions
 
-onDragEnd :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragEnd :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragEnd (Handler actions fx) = makeHandler "onDragEnd" fx $ \ev -> actions
 
-onDragEnter :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragEnter :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragEnter (Handler actions fx) = makeHandler "onDragEnter" fx $ \ev -> actions
 
-onDragExit :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragExit :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragExit (Handler actions fx) = makeHandler "onDragExit" fx $ \ev -> actions
 
-onDragLeave :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragLeave :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragLeave (Handler actions fx) = makeHandler "onDragLeave" fx $ \ev -> actions
 
-onDragOver :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragOver :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragOver (Handler actions fx) = makeHandler "onDragOver" fx $ \ev -> actions
 
-onDragStart :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDragStart :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDragStart (Handler actions fx) = makeHandler "onDragStart" fx $ \ev -> actions
 
-onDrop :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onDrop :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onDrop (Handler actions fx) = makeHandler "onDrop" fx $ \ev -> actions
 
-onMouseDown :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseDown :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseDown (Handler actions fx) = makeHandler "onMouseDown" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseEnter :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseEnter :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseEnter (Handler actions fx) = makeHandler "onMouseEnter" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseLeave :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseLeave :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseLeave (Handler actions fx) = makeHandler "onMouseLeave" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseMove :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseMove :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseMove (Handler actions fx) = makeHandler "onMouseMove" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseOut :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseOut :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseOut (Handler actions fx) = makeHandler "onMouseOut" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseOver :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseOver :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseOver (Handler actions fx) = makeHandler "onMouseOver" fx $ \ev -> map (\a -> a ev) actions
 
-onMouseUp :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, chan :: Chan | eff) -> Attrs
+onMouseUp :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onMouseUp (Handler actions fx) = makeHandler "onMouseUp" fx $ \ev -> map (\a -> a ev) actions
 
-onTouchCancel :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onTouchCancel :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onTouchCancel (Handler actions fx) = makeHandler "onTouchCancel" fx $ \ev -> actions
 
-onTouchEnd :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onTouchEnd :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onTouchEnd (Handler actions fx) = makeHandler "onTouchEnd" fx $ \ev -> actions
 
-onTouchMove :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onTouchMove :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onTouchMove (Handler actions fx) = makeHandler "onTouchMove" fx $ \ev -> actions
 
-onTouchStart :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onTouchStart :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onTouchStart (Handler actions fx) = makeHandler "onTouchStart" fx $ \ev -> actions
 
-onScroll :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onScroll :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onScroll (Handler actions fx) = makeHandler "onScroll" fx $ \ev -> actions
 
-onWheel :: forall action eff. Handler Event action (dom :: DOM, chan :: Chan | eff) -> Attrs
+onWheel :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onWheel (Handler actions fx) = makeHandler "onWheel" fx $ \ev -> actions
 
 aria :: forall ariaAttrs. { | ariaAttrs } -> Attrs

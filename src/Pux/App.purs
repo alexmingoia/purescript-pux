@@ -7,18 +7,18 @@ module Pux.App
   ) where
 
 import Control.Monad.Eff (Eff())
-import qualified Data.Array as A
-import Data.List
-import Data.Foldable
-import Data.Maybe
+import Data.Array as A
+import Data.List (List(Nil), fromFoldable, singleton, (:), reverse)
+import Data.Foldable (sequence_, foldl)
+import Data.Maybe (Maybe(Nothing, Just), fromMaybe)
 import Data.Maybe.Unsafe (fromJust)
 import DOM (DOM())
-import Prelude
-import Pux.DOM
-import Pux.React
-import Pux.React.Types
+import Prelude (Unit, map, (<>), ($), pure, return, bind)
+import Pux.DOM (VirtualDOM, VDomM(Return, Content, Node))
+import Pux.React (makeReactTextFF, makeReactElementFF, makeReactComponentFF, writeStateFF)
+import Pux.React.Types (Attr, MakeHandler, ReactThis, ReactElement, ReactClass)
 import Signal (foldp, mergeMany, (~>), runSignal, Signal())
-import Signal.Channel (channel, subscribe, Chan(), Channel())
+import Signal.Channel (channel, subscribe, CHANNEL(), Channel())
 
 -- | Initialize a Pux application.
 -- |
@@ -33,7 +33,7 @@ import Signal.Channel (channel, subscribe, Chan(), Channel())
 -- | ```
 app :: forall eff state action.
        Config eff state action ->
-       Eff (chan :: Chan, dom :: DOM | eff) ReactClass
+       Eff (channel :: CHANNEL, dom :: DOM | eff) ReactClass
 app config = do
   actionChannel <- channel Nil
   let actionSignal = subscribe actionChannel
@@ -117,7 +117,7 @@ type EffModel eff state =
   , effects :: Array
     ( Eff
       ( dom :: DOM
-      , chan :: Chan
+      , channel :: CHANNEL
       | eff
       )
       Unit

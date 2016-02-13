@@ -18,8 +18,8 @@
     "gulp-jsvalidate": "^2.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-purescript": "^0.8.0",
-    "pulp": "^4.5.0",
-    "purescript": "^0.7.6",
+    "pulp": "^8.0.0",
+    "purescript": "^0.8.0",
     "rimraf": "^2.4.1"
   },
   "name": "purescript-pux",

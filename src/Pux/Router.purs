@@ -100,20 +100,20 @@ module Pux.Router
   , end
   ) where
 
-import Prelude
+import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (<>))
 
 import Control.Monad.Eff (Eff())
-import Control.Alt
-import Control.Plus
+import Control.Alt (class Alt, (<|>))
+import Control.Plus (class Plus)
 import Control.MonadPlus (guard)
-import Data.Maybe
-import qualified Data.String as S
+import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
+import Data.String as S
 import Data.Traversable (traverse)
 import Data.Int (fromString)
-import qualified Data.Array as A
-import Data.List
+import Data.Array as A
+import Data.List (List(Nil, Cons), toList, drop, singleton)
 import Data.Tuple (Tuple(..), fst, snd)
-import qualified Data.Map as M
+import Data.Map as M
 import DOM (DOM())
 import Pux.React.Types (Event())
 import Pux.DOM (Attrs(), Handler(..))
@@ -255,9 +255,9 @@ parsePart s = fromMaybe (Path s) do
 
   part2tuple :: String -> Maybe (Tuple String String)
   part2tuple part = do
-    let param = S.split "=" part
-    guard $ A.length param == 2
-    Tuple <$> (A.head param) <*> (param A.!! 1)
+    let param' = S.split "=" part
+    guard $ A.length param' == 2
+    Tuple <$> (A.head param') <*> (param' A.!! 1)
 
 router :: forall a. String -> Match a -> Maybe a
 router url (Match match) = maybe Nothing (Just <<< snd) result

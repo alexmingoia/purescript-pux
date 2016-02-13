@@ -16,7 +16,7 @@
     "url": "git://github.com/alexmingoia/purescript-pux.git"
   },
   "dependencies": {
-    "purescript-signal": "~4.2.0",
+    "purescript-signal": "~5.0.0",
     "purescript-globals": "~0.2.2"
   },
   "devDependencies": {
