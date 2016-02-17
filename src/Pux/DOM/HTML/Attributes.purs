@@ -42,6 +42,13 @@ type KeyboardEvent =
   , which    :: Int
   }
 
+type Target = { value :: String }
+
+type ChangeEvent =
+  {
+    target :: Target
+  }
+
 -- | ```purescript
 -- | button ! onClick (send Increment)
 -- | ```
@@ -84,8 +91,8 @@ onFocus (Handler actions fx) = makeHandler "onFocus" fx $ \ev -> actions
 onBlur :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onBlur (Handler actions fx) = makeHandler "onBlur" fx $ \ev -> actions
 
-onChange :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onChange (Handler actions fx) = makeHandler "onChange" fx $ \ev -> actions
+onChange :: forall action eff. Handler ChangeEvent (ChangeEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
+onChange (Handler actions fx) = makeHandler "onChange" fx $ \ev -> map (\a -> a ev) actions
 
 onInput :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onInput (Handler actions fx) = makeHandler "onInput" fx $ \ev -> actions
