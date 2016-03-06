@@ -46,7 +46,7 @@ gulp.task('docs', function() {
 })
 
 gulp.task('test', ['build'], function() {
-  return purescript.pscBundle({ src: "output/**/*.js" });
+  return purescript.pscBundle({ module: 'Main', output: 'examples/basic/basic.index.js', src: "output/**/*.js" });
 });
 
 gulp.task('default', ['test']);

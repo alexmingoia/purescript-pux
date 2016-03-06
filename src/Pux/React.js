@@ -2,6 +2,9 @@
 
 // module Pux.React
 
+var React = (typeof require === 'function' && require('react'))
+         || (typeof window === 'object' && window.React);
+
 exports.getInputFF = function (ctx) {
   return function () {
     return ctx.state.input;
