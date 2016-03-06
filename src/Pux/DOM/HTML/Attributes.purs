@@ -68,106 +68,106 @@ stopPropagation :: forall ev action eff. Handler ev action (dom :: DOM | eff)
 stopPropagation = Handler Nil $ singleton stopPropagationFF
 
 onCopy :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onCopy (Handler actions fx) = makeHandler "onCopy" fx $ \ev -> actions
+onCopy (Handler actions effects) = makeHandler "onCopy" effects $ \ev -> actions
 
 onCut :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onCut (Handler actions fx) = makeHandler "onCut" fx $ \ev -> actions
+onCut (Handler actions effects) = makeHandler "onCut" effects $ \ev -> actions
 
 onPaste :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onPaste (Handler actions fx) = makeHandler "onPaste" fx $ \ev -> actions
+onPaste (Handler actions effects) = makeHandler "onPaste" effects $ \ev -> actions
 
 onKeyDown :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onKeyDown (Handler actions fx) = makeHandler "onKeyDown" fx $ \ev -> map (\a -> a ev) actions
+onKeyDown (Handler actions effects) = makeHandler "onKeyDown" effects $ \ev -> map (\a -> a ev) actions
 
 onKeyPress :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onKeyPress (Handler actions fx) = makeHandler "onKeyPress" fx $ \ev -> map (\a -> a ev) actions
+onKeyPress (Handler actions effects) = makeHandler "onKeyPress" effects $ \ev -> map (\a -> a ev) actions
 
 onKeyUp :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onKeyUp (Handler actions fx) = makeHandler "onKeyUp" fx $ \ev -> map (\a -> a ev) actions
+onKeyUp (Handler actions effects) = makeHandler "onKeyUp" effects $ \ev -> map (\a -> a ev) actions
 
 onFocus :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onFocus (Handler actions fx) = makeHandler "onFocus" fx $ \ev -> actions
+onFocus (Handler actions effects) = makeHandler "onFocus" effects $ \ev -> actions
 
 onBlur :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onBlur (Handler actions fx) = makeHandler "onBlur" fx $ \ev -> actions
+onBlur (Handler actions effects) = makeHandler "onBlur" effects $ \ev -> actions
 
 onChange :: forall action eff. Handler ChangeEvent (ChangeEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
 onChange (Handler actions fx) = makeHandler "onChange" fx $ \ev -> map (\a -> a ev) actions
 
 onInput :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onInput (Handler actions fx) = makeHandler "onInput" fx $ \ev -> actions
+onInput (Handler actions effects) = makeHandler "onInput" effects $ \ev -> actions
 
 onSubmit :: forall action eff. Handler KeyboardEvent (KeyboardEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onSubmit (Handler actions fx) = makeHandler "onSubmit" fx $ \ev -> actions
+onSubmit (Handler actions effects) = makeHandler "onSubmit" effects $ \ev -> actions
 
 onClick :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onClick (Handler actions fx) = makeHandler "onClick" fx $ \ev -> actions
+onClick (Handler actions effects) = makeHandler "onClick" effects $ \ev -> actions
 
 onDoubleClick :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDoubleClick (Handler actions fx) = makeHandler "onDoubleClick" fx $ \ev -> actions
+onDoubleClick (Handler actions effects) = makeHandler "onDoubleClick" effects $ \ev -> actions
 
 onDrag :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDrag (Handler actions fx) = makeHandler "onDrag" fx $ \ev -> actions
+onDrag (Handler actions effects) = makeHandler "onDrag" effects $ \ev -> actions
 
 onDragEnd :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragEnd (Handler actions fx) = makeHandler "onDragEnd" fx $ \ev -> actions
+onDragEnd (Handler actions effects) = makeHandler "onDragEnd" effects $ \ev -> actions
 
 onDragEnter :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragEnter (Handler actions fx) = makeHandler "onDragEnter" fx $ \ev -> actions
+onDragEnter (Handler actions effects) = makeHandler "onDragEnter" effects $ \ev -> actions
 
 onDragExit :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragExit (Handler actions fx) = makeHandler "onDragExit" fx $ \ev -> actions
+onDragExit (Handler actions effects) = makeHandler "onDragExit" effects $ \ev -> actions
 
 onDragLeave :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragLeave (Handler actions fx) = makeHandler "onDragLeave" fx $ \ev -> actions
+onDragLeave (Handler actions effects) = makeHandler "onDragLeave" effects $ \ev -> actions
 
 onDragOver :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragOver (Handler actions fx) = makeHandler "onDragOver" fx $ \ev -> actions
+onDragOver (Handler actions effects) = makeHandler "onDragOver" effects $ \ev -> actions
 
 onDragStart :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDragStart (Handler actions fx) = makeHandler "onDragStart" fx $ \ev -> actions
+onDragStart (Handler actions effects) = makeHandler "onDragStart" effects $ \ev -> actions
 
 onDrop :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onDrop (Handler actions fx) = makeHandler "onDrop" fx $ \ev -> actions
+onDrop (Handler actions effects) = makeHandler "onDrop" effects $ \ev -> actions
 
 onMouseDown :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseDown (Handler actions fx) = makeHandler "onMouseDown" fx $ \ev -> map (\a -> a ev) actions
+onMouseDown (Handler actions effects) = makeHandler "onMouseDown" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseEnter :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseEnter (Handler actions fx) = makeHandler "onMouseEnter" fx $ \ev -> map (\a -> a ev) actions
+onMouseEnter (Handler actions effects) = makeHandler "onMouseEnter" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseLeave :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseLeave (Handler actions fx) = makeHandler "onMouseLeave" fx $ \ev -> map (\a -> a ev) actions
+onMouseLeave (Handler actions effects) = makeHandler "onMouseLeave" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseMove :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseMove (Handler actions fx) = makeHandler "onMouseMove" fx $ \ev -> map (\a -> a ev) actions
+onMouseMove (Handler actions effects) = makeHandler "onMouseMove" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseOut :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseOut (Handler actions fx) = makeHandler "onMouseOut" fx $ \ev -> map (\a -> a ev) actions
+onMouseOut (Handler actions effects) = makeHandler "onMouseOut" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseOver :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseOver (Handler actions fx) = makeHandler "onMouseOver" fx $ \ev -> map (\a -> a ev) actions
+onMouseOver (Handler actions effects) = makeHandler "onMouseOver" effects $ \ev -> map (\a -> a ev) actions
 
 onMouseUp :: forall action eff. Handler MouseEvent (MouseEvent -> action) (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onMouseUp (Handler actions fx) = makeHandler "onMouseUp" fx $ \ev -> map (\a -> a ev) actions
+onMouseUp (Handler actions effects) = makeHandler "onMouseUp" effects $ \ev -> map (\a -> a ev) actions
 
 onTouchCancel :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onTouchCancel (Handler actions fx) = makeHandler "onTouchCancel" fx $ \ev -> actions
+onTouchCancel (Handler actions effects) = makeHandler "onTouchCancel" effects $ \ev -> actions
 
 onTouchEnd :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onTouchEnd (Handler actions fx) = makeHandler "onTouchEnd" fx $ \ev -> actions
+onTouchEnd (Handler actions effects) = makeHandler "onTouchEnd" effects $ \ev -> actions
 
 onTouchMove :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onTouchMove (Handler actions fx) = makeHandler "onTouchMove" fx $ \ev -> actions
+onTouchMove (Handler actions effects) = makeHandler "onTouchMove" effects $ \ev -> actions
 
 onTouchStart :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onTouchStart (Handler actions fx) = makeHandler "onTouchStart" fx $ \ev -> actions
+onTouchStart (Handler actions effects) = makeHandler "onTouchStart" effects $ \ev -> actions
 
 onScroll :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onScroll (Handler actions fx) = makeHandler "onScroll" fx $ \ev -> actions
+onScroll (Handler actions effects) = makeHandler "onScroll" effects $ \ev -> actions
 
 onWheel :: forall action eff. Handler Event action (dom :: DOM, channel :: CHANNEL | eff) -> Attrs
-onWheel (Handler actions fx) = makeHandler "onWheel" fx $ \ev -> actions
+onWheel (Handler actions effects) = makeHandler "onWheel" effects $ \ev -> actions
 
 aria :: forall ariaAttrs. { | ariaAttrs } -> Attrs
 aria = makeAttrWithObj "aria"
@@ -480,3 +480,165 @@ width = makeAttr "width"
 
 wmode :: String -> Attrs
 wmode = makeAttr "wmode"
+
+clipPath :: String -> Attrs
+clipPath = makeAttr "clipPath"
+
+cx :: String -> Attrs
+cx = makeAttr "cx"
+
+cy :: String -> Attrs
+cy = makeAttr "cy"
+
+d :: String -> Attrs
+d = makeAttr "d"
+
+dx :: String -> Attrs
+dx = makeAttr "dx"
+
+dy :: String -> Attrs
+dy = makeAttr "dy"
+
+fill :: String -> Attrs
+fill = makeAttr "fill"
+
+fillOpacity :: String -> Attrs
+fillOpacity = makeAttr "fillOpacity"
+
+fontFamily :: String -> Attrs
+fontFamily = makeAttr "fontFamily"
+
+fontSize :: String -> Attrs
+fontSize = makeAttr "fontSize"
+
+fx :: String -> Attrs
+fx = makeAttr "effects"
+
+fy :: String -> Attrs
+fy = makeAttr "fy"
+
+gradientTransform :: String -> Attrs
+gradientTransform = makeAttr "gradientTransform"
+
+gradientUnits :: String -> Attrs
+gradientUnits = makeAttr "gradientUnits"
+
+markerEnd :: String -> Attrs
+markerEnd = makeAttr "markerEnd"
+
+markerMid :: String -> Attrs
+markerMid = makeAttr "markerMid"
+
+markerStart :: String -> Attrs
+markerStart = makeAttr "markerStart"
+
+offset :: String -> Attrs
+offset = makeAttr "offset"
+
+opacity :: String -> Attrs
+opacity = makeAttr "opacity"
+
+patternContentUnits :: String -> Attrs
+patternContentUnits = makeAttr "patternContentUnits"
+
+patternUnits :: String -> Attrs
+patternUnits = makeAttr "patternUnits"
+
+points :: String -> Attrs
+points = makeAttr "points"
+
+preserveAspectRatio :: String -> Attrs
+preserveAspectRatio = makeAttr "preserveAspectRatio"
+
+r :: String -> Attrs
+r = makeAttr "r"
+
+rx :: String -> Attrs
+rx = makeAttr "rx"
+
+ry :: String -> Attrs
+ry = makeAttr "ry"
+
+spreadMethod :: String -> Attrs
+spreadMethod = makeAttr "spreadMethod"
+
+stopColor :: String -> Attrs
+stopColor = makeAttr "stopColor"
+
+stopOpacity :: String -> Attrs
+stopOpacity = makeAttr "stopOpacity"
+
+stroke :: String -> Attrs
+stroke = makeAttr "stroke"
+
+strokeDasharray :: String -> Attrs
+strokeDasharray = makeAttr "strokeDasharray"
+
+strokeLinecap :: String -> Attrs
+strokeLinecap = makeAttr "strokeLinecap"
+
+strokeOpacity :: String -> Attrs
+strokeOpacity = makeAttr "strokeOpacity"
+
+strokeWidth :: String -> Attrs
+strokeWidth = makeAttr "strokeWidth"
+
+textAnchor :: String -> Attrs
+textAnchor = makeAttr "textAnchor"
+
+transform :: String -> Attrs
+transform = makeAttr "transform"
+
+version :: String -> Attrs
+version = makeAttr "version"
+
+viewBox :: String -> Attrs
+viewBox = makeAttr "viewBox"
+
+x1 :: String -> Attrs
+x1 = makeAttr "x1"
+
+x2 :: String -> Attrs
+x2 = makeAttr "x2"
+
+x :: String -> Attrs
+x = makeAttr "x"
+
+xlinkActuate :: String -> Attrs
+xlinkActuate = makeAttr "xlinkActuate"
+
+xlinkArcrole :: String -> Attrs
+xlinkArcrole = makeAttr "xlinkArcrole"
+
+xlinkHref :: String -> Attrs
+xlinkHref = makeAttr "xlinkHref"
+
+xlinkRole :: String -> Attrs
+xlinkRole = makeAttr "xlinkRole"
+
+xlinkShow :: String -> Attrs
+xlinkShow = makeAttr "xlinkShow"
+
+xlinkTitle :: String -> Attrs
+xlinkTitle = makeAttr "xlinkTitle"
+
+xlinkType :: String -> Attrs
+xlinkType = makeAttr "xlinkType"
+
+xmlBase :: String -> Attrs
+xmlBase = makeAttr "xmlBase"
+
+xmlLang :: String -> Attrs
+xmlLang = makeAttr "xmlLang"
+
+xmlSpace :: String -> Attrs
+xmlSpace = makeAttr "xmlSpace"
+
+y1 :: String -> Attrs
+y1 = makeAttr "y1"
+
+y2 :: String -> Attrs
+y2 = makeAttr "y2"
+
+y :: String -> Attrs
+y = makeAttr "y"

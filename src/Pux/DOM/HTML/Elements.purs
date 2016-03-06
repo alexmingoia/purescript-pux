@@ -15,9 +15,9 @@
 
 module Pux.DOM.HTML.Elements where
 
-import Data.Maybe
+import Data.Maybe (Maybe(Nothing, Just))
 import Prelude (unit)
-import Pux.DOM
+import Pux.DOM (VirtualDOM, VDomM(Return, Content, Node))
 
 parent :: String -> VirtualDOM -> VirtualDOM
 parent el children = Node el (Just children) [] [] (Return unit)
@@ -363,3 +363,60 @@ video = parent "video"
 
 wbr :: VirtualDOM
 wbr = leaf "body"
+
+circle :: VirtualDOM
+circle = leaf "circle"
+
+clipPath :: VirtualDOM -> VirtualDOM
+clipPath = parent "clipPath"
+
+defs :: VirtualDOM -> VirtualDOM
+defs = parent "defs"
+
+ellipse :: VirtualDOM
+ellipse = leaf "ellipse"
+
+g :: VirtualDOM -> VirtualDOM
+g = parent "g"
+
+image :: VirtualDOM
+image = leaf "image"
+
+line :: VirtualDOM
+line = leaf "line"
+
+linearGradient :: VirtualDOM -> VirtualDOM
+linearGradient = parent "linearGradient"
+
+mask :: VirtualDOM -> VirtualDOM
+mask = parent "mask"
+
+path :: VirtualDOM
+path = leaf "path"
+
+pattern :: VirtualDOM -> VirtualDOM
+pattern = parent "pattern"
+
+polygon :: VirtualDOM
+polygon = leaf "polygon"
+
+polyline :: VirtualDOM
+polyline = leaf "polyline"
+
+radialGradient :: VirtualDOM -> VirtualDOM
+radialGradient = parent "radialGradient"
+
+rect :: VirtualDOM
+rect = leaf "rect"
+
+stop :: VirtualDOM
+stop = leaf "stop"
+
+svg :: VirtualDOM -> VirtualDOM
+svg = parent "svg"
+
+text' :: VirtualDOM -> VirtualDOM
+text' = parent "text"
+
+tspan :: VirtualDOM -> VirtualDOM
+tspan = parent "tspan"
