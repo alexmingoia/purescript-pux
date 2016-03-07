@@ -1,9 +1,18 @@
 # Change Log
 
-## [v0.1.0] - 2016-02-02
+## [v0.3.0] - 2016-03-20
 
-No changes to the API are expected after this release. Only the addition of SVG
-elements is planned for v1.0.0
+### Fixed
+
+- Load React from CommonJS. Fixes [#10](https://github.com/alexmingoia/purescript-pux/issues/10).
+- Fix onChange handler so it produces a value. Fixes [#7](https://github.com/alexmingoia/purescript-pux/issues/7).
+- List all dependencies. Fixes [#9](https://github.com/alexmingoia/purescript-pux/issues/9).
+
+### Added
+
+- SVG elements and attributes. Fixes [#6](https://github.com/alexmingoia/purescript-pux/issues/6).
+
+## [v0.1.0] - 2016-02-02
 
 ### Fixed
 - Make foreign functions safe in runtimes without `window`.
