@@ -2,27 +2,28 @@
   "scripts": {
     "postinstall": "pulp dep install",
     "build:clean": "rm -rf dist output",
-    "docs:api": "gulp docs",
-    "book:clean": "rm -rf _book",
-    "book:prepare": "gitbook install",
-    "book:build": "npm run book:prepare && gitbook build -g alexmingoia/purescript-pux",
-    "book:watch": "npm run book:prepare && gitbook serve",
-    "book:publish": "npm run book:clean && npm run book:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
+    "docs:api": "rm -rf docs/API && gulp docs",
+    "docs:clean": "rm -rf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "rm -rf _book && npm run docs:api && npm run docs:prepare && gitbook build -g alexmingoia/purescript-pux",
+    "docs:watch": "npm run docs:api && npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "build": "gulp build",
     "test": "gulp test"
   },
   "devDependencies": {
     "bower": "^1.7.2",
-    "gitbook-cli": "^1.0.1",
+    "gitbook-cli": "^2.1.2",
     "gulp": "^3.9.0",
     "gulp-jsvalidate": "^2.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-purescript": "^0.8.0",
     "pulp": "^8.0.0",
     "purescript": "^0.8.0",
-    "rimraf": "^2.4.1"
+    "rimraf": "^2.5.2"
   },
   "name": "purescript-pux",
+  "description": "Pux is an FRP interface to React, based on the Elm app architecture.",
   "version": "0.3.0",
   "main": "index.js",
   "directories": {

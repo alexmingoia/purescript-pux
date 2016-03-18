@@ -2,7 +2,7 @@
 
 // module Pux.Router
 
-exports.sampleUrlFF = function locationChanged(constant) {
+exports.createUrlSignal = function locationChanged(constant) {
   var url = "";
   if (typeof window !== 'undefined') {
     url = window.location.pathname + window.location.search;
@@ -18,15 +18,14 @@ exports.sampleUrlFF = function locationChanged(constant) {
   };
 };
 
-exports.pushStateFF = function (url) {
-  return function (event) {
-    if (event.currentTarget.nodeName === 'A') {
-      event.preventDefault();
-    }
-    if (typeof window !== 'undefined') {
-      window.history.pushState({}, document.title, url);
-      window.dispatchEvent(new Event('popstate'));
-    }
-    return function () {};
-  };
+exports.linkHandler = function (url) {
+  return ['onClick', function (input, parentAction) {
+    return function (ev) {
+      ev.preventDefault();
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, document.title, url);
+        window.dispatchEvent(new Event('popstate'));
+      }
+    };
+  }];
 };

@@ -1,5 +1,5 @@
 {
-  "gitbook": "2.x.x",
+  "gitbook": "2",
   "title": "purescript-pux",
   "description": "A PureScript FRP interface to React.",
   "plugins": [
@@ -10,6 +10,9 @@
     "github",
     "edit-link"
   ],
+  "styles": {
+    "website": "docs/website.css"
+  },
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/alexmingoia/purescript-pux/tree/master",

@@ -1,6 +1,34 @@
 # Change Log
 
-## [v0.3.0] - 2016-03-20
+## [v1.0.0] - 2016-03-24
+
+### Breaking Changes
+
+- The `VirtualDOM` monad has been replaced with `#` operator and rebindable
+  `do`, which enables the use of both array notation or `do` notation for
+  composing views.
+- `VirtualDOM` is now `Html a` and is parameterized by the component's action
+  type.
+- One-to-one mapping between event types and React's synthetic events.
+- The `Update` function no longer receives an input `Signal.Channel`.
+- `EffModel` type has changed to
+  `{ state: state, effects: Array (Aff eff action)`, and actions are
+   automatically fed into the input channel.
+
+### Upgrading
+
+- The `VirtualDOM` monad has been replaced by a simpler data structure `Html a`.
+  Element attributes and children can now be specified using array literal
+  notation. `do` notation is optional and can be used via `Pux.Html.bind`
+  and `Pux.Html.#`.
+- All event handlers receive an event, and the use of `Prelude.const` is
+  encouraged to ignore events when constructing actions.
+- The effect in the `Update` function type signature now appears last, and
+  `Update` no longer receives a channel as the third argument.
+- Applications are now created using `start`, and the resulting `app.html`
+  signal passed to `renderToDOM` or `renderToString`.
+
+## [v0.3.0] - 2016-03-24
 
 ### Fixed
 

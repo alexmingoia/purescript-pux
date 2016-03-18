@@ -5,3 +5,4 @@ output
 .pulp-cache
 .psci_modules
 _book
+examples/*/*.js
