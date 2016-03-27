@@ -37,8 +37,12 @@ update function:
 
 ```purescript
 update :: Action -> State -> State
-update (Top action) state = Counter.update action state.topCount
-update (Bottom action) state = Counter.update action state.bottomCount
+update (Top action) state =
+  state { topCount = Counter.update action state.topCount }
+
+update (Bottom action) state =
+  state { bottomCount = Counter.update action state.bottomCount }
+
 update Reset state = state { topCount = 0, bottomCount = 0 }
 ```
 
