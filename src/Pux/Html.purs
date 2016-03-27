@@ -32,6 +32,18 @@ bind x f = runFn2 append x (f unit)
 
 foreign import append :: forall a. Fn2 (Html a) (Html a) (Html a)
 
+-- | Forward child `Html` actions to their parent action. `forwardTo` maps
+-- | over `Html` that sends actions of type `a` and returns `Html` that sends
+-- | actions of type `b`.
+-- |
+-- | ```purescript
+-- | view :: State -> Html Action
+-- | view state =
+-- |   div # do
+-- |     forwardTo Top $ Counter.view state.topCount
+-- |     forwardTo Bottom $ Counter.view state.bottomCount
+-- |     button ! onClick (const Reset) # text "Reset"
+-- | ```
 forwardTo :: forall a b. (a -> b) -> Html a -> Html b
 forwardTo a2b html = runFn2 mapActions a2b html
 
