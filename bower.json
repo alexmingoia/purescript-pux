@@ -24,5 +24,8 @@
   "devDependencies": {
     "purescript-affjax": "^0.12.0",
     "purescript-argonaut": "^0.12.0"
+  },
+  "resolutions": {
+    "purescript-aff": "^0.14.1"
   }
 }
