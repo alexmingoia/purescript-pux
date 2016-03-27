@@ -19,10 +19,10 @@ data Action
 
 Our login component has three actions. `UsernameChange` and `PasswordChange`
 are events which happen every time the inputs change, and receive a
-`KeyboardEvent` containing event information such as the key pressed and
-current value of the input. The `SignIn` action is sent when the form is
-submitted, and is meant to be handled by the parent component to deal with
-authentication.
+[`KeyboardEvent`](/API/Pux/Html/Events.html#keyboardevent) containing event
+information such as the key pressed and current value of the input. The
+`SignIn` action is sent when the form is submitted, and is meant to be handled
+by the parent component to deal with authentication.
 
 ```purescript
 update :: Action -> State -> State
