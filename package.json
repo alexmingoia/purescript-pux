@@ -9,7 +9,7 @@
     "docs:watch": "npm run docs:api && npm run docs:prepare && gitbook serve",
     "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "build": "gulp build",
-    "test": "pulp build"
+    "test": "gulp test"
   },
   "devDependencies": {
     "bower": "^1.7.2",
