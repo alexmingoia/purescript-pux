@@ -3,5 +3,8 @@ sudo: false
 node_js:
   - "5"
 install:
+  - npm install
   - npm install bower gulp -g
-  - npm install && bower install
+  - bower install
+script:
+  npm test
