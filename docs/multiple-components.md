@@ -52,7 +52,7 @@ child actions.
 
 Finally, we create a view function that combines both counters along with a
 reset button. [`forwardTo`](/API/Pux/Html.html#forwardto) is used to forward
-actions from child `Html` to its parent action. `forwardTo` maps over `Html`
+actions from child `Html` to their parent action. `forwardTo` maps over `Html`
 that sends actions of type `a` and returns `Html` that sends actions of type
 `b`: `(a -> b) -> Html a -> Html b`.
 
