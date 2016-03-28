@@ -39,7 +39,7 @@ address :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `area`
 
 ``` purescript
-area :: forall a. Array (Attribute a) -> Html a
+area :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `article`
@@ -69,7 +69,7 @@ b :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `base`
 
 ``` purescript
-base :: forall a. Array (Attribute a) -> Html a
+base :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `bdi`
@@ -105,7 +105,7 @@ body :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `br`
 
 ``` purescript
-br :: forall a. Array (Attribute a) -> Html a
+br :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `button`
@@ -141,7 +141,7 @@ code :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `col`
 
 ``` purescript
-col :: forall a. Array (Attribute a) -> Html a
+col :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `colgroup`
@@ -219,7 +219,7 @@ em :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `embed`
 
 ``` purescript
-embed :: forall a. Array (Attribute a) -> Html a
+embed :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `fieldset`
@@ -303,7 +303,7 @@ header :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `hr`
 
 ``` purescript
-hr :: forall a. Array (Attribute a) -> Html a
+hr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `html`
@@ -327,13 +327,13 @@ iframe :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `img`
 
 ``` purescript
-img :: forall a. Array (Attribute a) -> Html a
+img :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `input`
 
 ``` purescript
-input :: forall a. Array (Attribute a) -> Html a
+input :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `ins`
@@ -351,7 +351,7 @@ kbd :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `keygen`
 
 ``` purescript
-keygen :: forall a. Array (Attribute a) -> Html a
+keygen :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `label`
@@ -375,7 +375,7 @@ li :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `link`
 
 ``` purescript
-link :: forall a. Array (Attribute a) -> Html a
+link :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `main`
@@ -405,13 +405,13 @@ menu :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `menuitem`
 
 ``` purescript
-menuitem :: forall a. Array (Attribute a) -> Html a
+menuitem :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `meta`
 
 ``` purescript
-meta :: forall a. Array (Attribute a) -> Html a
+meta :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `meter`
@@ -471,7 +471,7 @@ p :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `param`
 
 ``` purescript
-param :: forall a. Array (Attribute a) -> Html a
+param :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `picture`
@@ -555,7 +555,7 @@ small :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `source`
 
 ``` purescript
-source :: forall a. Array (Attribute a) -> Html a
+source :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `span`
@@ -657,7 +657,7 @@ tr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `track`
 
 ``` purescript
-track :: forall a. Array (Attribute a) -> Html a
+track :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `u`
@@ -687,7 +687,7 @@ video :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `wbr`
 
 ``` purescript
-wbr :: forall a. Array (Attribute a) -> Html a
+wbr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `clipPath`
@@ -705,7 +705,7 @@ defs :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `ellipse`
 
 ``` purescript
-ellipse :: forall a. Array (Attribute a) -> Html a
+ellipse :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `g`
@@ -717,13 +717,13 @@ g :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `image`
 
 ``` purescript
-image :: forall a. Array (Attribute a) -> Html a
+image :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `line`
 
 ``` purescript
-line :: forall a. Array (Attribute a) -> Html a
+line :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `linearGradient`
@@ -741,7 +741,7 @@ mask :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `path`
 
 ``` purescript
-path :: forall a. Array (Attribute a) -> Html a
+path :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `pattern`
@@ -753,13 +753,13 @@ pattern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `polygon`
 
 ``` purescript
-polygon :: forall a. Array (Attribute a) -> Html a
+polygon :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `polyline`
 
 ``` purescript
-polyline :: forall a. Array (Attribute a) -> Html a
+polyline :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `radialGradient`
@@ -771,13 +771,13 @@ radialGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 #### `rect`
 
 ``` purescript
-rect :: forall a. Array (Attribute a) -> Html a
+rect :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `stop`
 
 ``` purescript
-stop :: forall a. Array (Attribute a) -> Html a
+stop :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `svg`
@@ -796,18 +796,6 @@ text' :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 
 ``` purescript
 tspan :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-```
-
-#### `parent`
-
-``` purescript
-parent :: forall a. String -> Array (Attribute a) -> Array (Html a) -> Html a
-```
-
-#### `leaf`
-
-``` purescript
-leaf :: forall a. String -> Array (Attribute a) -> Html a
 ```
 
 #### `element`

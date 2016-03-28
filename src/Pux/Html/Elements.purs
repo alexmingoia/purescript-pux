@@ -8,401 +8,394 @@ foreign import data Html :: * -> *
 foreign import text :: forall a. String -> Html a
 
 a :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-a = parent "a"
+a = runFn3 element "a"
 
 abbr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-abbr = parent "abbr"
+abbr = runFn3 element "abbr"
 
 address :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-address = parent "address"
+address = runFn3 element "address"
 
-area :: forall a. Array (Attribute a) -> Html a
-area = leaf "area"
+area :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+area = runFn3 element "area"
 
 article :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-article = parent "article"
+article = runFn3 element "article"
 
 aside :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-aside = parent "aside"
+aside = runFn3 element "aside"
 
 audio :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-audio = parent "audio"
+audio = runFn3 element "audio"
 
 b :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-b = parent "b"
+b = runFn3 element "b"
 
-base :: forall a. Array (Attribute a) -> Html a
-base = leaf "base"
+base :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+base = runFn3 element "base"
 
 bdi :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-bdi = parent "bdi"
+bdi = runFn3 element "bdi"
 
 bdo :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-bdo = parent "bdo"
+bdo = runFn3 element "bdo"
 
 big :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-big = parent "big"
+big = runFn3 element "big"
 
 blockquote :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-blockquote = parent "blockquote"
+blockquote = runFn3 element "blockquote"
 
 body :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-body = parent "body"
+body = runFn3 element "body"
 
-br :: forall a. Array (Attribute a) -> Html a
-br = leaf "br"
+br :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+br = runFn3 element "br"
 
 button :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-button = parent "button"
+button = runFn3 element "button"
 
 canvas :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-canvas = parent "canvas"
+canvas = runFn3 element "canvas"
 
 caption :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-caption = parent "caption"
+caption = runFn3 element "caption"
 
 cite :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-cite = parent "cite"
+cite = runFn3 element "cite"
 
 code :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-code = parent "code"
+code = runFn3 element "code"
 
-col :: forall a. Array (Attribute a) -> Html a
-col = leaf "col"
+col :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+col = runFn3 element "col"
 
 colgroup :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-colgroup = parent "colgroup"
+colgroup = runFn3 element "colgroup"
 
 data_ :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-data_ = parent "data"
+data_ = runFn3 element "data"
 
 datalist :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-datalist = parent "datalist"
+datalist = runFn3 element "datalist"
 
 dd :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-dd = parent "dd"
+dd = runFn3 element "dd"
 
 del :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-del = parent "del"
+del = runFn3 element "del"
 
 details :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-details = parent "details"
+details = runFn3 element "details"
 
 dfn :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-dfn = parent "dfn"
+dfn = runFn3 element "dfn"
 
 dialog :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-dialog = parent "dialog"
+dialog = runFn3 element "dialog"
 
 div :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-div = parent "div"
+div = runFn3 element "div"
 
 dl :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-dl = parent "dl"
+dl = runFn3 element "dl"
 
 dt :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-dt = parent "dt"
+dt = runFn3 element "dt"
 
 em :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-em = parent "em"
+em = runFn3 element "em"
 
-embed :: forall a. Array (Attribute a) -> Html a
-embed = leaf "embed"
+embed :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+embed = runFn3 element "embed"
 
 fieldset :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-fieldset = parent "fieldset"
+fieldset = runFn3 element "fieldset"
 
 figcaption :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-figcaption = parent "figcaption"
+figcaption = runFn3 element "figcaption"
 
 figure :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-figure = parent "figure"
+figure = runFn3 element "figure"
 
 footer :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-footer = parent "footer"
+footer = runFn3 element "footer"
 
 form :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-form = parent "form"
+form = runFn3 element "form"
 
 h1 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h1 = parent "h1"
+h1 = runFn3 element "h1"
 
 h2 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h2 = parent "h2"
+h2 = runFn3 element "h2"
 
 h3 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h3 = parent "h3"
+h3 = runFn3 element "h3"
 
 h4 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h4 = parent "h4"
+h4 = runFn3 element "h4"
 
 h5 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h5 = parent "h5"
+h5 = runFn3 element "h5"
 
 h6 :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-h6 = parent "h6"
+h6 = runFn3 element "h6"
 
 head :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-head = parent "head"
+head = runFn3 element "head"
 
 header :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-header = parent "header"
+header = runFn3 element "header"
 
-hr :: forall a. Array (Attribute a) -> Html a
-hr = leaf "hr"
+hr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+hr = runFn3 element "hr"
 
 html :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-html = parent "html"
+html = runFn3 element "html"
 
 i :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-i = parent "i"
+i = runFn3 element "i"
 
 iframe :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-iframe = parent "iframe"
+iframe = runFn3 element "iframe"
 
-img :: forall a. Array (Attribute a) -> Html a
-img = leaf "img"
+img :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+img = runFn3 element "img"
 
-input :: forall a. Array (Attribute a) -> Html a
-input = leaf "input"
+input :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+input = runFn3 element "input"
 
 ins :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-ins = parent "ins"
+ins = runFn3 element "ins"
 
 kbd :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-kbd = parent "kbd"
+kbd = runFn3 element "kbd"
 
-keygen :: forall a. Array (Attribute a) -> Html a
-keygen = leaf "keygen"
+keygen :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+keygen = runFn3 element "keygen"
 
 label :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-label = parent "label"
+label = runFn3 element "label"
 
 legend :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-legend = parent "legend"
+legend = runFn3 element "legend"
 
 li :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-li = parent "li"
+li = runFn3 element "li"
 
-link :: forall a. Array (Attribute a) -> Html a
-link = leaf "link"
+link :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+link = runFn3 element "link"
 
 main :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-main = parent "main"
+main = runFn3 element "main"
 
 map :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-map = parent "map"
+map = runFn3 element "map"
 
 mark :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-mark = parent "mark"
+mark = runFn3 element "mark"
 
 menu :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-menu = parent "menu"
+menu = runFn3 element "menu"
 
-menuitem :: forall a. Array (Attribute a) -> Html a
-menuitem = leaf "menuitem"
+menuitem :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+menuitem = runFn3 element "menuitem"
 
-meta :: forall a. Array (Attribute a) -> Html a
-meta = leaf "meta"
+meta :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+meta = runFn3 element "meta"
 
 meter :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-meter = parent "meter"
+meter = runFn3 element "meter"
 
 nav :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-nav = parent "nav"
+nav = runFn3 element "nav"
 
 noscript :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-noscript = parent "noscript"
+noscript = runFn3 element "noscript"
 
 object :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-object = parent "object"
+object = runFn3 element "object"
 
 ol :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-ol = parent "ol"
+ol = runFn3 element "ol"
 
 optgroup :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-optgroup = parent "optgroup"
+optgroup = runFn3 element "optgroup"
 
 option :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-option = parent "option"
+option = runFn3 element "option"
 
 output :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-output = parent "output"
+output = runFn3 element "output"
 
 p :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-p = parent "p"
+p = runFn3 element "p"
 
-param :: forall a. Array (Attribute a) -> Html a
-param = leaf "param"
+param :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+param = runFn3 element "param"
 
 picture :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-picture = parent "picture"
+picture = runFn3 element "picture"
 
 pre :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-pre = parent "pre"
+pre = runFn3 element "pre"
 
 progress :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-progress = parent "progress"
+progress = runFn3 element "progress"
 
 q :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-q = parent "q"
+q = runFn3 element "q"
 
 rp :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-rp = parent "rp"
+rp = runFn3 element "rp"
 
 rt :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-rt = parent "rt"
+rt = runFn3 element "rt"
 
 ruby :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-ruby = parent "ruby"
+ruby = runFn3 element "ruby"
 
 s :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-s = parent "s"
+s = runFn3 element "s"
 
 samp :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-samp = parent "samp"
+samp = runFn3 element "samp"
 
 script :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-script = parent "script"
+script = runFn3 element "script"
 
 section :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-section = parent "section"
+section = runFn3 element "section"
 
 select :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-select = parent "select"
+select = runFn3 element "select"
 
 small :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-small = parent "small"
+small = runFn3 element "small"
 
-source :: forall a. Array (Attribute a) -> Html a
-source = leaf "source"
+source :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+source = runFn3 element "source"
 
 span :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-span = parent "span"
+span = runFn3 element "span"
 
 strong :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-strong = parent "strong"
+strong = runFn3 element "strong"
 
 style :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-style = parent "style"
+style = runFn3 element "style"
 
 sub :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-sub = parent "sub"
+sub = runFn3 element "sub"
 
 summary :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-summary = parent "summary"
+summary = runFn3 element "summary"
 
 sup :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-sup = parent "sup"
+sup = runFn3 element "sup"
 
 table :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-table = parent "table"
+table = runFn3 element "table"
 
 tbody :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-tbody = parent "tbody"
+tbody = runFn3 element "tbody"
 
 td :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-td = parent "td"
+td = runFn3 element "td"
 
 textarea :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-textarea = parent "textarea"
+textarea = runFn3 element "textarea"
 
 tfoot :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-tfoot = parent "tfoot"
+tfoot = runFn3 element "tfoot"
 
 th :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-th = parent "th"
+th = runFn3 element "th"
 
 thead :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-thead = parent "thead"
+thead = runFn3 element "thead"
 
 time :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-time = parent "time"
+time = runFn3 element "time"
 
 title :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-title = parent "title"
+title = runFn3 element "title"
 
 tr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-tr = parent "tr"
+tr = runFn3 element "tr"
 
-track :: forall a. Array (Attribute a) -> Html a
-track = leaf "track"
+track :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+track = runFn3 element "track"
 
 u :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-u = parent "u"
+u = runFn3 element "u"
 
 ul :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-ul = parent "ul"
+ul = runFn3 element "ul"
 
 var :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-var = parent "var"
+var = runFn3 element "var"
 
 video :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-video = parent "video"
+video = runFn3 element "video"
 
-wbr :: forall a. Array (Attribute a) -> Html a
-wbr = leaf "body"
+wbr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+wbr = runFn3 element "body"
 
 clipPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-clipPath = parent "clipPath"
+clipPath = runFn3 element "clipPath"
 
 defs :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-defs = parent "defs"
+defs = runFn3 element "defs"
 
-ellipse :: forall a. Array (Attribute a) -> Html a
-ellipse = leaf "ellipse"
+ellipse :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+ellipse = runFn3 element "ellipse"
 
 g :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-g = parent "g"
+g = runFn3 element "g"
 
-image :: forall a. Array (Attribute a) -> Html a
-image = leaf "image"
+image :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+image = runFn3 element "image"
 
-line :: forall a. Array (Attribute a) -> Html a
-line = leaf "line"
+line :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+line = runFn3 element "line"
 
 linearGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-linearGradient = parent "linearGradient"
+linearGradient = runFn3 element "linearGradient"
 
 mask :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-mask = parent "mask"
+mask = runFn3 element "mask"
 
-path :: forall a. Array (Attribute a) -> Html a
-path = leaf "path"
+path :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+path = runFn3 element "path"
 
 pattern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-pattern = parent "pattern"
+pattern = runFn3 element "pattern"
 
-polygon :: forall a. Array (Attribute a) -> Html a
-polygon = leaf "polygon"
+polygon :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+polygon = runFn3 element "polygon"
 
-polyline :: forall a. Array (Attribute a) -> Html a
-polyline = leaf "polyline"
+polyline :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+polyline = runFn3 element "polyline"
 
 radialGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-radialGradient = parent "radialGradient"
+radialGradient = runFn3 element "radialGradient"
 
-rect :: forall a. Array (Attribute a) -> Html a
-rect = leaf "rect"
+rect :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+rect = runFn3 element "rect"
 
-stop :: forall a. Array (Attribute a) -> Html a
-stop = leaf "stop"
+stop :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+stop = runFn3 element "stop"
 
 svg :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-svg = parent "svg"
+svg = runFn3 element "svg"
 
 text' :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-text' = parent "text"
+text' = runFn3 element "text"
 
 tspan :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-tspan = parent "tspan"
-
-parent :: forall a.
-          String -> Array (Attribute a) -> Array (Html a) -> Html a
-parent key attrs children = runFn3 element key attrs children
-
-leaf :: forall a. String -> Array (Attribute a) -> Html a
-leaf key attrs = runFn3 element key attrs []
+tspan = runFn3 element "tspan"
 
 foreign import element :: forall a.
                           Fn3 String (Array (Attribute a)) (Array (Html a)) (Html a)
