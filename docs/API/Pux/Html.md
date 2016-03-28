@@ -59,13 +59,13 @@ infixl 4 withAttr as !
 
 _left-associative / precedence 4_
 
-#### `withChildren`
+#### `withChild`
 
 ``` purescript
-withChildren :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> Html a -> Html a
+withChild :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> Html a -> Html a
 ```
 
-Append children to parent element.
+Append child to parent element.
 
 ```purescript
 div # do
@@ -77,7 +77,21 @@ div # do
 #### `(#)`
 
 ``` purescript
-infixl 4 withChildren as #
+infixl 4 withChild as #
+```
+
+_left-associative / precedence 4_
+
+#### `withChildren`
+
+``` purescript
+withChildren :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> Array (Html a) -> Html a
+```
+
+#### `(##)`
+
+``` purescript
+infixl 4 withChildren as ##
 ```
 
 _left-associative / precedence 4_

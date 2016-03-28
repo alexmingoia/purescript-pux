@@ -2,9 +2,11 @@ module Pux.Html
   ( module Elements
   , (!)
   , (#)
+  , (##)
   , bind
   , forwardTo
   , withAttr
+  , withChild
   , withChildren
   ) where
 
@@ -62,7 +64,7 @@ withAttr f attr = \attrs children -> f (attr : attrs) children
 
 infixl 4 withAttr as !
 
--- | Append children to parent element.
+-- | Append child to parent element.
 -- |
 -- | ```purescript
 -- | div # do
@@ -70,10 +72,18 @@ infixl 4 withAttr as !
 -- |   span # text ("Counter: " ++ show count)
 -- |   button ! onClick (const Decrement) # text "Decrement"
 -- | ```
-withChildren :: forall a.
+withChild :: forall a.
                 (Array (Attribute a) -> Array (Html a) -> Html a) ->
                 Html a ->
                 Html a
-withChildren f html = f [] $ singleton html
+withChild f html = f [] $ singleton html
 
-infixl 4 withChildren as #
+infixl 4 withChild as #
+
+withChildren :: forall a.
+             (Array (Attribute a) -> Array (Html a) -> Html a) ->
+             Array (Html a) ->
+             Html a
+withChildren f htmls = f [] htmls
+
+infixl 4 withChildren as ##
