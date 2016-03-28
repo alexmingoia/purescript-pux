@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2.0.0] - 2016-03-27
+
+- All functions in `Pux.Html.Elements` now receive children. This enables
+  consistent use of the `!` operator.
+- Added `##` operator to combine array of `Html`.
+
 ## [v1.0.0] - 2016-03-24
 
 ### Breaking Changes
