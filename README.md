@@ -42,8 +42,14 @@ The following chunk of code sets up a basic counter that you can increment and
 decrement:
 
 ```purescript
-import Prelude (const, show, bind)
-import Pux.Html (Html, (!), (#), div, span, button, text)
+import Prelude (Unit, bind, const, show, (++), (-), (+))
+
+import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Exception (EXCEPTION)
+import Signal.Channel (CHANNEL)
+
+import Pux (renderToDOM, fromSimple, start)
+import Pux.Html (Html, text, (#), button, (!), span, div)
 import Pux.Html.Events (onClick)
 
 data Action = Increment | Decrement
@@ -60,8 +66,9 @@ view count =
     button ! onClick (const Increment) # text "Increment"
     span # text ("Counter: " ++ show count)
     button ! onClick (const Decrement) # text "Decrement"
-  where bind = Pux.Html.Elements.bind
+  where bind = Pux.Html.bind
 
+main :: forall e. Eff (err :: EXCEPTION, channel :: CHANNEL | e) Unit
 main = do
   app <- start
     { initialState: 0
