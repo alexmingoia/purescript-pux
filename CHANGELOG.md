@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.1] - 2016-03-29
+
+- Fix race-condition for asynchronous effects
+  [#15](https://github.com/alexmingoia/purescript-pux/issues/15).
+- Fix recursive/nested `forwardTo`
+  [#14](https://github.com/alexmingoia/purescript-pux/issues/14).
+
 ## [v2.0.0] - 2016-03-27
 
 - All functions in `Pux.Html.Elements` now receive children. This enables
