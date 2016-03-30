@@ -9,7 +9,7 @@ module Pux
   , renderToString
   ) where
 
-import Control.Monad.Aff (Aff, launchAff)
+import Control.Monad.Aff (Aff, launchAff, later)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
@@ -19,7 +19,7 @@ import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe.Unsafe (fromJust)
 import Prelude (Unit, ($), (<<<), map, pure)
 import Pux.Html (Html)
-import Signal (Signal, (~>), mergeMany, foldp, dropRepeats', runSignal)
+import Signal (Signal, (~>), mergeMany, foldp, runSignal)
 import Signal.Channel (CHANNEL, channel, subscribe, send)
 
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
@@ -47,11 +47,11 @@ start config = do
         foldl foldState (noEffects effModel.state) actions
       effModelSignal =
         foldp foldActions (noEffects config.initialState) input
-      stateSignal = dropRepeats' $ effModelSignal ~> _.state
+      stateSignal = effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
         (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
       mapAffect affect = launchAff $ do
-        action <- affect
+        action <- later affect
         liftEff $ send actionChannel (singleton action)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
