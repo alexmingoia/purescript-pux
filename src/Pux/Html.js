@@ -11,9 +11,15 @@ exports.append = function (html1, html2) {
   return html1.concat(html2);
 };
 
-exports.mapActions = function (parentAction, html) {
-  var childAction = html.props.puxParentAction;
-  return React.cloneElement(html, {
-    puxParentAction: childAction ? parentAction(childAction) : parentAction
-  });
+exports.forwardTo = function (parentAction) {
+  return function (html) {
+    var childAction = html.props.puxParentAction;
+    var action = parentAction;
+    if (childAction) {
+      action = function (a) {
+        return parentAction(childAction(a));
+      }
+    }
+    return React.cloneElement(html, { puxParentAction: action });
+  };
 };

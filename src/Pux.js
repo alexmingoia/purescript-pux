@@ -39,8 +39,6 @@ exports.renderToString = function (htmlSignal) {
 };
 
 exports.render = function (input, parentAction, html) {
-  if (typeof html === 'string') return html;
-
   var props = html.props
   var newProps = {};
 
@@ -52,7 +50,17 @@ exports.render = function (input, parentAction, html) {
 
   var newChildren = React.Children.map(html.props.children, function (child) {
     var childAction = child.props && child.props.puxParentAction;
-    return exports.render(input, childAction || parentAction, child);
+    var action = parentAction;
+    if (childAction) {
+      action = function (a) {
+        return parentAction(childAction(a));
+      };
+    }
+    if (typeof child === 'string') {
+      return child;
+    } else {
+      return exports.render(input, action, child);
+    }
   });
 
   return React.cloneElement(html, newProps, newChildren);

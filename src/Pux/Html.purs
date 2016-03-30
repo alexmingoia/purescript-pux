@@ -46,10 +46,7 @@ foreign import append :: forall a. Fn2 (Html a) (Html a) (Html a)
 -- |     forwardTo Bottom $ Counter.view state.bottomCount
 -- |     button ! onClick (const Reset) # text "Reset"
 -- | ```
-forwardTo :: forall a b. (a -> b) -> Html a -> Html b
-forwardTo a2b html = runFn2 mapActions a2b html
-
-foreign import mapActions :: forall a b. Fn2 (a -> b) (Html a) (Html b)
+foreign import forwardTo :: forall a b. (a -> b) -> Html a -> Html b
 
 -- | Combine elements with attributes.
 -- |
