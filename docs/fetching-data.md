@@ -80,7 +80,7 @@ update (RequestTodos) state =
 
 What if we wanted to fetch the todos on page-load? We could use
 `Pux.Router` to trigger actions on location changes. See the
-[Routing guide](/docs/routing.html) for more information.
+[Routing guide](/routing.html) for more information.
 
 Finally, we create a simple view of the todos along with a button to fetch
 them:
