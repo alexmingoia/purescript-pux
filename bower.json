@@ -9,6 +9,16 @@
     "node_modules",
     "bower_components"
   ],
+  "keywords": [
+    "purescript",
+    "pux",
+    "react",
+    "elm",
+    "flux",
+    "redux",
+    "frp",
+    "virtual-dom"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/alexmingoia/purescript-pux.git"
