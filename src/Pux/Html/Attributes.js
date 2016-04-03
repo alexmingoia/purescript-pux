@@ -8,3 +8,7 @@ exports.attribute = function (key, val) {
   }
   return [key, val];
 };
+
+exports.objAttribute = function (key, val) {
+  return [key, val];
+};

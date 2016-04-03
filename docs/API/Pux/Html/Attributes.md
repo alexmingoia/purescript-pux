@@ -825,7 +825,7 @@ strokeWidth :: forall a. String -> Attribute a
 #### `style`
 
 ``` purescript
-style :: forall a. String -> Attribute a
+style :: forall a s. {  | s } -> Attribute a
 ```
 
 #### `textAnchor`
@@ -952,6 +952,12 @@ y :: forall a. String -> Attribute a
 
 ``` purescript
 attribute :: forall a. Fn2 String String (Attribute a)
+```
+
+#### `objAttribute`
+
+``` purescript
+objAttribute :: forall a s. Fn2 String {  | s } (Attribute a)
 ```
 
 

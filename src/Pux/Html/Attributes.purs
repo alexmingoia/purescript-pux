@@ -417,8 +417,8 @@ strokeOpacity = runFn2 attribute "strokeOpacity"
 strokeWidth :: forall a. String -> Attribute a
 strokeWidth = runFn2 attribute "strokeWidth"
 
-style :: forall a. String -> Attribute a
-style = runFn2 attribute "style"
+style :: forall a s. { | s } -> Attribute a
+style = runFn2 objAttribute "style"
 
 textAnchor :: forall a. String -> Attribute a
 textAnchor = runFn2 attribute "textAnchor"
@@ -481,3 +481,5 @@ y :: forall a. String -> Attribute a
 y = runFn2 attribute "y"
 
 foreign import attribute :: forall a. Fn2 String String (Attribute a)
+
+foreign import objAttribute :: forall a s. Fn2 String { | s } (Attribute a)
