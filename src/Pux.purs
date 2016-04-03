@@ -4,9 +4,11 @@ module Pux
   , EffModel
   , noEffects
   , fromSimple
-  , start
+  , ReactClass
   , renderToDOM
   , renderToString
+  , start
+  , toReact
   ) where
 
 import Control.Monad.Aff (Aff, launchAff, later)
@@ -106,3 +108,8 @@ noEffects state = { state: state, effects: [] }
 foreign import renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff Unit
 
 foreign import renderToString :: forall a eff. Signal (Html a) -> Eff eff String
+
+-- | Return a React class from a Pux component's html signal.
+foreign import toReact :: forall a eff. Signal (Html a) -> Eff eff ReactClass
+
+foreign import data ReactClass :: *

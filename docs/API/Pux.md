@@ -78,4 +78,18 @@ renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff Unit
 renderToString :: forall a eff. Signal (Html a) -> Eff eff String
 ```
 
+#### `toReact`
+
+``` purescript
+toReact :: forall a eff. Signal (Html a) -> Eff eff ReactClass
+```
+
+Return a React class from a Pux component's html signal.
+
+#### `ReactClass`
+
+``` purescript
+data ReactClass :: *
+```
+
 

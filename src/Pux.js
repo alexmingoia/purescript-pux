@@ -38,6 +38,12 @@ exports.renderToString = function (htmlSignal) {
   };
 };
 
+exports.toReact = function (htmlSignal) {
+  return function () {
+    return reactClass(htmlSignal);
+  };
+};
+
 exports.render = function (input, parentAction, html) {
   var props = html.props
   var newProps = {};
