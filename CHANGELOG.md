@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2.0.2] - 2016-04-02
+
+### Fixed
+
+- Use record instead of string for style attribute value.
+
 ## [v2.0.1] - 2016-03-29
 
 - Fix race-condition for asynchronous effects
