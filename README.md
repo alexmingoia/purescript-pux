@@ -15,6 +15,7 @@ applications.
 - Type-safe routing
 - Server-side rendering (isomorphic applications)
 - Hot-reloading of components
+- Easy interop with existing React components
 
 ---
 
