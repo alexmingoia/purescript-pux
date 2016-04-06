@@ -75,7 +75,7 @@ import Prelude (const)
 import Pux.Html (Html, (!), (#), bind, div, span, button, text)
 import Pux.Html.Events (onClick)
 
-view :: Action -> State -> Html Action
+view :: State -> Html Action
 view count =
   div # do
     button ! onClick (const Increment) # text "Increment"
@@ -101,7 +101,7 @@ view count =
   div []
     [ button [ onClick (const Increment) ] [ text "Increment" ]
     , span [ text (show count) ]
-    , button ! onClick (const Decrement) ] [ text "Decrement" ]
+    , button [ onClick (const Decrement) ] [ text "Decrement" ]
     ]
 ```
 
