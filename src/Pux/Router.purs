@@ -21,7 +21,7 @@ import Control.Monad.Eff (Eff())
 import Control.Alt (class Alt, (<|>))
 import Control.Plus (class Plus)
 import Control.MonadPlus (guard)
-import Data.Function (runFn2, runFn3)
+import Data.Function (runFn3)
 import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
 import Data.String as S
 import Data.Traversable (traverse)
@@ -32,7 +32,7 @@ import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Map as M
 import DOM (DOM())
 import Pux.Html (Html, Attribute, element)
-import Pux.Html.Attributes (attribute)
+import Pux.Html.Attributes (attr)
 import Global (readFloat, isNaN)
 import Signal (constant, Signal)
 
@@ -56,7 +56,7 @@ link url attrs children = runFn3 element "a" newAttrs children
   where
     newAttrs = attrs ++
       [ linkHandler url
-      , runFn2 attribute "href" url
+      , attr "href" url
       ]
 
 data RoutePart = Path String | Query (M.Map String String)

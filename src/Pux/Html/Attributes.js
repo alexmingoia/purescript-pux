@@ -2,13 +2,11 @@
 
 // module Pux.Html.Attributes
 
-exports.attribute = function (key, val) {
-  if (key === 'dangerouslySetInnerHTML') {
-    val = { __html: val };
-  }
-  return [key, val];
-};
-
-exports.objAttribute = function (key, val) {
-  return [key, val];
+exports.attr = function (key) {
+  return function (val) {
+    if (key === 'dangerouslySetInnerHTML') {
+      val = { __html: val };
+    }
+    return [key, val];
+  };
 };

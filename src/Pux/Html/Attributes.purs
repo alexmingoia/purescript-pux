@@ -1,485 +1,482 @@
 module Pux.Html.Attributes where
 
-import Data.Function (Fn2, runFn2)
 import Prelude ((++))
 import Pux.Html (Attribute)
 
 accept :: forall a. String -> Attribute a
-accept = runFn2 attribute "accept"
+accept = attr "accept"
 
 acceptCharset :: forall a. String -> Attribute a
-acceptCharset = runFn2 attribute "acceptCharset"
+acceptCharset = attr "acceptCharset"
 
 accessKey :: forall a. String -> Attribute a
-accessKey = runFn2 attribute "accessKey"
+accessKey = attr "accessKey"
 
 action :: forall a. String -> Attribute a
-action = runFn2 attribute "action"
+action = attr "action"
 
 allowFullScreen :: forall a. String -> Attribute a
-allowFullScreen = runFn2 attribute "allowFullScreen"
+allowFullScreen = attr "allowFullScreen"
 
 allowTransparency :: forall a. String -> Attribute a
-allowTransparency = runFn2 attribute "allowTransparency"
+allowTransparency = attr "allowTransparency"
 
 alt :: forall a. String -> Attribute a
-alt = runFn2 attribute "alt"
+alt = attr "alt"
 
 aria :: forall a. String -> String -> Attribute a
-aria attr = runFn2 attribute ("aria-" ++ attr)
+aria attr = attr ("aria-" ++ attr)
 
 async :: forall a. String -> Attribute a
-async = runFn2 attribute "async"
+async = attr "async"
 
 autoComplete :: forall a. String -> Attribute a
-autoComplete = runFn2 attribute "autoComplete"
+autoComplete = attr "autoComplete"
 
 autoFocus :: forall a. Boolean -> Attribute a
-autoFocus true = runFn2 attribute "autoFocus" "autoFocus"
-autoFocus false = runFn2 attribute "autoFocus" ""
+autoFocus true = attr "autoFocus" "autoFocus"
+autoFocus false = attr "autoFocus" ""
 
 autoPlay :: forall a. String -> Attribute a
-autoPlay = runFn2 attribute "autoPlay"
+autoPlay = attr "autoPlay"
 
 cellPadding :: forall a. String -> Attribute a
-cellPadding = runFn2 attribute "cellPadding"
+cellPadding = attr "cellPadding"
 
 cellSpacing :: forall a. String -> Attribute a
-cellSpacing = runFn2 attribute "cellSpacing"
+cellSpacing = attr "cellSpacing"
 
 charSet :: forall a. String -> Attribute a
-charSet = runFn2 attribute "charSet"
+charSet = attr "charSet"
 
 checked :: forall a. String -> Attribute a
-checked = runFn2 attribute "checked"
+checked = attr "checked"
 
 classID :: forall a. String -> Attribute a
-classID = runFn2 attribute "classID"
+classID = attr "classID"
 
 className :: forall a. String -> Attribute a
-className = runFn2 attribute "className"
+className = attr "className"
 
 cols :: forall a. String -> Attribute a
-cols = runFn2 attribute "cols"
+cols = attr "cols"
 
 colSpan :: forall a. String -> Attribute a
-colSpan = runFn2 attribute "colSpan"
+colSpan = attr "colSpan"
 
 content :: forall a. String -> Attribute a
-content = runFn2 attribute "content"
+content = attr "content"
 
 contentEditable :: forall a. String -> Attribute a
-contentEditable = runFn2 attribute "contentEditable"
+contentEditable = attr "contentEditable"
 
 contextMenu :: forall a. String -> Attribute a
-contextMenu = runFn2 attribute "contextMenu"
+contextMenu = attr "contextMenu"
 
 controls :: forall a. String -> Attribute a
-controls = runFn2 attribute "controls"
+controls = attr "controls"
 
 coords :: forall a. String -> Attribute a
-coords = runFn2 attribute "coords"
+coords = attr "coords"
 
 crossOrigin :: forall a. String -> Attribute a
-crossOrigin = runFn2 attribute "crossOrigin"
+crossOrigin = attr "crossOrigin"
 
 dangerouslySetInnerHTML :: forall a. String -> Attribute a
-dangerouslySetInnerHTML = runFn2 attribute "dangerouslySetInnerHTML"
+dangerouslySetInnerHTML = attr "dangerouslySetInnerHTML"
 
 data_ :: forall a. String -> String -> Attribute a
-data_ attr = runFn2 attribute ("data-" ++ attr)
+data_ attr = attr ("data-" ++ attr)
 
 dateTime :: forall a. String -> Attribute a
-dateTime = runFn2 attribute "dateTime"
+dateTime = attr "dateTime"
 
 defer :: forall a. String -> Attribute a
-defer = runFn2 attribute "defer"
+defer = attr "defer"
 
 dir :: forall a. String -> Attribute a
-dir = runFn2 attribute "dir"
+dir = attr "dir"
 
 disabled :: forall a. Boolean -> Attribute a
-disabled true = runFn2 attribute "disabled" "disabled"
-disabled false = runFn2 attribute "disabled" ""
+disabled true = attr "disabled" "disabled"
+disabled false = attr "disabled" ""
 
 download :: forall a. String -> Attribute a
-download = runFn2 attribute "download"
+download = attr "download"
 
 draggable :: forall a. String -> Attribute a
-draggable = runFn2 attribute "draggable"
+draggable = attr "draggable"
 
 encType :: forall a. String -> Attribute a
-encType = runFn2 attribute "encType"
+encType = attr "encType"
 
 form :: forall a. String -> Attribute a
-form = runFn2 attribute "form"
+form = attr "form"
 
 formAction :: forall a. String -> Attribute a
-formAction = runFn2 attribute "formAction"
+formAction = attr "formAction"
 
 formEncType :: forall a. String -> Attribute a
-formEncType = runFn2 attribute "formEncType"
+formEncType = attr "formEncType"
 
 formMethod :: forall a. String -> Attribute a
-formMethod = runFn2 attribute "formMethod"
+formMethod = attr "formMethod"
 
 formNoValidate :: forall a. String -> Attribute a
-formNoValidate = runFn2 attribute "formNoValidate"
+formNoValidate = attr "formNoValidate"
 
 formTarget :: forall a. String -> Attribute a
-formTarget = runFn2 attribute "formTarget"
+formTarget = attr "formTarget"
 
 frameBorder :: forall a. String -> Attribute a
-frameBorder = runFn2 attribute "frameBorder"
+frameBorder = attr "frameBorder"
 
 height :: forall a. String -> Attribute a
-height = runFn2 attribute "height"
+height = attr "height"
 
 hidden :: forall a. String -> Attribute a
-hidden = runFn2 attribute "hidden"
+hidden = attr "hidden"
 
 href :: forall a. String -> Attribute a
-href = runFn2 attribute "href"
+href = attr "href"
 
 hrefLang :: forall a. String -> Attribute a
-hrefLang = runFn2 attribute "hrefLang"
+hrefLang = attr "hrefLang"
 
 htmlFor :: forall a. String -> Attribute a
-htmlFor = runFn2 attribute "htmlFor"
+htmlFor = attr "htmlFor"
 
 httpEquiv :: forall a. String -> Attribute a
-httpEquiv = runFn2 attribute "httpEquiv"
+httpEquiv = attr "httpEquiv"
 
 icon :: forall a. String -> Attribute a
-icon = runFn2 attribute "icon"
+icon = attr "icon"
 
 id_ :: forall a. String -> Attribute a
-id_ = runFn2 attribute "id"
+id_ = attr "id"
 
 key :: forall a. String -> Attribute a
-key = runFn2 attribute "key"
+key = attr "key"
 
 label :: forall a. String -> Attribute a
-label = runFn2 attribute "label"
+label = attr "label"
 
 lang :: forall a. String -> Attribute a
-lang = runFn2 attribute "lang"
+lang = attr "lang"
 
 list :: forall a. String -> Attribute a
-list = runFn2 attribute "list"
+list = attr "list"
 
 loop :: forall a. String -> Attribute a
-loop = runFn2 attribute "loop"
+loop = attr "loop"
 
 manifest :: forall a. String -> Attribute a
-manifest = runFn2 attribute "manifest"
+manifest = attr "manifest"
 
 marginHeight :: forall a. String -> Attribute a
-marginHeight = runFn2 attribute "marginHeight"
+marginHeight = attr "marginHeight"
 
 marginWidth :: forall a. String -> Attribute a
-marginWidth = runFn2 attribute "marginWidth"
+marginWidth = attr "marginWidth"
 
 max :: forall a. String -> Attribute a
-max = runFn2 attribute "max"
+max = attr "max"
 
 maxLength :: forall a. String -> Attribute a
-maxLength = runFn2 attribute "maxLength"
+maxLength = attr "maxLength"
 
 media :: forall a. String -> Attribute a
-media = runFn2 attribute "media"
+media = attr "media"
 
 mediaGroup :: forall a. String -> Attribute a
-mediaGroup = runFn2 attribute "mediaGroup"
+mediaGroup = attr "mediaGroup"
 
 method :: forall a. String -> Attribute a
-method = runFn2 attribute "method"
+method = attr "method"
 
 min :: forall a. String -> Attribute a
-min = runFn2 attribute "min"
+min = attr "min"
 
 multiple :: forall a. String -> Attribute a
-multiple = runFn2 attribute "multiple"
+multiple = attr "multiple"
 
 muted :: forall a. String -> Attribute a
-muted = runFn2 attribute "muted"
+muted = attr "muted"
 
 name :: forall a. String -> Attribute a
-name = runFn2 attribute "name"
+name = attr "name"
 
 noValidate :: forall a. String -> Attribute a
-noValidate = runFn2 attribute "noValidate"
+noValidate = attr "noValidate"
 
 open :: forall a. String -> Attribute a
-open = runFn2 attribute "open"
+open = attr "open"
 
 pattern :: forall a. String -> Attribute a
-pattern = runFn2 attribute "pattern"
+pattern = attr "pattern"
 
 placeholder :: forall a. String -> Attribute a
-placeholder = runFn2 attribute "placeholder"
+placeholder = attr "placeholder"
 
 poster :: forall a. String -> Attribute a
-poster = runFn2 attribute "poster"
+poster = attr "poster"
 
 preload :: forall a. String -> Attribute a
-preload = runFn2 attribute "preload"
+preload = attr "preload"
 
 radioGroup :: forall a. String -> Attribute a
-radioGroup = runFn2 attribute "radioGroup"
+radioGroup = attr "radioGroup"
 
 readOnly :: forall a. String -> Attribute a
-readOnly = runFn2 attribute "readOnly"
+readOnly = attr "readOnly"
 
 rel :: forall a. String -> Attribute a
-rel = runFn2 attribute "rel"
+rel = attr "rel"
 
 required :: forall a. String -> Attribute a
-required = runFn2 attribute "required"
+required = attr "required"
 
 role :: forall a. String -> Attribute a
-role = runFn2 attribute "role"
+role = attr "role"
 
 rows :: forall a. String -> Attribute a
-rows = runFn2 attribute "rows"
+rows = attr "rows"
 
 rowSpan :: forall a. String -> Attribute a
-rowSpan = runFn2 attribute "rowSpan"
+rowSpan = attr "rowSpan"
 
 sandbox :: forall a. String -> Attribute a
-sandbox = runFn2 attribute "sandbox"
+sandbox = attr "sandbox"
 
 scope :: forall a. String -> Attribute a
-scope = runFn2 attribute "scope"
+scope = attr "scope"
 
 scrolling :: forall a. String -> Attribute a
-scrolling = runFn2 attribute "scrolling"
+scrolling = attr "scrolling"
 
 seamless :: forall a. String -> Attribute a
-seamless = runFn2 attribute "seamless"
+seamless = attr "seamless"
 
 selected :: forall a. String -> Attribute a
-selected = runFn2 attribute "selected"
+selected = attr "selected"
 
 shape :: forall a. String -> Attribute a
-shape = runFn2 attribute "shape"
+shape = attr "shape"
 
 size :: forall a. String -> Attribute a
-size = runFn2 attribute "size"
+size = attr "size"
 
 sizes :: forall a. String -> Attribute a
-sizes = runFn2 attribute "sizes"
+sizes = attr "sizes"
 
 span_ :: forall a. String -> Attribute a
-span_ = runFn2 attribute "span"
+span_ = attr "span"
 
 spellCheck :: forall a. String -> Attribute a
-spellCheck = runFn2 attribute "spellCheck"
+spellCheck = attr "spellCheck"
 
 src :: forall a. String -> Attribute a
-src = runFn2 attribute "src"
+src = attr "src"
 
 srcDoc :: forall a. String -> Attribute a
-srcDoc = runFn2 attribute "srcDoc"
+srcDoc = attr "srcDoc"
 
 srcSet :: forall a. String -> Attribute a
-srcSet = runFn2 attribute "srcSet"
+srcSet = attr "srcSet"
 
 start :: forall a. String -> Attribute a
-start = runFn2 attribute "start"
+start = attr "start"
 
 step :: forall a. String -> Attribute a
-step = runFn2 attribute "step"
+step = attr "step"
 
 tabIndex :: forall a. String -> Attribute a
-tabIndex = runFn2 attribute "tabIndex"
+tabIndex = attr "tabIndex"
 
 target :: forall a. String -> Attribute a
-target = runFn2 attribute "target"
+target = attr "target"
 
 title :: forall a. String -> Attribute a
-title = runFn2 attribute "title"
+title = attr "title"
 
 type_ :: forall a. String -> Attribute a
-type_ = runFn2 attribute "type"
+type_ = attr "type"
 
 useMap :: forall a. String -> Attribute a
-useMap = runFn2 attribute "useMap"
+useMap = attr "useMap"
 
 value :: forall a. String -> Attribute a
-value = runFn2 attribute "value"
+value = attr "value"
 
 width :: forall a. String -> Attribute a
-width = runFn2 attribute "width"
+width = attr "width"
 
 wmode :: forall a. String -> Attribute a
-wmode = runFn2 attribute "wmode"
+wmode = attr "wmode"
 
 clipPath :: forall a. String -> Attribute a
-clipPath = runFn2 attribute "clipPath"
+clipPath = attr "clipPath"
 
 cx :: forall a. String -> Attribute a
-cx = runFn2 attribute "cx"
+cx = attr "cx"
 
 cy :: forall a. String -> Attribute a
-cy = runFn2 attribute "cy"
+cy = attr "cy"
 
 d :: forall a. String -> Attribute a
-d = runFn2 attribute "d"
+d = attr "d"
 
 dx :: forall a. String -> Attribute a
-dx = runFn2 attribute "dx"
+dx = attr "dx"
 
 dy :: forall a. String -> Attribute a
-dy = runFn2 attribute "dy"
+dy = attr "dy"
 
 fill :: forall a. String -> Attribute a
-fill = runFn2 attribute "fill"
+fill = attr "fill"
 
 fillOpacity :: forall a. String -> Attribute a
-fillOpacity = runFn2 attribute "fillOpacity"
+fillOpacity = attr "fillOpacity"
 
 fontFamily :: forall a. String -> Attribute a
-fontFamily = runFn2 attribute "fontFamily"
+fontFamily = attr "fontFamily"
 
 fontSize :: forall a. String -> Attribute a
-fontSize = runFn2 attribute "fontSize"
+fontSize = attr "fontSize"
 
 fx :: forall a. String -> Attribute a
-fx = runFn2 attribute "effects"
+fx = attr "effects"
 
 fy :: forall a. String -> Attribute a
-fy = runFn2 attribute "fy"
+fy = attr "fy"
 
 gradientTransform :: forall a. String -> Attribute a
-gradientTransform = runFn2 attribute "gradientTransform"
+gradientTransform = attr "gradientTransform"
 
 gradientUnits :: forall a. String -> Attribute a
-gradientUnits = runFn2 attribute "gradientUnits"
+gradientUnits = attr "gradientUnits"
 
 markerEnd :: forall a. String -> Attribute a
-markerEnd = runFn2 attribute "markerEnd"
+markerEnd = attr "markerEnd"
 
 markerMid :: forall a. String -> Attribute a
-markerMid = runFn2 attribute "markerMid"
+markerMid = attr "markerMid"
 
 markerStart :: forall a. String -> Attribute a
-markerStart = runFn2 attribute "markerStart"
+markerStart = attr "markerStart"
 
 offset :: forall a. String -> Attribute a
-offset = runFn2 attribute "offset"
+offset = attr "offset"
 
 opacity :: forall a. String -> Attribute a
-opacity = runFn2 attribute "opacity"
+opacity = attr "opacity"
 
 patternContentUnits :: forall a. String -> Attribute a
-patternContentUnits = runFn2 attribute "patternContentUnits"
+patternContentUnits = attr "patternContentUnits"
 
 patternUnits :: forall a. String -> Attribute a
-patternUnits = runFn2 attribute "patternUnits"
+patternUnits = attr "patternUnits"
 
 points :: forall a. String -> Attribute a
-points = runFn2 attribute "points"
+points = attr "points"
 
 preserveAspectRatio :: forall a. String -> Attribute a
-preserveAspectRatio = runFn2 attribute "preserveAspectRatio"
+preserveAspectRatio = attr "preserveAspectRatio"
 
 r :: forall a. String -> Attribute a
-r = runFn2 attribute "r"
+r = attr "r"
 
 rx :: forall a. String -> Attribute a
-rx = runFn2 attribute "rx"
+rx = attr "rx"
 
 ry :: forall a. String -> Attribute a
-ry = runFn2 attribute "ry"
+ry = attr "ry"
 
 spreadMethod :: forall a. String -> Attribute a
-spreadMethod = runFn2 attribute "spreadMethod"
+spreadMethod = attr "spreadMethod"
 
 stopColor :: forall a. String -> Attribute a
-stopColor = runFn2 attribute "stopColor"
+stopColor = attr "stopColor"
 
 stopOpacity :: forall a. String -> Attribute a
-stopOpacity = runFn2 attribute "stopOpacity"
+stopOpacity = attr "stopOpacity"
 
 stroke :: forall a. String -> Attribute a
-stroke = runFn2 attribute "stroke"
+stroke = attr "stroke"
 
 strokeDasharray :: forall a. String -> Attribute a
-strokeDasharray = runFn2 attribute "strokeDasharray"
+strokeDasharray = attr "strokeDasharray"
 
 strokeLinecap :: forall a. String -> Attribute a
-strokeLinecap = runFn2 attribute "strokeLinecap"
+strokeLinecap = attr "strokeLinecap"
 
 strokeOpacity :: forall a. String -> Attribute a
-strokeOpacity = runFn2 attribute "strokeOpacity"
+strokeOpacity = attr "strokeOpacity"
 
 strokeWidth :: forall a. String -> Attribute a
-strokeWidth = runFn2 attribute "strokeWidth"
+strokeWidth = attr "strokeWidth"
 
-style :: forall a s. { | s } -> Attribute a
-style = runFn2 objAttribute "style"
+style :: forall a v. { | v } -> Attribute a
+style = attr "style"
 
 textAnchor :: forall a. String -> Attribute a
-textAnchor = runFn2 attribute "textAnchor"
+textAnchor = attr "textAnchor"
 
 transform :: forall a. String -> Attribute a
-transform = runFn2 attribute "transform"
+transform = attr "transform"
 
 version :: forall a. String -> Attribute a
-version = runFn2 attribute "version"
+version = attr "version"
 
 viewBox :: forall a. String -> Attribute a
-viewBox = runFn2 attribute "viewBox"
+viewBox = attr "viewBox"
 
 x1 :: forall a. String -> Attribute a
-x1 = runFn2 attribute "x1"
+x1 = attr "x1"
 
 x2 :: forall a. String -> Attribute a
-x2 = runFn2 attribute "x2"
+x2 = attr "x2"
 
 x :: forall a. String -> Attribute a
-x = runFn2 attribute "x"
+x = attr "x"
 
 xlinkActuate :: forall a. String -> Attribute a
-xlinkActuate = runFn2 attribute "xlinkActuate"
+xlinkActuate = attr "xlinkActuate"
 
 xlinkArcrole :: forall a. String -> Attribute a
-xlinkArcrole = runFn2 attribute "xlinkArcrole"
+xlinkArcrole = attr "xlinkArcrole"
 
 xlinkHref :: forall a. String -> Attribute a
-xlinkHref = runFn2 attribute "xlinkHref"
+xlinkHref = attr "xlinkHref"
 
 xlinkRole :: forall a. String -> Attribute a
-xlinkRole = runFn2 attribute "xlinkRole"
+xlinkRole = attr "xlinkRole"
 
 xlinkShow :: forall a. String -> Attribute a
-xlinkShow = runFn2 attribute "xlinkShow"
+xlinkShow = attr "xlinkShow"
 
 xlinkTitle :: forall a. String -> Attribute a
-xlinkTitle = runFn2 attribute "xlinkTitle"
+xlinkTitle = attr "xlinkTitle"
 
 xlinkType :: forall a. String -> Attribute a
-xlinkType = runFn2 attribute "xlinkType"
+xlinkType = attr "xlinkType"
 
 xmlBase :: forall a. String -> Attribute a
-xmlBase = runFn2 attribute "xmlBase"
+xmlBase = attr "xmlBase"
 
 xmlLang :: forall a. String -> Attribute a
-xmlLang = runFn2 attribute "xmlLang"
+xmlLang = attr "xmlLang"
 
 xmlSpace :: forall a. String -> Attribute a
-xmlSpace = runFn2 attribute "xmlSpace"
+xmlSpace = attr "xmlSpace"
 
 y1 :: forall a. String -> Attribute a
-y1 = runFn2 attribute "y1"
+y1 = attr "y1"
 
 y2 :: forall a. String -> Attribute a
-y2 = runFn2 attribute "y2"
+y2 = attr "y2"
 
 y :: forall a. String -> Attribute a
-y = runFn2 attribute "y"
+y = attr "y"
 
-foreign import attribute :: forall a. Fn2 String String (Attribute a)
-
-foreign import objAttribute :: forall a s. Fn2 String { | s } (Attribute a)
+foreign import attr :: forall a v. String -> v -> Attribute a
