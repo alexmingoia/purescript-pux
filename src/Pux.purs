@@ -4,6 +4,8 @@ module Pux
   , EffModel
   , noEffects
   , fromSimple
+  , mapState
+  , mapEffects
   , ReactClass
   , renderToDOM
   , renderToString
@@ -104,6 +106,16 @@ fromSimple update = \action state -> noEffects $ update action state
 -- | Create an `EffModel` with no effects from a given state.
 noEffects :: forall state action eff. state -> EffModel state action eff
 noEffects state = { state: state, effects: [] }
+
+-- | Map over the state of an `EffModel`.
+mapState :: forall sa sb a e. (sa -> sb) -> EffModel sa a e -> EffModel sb a e
+mapState a2b effmodel =
+  { state: a2b effmodel.state, effects: effmodel.effects }
+
+-- | Map over the effectful actions of an `EffModel`.
+mapEffects :: forall s a b e. (a -> b) -> EffModel s a e -> EffModel s b e
+mapEffects action effmodel =
+  { state: effmodel.state, effects: map (map action) effmodel.effects }
 
 foreign import renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff Unit
 

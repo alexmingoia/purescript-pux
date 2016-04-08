@@ -66,6 +66,22 @@ noEffects :: forall state action eff. state -> EffModel state action eff
 
 Create an `EffModel` with no effects from a given state.
 
+#### `mapState`
+
+``` purescript
+mapState :: forall sa sb a e. (sa -> sb) -> EffModel sa a e -> EffModel sb a e
+```
+
+Map over the state of an `EffModel`.
+
+#### `mapEffects`
+
+``` purescript
+mapEffects :: forall s a b e. (a -> b) -> EffModel s a e -> EffModel s b e
+```
+
+Map over the effectful actions of an `EffModel`.
+
 #### `renderToDOM`
 
 ``` purescript
