@@ -27,7 +27,7 @@ action :: forall a. String -> Attribute a
 #### `allowFullScreen`
 
 ``` purescript
-allowFullScreen :: forall a. String -> Attribute a
+allowFullScreen :: forall a. Boolean -> Attribute a
 ```
 
 #### `allowTransparency`
@@ -51,7 +51,25 @@ aria :: forall a. String -> String -> Attribute a
 #### `async`
 
 ``` purescript
-async :: forall a. String -> Attribute a
+async :: forall a. Boolean -> Attribute a
+```
+
+#### `autoCapitalize`
+
+``` purescript
+autoCapitalize :: forall a. String -> Attribute a
+```
+
+#### `autoCorrect`
+
+``` purescript
+autoCorrect :: forall a. String -> Attribute a
+```
+
+#### `autoSave`
+
+``` purescript
+autoSave :: forall a. String -> Attribute a
 ```
 
 #### `autoComplete`
@@ -70,6 +88,12 @@ autoFocus :: forall a. Boolean -> Attribute a
 
 ``` purescript
 autoPlay :: forall a. String -> Attribute a
+```
+
+#### `capture`
+
+``` purescript
+capture :: forall a. Boolean -> Attribute a
 ```
 
 #### `cellPadding`
@@ -108,10 +132,16 @@ classID :: forall a. String -> Attribute a
 className :: forall a. String -> Attribute a
 ```
 
+#### `color`
+
+``` purescript
+color :: forall a. String -> Attribute a
+```
+
 #### `cols`
 
 ``` purescript
-cols :: forall a. String -> Attribute a
+cols :: forall a. Int -> Attribute a
 ```
 
 #### `colSpan`
@@ -141,7 +171,7 @@ contextMenu :: forall a. String -> Attribute a
 #### `controls`
 
 ``` purescript
-controls :: forall a. String -> Attribute a
+controls :: forall a. Boolean -> Attribute a
 ```
 
 #### `coords`
@@ -237,7 +267,7 @@ formMethod :: forall a. String -> Attribute a
 #### `formNoValidate`
 
 ``` purescript
-formNoValidate :: forall a. String -> Attribute a
+formNoValidate :: forall a. Boolean -> Attribute a
 ```
 
 #### `formTarget`
@@ -261,7 +291,7 @@ height :: forall a. String -> Attribute a
 #### `hidden`
 
 ``` purescript
-hidden :: forall a. String -> Attribute a
+hidden :: forall a. Boolean -> Attribute a
 ```
 
 #### `href`
@@ -300,6 +330,36 @@ icon :: forall a. String -> Attribute a
 id_ :: forall a. String -> Attribute a
 ```
 
+#### `itemProp`
+
+``` purescript
+itemProp :: forall a. String -> Attribute a
+```
+
+#### `itemScope`
+
+``` purescript
+itemScope :: forall a. Boolean -> Attribute a
+```
+
+#### `itemType`
+
+``` purescript
+itemType :: forall a. String -> Attribute a
+```
+
+#### `itemID`
+
+``` purescript
+itemID :: forall a. String -> Attribute a
+```
+
+#### `itemRef`
+
+``` purescript
+itemRef :: forall a. String -> Attribute a
+```
+
 #### `key`
 
 ``` purescript
@@ -327,7 +387,7 @@ list :: forall a. String -> Attribute a
 #### `loop`
 
 ``` purescript
-loop :: forall a. String -> Attribute a
+loop :: forall a. Boolean -> Attribute a
 ```
 
 #### `manifest`
@@ -387,13 +447,13 @@ min :: forall a. String -> Attribute a
 #### `multiple`
 
 ``` purescript
-multiple :: forall a. String -> Attribute a
+multiple :: forall a. Boolean -> Attribute a
 ```
 
 #### `muted`
 
 ``` purescript
-muted :: forall a. String -> Attribute a
+muted :: forall a. Boolean -> Attribute a
 ```
 
 #### `name`
@@ -405,13 +465,13 @@ name :: forall a. String -> Attribute a
 #### `noValidate`
 
 ``` purescript
-noValidate :: forall a. String -> Attribute a
+noValidate :: forall a. Boolean -> Attribute a
 ```
 
 #### `open`
 
 ``` purescript
-open :: forall a. String -> Attribute a
+open :: forall a. Boolean -> Attribute a
 ```
 
 #### `pattern`
@@ -447,7 +507,7 @@ radioGroup :: forall a. String -> Attribute a
 #### `readOnly`
 
 ``` purescript
-readOnly :: forall a. String -> Attribute a
+readOnly :: forall a. Boolean -> Attribute a
 ```
 
 #### `rel`
@@ -456,10 +516,16 @@ readOnly :: forall a. String -> Attribute a
 rel :: forall a. String -> Attribute a
 ```
 
+#### `results`
+
+``` purescript
+results :: forall a. String -> Attribute a
+```
+
 #### `required`
 
 ``` purescript
-required :: forall a. String -> Attribute a
+required :: forall a. Boolean -> Attribute a
 ```
 
 #### `role`
@@ -471,13 +537,13 @@ role :: forall a. String -> Attribute a
 #### `rows`
 
 ``` purescript
-rows :: forall a. String -> Attribute a
+rows :: forall a. Int -> Attribute a
 ```
 
 #### `rowSpan`
 
 ``` purescript
-rowSpan :: forall a. String -> Attribute a
+rowSpan :: forall a. Int -> Attribute a
 ```
 
 #### `sandbox`
@@ -492,6 +558,12 @@ sandbox :: forall a. String -> Attribute a
 scope :: forall a. String -> Attribute a
 ```
 
+#### `scoped`
+
+``` purescript
+scoped :: forall a. Boolean -> Attribute a
+```
+
 #### `scrolling`
 
 ``` purescript
@@ -501,13 +573,19 @@ scrolling :: forall a. String -> Attribute a
 #### `seamless`
 
 ``` purescript
-seamless :: forall a. String -> Attribute a
+seamless :: forall a. Boolean -> Attribute a
 ```
 
 #### `selected`
 
 ``` purescript
-selected :: forall a. String -> Attribute a
+selected :: forall a. Boolean -> Attribute a
+```
+
+#### `security`
+
+``` purescript
+security :: forall a. String -> Attribute a
 ```
 
 #### `shape`
@@ -519,7 +597,7 @@ shape :: forall a. String -> Attribute a
 #### `size`
 
 ``` purescript
-size :: forall a. String -> Attribute a
+size :: forall a. Int -> Attribute a
 ```
 
 #### `sizes`
@@ -561,7 +639,7 @@ srcSet :: forall a. String -> Attribute a
 #### `start`
 
 ``` purescript
-start :: forall a. String -> Attribute a
+start :: forall a. Boolean -> Attribute a
 ```
 
 #### `step`
@@ -604,6 +682,12 @@ type_ :: forall a. String -> Attribute a
 
 ``` purescript
 useMap :: forall a. String -> Attribute a
+```
+
+#### `unselectable`
+
+``` purescript
+unselectable :: forall a. String -> Attribute a
 ```
 
 #### `value`

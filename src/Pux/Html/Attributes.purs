@@ -15,7 +15,7 @@ accessKey = attr "accessKey"
 action :: forall a. String -> Attribute a
 action = attr "action"
 
-allowFullScreen :: forall a. String -> Attribute a
+allowFullScreen :: forall a. Boolean -> Attribute a
 allowFullScreen = attr "allowFullScreen"
 
 allowTransparency :: forall a. String -> Attribute a
@@ -27,18 +27,29 @@ alt = attr "alt"
 aria :: forall a. String -> String -> Attribute a
 aria ariaAttr = attr ("aria-" ++ ariaAttr)
 
-async :: forall a. String -> Attribute a
+async :: forall a. Boolean -> Attribute a
 async = attr "async"
+
+autoCapitalize :: forall a. String -> Attribute a
+autoCapitalize = attr "autoCapitalize"
+
+autoCorrect :: forall a. String -> Attribute a
+autoCorrect = attr "autoCorrect"
+
+autoSave :: forall a. String -> Attribute a
+autoSave = attr "autoSave"
 
 autoComplete :: forall a. String -> Attribute a
 autoComplete = attr "autoComplete"
 
 autoFocus :: forall a. Boolean -> Attribute a
-autoFocus true = attr "autoFocus" "autoFocus"
-autoFocus false = attr "autoFocus" ""
+autoFocus = attr "autoFocus"
 
 autoPlay :: forall a. String -> Attribute a
 autoPlay = attr "autoPlay"
+
+capture :: forall a. Boolean -> Attribute a
+capture = attr "capture"
 
 cellPadding :: forall a. String -> Attribute a
 cellPadding = attr "cellPadding"
@@ -58,7 +69,10 @@ classID = attr "classID"
 className :: forall a. String -> Attribute a
 className = attr "className"
 
-cols :: forall a. String -> Attribute a
+color :: forall a. String -> Attribute a
+color = attr "color"
+
+cols :: forall a. Int -> Attribute a
 cols = attr "cols"
 
 colSpan :: forall a. String -> Attribute a
@@ -73,7 +87,7 @@ contentEditable = attr "contentEditable"
 contextMenu :: forall a. String -> Attribute a
 contextMenu = attr "contextMenu"
 
-controls :: forall a. String -> Attribute a
+controls :: forall a. Boolean -> Attribute a
 controls = attr "controls"
 
 coords :: forall a. String -> Attribute a
@@ -122,7 +136,7 @@ formEncType = attr "formEncType"
 formMethod :: forall a. String -> Attribute a
 formMethod = attr "formMethod"
 
-formNoValidate :: forall a. String -> Attribute a
+formNoValidate :: forall a. Boolean -> Attribute a
 formNoValidate = attr "formNoValidate"
 
 formTarget :: forall a. String -> Attribute a
@@ -134,7 +148,7 @@ frameBorder = attr "frameBorder"
 height :: forall a. String -> Attribute a
 height = attr "height"
 
-hidden :: forall a. String -> Attribute a
+hidden :: forall a. Boolean -> Attribute a
 hidden = attr "hidden"
 
 href :: forall a. String -> Attribute a
@@ -155,6 +169,21 @@ icon = attr "icon"
 id_ :: forall a. String -> Attribute a
 id_ = attr "id"
 
+itemProp :: forall a. String -> Attribute a
+itemProp = attr "itemProp"
+
+itemScope :: forall a. Boolean -> Attribute a
+itemScope = attr "itemScope"
+
+itemType :: forall a. String -> Attribute a
+itemType = attr "itemType"
+
+itemID :: forall a. String -> Attribute a
+itemID = attr "itemID"
+
+itemRef :: forall a. String -> Attribute a
+itemRef = attr "itemRef"
+
 key :: forall a. String -> Attribute a
 key = attr "key"
 
@@ -167,7 +196,7 @@ lang = attr "lang"
 list :: forall a. String -> Attribute a
 list = attr "list"
 
-loop :: forall a. String -> Attribute a
+loop :: forall a. Boolean -> Attribute a
 loop = attr "loop"
 
 manifest :: forall a. String -> Attribute a
@@ -197,19 +226,19 @@ method = attr "method"
 min :: forall a. String -> Attribute a
 min = attr "min"
 
-multiple :: forall a. String -> Attribute a
+multiple :: forall a. Boolean -> Attribute a
 multiple = attr "multiple"
 
-muted :: forall a. String -> Attribute a
+muted :: forall a. Boolean -> Attribute a
 muted = attr "muted"
 
 name :: forall a. String -> Attribute a
 name = attr "name"
 
-noValidate :: forall a. String -> Attribute a
+noValidate :: forall a. Boolean -> Attribute a
 noValidate = attr "noValidate"
 
-open :: forall a. String -> Attribute a
+open :: forall a. Boolean -> Attribute a
 open = attr "open"
 
 pattern :: forall a. String -> Attribute a
@@ -227,22 +256,25 @@ preload = attr "preload"
 radioGroup :: forall a. String -> Attribute a
 radioGroup = attr "radioGroup"
 
-readOnly :: forall a. String -> Attribute a
+readOnly :: forall a. Boolean -> Attribute a
 readOnly = attr "readOnly"
 
 rel :: forall a. String -> Attribute a
 rel = attr "rel"
 
-required :: forall a. String -> Attribute a
+results :: forall a. String -> Attribute a
+results = attr "results"
+
+required :: forall a. Boolean -> Attribute a
 required = attr "required"
 
 role :: forall a. String -> Attribute a
 role = attr "role"
 
-rows :: forall a. String -> Attribute a
+rows :: forall a. Int -> Attribute a
 rows = attr "rows"
 
-rowSpan :: forall a. String -> Attribute a
+rowSpan :: forall a. Int -> Attribute a
 rowSpan = attr "rowSpan"
 
 sandbox :: forall a. String -> Attribute a
@@ -251,19 +283,25 @@ sandbox = attr "sandbox"
 scope :: forall a. String -> Attribute a
 scope = attr "scope"
 
+scoped :: forall a. Boolean -> Attribute a
+scoped = attr "scope"
+
 scrolling :: forall a. String -> Attribute a
 scrolling = attr "scrolling"
 
-seamless :: forall a. String -> Attribute a
+seamless :: forall a. Boolean -> Attribute a
 seamless = attr "seamless"
 
-selected :: forall a. String -> Attribute a
+selected :: forall a. Boolean -> Attribute a
 selected = attr "selected"
+
+security :: forall a. String -> Attribute a
+security = attr "security"
 
 shape :: forall a. String -> Attribute a
 shape = attr "shape"
 
-size :: forall a. String -> Attribute a
+size :: forall a. Int -> Attribute a
 size = attr "size"
 
 sizes :: forall a. String -> Attribute a
@@ -284,7 +322,7 @@ srcDoc = attr "srcDoc"
 srcSet :: forall a. String -> Attribute a
 srcSet = attr "srcSet"
 
-start :: forall a. String -> Attribute a
+start :: forall a. Boolean -> Attribute a
 start = attr "start"
 
 step :: forall a. String -> Attribute a
@@ -307,6 +345,9 @@ type_ = attr "type"
 
 useMap :: forall a. String -> Attribute a
 useMap = attr "useMap"
+
+unselectable :: forall a. String -> Attribute a
+unselectable = attr "unselectable"
 
 value :: forall a. String -> Attribute a
 value = attr "value"
