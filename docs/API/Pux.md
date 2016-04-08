@@ -3,7 +3,7 @@
 #### `start`
 
 ``` purescript
-start :: forall state action eff. Config state action eff -> Eff (err :: EXCEPTION, channel :: CHANNEL | eff) (App state action)
+start :: forall state action eff. Config state action eff -> Eff (CoreEffects eff) (App state action)
 ```
 
 Start an application. The resulting html signal is fed into `renderToDOM`.
@@ -17,6 +17,23 @@ main = do
     , inputs: [] }
 
   renderToDOM "#app" app.html
+```
+
+#### `CoreEffects`
+
+``` purescript
+type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
+```
+
+The set of effects every Pux app needs to allow through when using `start`.
+Extend this type with your own app's effects, for example:
+
+```purescript
+type AppEffects = (console :: CONSOLE, dom :: DOM)
+
+main :: State -> Eff (CoreEffects AppEffects) (App State Action)
+main state = do
+  -- ...
 ```
 
 #### `App`

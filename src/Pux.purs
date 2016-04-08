@@ -2,6 +2,7 @@ module Pux
   ( App
   , Update
   , EffModel
+  , CoreEffects
   , noEffects
   , fromSimple
   , mapState
@@ -40,7 +41,7 @@ import Signal.Channel (CHANNEL, channel, subscribe, send)
 -- | ```
 start :: forall state action eff.
          Config state action eff ->
-         Eff (err :: EXCEPTION, channel :: CHANNEL | eff) (App state action)
+         Eff (CoreEffects eff) (App state action)
 start config = do
   actionChannel <- channel Nil
   let actionSignal = subscribe actionChannel
@@ -78,6 +79,18 @@ type Config state action eff =
   , initialState :: state
   , inputs :: Array (Signal action)
   }
+
+-- | The set of effects every Pux app needs to allow through when using `start`.
+-- | Extend this type with your own app's effects, for example:
+-- |
+-- | ```purescript
+-- | type AppEffects = (console :: CONSOLE, dom :: DOM)
+-- |
+-- | main :: State -> Eff (CoreEffects AppEffects) (App State Action)
+-- | main state = do
+-- |   -- ...
+-- | ```
+type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
 
 -- | An `App` consists of three signals:
 -- |
