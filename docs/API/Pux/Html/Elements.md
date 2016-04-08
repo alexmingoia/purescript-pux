@@ -690,10 +690,72 @@ video :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 wbr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `altGlyph`
+
+``` purescript
+altGlyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+## SVG Elements
+
+#### `altGlyphDef`
+
+``` purescript
+altGlyphDef :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `altGlyphItem`
+
+``` purescript
+altGlyphItem :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `animate`
+
+``` purescript
+animate :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `animateColor`
+
+``` purescript
+animateColor :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `animateMotion`
+
+``` purescript
+animateMotion :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `animateTransform`
+
+``` purescript
+animateTransform :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `circle`
+
+``` purescript
+circle :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `clipPath`
 
 ``` purescript
 clipPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `colorProfile`
+
+``` purescript
+colorProfile :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `cursor`
+
+``` purescript
+cursor :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `defs`
@@ -702,16 +764,232 @@ clipPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 defs :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `desc`
+
+``` purescript
+desc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `ellipse`
 
 ``` purescript
 ellipse :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `feBlend`
+
+``` purescript
+feBlend :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feColorMatrix`
+
+``` purescript
+feColorMatrix :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feComponentTransfer`
+
+``` purescript
+feComponentTransfer :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feComposite`
+
+``` purescript
+feComposite :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feConvolveMatrix`
+
+``` purescript
+feConvolveMatrix :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feDiffuseLighting`
+
+``` purescript
+feDiffuseLighting :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feDisplacementMap`
+
+``` purescript
+feDisplacementMap :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feDistantLight`
+
+``` purescript
+feDistantLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feFlood`
+
+``` purescript
+feFlood :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feFuncA`
+
+``` purescript
+feFuncA :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feFuncB`
+
+``` purescript
+feFuncB :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feFuncG`
+
+``` purescript
+feFuncG :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feFuncR`
+
+``` purescript
+feFuncR :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feGaussianBlur`
+
+``` purescript
+feGaussianBlur :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feImage`
+
+``` purescript
+feImage :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feMerge`
+
+``` purescript
+feMerge :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feMergeNode`
+
+``` purescript
+feMergeNode :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feMorphology`
+
+``` purescript
+feMorphology :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feOffset`
+
+``` purescript
+feOffset :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fePointLight`
+
+``` purescript
+fePointLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feSpecularLighting`
+
+``` purescript
+feSpecularLighting :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feSpotLight`
+
+``` purescript
+feSpotLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feTile`
+
+``` purescript
+feTile :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `feTurbulence`
+
+``` purescript
+feTurbulence :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `filter`
+
+``` purescript
+filter :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `font`
+
+``` purescript
+font :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fontFace`
+
+``` purescript
+fontFace :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fontFaceFormat`
+
+``` purescript
+fontFaceFormat :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fontFaceName`
+
+``` purescript
+fontFaceName :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fontFaceSrc`
+
+``` purescript
+fontFaceSrc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `fontFaceUri`
+
+``` purescript
+fontFaceUri :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `foreignObject`
+
+``` purescript
+foreignObject :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `g`
 
 ``` purescript
 g :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `glyph`
+
+``` purescript
+glyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `glyphRef`
+
+``` purescript
+glyphRef :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `hkern`
+
+``` purescript
+hkern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `image`
@@ -732,10 +1010,34 @@ line :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 linearGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `marker`
+
+``` purescript
+marker :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `mask`
 
 ``` purescript
 mask :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `metadata`
+
+``` purescript
+metadata :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `missingGlyph`
+
+``` purescript
+missingGlyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `mpath`
+
+``` purescript
+mpath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `path`
@@ -774,6 +1076,12 @@ radialGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 rect :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `set`
+
+``` purescript
+set :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `stop`
 
 ``` purescript
@@ -786,16 +1094,52 @@ stop :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 svg :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
-#### `text'`
+#### `switch`
 
 ``` purescript
-text' :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+switch :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `symbol`
+
+``` purescript
+symbol :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `textPath`
+
+``` purescript
+textPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `tref`
+
+``` purescript
+tref :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `tspan`
 
 ``` purescript
 tspan :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `use`
+
+``` purescript
+use :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `view`
+
+``` purescript
+view :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `vkern`
+
+``` purescript
+vkern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `element`

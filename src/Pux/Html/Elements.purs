@@ -343,17 +343,157 @@ video = runFn3 element "video"
 wbr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 wbr = runFn3 element "body"
 
+-- | ## SVG Elements
+
+altGlyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+altGlyph = runFn3 element "altGlyph"
+
+altGlyphDef :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+altGlyphDef = runFn3 element "altGlyphDef"
+
+altGlyphItem :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+altGlyphItem = runFn3 element "altGlyphItem"
+
+animate :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+animate = runFn3 element "animate"
+
+animateColor :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+animateColor = runFn3 element "animateColor"
+
+animateMotion :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+animateMotion = runFn3 element "animateMotion"
+
+animateTransform :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+animateTransform = runFn3 element "animateTransform"
+
+circle :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+circle = runFn3 element "circle"
+
 clipPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 clipPath = runFn3 element "clipPath"
+
+colorProfile :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+colorProfile = runFn3 element "color-profile"
+
+cursor :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+cursor = runFn3 element "cursor"
 
 defs :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 defs = runFn3 element "defs"
 
+desc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+desc = runFn3 element "desc"
+
 ellipse :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ellipse = runFn3 element "ellipse"
 
+feBlend :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feBlend = runFn3 element "feBlend"
+
+feColorMatrix :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feColorMatrix = runFn3 element "feColorMatrix"
+
+feComponentTransfer :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feComponentTransfer = runFn3 element "feComponentTransfer"
+
+feComposite :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feComposite = runFn3 element "feComposite"
+
+feConvolveMatrix :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feConvolveMatrix = runFn3 element "feConvolveMatrix"
+
+feDiffuseLighting :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feDiffuseLighting = runFn3 element "feDiffuseLighting"
+
+feDisplacementMap :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feDisplacementMap = runFn3 element "feDisplacementMap"
+
+feDistantLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feDistantLight = runFn3 element "feDistantLight"
+
+feFlood :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feFlood = runFn3 element "feFlood"
+
+feFuncA :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feFuncA = runFn3 element "feFuncA"
+
+feFuncB :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feFuncB = runFn3 element "feFuncB"
+
+feFuncG :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feFuncG = runFn3 element "feFuncG"
+
+feFuncR :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feFuncR = runFn3 element "feFuncR"
+
+feGaussianBlur :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feGaussianBlur = runFn3 element "feGaussianBlur"
+
+feImage :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feImage = runFn3 element "feImage"
+
+feMerge :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feMerge = runFn3 element "feMerge"
+
+feMergeNode :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feMergeNode = runFn3 element "feMergeNode"
+
+feMorphology :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feMorphology = runFn3 element "feMorphology"
+
+feOffset :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feOffset = runFn3 element "feOffset"
+
+fePointLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fePointLight = runFn3 element "fePointLight"
+
+feSpecularLighting :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feSpecularLighting = runFn3 element "feSpecularLighting"
+
+feSpotLight :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feSpotLight = runFn3 element "feSpotLight"
+
+feTile :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feTile = runFn3 element "feTile"
+
+feTurbulence :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+feTurbulence = runFn3 element "feTurbulence"
+
+filter :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+filter = runFn3 element "filter"
+
+font :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+font = runFn3 element "font"
+
+fontFace :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fontFace = runFn3 element "font-face"
+
+fontFaceFormat :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fontFaceFormat = runFn3 element "font-face-format"
+
+fontFaceName :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fontFaceName = runFn3 element "font-face-name"
+
+fontFaceSrc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fontFaceSrc = runFn3 element "font-face-src"
+
+fontFaceUri :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+fontFaceUri = runFn3 element "font-face-uri"
+
+foreignObject :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+foreignObject = runFn3 element "foreignObject"
+
 g :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 g = runFn3 element "g"
+
+glyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+glyph = runFn3 element "glyph"
+
+glyphRef :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+glyphRef = runFn3 element "glyphRef"
+
+hkern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+hkern = runFn3 element "hkern"
 
 image :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 image = runFn3 element "image"
@@ -364,8 +504,20 @@ line = runFn3 element "line"
 linearGradient :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 linearGradient = runFn3 element "linearGradient"
 
+marker :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+marker = runFn3 element "marker"
+
 mask :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 mask = runFn3 element "mask"
+
+metadata :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+metadata = runFn3 element "metadata"
+
+missingGlyph :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+missingGlyph = runFn3 element "missing-glyph"
+
+mpath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+mpath = runFn3 element "mpath"
 
 path :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 path = runFn3 element "path"
@@ -385,17 +537,38 @@ radialGradient = runFn3 element "radialGradient"
 rect :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 rect = runFn3 element "rect"
 
+set :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+set = runFn3 element "set"
+
 stop :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 stop = runFn3 element "stop"
 
 svg :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 svg = runFn3 element "svg"
 
-text' :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-text' = runFn3 element "text"
+switch :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+switch = runFn3 element "switch"
+
+symbol :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+symbol = runFn3 element "symbol"
+
+textPath :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+textPath = runFn3 element "textPath"
+
+tref :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+tref = runFn3 element "tref"
 
 tspan :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 tspan = runFn3 element "tspan"
+
+use :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+use = runFn3 element "use"
+
+view :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+view = runFn3 element "view"
+
+vkern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+vkern = runFn3 element "vkern"
 
 foreign import element :: forall a.
                           Fn3 String (Array (Attribute a)) (Array (Html a)) (Html a)
