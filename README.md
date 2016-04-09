@@ -32,7 +32,7 @@ which includes a hot-reloading setup using webpack:
 git clone git://github.com/alexmingoia/pux-starter-app.git example
 cd example
 npm install
-npm run watch
+npm start
 ```
 
 Pux is also available as the bower package `purescript-pux`.
