@@ -88,13 +88,17 @@ them:
 ```purescript
 view :: State -> Html Action
 view state =
-  div # do
-    h1 # text state.status
-    div # do
-      button ! onClick (const RequestTodos) # text "Fetch todos"
-    ol [] $ map todo state.todos
+  div
+    []
+    [ h1 [] [ text state.status ]
+    , div
+        []
+        [ button [ onClick (const RequestTodos) ] [ text "Fetch todos" ]
+        , ol [] $ map todo state.todos
+        ]
+    ]
 
 todo :: Todo -> Html Action
 todo (Todo state) =
-  li ! key (show state.id) ! className "todo" # text state.title
+  li [ key (show state.id), className "todo" ] [ text state.title ]
 ```

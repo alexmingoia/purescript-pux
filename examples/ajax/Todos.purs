@@ -6,7 +6,7 @@ import Data.Either (Either(Left, Right), either)
 import Network.HTTP.Affjax (AJAX, get)
 import Prelude (($), bind, map, const, show, (++), return, (<<<))
 import Pux (EffModel, noEffects)
-import Pux.Html (Html, (!), (#), div, h1, ol, li, button, text)
+import Pux.Html (Html, div, h1, ol, li, button, text)
 import Pux.Html.Attributes (key, className)
 import Pux.Html.Events (onClick)
 
@@ -54,13 +54,16 @@ update (RequestTodos) state =
 
 view :: State -> Html Action
 view state =
-  div # do
-    h1 # text state.status
-    div # do
-      button ! onClick (const RequestTodos) # text "Fetch todos"
-    ol [] $ map todo state.todos
-  where bind = Pux.Html.bind
+  div
+    []
+    [ h1 [] [ text state.status ]
+    , div
+        []
+        [ button [ onClick (const RequestTodos) ] [ text "Fetch todos" ]
+        , ol [] $ map todo state.todos
+        ]
+    ]
 
 todo :: Todo -> Html Action
 todo (Todo state) =
-  li ! key (show state.id) ! className "todo" # text state.title
+  li [ key (show state.id), className "todo" ] [ text state.title ]

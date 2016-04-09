@@ -10,7 +10,7 @@ to return a React class:
 module Counter where
 
 import Prelude ((+), (-), bind, const, show)
-import Pux.Html (Html, (!), (#), div, span, button, text)
+import Pux.Html (Html, div, span, button, text)
 import Pux.Html.Events (onClick)
 
 data Action = Increment | Decrement
@@ -23,11 +23,12 @@ update Decrement count = count - 1
 
 view :: State -> Html Action
 view count =
-  div # do
-    button ! onClick (const Increment) # text "Increment"
-    span # text (show count)
-    button ! onClick (const Decrement) # text "Decrement"
-  where bind = Pux.Html.bind
+  div
+    []
+    [ button [ onClick (const Increment) ] [ text "Increment" ]
+    , span [] [ text (show count) ]
+    , button [ onClick (const Decrement) ] [ text "Decrement" ]
+    ]
 
 toReact = do
   comp <- Pux.start

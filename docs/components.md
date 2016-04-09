@@ -72,39 +72,27 @@ state. Pux provides an `Html` type for constructing views:
 
 ```purescript
 import Prelude (const)
-import Pux.Html (Html, (!), (#), bind, div, span, button, text)
+import Pux.Html (Html, div, span, button, text)
 import Pux.Html.Events (onClick)
 
 view :: State -> Html Action
 view count =
-  div # do
-    button ! onClick (const Increment) # text "Increment"
-    span # text (show count)
-    button ! onClick (const Decrement) # text "Decrement"
+  div
+    []
+    [ button [ onClick (const Increment) ] [ text "Increment" ]
+    , span [] [ text (show count) ]
+    , button [ onClick (const Decrement) ] [ text "Decrement" ]
+    ]
 ```
 
 `Html a` is the type that represents the virtual DOM tree (React elements), and
 is paramerized by an action type `a`, which represent the actions a view may
 send to the input channel. Those actions are fed into the update function we
-defined earlier to produce a new counter state. `!` is used to combine
-attributes like `onClick` with elements, and `#` is used to append children.
+defined earlier to produce a new counter state.
 
-In the example above, [`do`
-notation](https://leanpub.com/purescript/read#leanpub-auto-do-notation) is
-being used to append elements. This is made possible by using a version of
-`bind` provided by Pux. If you don't know what that is, it's the function that
-`do` desugars to. `do` notation is not required, and you can simply use array
-literals if preferred:
-
-```purescript
-view count =
-  div []
-    [ button [ onClick (const Increment) ] [ text "Increment" ]
-    , span [ text (show count) ]
-    , button [ onClick (const Decrement) ] [ text "Decrement" ]
-    ]
-```
-
+Each element constructor takes an array of attributes and an array of children
+as properties. Even childless elements like `img` have this type, because it
+makes mapping over html or other manipulations much simpler.
 
 `onClick`, along with other event handlers from
 [`Pux.Html.Events`](/API/Pux/Html/Events.html), are used to send actions

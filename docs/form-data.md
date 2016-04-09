@@ -38,9 +38,12 @@ Lastly, we expose a view which displays the username and password inputs, along
 with a button to submit the form:
 
 ```purescript
-view state =
-  form ! name "signin" ! onSubmit (const SignIn) # do
-    input ! type_ "text" ! value state.username ! onChange UsernameChange
-    input ! type_ "password" ! value.state.password ! onChange PasswordChange
-    button ! type_ "submit" # text "Sign In"
+view state = form
+  [ name "signin"
+  , onSubmit (const SignIn)
+  ]
+  [ input [ type_ "text", value state.username, onChange UsernameChange ] []
+  , input [ type_ "password", value.state.password, onChange PasswordChange ] []
+  , button [ type_ "submit" ] [ text "Sign In" ]
+  ]
 ```

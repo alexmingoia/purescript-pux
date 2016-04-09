@@ -12,6 +12,17 @@ data Attribute :: * -> *
 data Html :: * -> *
 ```
 
+##### Instances
+``` purescript
+Functor Html
+```
+
+#### `forwardTo`
+
+``` purescript
+forwardTo :: forall a b. (a -> b) -> Html a -> Html b
+```
+
 #### `text`
 
 ``` purescript

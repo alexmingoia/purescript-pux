@@ -67,21 +67,24 @@ correct view:
 ```purescript
 view :: State -> Html Action
 view state =
-  div # do
-    navigation
-    page state.currentRoute
+  div [] [ navigation, page state.currentRoute ]
 
 page :: Route -> Html Action
-page Home      = h1 # text "Home"
-page Users     = h1 # text "Users"
-page (User id) = h1 # text ("User: " ++ show id)
-page NotFound  = h1 # text "Not Found"
+page Home      = h1 [] [ text "Home" ]
+page Users     = h1 [] [ text "Users" ]
+page (User id) = h1 [] [ text ("User: " ++ show id) ]
+page NotFound  = h1 [] [ text "Not Found" ]
 
 navigation :: Html Action
-navigation = nav # do
-  ul # do
-    li # (link "/" # text "Home")
-    li # (link "/users" # text "Users")
-    li # (link "/users/123" # text "User 123")
-    li # (link "/foobar" # text "Not found")
+navigation =
+  nav
+    []
+    [ ul
+      []
+      [ li [] [ link "/" [] [ text "Home" ] ]
+      , li [] [ link "/users" [] [ text "Users" ] ]
+      , li [] [ link "/users/123" [] [ text "User 123" ] ]
+      , li [] [ link "/foobar" [] [ text "Not found" ] ]
+      ]
+    ]
 ```

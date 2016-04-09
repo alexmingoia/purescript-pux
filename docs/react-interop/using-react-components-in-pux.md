@@ -10,7 +10,7 @@ import Pux from 'purescript-pux'
 
 class FancyComponent extends React.Component {...}
 
-export const fromReact = Pux.fromReact FancyComponent
+export const fromReact = Pux.fromReact(FancyComponent)
 ```
 
 > The comment `// module FancyComponent` is required to declare this module as a
@@ -34,10 +34,12 @@ Then embed the component in your view like so:
 
 ```purescript
 view count =
-  div # do
-    button ! onClick (const Increment) # text "Increment"
-    FancyComponent.fromReact # text ("Fancy " ++ (show count))
-    button ! onClick (const Decrement) # text "Decrement"
+  div
+    []
+    [ button [ onClick (const Increment) ] [ text "Increment" ]
+    , FancyComponent.fromReact [] [ text ("Fancy " ++ (show count)) ]
+    , button [ onClick (const Decrement) ] [ text "Decrement" ]
+    ]
 ```
 
 If you need to pass initial props that do not have constructor functions from
@@ -45,5 +47,7 @@ If you need to pass initial props that do not have constructor functions from
 [`attr`](../API/Pux/Html/Attributes.html#attr) function:
 
 ```purescript
-FancyComponent.fromReact ! attr "customProp" true # text ("Fancy " ++ (show count))
+FancyComponent.fromReact
+  [ attr "customProp" true ]
+  [ text ("Fancy " ++ (show count)) ]
 ```

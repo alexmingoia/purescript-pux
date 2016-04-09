@@ -51,18 +51,19 @@ parents, while at the same time allowing parent components to respond to
 child actions.
 
 Finally, we create a view function that combines both counters along with a
-reset button. [`forwardTo`](/API/Pux/Html.html#forwardto) is used to forward
-child `Html` actions to their parent action. `forwardTo` maps over `Html`
-that sends actions of type `a` and returns `Html` that sends actions of type
-`b`: `(a -> b) -> Html a -> Html b`.
+reset button. `map` is used to forward child `Html` actions to their parent
+action by mapping over `Html` that sends actions of type `a` to return `Html`
+that sends actions of type `b`: `(a -> b) -> Html a -> Html b`.
 
 ```purescript
 view :: State -> Html Action
 view state =
-  div # do
-    forwardTo Top $ Counter.view state.topCount
-    forwardTo Bottom $ Counter.view state.bottomCount
-    button ! onClick (const Reset) # text "Reset"
+  div
+    []
+    [ map Top $ Counter.view state.topCount
+    , map Bottom $ Counter.view state.bottomCount
+    , button [ onClick (const Reset) ] [ text "Reset" ]
+    ]
 ```
 
 That's it! Composing components in this manner is straightfoward, modular, and

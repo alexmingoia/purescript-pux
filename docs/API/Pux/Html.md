@@ -20,25 +20,6 @@ view state =
     button ! onClick (const Decrement) # text "Decrement"
 ```
 
-#### `forwardTo`
-
-``` purescript
-forwardTo :: forall a b. (a -> b) -> Html a -> Html b
-```
-
-Forward child `Html` actions to their parent action. `forwardTo` maps
-over `Html` that sends actions of type `a` and returns `Html` that sends
-actions of type `b`.
-
-```purescript
-view :: State -> Html Action
-view state =
-  div # do
-    forwardTo Top $ Counter.view state.topCount
-    forwardTo Bottom $ Counter.view state.bottomCount
-    button ! onClick (const Reset) # text "Reset"
-```
-
 #### `withAttr`
 
 ``` purescript
@@ -109,6 +90,11 @@ data Attribute :: * -> *
 
 ``` purescript
 data Html :: * -> *
+```
+
+##### Instances
+``` purescript
+Functor Html
 ```
 
 #### `a`
@@ -627,6 +613,12 @@ foreignObject :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 
 ``` purescript
 form :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `forwardTo`
+
+``` purescript
+forwardTo :: forall a b. (a -> b) -> Html a -> Html b
 ```
 
 #### `g`
