@@ -4,7 +4,6 @@ module Pux.Html
   , (#)
   , (##)
   , bind
-  , forwardTo
   , withAttr
   , withChild
   , withChildren
@@ -33,20 +32,6 @@ bind :: forall a. Html a -> (Unit -> Html a) -> Html a
 bind x f = runFn2 append x (f unit)
 
 foreign import append :: forall a. Fn2 (Html a) (Html a) (Html a)
-
--- | Forward child `Html` actions to their parent action. `forwardTo` maps
--- | over `Html` that sends actions of type `a` and returns `Html` that sends
--- | actions of type `b`.
--- |
--- | ```purescript
--- | view :: State -> Html Action
--- | view state =
--- |   div # do
--- |     forwardTo Top $ Counter.view state.topCount
--- |     forwardTo Bottom $ Counter.view state.bottomCount
--- |     button ! onClick (const Reset) # text "Reset"
--- | ```
-foreign import forwardTo :: forall a b. (a -> b) -> Html a -> Html b
 
 -- | Combine elements with attributes.
 -- |

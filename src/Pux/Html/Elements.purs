@@ -1,9 +1,28 @@
 module Pux.Html.Elements where
 
 import Data.Function (Fn3, runFn3)
+import Prelude (class Functor)
 
 foreign import data Attribute :: * -> *
 foreign import data Html :: * -> *
+
+-- | Forward child `Html` actions to their parent action. Map over `Html` that
+-- | sends actions of type `a` and return `Html` that sends actions of type `b`.
+-- |
+-- | ```purescript
+-- | view :: State -> Html Action
+-- | view state =
+-- |   div
+-- |     []
+-- |     [ map Top $ Counter.view state.topCount
+-- |     , map Bottom $ Counter.view state.bottomCount
+-- |     , button [ onClick (const Reset) ] [ text "Reset" ]
+-- |     ]
+-- | ```
+instance functorHtml :: Functor Html where
+  map f x = forwardTo f x
+
+foreign import forwardTo :: forall a b. (a -> b) -> Html a -> Html b
 
 foreign import text :: forall a. String -> Html a
 

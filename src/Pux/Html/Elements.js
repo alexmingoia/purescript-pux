@@ -21,3 +21,17 @@ exports.element = function (tagName, attrs, children) {
 
   return React.createElement.apply(React, [tagName, props].concat(children));
 };
+
+// :: (a -> b) -> Html a -> Html b
+exports.forwardTo = function (parentAction) {
+  return function (html) {
+    var childAction = html.props.puxParentAction;
+    var action = parentAction;
+    if (childAction) {
+      action = function (a) {
+        return parentAction(childAction(a));
+      }
+    }
+    return React.cloneElement(html, { puxParentAction: action });
+  };
+};
