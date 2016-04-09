@@ -12,14 +12,14 @@
     "test": "pulp build"
   },
   "devDependencies": {
-    "bower": "^1.7.2",
+    "bower": "^1.7.9",
     "gitbook-cli": "^2.1.2",
     "pulp": "^8.0.0",
-    "purescript": "^0.8.0"
+    "purescript": "^0.8.4"
   },
   "name": "purescript-pux",
   "description": "Pux is an FRP interface to React, based on the Elm app architecture.",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "main": "src/Pux.js",
   "directories": {
     "doc": "docs",

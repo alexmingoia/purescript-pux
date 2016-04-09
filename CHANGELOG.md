@@ -1,5 +1,29 @@
 # Change Log
 
+## [v3.0.0] - 2016-04-09
+
+### Fixed
+
+- BREAKING: Change relevant attributes to `Boolean -> Attribute a` or
+  `Int -> Attribute a`.
+
+### Changed
+
+- Implement functor instance for `Html`, so authors can use `map` instead of
+  `forwardTo`.
+
+### Added
+
+- Provide type alias for core set of effects `CoreEffects`.
+  See [#20](https://github.com/alexmingoia/purescript-pux/pull/20).
+- Added
+  [`toReact`](https://alexmingoia.github.com/purescript-pux/docs/react-interop.html)
+  function that returns React class from Pux component.
+- Added
+  [`fromReact`](https://alexmingoia.github.com/purescript-pux/docs/react-interop.html)
+  function that returns Pux Html element from React component.
+- Added additional SVG attributes and elements from React v15.0.0
+
 ## [v2.0.2] - 2016-04-02
 
 ### Fixed
