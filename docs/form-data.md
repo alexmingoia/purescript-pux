@@ -13,16 +13,15 @@ type State =
 
 data Action
   = SignIn
-  | UsernameChange KeyboardEvent
-  | PasswordChange KeyboardEvent
+  | UsernameChange FormEvent
+  | PasswordChange FormEvent
 ```
 
 Our login component has three actions. `UsernameChange` and `PasswordChange`
 are events which happen every time the inputs change, and receive a
-[`KeyboardEvent`](/API/Pux/Html/Events.html#keyboardevent) containing event
-information such as the key pressed and current value of the input. The
-`SignIn` action is sent when the form is submitted, and is meant to be handled
-by the parent component to deal with authentication.
+[`FormEvent`](/API/Pux/Html/Events.html#formevent) containing event
+information. The `SignIn` action is sent when the form is submitted, and is
+meant to be handled by the parent component to deal with authentication.
 
 ```purescript
 update :: Action -> State -> State
@@ -43,7 +42,7 @@ view state = form
   , onSubmit (const SignIn)
   ]
   [ input [ type_ "text", value state.username, onChange UsernameChange ] []
-  , input [ type_ "password", value.state.password, onChange PasswordChange ] []
+  , input [ type_ "password", value state.password, onChange PasswordChange ] []
   , button [ type_ "submit" ] [ text "Sign In" ]
   ]
 ```
