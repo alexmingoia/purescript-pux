@@ -9,7 +9,9 @@ to return a React class:
 ```purescript
 module Counter where
 
+import Control.Monad.Eff (Eff)
 import Prelude ((+), (-), bind, const, show)
+import Pux (CoreEffects, ReactClass)
 import Pux.Html (Html, div, span, button, text)
 import Pux.Html.Events (onClick)
 
@@ -30,9 +32,11 @@ view count =
     , button [ onClick (const Decrement) ] [ text "Decrement" ]
     ]
 
-toReact = do
+
+toReact :: State -> Eff CoreEffects ReactClass
+toReact state = do
   comp <- Pux.start
-    { initialState: 0
+    { initialState: state
     , update: fromSimple update
     , view: view
     , inputs: []
@@ -45,5 +49,5 @@ After your PureScript has been compiled, call this module's `toReact` method to
 return your class:
 
 ```javascript
-const Counter = PS.Counter.toReact()
+const Counter = PS.Counter.toReact(state)
 ```
