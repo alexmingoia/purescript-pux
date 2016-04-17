@@ -5,7 +5,9 @@
 exports.handler = function (key, action) {
   return [key, function (input, parentAction) {
     return function (ev) {
-      ev.preventDefault();
+      if (key !== 'onChange' && key !== 'onClick') {
+        ev.preventDefault();
+      }
       input(parentAction(action(ev)))();
     };
   }];
