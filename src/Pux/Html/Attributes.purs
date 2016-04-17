@@ -60,7 +60,7 @@ cellSpacing = attr "cellSpacing"
 charSet :: forall a. String -> Attribute a
 charSet = attr "charSet"
 
-checked :: forall a. String -> Attribute a
+checked :: forall a. Boolean -> Attribute a
 checked = attr "checked"
 
 classID :: forall a. String -> Attribute a
@@ -107,6 +107,12 @@ dateTime = attr "dateTime"
 
 defer :: forall a. String -> Attribute a
 defer = attr "defer"
+
+defaultValue :: forall a. String -> Attribute a
+defaultValue = attr "defaultValue"
+
+defaultChecked :: forall a. Boolean -> Attribute a
+defaultChecked = attr "defaultChecked"
 
 dir :: forall a. String -> Attribute a
 dir = attr "dir"
