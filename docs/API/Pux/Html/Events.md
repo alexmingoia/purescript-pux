@@ -126,6 +126,14 @@ onKeyPress :: forall action. (KeyboardEvent -> action) -> Attribute action
 onKeyUp :: forall action. (KeyboardEvent -> action) -> Attribute action
 ```
 
+#### `onKey`
+
+``` purescript
+onKey :: forall action. String -> (KeyboardEvent -> action) -> Attribute action
+```
+
+Send action only if specified key is pressed (on key up)
+
 #### `onFocus`
 
 ``` purescript
@@ -454,6 +462,12 @@ onWaiting :: forall action. (MediaEvent -> action) -> Attribute action
 
 ``` purescript
 handler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
+```
+
+#### `onKeyHandler`
+
+``` purescript
+onKeyHandler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
 ```
 
 

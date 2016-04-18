@@ -117,7 +117,7 @@ charSet :: forall a. String -> Attribute a
 #### `checked`
 
 ``` purescript
-checked :: forall a. String -> Attribute a
+checked :: forall a. Boolean -> Attribute a
 ```
 
 #### `classID`
@@ -208,6 +208,18 @@ dateTime :: forall a. String -> Attribute a
 
 ``` purescript
 defer :: forall a. String -> Attribute a
+```
+
+#### `defaultValue`
+
+``` purescript
+defaultValue :: forall a. String -> Attribute a
+```
+
+#### `defaultChecked`
+
+``` purescript
+defaultChecked :: forall a. Boolean -> Attribute a
 ```
 
 #### `dir`

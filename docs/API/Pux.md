@@ -19,6 +19,21 @@ main = do
   renderToDOM "#app" app.html
 ```
 
+#### `Config`
+
+``` purescript
+type Config state action eff = { update :: Update state action eff, view :: state -> Html action, initialState :: state, inputs :: Array (Signal action) }
+```
+
+The configuration of an app consists of the basic model / view / update
+pattern seen in the Elm app architecture.
+
+The `update` and `view` functions describe how to step the state and view
+the state.
+
+The `inputs` array is for any external signals you might need. These will
+be merged into the app's input signal.
+
 #### `CoreEffects`
 
 ``` purescript

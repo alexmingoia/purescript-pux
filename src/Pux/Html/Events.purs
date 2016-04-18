@@ -121,6 +121,10 @@ onKeyPress = runFn2 handler "onKeyPress"
 onKeyUp :: forall action. (KeyboardEvent -> action) -> Attribute action
 onKeyUp = runFn2 handler "onKeyUp"
 
+-- | Send action only if specified key is pressed (on key up)
+onKey :: forall action. String -> (KeyboardEvent -> action) -> Attribute action
+onKey = runFn2 onKeyHandler
+
 onFocus :: forall action. (FocusEvent -> action) -> Attribute action
 onFocus = runFn2 handler "onFocus"
 
@@ -284,3 +288,5 @@ onWaiting :: forall action. (MediaEvent -> action) -> Attribute action
 onWaiting = runFn2 handler "onWaiting"
 
 foreign import handler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
+
+foreign import onKeyHandler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
