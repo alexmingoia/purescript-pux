@@ -1,5 +1,6 @@
 module Pux
   ( App
+  , Config
   , Update
   , EffModel
   , CoreEffects
