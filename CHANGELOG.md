@@ -1,5 +1,23 @@
 # Change Log
 
+## [v3.1.0] - 2016-04-18
+
+### Fixed
+
+- Change `tabIndex` to `Int -> Attribute a`.
+- Change `checked` to `Boolean -> Attribute a`.
+- Do not call `.preventDefault()` on click, change, and other relevant handlers.
+
+### Added
+
+- `Pux.Html.Attributes.defaultValue` and `Pux.Html.Attributes.defaultChecked`.
+- `Pux.Html.Events.onKey` for sending an action when a specific key is pressed.
+- `Pux.Router.navigateTo` for changing the URL.
+
+### Changed
+
+- Export app `Config` type.
+
 ## [v3.0.0] - 2016-04-09
 
 ### Fixed
