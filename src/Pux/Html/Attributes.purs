@@ -331,7 +331,7 @@ step = attr "step"
 style :: forall a v. { | v } -> Attribute a
 style = attr "style"
 
-tabIndex :: forall a. String -> Attribute a
+tabIndex :: forall a. Int -> Attribute a
 tabIndex = attr "tabIndex"
 
 target :: forall a. String -> Attribute a
