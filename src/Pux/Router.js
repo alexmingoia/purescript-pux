@@ -29,3 +29,12 @@ exports.linkHandler = function (url) {
     };
   }];
 };
+
+exports.navigateTo = function (url) {
+  return function () {
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, document.title, url);
+      window.dispatchEvent(new Event('popstate'));
+    }
+  }
+};

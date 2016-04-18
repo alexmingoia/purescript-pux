@@ -669,7 +669,7 @@ style :: forall a v. {  | v } -> Attribute a
 #### `tabIndex`
 
 ``` purescript
-tabIndex :: forall a. String -> Attribute a
+tabIndex :: forall a. Int -> Attribute a
 ```
 
 #### `target`

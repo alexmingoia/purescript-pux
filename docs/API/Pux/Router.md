@@ -1,5 +1,11 @@
 ## Module Pux.Router
 
+#### `navigateTo`
+
+``` purescript
+navigateTo :: forall eff. String -> Eff (dom :: DOM | eff) Unit
+```
+
 #### `sampleUrl`
 
 ``` purescript

@@ -3,6 +3,7 @@ module Pux.Router
   , RoutePart(..)
   , sampleUrl
   , router
+  , navigateTo
   , link
   , lit
   , str
@@ -41,6 +42,8 @@ foreign import createUrlSignal :: forall eff url.
                                   Eff (dom :: DOM | eff) (Signal String)
 
 foreign import linkHandler :: forall a. String -> Attribute a
+
+foreign import navigateTo :: forall eff. String -> Eff (dom :: DOM | eff) Unit
 
 -- | Returns a signal containing the current window location path and query.
 sampleUrl :: forall eff. Eff (dom :: DOM | eff) (Signal String)
