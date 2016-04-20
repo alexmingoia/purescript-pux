@@ -33,7 +33,7 @@ view count =
     ]
 
 
-toReact :: State -> Eff CoreEffects ReactClass
+toReact :: forall props. State -> Eff CoreEffects (ReactClass props)
 toReact state = do
   comp <- Pux.start
     { initialState: state

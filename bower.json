@@ -29,7 +29,8 @@
     "purescript-lists": "^0.7.10",
     "purescript-signal": "^5.1.0",
     "purescript-maps": "^0.5.4",
-    "purescript-functions": "^0.1.0"
+    "purescript-functions": "^0.1.0",
+    "purescript-react": "^0.7.1"
   },
   "devDependencies": {
     "purescript-affjax": "^0.12.0",

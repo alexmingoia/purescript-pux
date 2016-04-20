@@ -129,15 +129,9 @@ renderToString :: forall a eff. Signal (Html a) -> Eff eff String
 #### `toReact`
 
 ``` purescript
-toReact :: forall a eff. Signal (Html a) -> Eff eff ReactClass
+toReact :: forall a props eff. Signal (Html a) -> Eff eff (ReactClass props)
 ```
 
-Return a React class from a Pux component's html signal.
-
-#### `ReactClass`
-
-``` purescript
-data ReactClass :: *
-```
+Return a ReactClass from a Pux component's html signal.
 
 

@@ -8,7 +8,6 @@ module Pux
   , fromSimple
   , mapState
   , mapEffects
-  , ReactClass
   , renderToDOM
   , renderToString
   , start
@@ -25,6 +24,7 @@ import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe.Unsafe (fromJust)
 import Prelude (Unit, ($), (<<<), map, pure)
 import Pux.Html (Html)
+import React (ReactClass)
 import Signal (Signal, (~>), mergeMany, foldp, runSignal)
 import Signal.Channel (CHANNEL, channel, subscribe, send)
 
@@ -135,7 +135,7 @@ foreign import renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff
 
 foreign import renderToString :: forall a eff. Signal (Html a) -> Eff eff String
 
--- | Return a React class from a Pux component's html signal.
-foreign import toReact :: forall a eff. Signal (Html a) -> Eff eff ReactClass
-
-foreign import data ReactClass :: *
+-- | Return a ReactClass from a Pux component's html signal.
+foreign import toReact :: forall a props eff.
+                          Signal (Html a) ->
+                          Eff eff (ReactClass props)
