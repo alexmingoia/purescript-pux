@@ -1,5 +1,6 @@
 module Pux.Html.Attributes where
 
+import Data.Tuple (Tuple)
 import Prelude ((++))
 import Pux.Html (Attribute)
 
@@ -334,7 +335,7 @@ start = attr "start"
 step :: forall a. String -> Attribute a
 step = attr "step"
 
-style :: forall a v. { | v } -> Attribute a
+style :: forall a. Array (Tuple String String) -> Attribute a
 style = attr "style"
 
 tabIndex :: forall a. Int -> Attribute a

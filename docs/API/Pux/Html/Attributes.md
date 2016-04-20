@@ -663,7 +663,7 @@ step :: forall a. String -> Attribute a
 #### `style`
 
 ``` purescript
-style :: forall a v. {  | v } -> Attribute a
+style :: forall a. Array (Tuple String String) -> Attribute a
 ```
 
 #### `tabIndex`
