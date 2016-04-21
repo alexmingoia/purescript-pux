@@ -7,9 +7,11 @@
   - [Fetching data](/docs/fetching-data.md)
   - [Forms](/docs/form-data.md)
   - [Routing](/docs/routing.md)
-- [React Interop](/docs/react-interop.md)
-  - [Using React components in Pux](/docs/react-interop/using-react-components-in-pux.md)
-  - [Using Pux components in React](/docs/react-interop/using-pux-components-in-react.md)
+  - [CSS](/docs/css.md)
+- Advanced
+  - [React Interop](/docs/react-interop.md)
+    - [Using React components in Pux](/docs/react-interop/using-react-components-in-pux.md)
+    - [Using Pux components in React](/docs/react-interop/using-pux-components-in-react.md)
 - API Reference
   - [Pux](/docs/API/Pux.md)
   - [Pux.Html](/docs/API/Pux/Html.md)
