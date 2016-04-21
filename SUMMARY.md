@@ -2,7 +2,7 @@
 
 - [Introduction](/README.md)
 - [Getting Started](/docs/getting-started.md)
-  - [Components](/docs/components.md)
+  - [A basic component](/docs/components.md)
   - [Multiple components](/docs/multiple-components.md)
   - [Fetching data](/docs/fetching-data.md)
   - [Forms](/docs/form-data.md)

@@ -1,5 +1,14 @@
 # Change Log
 
+## [v4.0.0] - 2016-04-21
+
+### Breaking changes
+
+- `style` attribute changed to accept an array of tuples instead of a record.
+  This is so styles can be composed. See
+  [#27](https://github.com/alexmingoia/purescript-pux/issues/27)
+- Change `toReact` to return `ReactClass props` from purescript-react.
+
 ## [v3.1.0] - 2016-04-18
 
 ### Fixed
