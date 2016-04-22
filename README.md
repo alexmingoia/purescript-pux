@@ -21,6 +21,7 @@ applications.
 
 - [Guide](http://alexmingoia.github.io/purescript-pux)
 - [API Reference](http://alexmingoia.github.io/purescript-pux/docs/API/Pux.html)
+- [Starter app](https://github.com/alexmingoia/pux-starter-app)
 
 ### Installation
 
