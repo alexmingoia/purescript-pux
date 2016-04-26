@@ -481,9 +481,6 @@ feTurbulence = runFn3 element "feTurbulence"
 filter :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 filter = runFn3 element "filter"
 
-font :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-font = runFn3 element "font"
-
 fontFace :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 fontFace = runFn3 element "font-face"
 
