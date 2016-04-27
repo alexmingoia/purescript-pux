@@ -62,29 +62,37 @@ exports.fromReact = function (comp) {
 };
 
 exports.render = function (input, parentAction, html) {
-  var props = html.props
-  var newProps = {};
-
-  for (var key in props) {
-    if (key !== 'puxParentAction' && typeof props[key] === 'function') {
-      newProps[key] = props[key](input, parentAction);
-    }
-  }
-
-  var newChildren = React.Children.map(html.props.children, function (child) {
-    var childAction = child.props && child.props.puxParentAction;
+  function composeAction(parentAction, html) {
+    var childAction = html.props && html.props.puxParentAction;
     var action = parentAction;
     if (childAction) {
       action = function (a) {
         return parentAction(childAction(a));
       };
     }
-    if (typeof child === 'string') {
-      return child;
-    } else {
-      return exports.render(input, action, child);
-    }
-  });
+    return action;
+  }
 
-  return React.cloneElement(html, newProps, newChildren);
+  function render(input, parentAction, html) {
+    var props = html.props
+    var newProps = {};
+
+    for (var key in props) {
+      if (key !== 'puxParentAction' && typeof props[key] === 'function') {
+        newProps[key] = props[key](input, parentAction);
+      }
+    }
+
+    var newChildren = React.Children.map(html.props.children, function (child) {
+      if (typeof child === 'string') {
+        return child;
+      } else {
+        return render(input, composeAction(parentAction, child), child);
+      }
+    });
+
+    return React.cloneElement(html, newProps, newChildren);
+  }
+
+  return render(input, composeAction(parentAction, html), html);
 };
