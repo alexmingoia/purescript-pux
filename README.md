@@ -7,7 +7,7 @@
 Pux is an FRP interface to React, based on the [Elm app
 architecture](https://github.com/evancz/elm-architecture-tutorial). It is a
 simple pattern for modular, nested components that are easy to test, refactor,
-and debug - making it simple and straightfoward to build complex web
+and debug - making it simple and straightforward to build complex web
 applications.
 
 - Build React UIs as a fold of actions to state via
