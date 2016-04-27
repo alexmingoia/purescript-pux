@@ -1,5 +1,12 @@
 # Change Log
 
+## [v4.0.1] - 2016-04-27
+
+### Fixed
+
+- Fix map of actions attached to app's root element. See
+  [#4e68bc8](https://github.com/alexmingoia/purescript-pux/commit/4e68bc845fe9a58df59389a3c42c9d7db5ce88ca)
+
 ## [v4.0.0] - 2016-04-21
 
 ### Breaking changes
