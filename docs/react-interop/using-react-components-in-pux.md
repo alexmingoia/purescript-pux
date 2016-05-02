@@ -5,12 +5,12 @@ Expose a PureScript element by using `fromReact` in your JavaScript module:
 ```javascript
 // module FancyComponent
 
-import React from 'react'
-import Pux from 'purescript-pux'
+const React = require('react')
+const Pux = require('purescript-pux')
 
-class FancyComponent extends React.Component {...}
+const FancyComponent = React.createClass(..)
 
-export const fromReact = Pux.fromReact(FancyComponent)
+exports.fromReact = Pux.fromReact(FancyComponent)
 ```
 
 > The comment `// module FancyComponent` is required to declare this module as a

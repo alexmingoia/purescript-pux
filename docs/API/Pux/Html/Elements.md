@@ -937,12 +937,6 @@ feTurbulence :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 filter :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
-#### `font`
-
-``` purescript
-font :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
-```
-
 #### `fontFace`
 
 ``` purescript
