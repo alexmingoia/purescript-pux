@@ -4,14 +4,13 @@
 [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux)
 [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/purescript-pux)
 
-Pux is an FRP interface to React, based on the [Elm app
+Pux is an FRP interface to React, similar to the [Elm app
 architecture](https://github.com/evancz/elm-architecture-tutorial). It is a
 simple pattern for modular, nested components that are easy to test, refactor,
 and debug - making it simple and straightforward to build complex web
 applications.
 
-- Build React UIs as a fold of actions to state via
-  [`purescript-signal`](https://github.com/bodil/purescript-signal/)
+- Build React UIs as a fold of actions to state.
 - Type-safe routing
 - Server-side rendering (isomorphic applications)
 - Hot-reloading of components
