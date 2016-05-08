@@ -66,8 +66,8 @@ start config = do
 
 foreign import render :: forall a eff. Fn3 (a -> Eff eff Unit) (a -> a) (Html a) (Html a)
 
--- | The configuration of an app consists of the basic model / view / update
--- | pattern seen in the Elm app architecture.
+-- | The configuration of an app consists of update and view functions along
+-- | with an initial state.
 -- |
 -- | The `update` and `view` functions describe how to step the state and view
 -- | the state.

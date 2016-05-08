@@ -25,6 +25,9 @@ main = do
 type Config state action eff = { update :: Update state action eff, view :: state -> Html action, initialState :: state, inputs :: Array (Signal action) }
 ```
 
+The configuration of an app consists of update and view functions along
+with an initial state.
+
 The `update` and `view` functions describe how to step the state and view
 the state.
 
@@ -130,3 +133,5 @@ toReact :: forall a props eff. Signal (Html a) -> Eff eff (ReactClass props)
 ```
 
 Return a ReactClass from a Pux component's html signal.
+
+

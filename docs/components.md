@@ -14,7 +14,7 @@ A Pux component is a module that exports four parts:
 ```purescript
 data Action = Increment | Decrement
 
-type State :: Int
+type State = Int
 
 update :: Action -> State -> State
 
