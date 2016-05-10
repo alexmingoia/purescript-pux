@@ -18,7 +18,7 @@
     "purescript": "^0.8.4"
   },
   "name": "purescript-pux",
-  "description": "Pux is an FRP interface to React, based on the Elm app architecture.",
+  "description": "Pux is a PureScript interface to React, similar to the Elm app architecture.",
   "version": "4.0.1",
   "main": "src/Pux.js",
   "directories": {
