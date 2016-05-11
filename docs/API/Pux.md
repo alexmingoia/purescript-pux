@@ -57,7 +57,7 @@ main state = do
 type App state action = { html :: Signal (Html action), state :: Signal state }
 ```
 
-An `App` consists of three signals:
+An `App` consists of two signals:
 
 * `html` – A signal of `Html` representing the current view of your
   app. This should be fed into `renderToDOM`.
