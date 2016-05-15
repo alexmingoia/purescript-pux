@@ -9,7 +9,7 @@
     "docs:watch": "npm run docs:api && npm run docs:prepare && gitbook serve",
     "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "build": "pulp build",
-    "test": "pulp build --main CounterPairExample --to output/bundle.js -I examples/pair-of-counters"
+    "test": "pulp build --main BasicExample --to output/bundle.js -I examples/basic-counter"
   },
   "devDependencies": {
     "bower": "^1.7.9",

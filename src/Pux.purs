@@ -5,6 +5,7 @@ module Pux
   , EffModel
   , CoreEffects
   , noEffects
+  , onlyEffects
   , fromSimple
   , mapState
   , mapEffects
@@ -120,6 +121,10 @@ fromSimple update = \action state -> noEffects $ update action state
 -- | Create an `EffModel` with no effects from a given state.
 noEffects :: forall state action eff. state -> EffModel state action eff
 noEffects state = { state: state, effects: [] }
+
+onlyEffects :: forall state action eff.
+               state -> Array (Aff (channel :: CHANNEL | eff) action) -> EffModel state action eff
+onlyEffects state effects = { state: state, effects: effects }
 
 -- | Map over the state of an `EffModel`.
 mapState :: forall sa sb a e. (sa -> sb) -> EffModel sa a e -> EffModel sb a e

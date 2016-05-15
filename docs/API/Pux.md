@@ -98,6 +98,12 @@ noEffects :: forall state action eff. state -> EffModel state action eff
 
 Create an `EffModel` with no effects from a given state.
 
+#### `onlyEffects`
+
+``` purescript
+onlyEffects :: forall state action eff. state -> Array (Aff (channel :: CHANNEL | eff) action) -> EffModel state action eff
+```
+
 #### `mapState`
 
 ``` purescript

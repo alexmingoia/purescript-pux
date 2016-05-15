@@ -6,7 +6,7 @@ import Pux (start, fromSimple, renderToDOM)
 
 main = do
   app <- start
-    { initialState: 0
+    { initialState: ""
     , update: fromSimple update
     , view: view
     , inputs: []
