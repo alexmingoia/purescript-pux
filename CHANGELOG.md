@@ -1,5 +1,17 @@
 # Change Log
 
+## [v4.1.0] - 2016-05-15
+
+### Added
+
+- `onlyEffects` function for returning an `effModel` with new effects but no
+  state changes.
+
+### Fixed
+
+- Fix map FFI for `Html` text nodes.
+  [#38](https://github.com/alexmingoia/purescript-pux/issues/38)
+
 ## [v4.0.1] - 2016-04-27
 
 ### Fixed
