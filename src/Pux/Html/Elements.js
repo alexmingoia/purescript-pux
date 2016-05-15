@@ -25,6 +25,7 @@ exports.element = function (tagName, attrs, children) {
 // :: (a -> b) -> Html a -> Html b
 exports.forwardTo = function (parentAction) {
   return function (html) {
+    if (!html.props) return html
     var childAction = html.props.puxParentAction;
     var action = parentAction;
     if (childAction) {

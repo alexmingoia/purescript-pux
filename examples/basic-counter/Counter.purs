@@ -1,21 +1,22 @@
 module BasicExample.Counter where
 
 import Prelude ((+), (-), const, show)
-import Pux.Html (Html, div, text, textarea)
-import Pux.Html.Attributes (value)
-import Pux.Html.Events (onInput, FormEvent)
-import Data.String (toUpper)
+import Pux.Html (Html, div, span, button, text)
+import Pux.Html.Events (onClick)
 
-data Action = TextChange FormEvent
+data Action = Increment | Decrement
 
-type State = String
-
-init :: State
-init = ""
+type State = Int
 
 update :: Action -> State -> State
-update (TextChange ev) state = toUpper ev.target.value
+update Increment count = count + 1
+update Decrement count = count - 1
 
 view :: State -> Html Action
-view state =
-div [] [ textarea [ onInput TextChange, value state ] [ text state ] ]
+view count =
+  div
+    []
+    [ button [ onClick (const Increment) ] [ text "Increment" ]
+    , span [] [ text (show count) ]
+    , button [ onClick (const Decrement) ] [ text "Decrement" ]
+    ]

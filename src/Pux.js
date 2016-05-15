@@ -62,6 +62,10 @@ exports.fromReact = function (comp) {
 };
 
 exports.render = function (input, parentAction, html) {
+  if (typeof html === 'string') {
+    html = React.createElement('div', null, [html]);
+  }
+
   function composeAction(parentAction, html) {
     var childAction = html.props && html.props.puxParentAction;
     var action = parentAction;
