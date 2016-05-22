@@ -125,7 +125,7 @@ disabled false = attr "disabled" ""
 download :: forall a. String -> Attribute a
 download = attr "download"
 
-draggable :: forall a. String -> Attribute a
+draggable :: forall a. Boolean -> Attribute a
 draggable = attr "draggable"
 
 encType :: forall a. String -> Attribute a

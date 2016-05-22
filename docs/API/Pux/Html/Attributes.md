@@ -243,7 +243,7 @@ download :: forall a. String -> Attribute a
 #### `draggable`
 
 ``` purescript
-draggable :: forall a. String -> Attribute a
+draggable :: forall a. Boolean -> Attribute a
 ```
 
 #### `encType`
