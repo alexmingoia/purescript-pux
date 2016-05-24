@@ -86,7 +86,7 @@ view count =
 ```
 
 `Html a` is the type that represents the virtual DOM tree (React elements), and
-is paramerized by an action type `a`, which represent the actions a view may
+is parameterized by an action type `a`, which represent the actions a view may
 send to the input channel. Those actions are fed into the update function we
 defined earlier to produce a new counter state.
 
