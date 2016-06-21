@@ -10,7 +10,7 @@ module Pux.Html
   ) where
 
 import Data.Array ((:), singleton)
-import Data.Function (Fn2, runFn2)
+import Data.Function.Uncurried (Fn2, runFn2)
 import Prelude (Unit, ($), unit)
 import Pux.Html.Elements as Elements
 import Pux.Html.Elements (Html, Attribute)

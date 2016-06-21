@@ -1,6 +1,6 @@
 module Pux.Html.Elements where
 
-import Data.Function (Fn3, runFn3)
+import Data.Function.Uncurried (Fn3, runFn3)
 import Prelude (class Functor)
 
 foreign import data Attribute :: * -> *

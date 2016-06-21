@@ -16,19 +16,19 @@ module Pux.Router
   , end
   ) where
 
-import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (++))
+import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (<>))
 
 import Control.Monad.Eff (Eff())
 import Control.Alt (class Alt, (<|>))
 import Control.Plus (class Plus)
 import Control.MonadPlus (guard)
-import Data.Function (runFn3)
+import Data.Function.Uncurried (runFn3)
 import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
 import Data.String as S
 import Data.Traversable (traverse)
 import Data.Int (fromString)
 import Data.Array as A
-import Data.List (List(Nil, Cons), toList, drop)
+import Data.List (List(Nil, Cons), fromFoldable, drop)
 import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Map as M
 import DOM (DOM())
@@ -57,7 +57,7 @@ sampleUrl = createUrlSignal constant
 link :: forall a. String -> Array (Attribute a) -> Array (Html a) -> Html a
 link url attrs children = runFn3 element "a" newAttrs children
   where
-    newAttrs = attrs ++
+    newAttrs = attrs <>
       [ linkHandler url
       , attr "href" url
       ]
@@ -155,7 +155,7 @@ instance matchApplicative :: Applicative Match where
 
 routeFromUrl :: String -> Route
 routeFromUrl url | url == "/" = Nil
-                 | otherwise = map parsePart $ drop 1 $ toList (S.split "/" url)
+                 | otherwise = map parsePart $ drop 1 $ fromFoldable (S.split "/" url)
 
 parsePart :: String -> RoutePart
 parsePart s = fromMaybe (Path s) do
@@ -163,7 +163,7 @@ parsePart s = fromMaybe (Path s) do
   map (Query <<< M.fromList) $ traverse part2tuple parts
   where
   parts :: List String
-  parts = toList $ S.split "&" $ S.drop 1 s
+  parts = fromFoldable $ S.split "&" $ S.drop 1 s
 
   part2tuple :: String -> Maybe (Tuple String String)
   part2tuple part = do
