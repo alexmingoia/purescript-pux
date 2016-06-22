@@ -19,7 +19,7 @@
   },
   "name": "purescript-pux",
   "description": "Pux is a PureScript interface to React, similar to the Elm app architecture.",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "main": "src/Pux.js",
   "directories": {
     "doc": "docs",

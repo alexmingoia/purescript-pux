@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.0.0] - 2016-06-22
+
+- Update dependencies for PureScript 0.9 - no changes to the public API.
+
 ## [v4.1.0] - 2016-05-15
 
 ### Added
