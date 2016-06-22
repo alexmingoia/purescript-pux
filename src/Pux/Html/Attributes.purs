@@ -1,7 +1,7 @@
 module Pux.Html.Attributes where
 
 import Data.Tuple (Tuple)
-import Prelude ((++))
+import Prelude ((<>))
 import Pux.Html (Attribute)
 
 accept :: forall a. String -> Attribute a
@@ -26,7 +26,7 @@ alt :: forall a. String -> Attribute a
 alt = attr "alt"
 
 aria :: forall a. String -> String -> Attribute a
-aria ariaAttr = attr ("aria-" ++ ariaAttr)
+aria ariaAttr = attr ("aria-" <> ariaAttr)
 
 async :: forall a. Boolean -> Attribute a
 async = attr "async"
@@ -101,7 +101,7 @@ dangerouslySetInnerHTML :: forall a. String -> Attribute a
 dangerouslySetInnerHTML = attr "dangerouslySetInnerHTML"
 
 data_ :: forall a. String -> String -> Attribute a
-data_ dataAttr = attr ("data-" ++ dataAttr)
+data_ dataAttr = attr ("data-" <> dataAttr)
 
 dateTime :: forall a. String -> Attribute a
 dateTime = attr "dateTime"

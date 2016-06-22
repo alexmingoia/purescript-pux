@@ -20,10 +20,12 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Data.Foldable (foldl, sequence_)
-import Data.Function (Fn3, runFn3)
+import Data.Function.Uncurried (Fn3, runFn3)
 import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
-import Data.Maybe.Unsafe (fromJust)
+import Data.Maybe (fromJust)
+import Partial.Unsafe (unsafePartial)
 import Prelude (Unit, ($), (<<<), map, pure)
+import Prelude as Prelude
 import Pux.Html (Html)
 import React (ReactClass)
 import Signal (Signal, (~>), mergeMany, foldp, runSignal)
@@ -47,7 +49,7 @@ start :: forall state action eff.
 start config = do
   actionChannel <- channel Nil
   let actionSignal = subscribe actionChannel
-      input = fromJust $ mergeMany $
+      input = unsafePartial $ fromJust $ mergeMany $
         reverse (actionSignal : map (map singleton) (fromFoldable $ config.inputs))
       foldState effModel action = config.update action effModel.state
       foldActions actions effModel =

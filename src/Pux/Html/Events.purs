@@ -1,6 +1,6 @@
 module Pux.Html.Events where
 
-import Data.Function (Fn2, runFn2)
+import Data.Function.Uncurried (Fn2, runFn2)
 import Pux.Html (Attribute)
 
 type Target = { value :: String }
