@@ -1,5 +1,13 @@
 # Change Log
 
+## [v5.0.1] - 2016-06-25
+
+#### Fixed
+
+- Add missing purescript-globals dependency
+  [#46](https://github.com/alexmingoia/purescript-pux/issues/46)
+- Use <> instead of ++ and pure instead of return
+
 ## [v5.0.0] - 2016-06-22
 
 - Update dependencies for PureScript 0.9 - no changes to the public API.
