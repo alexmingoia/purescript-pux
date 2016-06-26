@@ -1,6 +1,6 @@
 module RoutingExample.App where
 
-import Prelude ((++), show)
+import Prelude ((<>), show)
 import Pux.Html (Html, div, nav, ul, li, h1, text)
 import Pux.Router (link)
 
@@ -23,7 +23,7 @@ view state =
 page :: Route -> Html Action
 page Home      = h1 [] [ text "Home" ]
 page Users     = h1 [] [ text "Users" ]
-page (User id) = h1 [] [ text ("User: " ++ show id) ]
+page (User id) = h1 [] [ text ("User: " <> show id) ]
 page NotFound  = h1 [] [ text "Not Found" ]
 
 navigation :: Html Action

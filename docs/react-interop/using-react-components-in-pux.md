@@ -37,7 +37,7 @@ view count =
   div
     []
     [ button [ onClick (const Increment) ] [ text "Increment" ]
-    , FancyComponent.fromReact [] [ text ("Fancy " ++ (show count)) ]
+    , FancyComponent.fromReact [] [ text ("Fancy " <> (show count)) ]
     , button [ onClick (const Decrement) ] [ text "Decrement" ]
     ]
 ```

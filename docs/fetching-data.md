@@ -62,7 +62,7 @@ performs AJAX requests:
 update :: Action -> State -> EffModel State Action (ajax :: AJAX)
 
 update (ReceiveTodos (Left err)) state =
-  noEffects $ state { status = "Error fetching todos: " ++ show err }
+  noEffects $ state { status = "Error fetching todos: " <> show err }
 
 update (ReceiveTodos (Right todos)) state =
   noEffects $ state { todos = todos, status = "Todos" }

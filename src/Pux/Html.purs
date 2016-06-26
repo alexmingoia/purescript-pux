@@ -51,7 +51,7 @@ infixl 4 withAttr as !
 -- | ```purescript
 -- | div # do
 -- |   button ! onClick (const Increment) # text "Increment"
--- |   span # text ("Counter: " ++ show count)
+-- |   span # text ("Counter: " <> show count)
 -- |   button ! onClick (const Decrement) # text "Decrement"
 -- | ```
 withChild :: forall a.
