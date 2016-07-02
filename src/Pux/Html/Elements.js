@@ -36,3 +36,17 @@ exports.forwardTo = function (parentAction) {
     return React.cloneElement(html, { puxParentAction: action });
   };
 };
+
+// :: (a -> b) -> Attribute a -> Attribute b
+exports.mapAttribute = function (f) {
+  return function (attr) {
+    if (typeof attr[1] !== 'function') {
+      return attr;
+    }
+    return [attr[0], function(input, parentAction) {
+      return attr[1](input, function(e) {
+        return f(parentAction(e));
+      });
+    }];
+  };
+};

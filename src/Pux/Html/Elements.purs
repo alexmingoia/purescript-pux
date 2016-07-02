@@ -22,7 +22,22 @@ foreign import data Html :: * -> *
 instance functorHtml :: Functor Html where
   map f x = forwardTo f x
 
+-- | Map over `Attribute` that sends actions of type `a` and return `Attribute`
+-- | that sends actions of type `b`.
+-- |
+-- | ```purescript
+-- | view :: Array (Attribute a) -> (String -> Maybe a) -> Html (Maybe a)
+-- | view attrs f =
+-- |   select
+-- |     ([onChange (\e -> f e.target.value)] <> map (map Just) attrs)
+-- |     []
+-- | ```
+instance functorAttribute :: Functor Attribute where
+  map f x = mapAttribute f x
+
 foreign import forwardTo :: forall a b. (a -> b) -> Html a -> Html b
+
+foreign import mapAttribute :: forall a b. (a -> b) -> Attribute a -> Attribute b
 
 foreign import text :: forall a. String -> Html a
 
