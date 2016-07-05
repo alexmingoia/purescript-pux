@@ -16,25 +16,27 @@ module Pux.Router
   , end
   ) where
 
-import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (<>))
-
-import Control.Monad.Eff (Eff())
-import Control.Alt (class Alt, (<|>))
-import Control.Plus (class Plus)
-import Control.MonadPlus (guard)
-import Data.Function.Uncurried (runFn3)
-import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
-import Data.String as S
-import Data.Traversable (traverse)
-import Data.Int (fromString)
 import Data.Array as A
-import Data.List (List(Nil, Cons), fromFoldable, drop)
-import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Map as M
-import DOM (DOM())
+import Data.String as S
+import Control.Alt (class Alt, (<|>))
+import Control.Monad.Eff (Eff)
+import Control.MonadPlus (guard)
+import Control.Plus (class Plus)
+import DOM (DOM)
+import Data.Foldable (foldr)
+import Data.Function.Uncurried (runFn3)
+import Data.Int (fromString)
+import Data.List (catMaybes, List(Nil, Cons), fromFoldable, drop)
+import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
+import Data.Profunctor (lmap)
+import Data.Traversable (traverse)
+import Data.Tuple (Tuple(Tuple), fst, snd)
+import Debug.Trace (trace)
+import Global (readFloat, isNaN)
+import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (<>))
 import Pux.Html (Html, Attribute, element)
 import Pux.Html.Attributes (attr)
-import Global (readFloat, isNaN)
 import Signal (constant, Signal)
 
 foreign import createUrlSignal :: forall eff url.
@@ -136,8 +138,10 @@ instance matchFunctor :: Functor Match where
     maybe Nothing (\t -> Just $ Tuple (fst t) (f (snd t))) $ r2t r
 
 instance matchAlt :: Alt Match where
-  alt (Match a) (Match b) = Match $ \r -> do
-    (a r) <|> (b r)
+  alt (Match a) (Match b) = Match $ \r ->
+    case a r of -- Manual implementation to avoid unnecessary evaluation of b r in case a r is true. PureScript is strict! God I love Haskell ;-)
+      Nothing -> b r
+      Just x  -> Just x
 
 instance matchApply :: Apply Match where
   apply (Match r2a2b) (Match r2a) = Match $ \r1 ->
@@ -154,13 +158,19 @@ instance matchApplicative :: Applicative Match where
   pure a = Match \r -> pure $ Tuple r a
 
 routeFromUrl :: String -> Route
-routeFromUrl url | url == "/" = Nil
-                 | otherwise = map parsePart $ drop 1 $ fromFoldable (S.split "/" url)
+routeFromUrl "/" = Nil
+routeFromUrl url = case S.indexOf "?" url of
+                    Nothing -> parsePath Nil url
+                    Just queryPos ->
+                      let queryPart = parseQuery <<< S.drop queryPos $ url
+                      in parsePath (Cons queryPart Nil) <<< S.take queryPos $ url
+  where
+    parsePath :: Route -> String -> Route
+    parsePath query = drop 1 <<< foldr prependPath query <<< S.split "/"
+      where prependPath = lmap Path Cons
 
-parsePart :: String -> RoutePart
-parsePart s = fromMaybe (Path s) do
-  guard $ S.take 1 s == "?"
-  map (Query <<< M.fromList) $ traverse part2tuple parts
+parseQuery :: String -> RoutePart
+parseQuery s = Query <<< M.fromList <<< catMaybes <<< map part2tuple $ parts
   where
   parts :: List String
   parts = fromFoldable $ S.split "&" $ S.drop 1 s
