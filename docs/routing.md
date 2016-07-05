@@ -11,7 +11,7 @@ to contain the matched URL along with parameter and query data.
 ```purescript
 data Action = PageView Route
 
-data Route = Home | Users | User Int | NotFound
+data Route = Home | Users String | User Int | NotFound
 ```
 
 We also need a function that constructs a route action from a url, which we
@@ -23,7 +23,9 @@ match :: String -> Action
 match url = PageView $ fromMaybe NotFound $ router url
   Home <$ end
   <|>
-  Users <$ (lit "users") <* end
+  Users <$> (lit "users" *> param "sortBy") <* end
+  <|>
+  Users "name" <$ (lit "users") <* end
   <|>
   User <$> (lit "users" *> int) <* end
 ```
@@ -33,7 +35,11 @@ match url = PageView $ fromMaybe NotFound $ router url
 
 As you can see above, `lit` matches a literal string, and its value is ignored.
 `int` matches the second part of `/users/123` to the integer value of `User`.
-`end` matches the end of the URL.
+`end` matches the end of the URL. `param` matches a query parameter, in our case
+"sortBy". Queries are a bit tricky as they are optional. Therefore `end` also
+matches if there is a query present. This means the order of our `Users` rules
+is essential. If we had the `param` less version first, the one with `param`
+would never be tried!
 
 Now that we have a function for making a route from a url, we can map it over
 the url signal provided by `sampleUrl`:
@@ -71,7 +77,7 @@ view state =
 
 page :: Route -> Html Action
 page Home      = h1 [] [ text "Home" ]
-page Users     = h1 [] [ text "Users" ]
+page (Users sortBy) = h1 [] [ text ("Users sorted by:" <> sortBy) ]
 page (User id) = h1 [] [ text ("User: " <> show id) ]
 page NotFound  = h1 [] [ text "Not Found" ]
 
@@ -83,6 +89,7 @@ navigation =
       []
       [ li [] [ link "/" [] [ text "Home" ] ]
       , li [] [ link "/users" [] [ text "Users" ] ]
+      , li [] [ link "/users?sortBy=age" [] [ text "Users sorted by age." ] ]
       , li [] [ link "/users/123" [] [ text "User 123" ] ]
       , li [] [ link "/foobar" [] [ text "Not found" ] ]
       ]
