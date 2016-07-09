@@ -1,5 +1,17 @@
 # Change Log
 
+## [v5.0.2] - 2016-07-09
+
+#### Fixed
+
+- Correctly parse queries in `routeFromUrl`
+  [#49](https://github.com/alexmingoia/purescript-pux/pull/49)
+
+#### Added
+
+- Implement attribute functor
+  [#47](https://github.com/alexmingoia/purescript-pux/pull/46)
+
 ## [v5.0.1] - 2016-06-25
 
 #### Fixed
