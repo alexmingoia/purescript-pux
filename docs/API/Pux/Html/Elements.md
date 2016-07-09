@@ -6,6 +6,11 @@
 data Attribute :: * -> *
 ```
 
+##### Instances
+``` purescript
+Functor Attribute
+```
+
 #### `Html`
 
 ``` purescript
@@ -21,6 +26,12 @@ Functor Html
 
 ``` purescript
 forwardTo :: forall a b. (a -> b) -> Html a -> Html b
+```
+
+#### `mapAttribute`
+
+``` purescript
+mapAttribute :: forall a b. (a -> b) -> Attribute a -> Attribute b
 ```
 
 #### `text`

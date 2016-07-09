@@ -91,6 +91,11 @@ Functor Html
 data Attribute :: * -> *
 ```
 
+##### Instances
+``` purescript
+Functor Attribute
+```
+
 #### `wbr`
 
 ``` purescript
@@ -527,6 +532,12 @@ marker :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 
 ``` purescript
 mark :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `mapAttribute`
+
+``` purescript
+mapAttribute :: forall a b. (a -> b) -> Attribute a -> Attribute b
 ```
 
 #### `map`
