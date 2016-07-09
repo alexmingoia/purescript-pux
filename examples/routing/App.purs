@@ -22,7 +22,7 @@ view state =
 
 page :: Route -> Html Action
 page Home      = h1 [] [ text "Home" ]
-page Users     = h1 [] [ text "Users" ]
+page (Users sortBy) = h1 [] [ text ("Users sorted by:" <> sortBy) ]
 page (User id) = h1 [] [ text ("User: " <> show id) ]
 page NotFound  = h1 [] [ text "Not Found" ]
 
@@ -34,6 +34,7 @@ navigation =
       []
       [ li [] [ link "/" [] [ text "Home" ] ]
       , li [] [ link "/users" [] [ text "Users" ] ]
+      , li [] [ link "/users?sortBy=age" [] [ text "Users sorted by age." ] ]
       , li [] [ link "/users/123" [] [ text "User 123" ] ]
       , li [] [ link "/foobar" [] [ text "Not found" ] ]
       ]
