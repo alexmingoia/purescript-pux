@@ -30,6 +30,7 @@
     "purescript-signal": "^6.0.0",
     "purescript-maps": "^1.0.0",
     "purescript-functions": "^1.0.0",
+    "purescript-profunctor": "^1.0.0",
     "purescript-react": "^1.1.0",
     "purescript-globals": "^1.0.0"
   },
