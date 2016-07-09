@@ -1,0 +1,25 @@
+- [x] Add `toReact`
+- [x] Add `fromReact`
+- [x] Add react externals docs
+- [x] React 15 SVG attributes
+- [x] Add "mapState" function
+- [x] Add "mapEffects" function
+- [x] Merge `CoreEffects` alias
+- [x] Rewrite examples with array-notation.
+- [x] Respond to issue with `focused` solution
+- [x] Rewrite starter app with array-notation.
+- [x] Update and publish starter app for Pux 3
+- [x] use new purescript-webpack error/warning reporting
+- [x] React interop doc update
+- [x] navigateTo
+- [x] Release Pux 4
+- [x] Release pux-css
+- [x] Release pux-devtool
+- [x] Starter-app readme gif animation of hot-reload
+- [x] Release updated pux-starter-app
+- [x] Respond to purs-loader issue
+- [ ] Fix type-signature of pux-starter-app effects
+- [ ] PR current purescript-css changes
+- [ ] fix font and scroll in pux-devtool
+- [ ] fix boolean and array rendering for pux devtool
+- [ ] FireFox and Chrome pux-devtool support

@@ -1,0 +1,685 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Pux.Html.Events | purescript-pux</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../../../docs/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../../../docs/API/Pux/Router.html" />
+    
+    
+    <link rel="prev" href="../../../../docs/API/Pux/Html/Attributes.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.5"
+        data-chapter-title="Pux.Html.Events"
+        data-filepath="docs/API/Pux/Html/Events.md"
+        data-basepath="../../../.."
+        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../../../../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/components.html">
+            
+                
+                    <a href="../../../../docs/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        A basic component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/multiple-components.html">
+            
+                
+                    <a href="../../../../docs/multiple-components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Multiple components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="docs/fetching-data.html">
+            
+                
+                    <a href="../../../../docs/fetching-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Fetching data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="docs/form-data.html">
+            
+                
+                    <a href="../../../../docs/form-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Forms
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="docs/routing.html">
+            
+                
+                    <a href="../../../../docs/routing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="docs/css.html">
+            
+                
+                    <a href="../../../../docs/css.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Advanced</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/react-interop.html">
+            
+                
+                    <a href="../../../../docs/react-interop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React Interop
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="docs/react-interop/using-react-components-in-pux.html">
+            
+                
+                    <a href="../../../../docs/react-interop/using-react-components-in-pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Using React components in Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="docs/react-interop/using-pux-components-in-react.html">
+            
+                
+                    <a href="../../../../docs/react-interop/using-pux-components-in-react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Using Pux components in React
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> API Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/API/Pux.html">
+            
+                
+                    <a href="../../../../docs/API/Pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/API/Pux/Html.html">
+            
+                
+                    <a href="../../../../docs/API/Pux/Html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Pux.Html
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/API/Pux/Html/Elements.html">
+            
+                
+                    <a href="../../../../docs/API/Pux/Html/Elements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Pux.Html.Elements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/API/Pux/Html/Attributes.html">
+            
+                
+                    <a href="../../../../docs/API/Pux/Html/Attributes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Pux.Html.Attributes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.5" data-path="docs/API/Pux/Html/Events.html">
+            
+                
+                    <a href="../../../../docs/API/Pux/Html/Events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Pux.Html.Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/API/Pux/Router.html">
+            
+                
+                    <a href="../../../../docs/API/Pux/Router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Pux.Router
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../../" >purescript-pux</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="module-puxhtmlevents">Module Pux.Html.Events</h2>
+<h4 id="target"><code>Target</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">Target</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">value</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="clipboardevent"><code>ClipboardEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">ClipboardEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="compositionevent"><code>CompositionEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">CompositionEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token keyword">data</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="keyboardevent"><code>KeyboardEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">KeyboardEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">altKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">ctrlKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">charCode</span> <span class="token operator">::</span> <span class="token constant">Int</span><span class="token punctuation">,</span> <span class="token hvariable">key</span> <span class="token operator">::</span> <span class="token constant">String</span><span class="token punctuation">,</span> <span class="token hvariable">keyCode</span> <span class="token operator">::</span> <span class="token constant">Int</span><span class="token punctuation">,</span> <span class="token hvariable">locale</span> <span class="token operator">::</span> <span class="token constant">String</span><span class="token punctuation">,</span> <span class="token hvariable">location</span> <span class="token operator">::</span> <span class="token constant">Int</span><span class="token punctuation">,</span> <span class="token hvariable">metaKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token builtin">repeat</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">shiftKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">which</span> <span class="token operator">::</span> <span class="token constant">Int</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="focusevent"><code>FocusEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">FocusEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">relatedTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="formevent"><code>FormEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">FormEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="mouseevent"><code>MouseEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">MouseEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">altKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">button</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">buttons</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">clientX</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">clientY</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">ctrlKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">metaKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">pageX</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">pageY</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">screenX</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">screenY</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">shiftKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="selectionevent"><code>SelectionEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">SelectionEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="touchevent"><code>TouchEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">TouchEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">altKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">ctrlKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">metaKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span><span class="token punctuation">,</span> <span class="token hvariable">shiftKey</span> <span class="token operator">::</span> <span class="token constant">Boolean</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="uievent"><code>UIEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">UIEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">detail</span> <span class="token operator">::</span> <span class="token constant">Number</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="wheelevent"><code>WheelEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">WheelEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">deltaMode</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">deltaX</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">deltaY</span> <span class="token operator">::</span> <span class="token constant">Number</span><span class="token punctuation">,</span> <span class="token hvariable">deltaZ</span> <span class="token operator">::</span> <span class="token constant">Number</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="mediaevent"><code>MediaEvent</code></h4>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">MediaEvent</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">target</span> <span class="token operator">::</span> <span class="token constant">Target</span><span class="token punctuation">,</span> <span class="token hvariable">currentTarget</span> <span class="token operator">::</span> <span class="token constant">Target</span> <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="oncopy"><code>onCopy</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCopy</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">ClipboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncut"><code>onCut</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCut</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">ClipboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onpaste"><code>onPaste</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onPaste</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">ClipboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncompositionend"><code>onCompositionEnd</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCompositionEnd</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">CompositionEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncompositionstart"><code>onCompositionStart</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCompositionStart</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">CompositionEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncompositionupdate"><code>onCompositionUpdate</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCompositionUpdate</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">CompositionEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onkeydown"><code>onKeyDown</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onKeyDown</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">KeyboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onkeypress"><code>onKeyPress</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onKeyPress</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">KeyboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onkeyup"><code>onKeyUp</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onKeyUp</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">KeyboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onkey"><code>onKey</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onKey</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token constant">String</span> <span class="token operator">-&gt;</span> <span class="token punctuation">(</span><span class="token constant">KeyboardEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<p>Send action only if specified key is pressed (on key up)</p>
+<h4 id="onfocus"><code>onFocus</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onFocus</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">FocusEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onblur"><code>onBlur</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onBlur</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">FocusEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onchange"><code>onChange</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onChange</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">FormEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oninput"><code>onInput</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onInput</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">FormEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onsubmit"><code>onSubmit</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onSubmit</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">FormEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onclick"><code>onClick</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onClick</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncontextmenu"><code>onContextMenu</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onContextMenu</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondoubleclick"><code>onDoubleClick</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDoubleClick</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondrag"><code>onDrag</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDrag</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragend"><code>onDragEnd</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragEnd</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragenter"><code>onDragEnter</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragEnter</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragexit"><code>onDragExit</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragExit</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragleave"><code>onDragLeave</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragLeave</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragover"><code>onDragOver</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragOver</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondragstart"><code>onDragStart</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDragStart</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondrop"><code>onDrop</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDrop</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmousedown"><code>onMouseDown</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseDown</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmouseenter"><code>onMouseEnter</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseEnter</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmouseleave"><code>onMouseLeave</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseLeave</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmousemove"><code>onMouseMove</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseMove</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmouseout"><code>onMouseOut</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseOut</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmouseover"><code>onMouseOver</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseOver</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onmouseup"><code>onMouseUp</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onMouseUp</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MouseEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onselect"><code>onSelect</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onSelect</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">SelectionEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ontouchcancel"><code>onTouchCancel</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onTouchCancel</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">TouchEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ontouchend"><code>onTouchEnd</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onTouchEnd</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">TouchEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ontouchmove"><code>onTouchMove</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onTouchMove</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">TouchEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ontouchstart"><code>onTouchStart</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onTouchStart</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">TouchEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onscroll"><code>onScroll</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onScroll</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">UIEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onwheel"><code>onWheel</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onWheel</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">WheelEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onabort"><code>onAbort</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onAbort</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncanplay"><code>onCanPlay</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCanPlay</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="oncanplaythrough"><code>onCanPlayThrough</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onCanPlayThrough</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ondurationchange"><code>onDurationChange</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onDurationChange</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onemptied"><code>onEmptied</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onEmptied</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onencrypted"><code>onEncrypted</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onEncrypted</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onended"><code>onEnded</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onEnded</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onerror"><code>onError</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onError</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onload"><code>onLoad</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onLoad</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onloadeddata"><code>onLoadedData</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onLoadedData</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onloadedmetadata"><code>onLoadedMetadata</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onLoadedMetadata</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onloadstart"><code>onLoadStart</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onLoadStart</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onpause"><code>onPause</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onPause</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onplay"><code>onPlay</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onPlay</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onplaying"><code>onPlaying</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onPlaying</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onprogress"><code>onProgress</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onProgress</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onratechange"><code>onRateChange</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onRateChange</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onseeked"><code>onSeeked</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onSeeked</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onseeking"><code>onSeeking</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onSeeking</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onstalled"><code>onStalled</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onStalled</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onsuspend"><code>onSuspend</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onSuspend</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="ontimeupdate"><code>onTimeUpdate</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onTimeUpdate</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onvolumechange"><code>onVolumeChange</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onVolumeChange</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="onwaiting"><code>onWaiting</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onWaiting</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">action</span><span class="token punctuation">.</span> <span class="token punctuation">(</span><span class="token constant">MediaEvent</span> <span class="token operator">-&gt;</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token constant">Attribute</span> <span class="token hvariable">action</span>
+</code></pre>
+<h4 id="handler"><code>handler</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">handler</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">ev</span> <span class="token hvariable">a</span><span class="token punctuation">.</span> <span class="token constant">Fn2</span> <span class="token constant">String</span> <span class="token punctuation">(</span><span class="token hvariable">ev</span> <span class="token operator">-&gt;</span> <span class="token hvariable">a</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Attribute</span> <span class="token hvariable">a</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="onkeyhandler"><code>onKeyHandler</code></h4>
+<pre><code class="lang-haskell"><span class="token hvariable">onKeyHandler</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">ev</span> <span class="token hvariable">a</span><span class="token punctuation">.</span> <span class="token constant">Fn2</span> <span class="token constant">String</span> <span class="token punctuation">(</span><span class="token hvariable">ev</span> <span class="token operator">-&gt;</span> <span class="token hvariable">a</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token constant">Attribute</span> <span class="token hvariable">a</span><span class="token punctuation">)</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../../../docs/API/Pux/Html/Attributes.html" class="navigation navigation-prev " aria-label="Previous page: Pux.Html.Attributes"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../../../docs/API/Pux/Router.html" class="navigation navigation-next " aria-label="Next page: Pux.Router"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../../../gitbook/app.js"></script>
+
+    
+    <script src="../../../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../../../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../../../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"edit-link":{"base":"https://github.com/alexmingoia/purescript-pux/tree/master","label":"Edit This Page"},"github":{"url":"https://github.com/alexmingoia/purescript-pux"},"purs-example":{},"prism":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

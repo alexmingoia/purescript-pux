@@ -1,0 +1,11 @@
+language: node_js
+dist: trusty
+sudo: required
+node_js:
+  - "5"
+install:
+  - npm install
+  - npm install bower gulp -g
+  - bower install
+script:
+  npm test

@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Routing | purescript-pux</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../docs/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../docs/css.html" />
+    
+    
+    <link rel="prev" href="../docs/form-data.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="1.5"
+        data-chapter-title="Routing"
+        data-filepath="docs/routing.md"
+        data-basepath=".."
+        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/components.html">
+            
+                
+                    <a href="../docs/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        A basic component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/multiple-components.html">
+            
+                
+                    <a href="../docs/multiple-components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Multiple components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="docs/fetching-data.html">
+            
+                
+                    <a href="../docs/fetching-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Fetching data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="docs/form-data.html">
+            
+                
+                    <a href="../docs/form-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Forms
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="docs/routing.html">
+            
+                
+                    <a href="../docs/routing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="docs/css.html">
+            
+                
+                    <a href="../docs/css.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Advanced</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/react-interop.html">
+            
+                
+                    <a href="../docs/react-interop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React Interop
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="docs/react-interop/using-react-components-in-pux.html">
+            
+                
+                    <a href="../docs/react-interop/using-react-components-in-pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Using React components in Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="docs/react-interop/using-pux-components-in-react.html">
+            
+                
+                    <a href="../docs/react-interop/using-pux-components-in-react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Using Pux components in React
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> API Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/API/Pux.html">
+            
+                
+                    <a href="../docs/API/Pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/API/Pux/Html.html">
+            
+                
+                    <a href="../docs/API/Pux/Html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Pux.Html
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/API/Pux/Html/Elements.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Elements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Pux.Html.Elements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/API/Pux/Html/Attributes.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Attributes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Pux.Html.Attributes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/API/Pux/Html/Events.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Pux.Html.Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/API/Pux/Router.html">
+            
+                
+                    <a href="../docs/API/Pux/Router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Pux.Router
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >purescript-pux</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="routing">Routing</h2>
+<blockquote>
+<p><a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/routing/" target="_blank">Example code</a></p>
+</blockquote>
+<p>In Pux, routing is a set of applicatives for matching URLs to data types, along
+with a signal for location changes. These are provided by <code>Pux.Router</code>.</p>
+<p>URL changes are mapped to an action. A data type for routes is used
+to contain the matched URL along with parameter and query data.</p>
+<pre><code class="lang-haskell"><span class="token keyword">data</span> <span class="token constant">Action</span> <span class="token operator">=</span> <span class="token constant">PageView</span> <span class="token constant">Route</span>
+
+<span class="token keyword">data</span> <span class="token constant">Route</span> <span class="token operator">=</span> <span class="token constant">Home</span> <span class="token operator">|</span> <span class="token constant">Users</span> <span class="token constant">String</span> <span class="token operator">|</span> <span class="token constant">User</span> <span class="token constant">Int</span> <span class="token operator">|</span> <span class="token constant">NotFound</span>
+</code></pre>
+<p>We also need a function that constructs a route action from a url, which we
+build using routing applicatives and pass to <code>router</code> to return the
+matched route:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">match</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token operator">-&gt;</span> <span class="token constant">Action</span>
+<span class="token hvariable">match</span> <span class="token hvariable">url</span> <span class="token operator">=</span> <span class="token constant">PageView</span> <span class="token operator">$</span> <span class="token hvariable">fromMaybe</span> <span class="token constant">NotFound</span> <span class="token operator">$</span> <span class="token hvariable">router</span> <span class="token hvariable">url</span>
+  <span class="token constant">Home</span> <span class="token operator">&lt;$</span> <span class="token hvariable">end</span>
+  <span class="token operator">&lt;|&gt;</span>
+  <span class="token constant">Users</span> <span class="token operator">&lt;$&gt;</span> <span class="token punctuation">(</span><span class="token hvariable">lit</span> <span class="token string">&quot;users&quot;</span> <span class="token operator">*&gt;</span> <span class="token hvariable">param</span> <span class="token string">&quot;sortBy&quot;</span><span class="token punctuation">)</span> <span class="token operator">&lt;*</span> <span class="token hvariable">end</span>
+  <span class="token operator">&lt;|&gt;</span>
+  <span class="token constant">Users</span> <span class="token string">&quot;name&quot;</span> <span class="token operator">&lt;$</span> <span class="token punctuation">(</span><span class="token hvariable">lit</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">)</span> <span class="token operator">&lt;*</span> <span class="token hvariable">end</span>
+  <span class="token operator">&lt;|&gt;</span>
+  <span class="token constant">User</span> <span class="token operator">&lt;$&gt;</span> <span class="token punctuation">(</span><span class="token hvariable">lit</span> <span class="token string">&quot;users&quot;</span> <span class="token operator">*&gt;</span> <span class="token hvariable">int</span><span class="token punctuation">)</span> <span class="token operator">&lt;*</span> <span class="token hvariable">end</span>
+</code></pre>
+<p><code>Pux.Router</code> provides applicatives <code>lit</code>, <code>str</code>, <code>num</code>, <code>int</code>, <code>bool</code>, <code>param</code>,
+<code>params</code>, <code>any</code>, and <code>end</code> for mapping url parts to route values.</p>
+<p>As you can see above, <code>lit</code> matches a literal string, and its value is ignored.
+<code>int</code> matches the second part of <code>/users/123</code> to the integer value of <code>User</code>.
+<code>end</code> matches the end of the URL. <code>param</code> matches a query parameter, in our case
+&quot;sortBy&quot;. Queries are a bit tricky as they are optional. Therefore <code>end</code> also
+matches if there is a query present. This means the order of our <code>Users</code> rules
+is essential. If we had the <code>param</code> less version first, the one with <code>param</code>
+would never be tried!</p>
+<p>Now that we have a function for making a route from a url, we can map it over
+the url signal provided by <code>sampleUrl</code>:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">main</span> <span class="token operator">=</span> <span class="token keyword">do</span>
+  <span class="token hvariable">urlSignal</span> <span class="token operator">&lt;-</span> <span class="token hvariable">sampleUrl</span>
+  <span class="token keyword">let</span> <span class="token hvariable">routeSignal</span> <span class="token operator">=</span> <span class="token hvariable">urlSignal</span> <span class="token operator">~&gt;</span> <span class="token hvariable">match</span>
+
+  <span class="token hvariable">app</span> <span class="token operator">&lt;-</span> <span class="token hvariable">start</span>
+    <span class="token punctuation">{</span> <span class="token hvariable">initialState</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token hvariable">currentRoute</span><span class="token operator">:</span> <span class="token constant">Home</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">update</span><span class="token operator">:</span> <span class="token hvariable">update</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">view</span><span class="token operator">:</span> <span class="token hvariable">home</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">inputs</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token hvariable">routeSignal</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>Everytime the location changes, we can update our state with the current route,
+which includes any captured path or query parameters:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">update</span> <span class="token operator">::</span> <span class="token constant">Action</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span>
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">PageView</span> <span class="token hvariable">route</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token hvariable">currentRoute</span> <span class="token operator">=</span> <span class="token hvariable">route</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>Finally, we might want to create links to our routes and show different
+views for them. The <code>link</code> element can be used to push a new location to
+HTML5 history, and a simple case expression is used to determine the
+correct view:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">view</span> <span class="token operator">::</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">view</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token builtin">div</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">navigation</span><span class="token punctuation">,</span> <span class="token hvariable">page</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">currentRoute</span> <span class="token punctuation">]</span>
+
+<span class="token hvariable">page</span> <span class="token operator">::</span> <span class="token constant">Route</span> <span class="token operator">-&gt;</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">page</span> <span class="token constant">Home</span>      <span class="token operator">=</span> <span class="token hvariable">h1</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Home&quot;</span> <span class="token punctuation">]</span>
+<span class="token hvariable">page</span> <span class="token punctuation">(</span><span class="token constant">Users</span> <span class="token hvariable">sortBy</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">h1</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token punctuation">(</span><span class="token string">&quot;Users sorted by:&quot;</span> <span class="token operator">&lt;&gt;</span> <span class="token hvariable">sortBy</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+<span class="token hvariable">page</span> <span class="token punctuation">(</span><span class="token constant">User</span> <span class="token builtin">id</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">h1</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token punctuation">(</span><span class="token string">&quot;User: &quot;</span> <span class="token operator">&lt;&gt;</span> <span class="token builtin">show</span> <span class="token builtin">id</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+<span class="token hvariable">page</span> <span class="token constant">NotFound</span>  <span class="token operator">=</span> <span class="token hvariable">h1</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Not Found&quot;</span> <span class="token punctuation">]</span>
+
+<span class="token hvariable">navigation</span> <span class="token operator">::</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">navigation</span> <span class="token operator">=</span>
+  <span class="token hvariable">nav</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span> <span class="token hvariable">ul</span>
+      <span class="token punctuation">[</span><span class="token punctuation">]</span>
+      <span class="token punctuation">[</span> <span class="token hvariable">li</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">link</span> <span class="token string">&quot;/&quot;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Home&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+      <span class="token punctuation">,</span> <span class="token hvariable">li</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">link</span> <span class="token string">&quot;/users&quot;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Users&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+      <span class="token punctuation">,</span> <span class="token hvariable">li</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">link</span> <span class="token string">&quot;/users?sortBy=age&quot;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Users sorted by age.&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+      <span class="token punctuation">,</span> <span class="token hvariable">li</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">link</span> <span class="token string">&quot;/users/123&quot;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;User 123&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+      <span class="token punctuation">,</span> <span class="token hvariable">li</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">link</span> <span class="token string">&quot;/foobar&quot;</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Not found&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../docs/form-data.html" class="navigation navigation-prev " aria-label="Previous page: Forms"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../docs/css.html" class="navigation navigation-next " aria-label="Next page: CSS"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"edit-link":{"base":"https://github.com/alexmingoia/purescript-pux/tree/master","label":"Edit This Page"},"github":{"url":"https://github.com/alexmingoia/purescript-pux"},"purs-example":{},"prism":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

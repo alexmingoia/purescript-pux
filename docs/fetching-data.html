@@ -1,0 +1,533 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Fetching data | purescript-pux</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../docs/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../docs/form-data.html" />
+    
+    
+    <link rel="prev" href="../docs/multiple-components.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="1.3"
+        data-chapter-title="Fetching data"
+        data-filepath="docs/fetching-data.md"
+        data-basepath=".."
+        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/components.html">
+            
+                
+                    <a href="../docs/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        A basic component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/multiple-components.html">
+            
+                
+                    <a href="../docs/multiple-components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Multiple components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="docs/fetching-data.html">
+            
+                
+                    <a href="../docs/fetching-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Fetching data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="docs/form-data.html">
+            
+                
+                    <a href="../docs/form-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Forms
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="docs/routing.html">
+            
+                
+                    <a href="../docs/routing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="docs/css.html">
+            
+                
+                    <a href="../docs/css.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Advanced</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/react-interop.html">
+            
+                
+                    <a href="../docs/react-interop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React Interop
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="docs/react-interop/using-react-components-in-pux.html">
+            
+                
+                    <a href="../docs/react-interop/using-react-components-in-pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Using React components in Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="docs/react-interop/using-pux-components-in-react.html">
+            
+                
+                    <a href="../docs/react-interop/using-pux-components-in-react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Using Pux components in React
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> API Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/API/Pux.html">
+            
+                
+                    <a href="../docs/API/Pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/API/Pux/Html.html">
+            
+                
+                    <a href="../docs/API/Pux/Html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Pux.Html
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/API/Pux/Html/Elements.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Elements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Pux.Html.Elements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/API/Pux/Html/Attributes.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Attributes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Pux.Html.Attributes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/API/Pux/Html/Events.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Pux.Html.Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/API/Pux/Router.html">
+            
+                
+                    <a href="../docs/API/Pux/Router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Pux.Router
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >purescript-pux</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="fetching-data">Fetching data</h1>
+<blockquote>
+<p><a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/ajax/" target="_blank">Example code</a></p>
+</blockquote>
+<p>In this section, we&apos;ll learn about handling effects by building a component
+that fetches a list of todos from a remote server.</p>
+<p>First, we need an action for requesting todos, and an action for receiving
+todos:</p>
+<pre><code class="lang-haskell"><span class="token keyword">data</span> <span class="token constant">Action</span> <span class="token operator">=</span> <span class="token constant">RequestTodos</span> <span class="token operator">|</span> <span class="token constant">ReceiveTodos</span> <span class="token punctuation">(</span><span class="token constant">Either</span> <span class="token constant">String</span> <span class="token constant">Todos</span><span class="token punctuation">)</span>
+</code></pre>
+<p>We also need to describe the state of our component:</p>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">State</span> <span class="token operator">=</span>
+  <span class="token punctuation">{</span> <span class="token hvariable">todos</span> <span class="token operator">::</span> <span class="token constant">Todos</span>
+  <span class="token punctuation">,</span> <span class="token hvariable">status</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token constant">Todos</span> <span class="token operator">=</span> <span class="token constant">Array</span> <span class="token constant">Todo</span>
+
+<span class="token keyword">newtype</span> <span class="token constant">Todo</span> <span class="token operator">=</span> <span class="token constant">Todo</span>
+  <span class="token punctuation">{</span> <span class="token builtin">id</span> <span class="token operator">::</span> <span class="token constant">Int</span>
+  <span class="token punctuation">,</span> <span class="token hvariable">title</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>To parse the JSON received from the server into <code>Todos</code>, we implement the
+<code>decodeJson</code> method for the typeclass provided by
+<a href="https://github.com/purescript-contrib/purescript-argonaut" target="_blank"><code>purescript-argonaut</code></a>:</p>
+<pre><code class="lang-haskell"><span class="token keyword">instance</span> <span class="token hvariable">decodeJsonTodo</span> <span class="token operator">::</span> <span class="token constant">DecodeJson</span> <span class="token constant">Todo</span> <span class="token keyword">where</span>
+  <span class="token hvariable">decodeJson</span> <span class="token hvariable">json</span> <span class="token operator">=</span> <span class="token keyword">do</span>
+    <span class="token hvariable">obj</span> <span class="token operator">&lt;-</span> <span class="token hvariable">decodeJson</span> <span class="token hvariable">json</span>
+    <span class="token builtin">id</span> <span class="token operator">&lt;-</span> <span class="token hvariable">obj</span> <span class="token operator">.?</span> <span class="token string">&quot;id&quot;</span>
+    <span class="token hvariable">title</span> <span class="token operator">&lt;-</span> <span class="token hvariable">obj</span> <span class="token operator">.?</span> <span class="token string">&quot;title&quot;</span>
+    <span class="token hvariable">pure</span> <span class="token operator">$</span> <span class="token constant">Todo</span> <span class="token punctuation">{</span> <span class="token builtin">id</span><span class="token operator">:</span> <span class="token builtin">id</span><span class="token punctuation">,</span> <span class="token hvariable">title</span><span class="token operator">:</span> <span class="token hvariable">title</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>In the previous sections our update function had a simple type <code>Action -&gt;
+State -&gt; State</code>. For fetching remote data, our update function will need to
+handle side-effects as well. This is accomplished by our update function returning an array of effects
+along with a new state - which Pux calls an <a href="API/Pux.html#effmodel"><code>EffModel</code></a>:</p>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">EffModel</span> <span class="token hvariable">state</span> <span class="token hvariable">action</span> <span class="token hvariable">eff</span> <span class="token operator">=</span>
+  <span class="token punctuation">{</span> <span class="token hvariable">state</span> <span class="token operator">::</span> <span class="token hvariable">state</span>
+  <span class="token punctuation">,</span> <span class="token hvariable">effects</span> <span class="token operator">::</span> <span class="token constant">Array</span> <span class="token punctuation">(</span><span class="token constant">Aff</span> <span class="token punctuation">(</span><span class="token hvariable">channel</span> <span class="token operator">::</span> <span class="token constant">CHANNEL</span> <span class="token operator">|</span> <span class="token hvariable">eff</span><span class="token punctuation">)</span> <span class="token hvariable">action</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>Effects return a new action and run asynchronously using the <code>Aff</code> monad from
+<a href="https://github.com/slamdata/purescript-aff" target="_blank"><code>purescript-aff</code></a>.</p>
+<p>Our update function takes care of fetching todos and updating the state using
+<a href="https://github.com/slamdata/purescript-affjax" target="_blank"><code>purescript-affjax</code></a> which
+performs AJAX requests:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">update</span> <span class="token operator">::</span> <span class="token constant">Action</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">EffModel</span> <span class="token constant">State</span> <span class="token constant">Action</span> <span class="token punctuation">(</span><span class="token hvariable">ajax</span> <span class="token operator">::</span> <span class="token constant">AJAX</span><span class="token punctuation">)</span>
+
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">ReceiveTodos</span> <span class="token punctuation">(</span><span class="token constant">Left</span> <span class="token hvariable">err</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token hvariable">noEffects</span> <span class="token operator">$</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">status</span> <span class="token operator">=</span> <span class="token string">&quot;Error fetching todos: &quot;</span> <span class="token operator">&lt;&gt;</span> <span class="token builtin">show</span> <span class="token hvariable">err</span> <span class="token punctuation">}</span>
+
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">ReceiveTodos</span> <span class="token punctuation">(</span><span class="token constant">Right</span> <span class="token hvariable">todos</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token hvariable">noEffects</span> <span class="token operator">$</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">todos</span> <span class="token operator">=</span> <span class="token hvariable">todos</span><span class="token punctuation">,</span> <span class="token hvariable">status</span> <span class="token operator">=</span> <span class="token string">&quot;Todos&quot;</span> <span class="token punctuation">}</span>
+
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">RequestTodos</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token punctuation">{</span> <span class="token hvariable">state</span><span class="token operator">:</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">status</span> <span class="token operator">=</span> <span class="token string">&quot;Fetching todos...&quot;</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">,</span> <span class="token hvariable">effects</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token keyword">do</span>
+      <span class="token hvariable">res</span> <span class="token operator">&lt;-</span> <span class="token hvariable">attempt</span> <span class="token operator">$</span> <span class="token hvariable">get</span> <span class="token string">&quot;http://jsonplaceholder.typicode.com/users/1/todos&quot;</span>
+      <span class="token keyword">let</span> <span class="token hvariable">decode</span> <span class="token hvariable">res</span> <span class="token operator">=</span> <span class="token hvariable">decodeJson</span> <span class="token hvariable">res</span><span class="token punctuation">.</span><span class="token hvariable">response</span> <span class="token operator">::</span> <span class="token constant">Either</span> <span class="token constant">String</span> <span class="token constant">Todos</span>
+      <span class="token keyword">let</span> <span class="token hvariable">todos</span> <span class="token operator">=</span> <span class="token builtin">either</span> <span class="token punctuation">(</span><span class="token constant">Left</span> <span class="token operator">&lt;&lt;&lt;</span> <span class="token builtin">show</span><span class="token punctuation">)</span> <span class="token hvariable">decode</span> <span class="token hvariable">res</span>
+      <span class="token builtin">return</span> <span class="token operator">$</span> <span class="token constant">ReceiveTodos</span> <span class="token hvariable">todos</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>What if we wanted to fetch the todos on page-load? We could use
+<code>Pux.Router</code> to trigger actions on location changes. See the
+<a href="routing.html">Routing guide</a> for more information.</p>
+<p>Finally, we create a simple view of the todos along with a button to fetch
+them:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">view</span> <span class="token operator">::</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">view</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token builtin">div</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span> <span class="token hvariable">h1</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">status</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">,</span> <span class="token builtin">div</span>
+        <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token punctuation">[</span> <span class="token hvariable">button</span> <span class="token punctuation">[</span> <span class="token hvariable">onClick</span> <span class="token punctuation">(</span><span class="token builtin">const</span> <span class="token constant">RequestTodos</span><span class="token punctuation">)</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Fetch todos&quot;</span> <span class="token punctuation">]</span>
+        <span class="token punctuation">,</span> <span class="token hvariable">ol</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">$</span> <span class="token builtin">map</span> <span class="token hvariable">todo</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">todos</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+
+<span class="token hvariable">todo</span> <span class="token operator">::</span> <span class="token constant">Todo</span> <span class="token operator">-&gt;</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">todo</span> <span class="token punctuation">(</span><span class="token constant">Todo</span> <span class="token hvariable">state</span><span class="token punctuation">)</span> <span class="token operator">=</span>
+  <span class="token hvariable">li</span> <span class="token punctuation">[</span> <span class="token hvariable">key</span> <span class="token punctuation">(</span><span class="token builtin">show</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token builtin">id</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token hvariable">className</span> <span class="token string">&quot;todo&quot;</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">title</span> <span class="token punctuation">]</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../docs/multiple-components.html" class="navigation navigation-prev " aria-label="Previous page: Multiple components"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../docs/form-data.html" class="navigation navigation-next " aria-label="Next page: Forms"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"edit-link":{"base":"https://github.com/alexmingoia/purescript-pux/tree/master","label":"Edit This Page"},"github":{"url":"https://github.com/alexmingoia/purescript-pux"},"purs-example":{},"prism":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

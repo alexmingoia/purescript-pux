@@ -1,0 +1,47 @@
+{
+  "scripts": {
+    "postinstall": "bower install",
+    "build:clean": "rm -rf dist output",
+    "docs:api": "rm -rf docs/API && pulp docs && mkdir -p docs/API && mv docs/Pux docs/API/Pux && mv docs/Pux.md docs/API/Pux.md",
+    "docs:clean": "rm -rf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "rm -rf _book && npm run docs:api && npm run docs:prepare && gitbook build -g alexmingoia/purescript-pux",
+    "docs:watch": "npm run docs:api && npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
+    "build": "pulp build",
+    "test": "pulp build --main BasicExample --to output/bundle.js -I examples/basic-counter"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gitbook-cli": "^2.1.2",
+    "pulp": "^9.0.1",
+    "purescript": "^0.9.1"
+  },
+  "name": "purescript-pux",
+  "description": "Pux is a PureScript interface to React, similar to the Elm app architecture.",
+  "version": "5.0.2",
+  "main": "src/Pux.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexmingoia/purescript-pux.git"
+  },
+  "keywords": [
+    "purescript",
+    "pux",
+    "react",
+    "elm",
+    "flux",
+    "redux",
+    "frp",
+    "virtual-dom"
+  ],
+  "author": "Alexander C. Mingoia",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/alexmingoia/purescript-pux/issues"
+  }
+}

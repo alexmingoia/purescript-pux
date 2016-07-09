@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Multiple components | purescript-pux</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../docs/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../docs/fetching-data.html" />
+    
+    
+    <link rel="prev" href="../docs/components.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="1.2"
+        data-chapter-title="Multiple components"
+        data-filepath="docs/multiple-components.md"
+        data-basepath=".."
+        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/components.html">
+            
+                
+                    <a href="../docs/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        A basic component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="docs/multiple-components.html">
+            
+                
+                    <a href="../docs/multiple-components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Multiple components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="docs/fetching-data.html">
+            
+                
+                    <a href="../docs/fetching-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Fetching data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="docs/form-data.html">
+            
+                
+                    <a href="../docs/form-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Forms
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="docs/routing.html">
+            
+                
+                    <a href="../docs/routing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="docs/css.html">
+            
+                
+                    <a href="../docs/css.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Advanced</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/react-interop.html">
+            
+                
+                    <a href="../docs/react-interop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React Interop
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="docs/react-interop/using-react-components-in-pux.html">
+            
+                
+                    <a href="../docs/react-interop/using-react-components-in-pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Using React components in Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="docs/react-interop/using-pux-components-in-react.html">
+            
+                
+                    <a href="../docs/react-interop/using-pux-components-in-react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Using Pux components in React
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> API Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/API/Pux.html">
+            
+                
+                    <a href="../docs/API/Pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/API/Pux/Html.html">
+            
+                
+                    <a href="../docs/API/Pux/Html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Pux.Html
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/API/Pux/Html/Elements.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Elements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Pux.Html.Elements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/API/Pux/Html/Attributes.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Attributes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Pux.Html.Attributes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/API/Pux/Html/Events.html">
+            
+                
+                    <a href="../docs/API/Pux/Html/Events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Pux.Html.Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/API/Pux/Router.html">
+            
+                
+                    <a href="../docs/API/Pux/Router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Pux.Router
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >purescript-pux</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="multiple-components">Multiple components</h2>
+<h3 id="a-pair-of-counters">A pair of counters</h3>
+<blockquote>
+<p><a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/pair-of-counters/" target="_blank">Example code</a></p>
+</blockquote>
+<p>We can reuse components without knowing anything about their implementation
+details, only relying on their exposed <code>Action</code>, <code>State</code>, <code>view</code>, and <code>update</code>
+functions. Components may also expose an <code>init</code> function which returns an
+initial state.</p>
+<p>To demonstrate multiple components, we&apos;ll build an application with two
+counters using the counter component we built in the previous section,
+<a href="components.html#a-basic-counter">A basic counter</a>.</p>
+<p>We&apos;ll start as we did before by defining a type for application state. In this
+case, we have two counts to keep track of:</p>
+<pre><code class="lang-haskell"><span class="token keyword">type</span> <span class="token constant">State</span> <span class="token operator">=</span>
+  <span class="token punctuation">{</span> <span class="token hvariable">topCount</span> <span class="token operator">::</span> <span class="token constant">Counter.State</span>
+  <span class="token punctuation">,</span> <span class="token hvariable">bottomCount</span> <span class="token operator">::</span> <span class="token constant">Counter.State</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>Next we&apos;ll describe our set of actions:</p>
+<pre><code class="lang-haskell"><span class="token keyword">data</span> <span class="token constant">Action</span>
+  <span class="token operator">=</span> <span class="token constant">Top</span> <span class="token punctuation">(</span><span class="token constant">Counter.Action</span><span class="token punctuation">)</span>
+  <span class="token operator">|</span> <span class="token constant">Bottom</span> <span class="token punctuation">(</span><span class="token constant">Counter.Action</span><span class="token punctuation">)</span>
+  <span class="token operator">|</span> <span class="token constant">Reset</span>
+</code></pre>
+<p>We don&apos;t need to know anything about the action types for child components or
+their particular constructors, we just need to route them to the appropriate
+update function:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">update</span> <span class="token operator">::</span> <span class="token constant">Action</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span>
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">Top</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">topCount</span> <span class="token operator">=</span> <span class="token hvariable">Counter.update</span> <span class="token hvariable">action</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">topCount</span> <span class="token punctuation">}</span>
+
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">Bottom</span> <span class="token hvariable">action</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">bottomCount</span> <span class="token operator">=</span> <span class="token hvariable">Counter.update</span> <span class="token hvariable">action</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">bottomCount</span> <span class="token punctuation">}</span>
+
+<span class="token hvariable">update</span> <span class="token constant">Reset</span> <span class="token hvariable">state</span> <span class="token operator">=</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">topCount</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token hvariable">bottomCount</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>As you can see, the internals of components are completely opaque to their
+parents, while at the same time allowing parent components to respond to
+child actions.</p>
+<p>Finally, we create a view function that combines both counters along with a
+reset button. <code>map</code> is used to forward child <code>Html</code> actions to their parent
+action by mapping over <code>Html</code> that sends actions of type <code>a</code> to return <code>Html</code>
+that sends actions of type <code>b</code>: <code>(a -&gt; b) -&gt; Html a -&gt; Html b</code>.</p>
+<pre><code class="lang-haskell"><span class="token hvariable">view</span> <span class="token operator">::</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">Html</span> <span class="token constant">Action</span>
+<span class="token hvariable">view</span> <span class="token hvariable">state</span> <span class="token operator">=</span>
+  <span class="token builtin">div</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span> <span class="token builtin">map</span> <span class="token constant">Top</span> <span class="token operator">$</span> <span class="token hvariable">Counter.view</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">topCount</span>
+    <span class="token punctuation">,</span> <span class="token builtin">map</span> <span class="token constant">Bottom</span> <span class="token operator">$</span> <span class="token hvariable">Counter.view</span> <span class="token hvariable">state</span><span class="token punctuation">.</span><span class="token hvariable">bottomCount</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">button</span> <span class="token punctuation">[</span> <span class="token hvariable">onClick</span> <span class="token punctuation">(</span><span class="token builtin">const</span> <span class="token constant">Reset</span><span class="token punctuation">)</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Reset&quot;</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+</code></pre>
+<p>That&apos;s it! Composing components in this manner is straightfoward, modular, and
+infinitely nestable. Each layer of components only needs to know about its
+immediate children one layer below, and child components don&apos;t need to know
+anything about their parents.</p>
+<p>Despite the simplicity of this approach, one drawback is that parent
+components must delegate communication between child components. A child has
+no way of directly handling actions of another child without going through its
+parent. In practice, this may add a small amount of &quot;glue&quot; code, <em>but it&apos;s a
+small price to pay for straightfoward and modular components.</em></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../docs/components.html" class="navigation navigation-prev " aria-label="Previous page: A basic component"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../docs/fetching-data.html" class="navigation navigation-next " aria-label="Next page: Fetching data"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"edit-link":{"base":"https://github.com/alexmingoia/purescript-pux/tree/master","label":"Edit This Page"},"github":{"url":"https://github.com/alexmingoia/purescript-pux"},"purs-example":{},"prism":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

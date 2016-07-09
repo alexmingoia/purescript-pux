@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Using React components in Pux | purescript-pux</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../docs/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../docs/react-interop/using-pux-components-in-react.html" />
+    
+    
+    <link rel="prev" href="../../docs/react-interop.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2.1.1"
+        data-chapter-title="Using React components in Pux"
+        data-filepath="docs/react-interop/using-react-components-in-pux.md"
+        data-basepath="../.."
+        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/getting-started.html">
+            
+                
+                    <a href="../../docs/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/components.html">
+            
+                
+                    <a href="../../docs/components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        A basic component
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/multiple-components.html">
+            
+                
+                    <a href="../../docs/multiple-components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Multiple components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="docs/fetching-data.html">
+            
+                
+                    <a href="../../docs/fetching-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Fetching data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="docs/form-data.html">
+            
+                
+                    <a href="../../docs/form-data.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        Forms
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="docs/routing.html">
+            
+                
+                    <a href="../../docs/routing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        Routing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="docs/css.html">
+            
+                
+                    <a href="../../docs/css.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        CSS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+            <span><b>2.</b> Advanced</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/react-interop.html">
+            
+                
+                    <a href="../../docs/react-interop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        React Interop
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1.1" data-path="docs/react-interop/using-react-components-in-pux.html">
+            
+                
+                    <a href="../../docs/react-interop/using-react-components-in-pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        Using React components in Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="docs/react-interop/using-pux-components-in-react.html">
+            
+                
+                    <a href="../../docs/react-interop/using-pux-components-in-react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        Using Pux components in React
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> API Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/API/Pux.html">
+            
+                
+                    <a href="../../docs/API/Pux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Pux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/API/Pux/Html.html">
+            
+                
+                    <a href="../../docs/API/Pux/Html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Pux.Html
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/API/Pux/Html/Elements.html">
+            
+                
+                    <a href="../../docs/API/Pux/Html/Elements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Pux.Html.Elements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/API/Pux/Html/Attributes.html">
+            
+                
+                    <a href="../../docs/API/Pux/Html/Attributes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Pux.Html.Attributes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/API/Pux/Html/Events.html">
+            
+                
+                    <a href="../../docs/API/Pux/Html/Events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Pux.Html.Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/API/Pux/Router.html">
+            
+                
+                    <a href="../../docs/API/Pux/Router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Pux.Router
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >purescript-pux</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="using-react-components-in-pux">Using React components in Pux</h1>
+<p>Expose a PureScript element by using <code>fromReact</code> in your JavaScript module:</p>
+<pre><code class="lang-javascript"><span class="token comment" spellcheck="true">// module FancyComponent</span>
+
+<span class="token keyword">const</span> React <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;react&apos;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> Pux <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&apos;purescript-pux&apos;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> FancyComponent <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createClass</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+
+exports<span class="token punctuation">.</span>fromReact <span class="token operator">=</span> Pux<span class="token punctuation">.</span><span class="token function">fromReact</span><span class="token punctuation">(</span>FancyComponent<span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>The comment <code>// module FancyComponent</code> is required to declare this module as a
+PureScript foreign module.</p>
+</blockquote>
+<p>In your PureScript code, add a foreign module definition for the <code>fromReact</code>
+function:</p>
+<pre><code class="lang-haskell"><span class="token keyword">module</span> <span class="token constant">FancyComponent</span> <span class="token keyword">where</span><span class="token import_statement">
+
+<span class="token keyword">import</span> Pux.Html</span> <span class="token punctuation">(</span><span class="token constant">Html</span><span class="token punctuation">,</span> <span class="token constant">Attribute</span><span class="token punctuation">)</span>
+
+<span class="token hvariable">foreign</span> <span class="token hvariable">import</span> <span class="token hvariable">fromReact</span> <span class="token operator">::</span> <span class="token hvariable">forall</span> <span class="token hvariable">a</span><span class="token punctuation">.</span>
+                            <span class="token constant">Array</span> <span class="token punctuation">(</span><span class="token constant">Attribute</span> <span class="token hvariable">a</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span>
+                            <span class="token constant">Array</span> <span class="token punctuation">(</span><span class="token constant">Html</span> <span class="token hvariable">a</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span>
+                            <span class="token constant">Html</span> <span class="token hvariable">a</span>
+</code></pre>
+<p>Then embed the component in your view like so:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">view</span> <span class="token hvariable">count</span> <span class="token operator">=</span>
+  <span class="token builtin">div</span>
+    <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span> <span class="token hvariable">button</span> <span class="token punctuation">[</span> <span class="token hvariable">onClick</span> <span class="token punctuation">(</span><span class="token builtin">const</span> <span class="token constant">Increment</span><span class="token punctuation">)</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Increment&quot;</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">FancyComponent.fromReact</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token punctuation">(</span><span class="token string">&quot;Fancy &quot;</span> <span class="token operator">&lt;&gt;</span> <span class="token punctuation">(</span><span class="token builtin">show</span> <span class="token hvariable">count</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">,</span> <span class="token hvariable">button</span> <span class="token punctuation">[</span> <span class="token hvariable">onClick</span> <span class="token punctuation">(</span><span class="token builtin">const</span> <span class="token constant">Decrement</span><span class="token punctuation">)</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token string">&quot;Decrement&quot;</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">]</span>
+</code></pre>
+<p>If you need to pass initial props that do not have constructor functions from
+<code>Pux.Html.Attributes</code> then use the
+<a href="../API/Pux/Html/Attributes.html#attr"><code>attr</code></a> function:</p>
+<pre><code class="lang-haskell"><span class="token hvariable">FancyComponent.fromReact</span>
+  <span class="token punctuation">[</span> <span class="token hvariable">attr</span> <span class="token string">&quot;customProp&quot;</span> <span class="token hvariable">true</span> <span class="token punctuation">]</span>
+  <span class="token punctuation">[</span> <span class="token hvariable">text</span> <span class="token punctuation">(</span><span class="token string">&quot;Fancy &quot;</span> <span class="token operator">++</span> <span class="token punctuation">(</span><span class="token builtin">show</span> <span class="token hvariable">count</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">]</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../docs/react-interop.html" class="navigation navigation-prev " aria-label="Previous page: React Interop"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../docs/react-interop/using-pux-components-in-react.html" class="navigation navigation-next " aria-label="Next page: Using Pux components in React"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"edit-link":{"base":"https://github.com/alexmingoia/purescript-pux/tree/master","label":"Edit This Page"},"github":{"url":"https://github.com/alexmingoia/purescript-pux"},"purs-example":{},"prism":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
