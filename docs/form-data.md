@@ -41,8 +41,8 @@ view state = form
   [ name "signin"
   , onSubmit (const SignIn)
   ]
-  [ input [ type_ "text", value state.username, onChange UsernameChange ] []
-  , input [ type_ "password", value state.password, onChange PasswordChange ] []
+  [ input [ type_ "text", value state.username, onChange UsernameChange ]
+  , input [ type_ "password", value state.password, onChange PasswordChange ]
   , button [ type_ "submit" ] [ text "Sign In" ]
   ]
 ```
