@@ -43,7 +43,7 @@ The following chunk of code sets up a basic counter that you can increment and
 decrement:
 
 ```purescript
-import Prelude (Unit, bind, const, show, (-), (+))
+import Prelude (Unit, bind, const, map, show, (-), (+))
 
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception (EXCEPTION)
@@ -75,7 +75,7 @@ main = do
   app <- start
     { initialState: 0
     , update: fromSimple update
-    , view: view
+    , view: map view
     , inputs: []
     }
 

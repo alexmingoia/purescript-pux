@@ -37,7 +37,7 @@ import Signal.Channel (CHANNEL, channel, subscribe, send)
 -- | main = do
 -- |   app <- start
 -- |     { update: update
--- |     , view: view
+-- |     , view: map view
 -- |     , initialState: initialState
 -- |     , inputs: [] }
 -- |
@@ -57,8 +57,8 @@ start config = do
       effModelSignal =
         foldp foldActions (noEffects config.initialState) input
       stateSignal = effModelSignal ~> _.state
-      htmlSignal = stateSignal ~> \state ->
-        (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
+      htmlSignal = config.view stateSignal ~>
+        (runFn3 render) (send actionChannel <<< singleton) (\a -> a)
       mapAffect affect = launchAff $ do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
@@ -79,7 +79,7 @@ foreign import render :: forall a eff. Fn3 (a -> Eff eff Unit) (a -> a) (Html a)
 -- | be merged into the app's input signal.
 type Config state action eff =
   { update :: Update state action eff
-  , view :: state -> Html action
+  , view :: Signal state -> Signal (Html action)
   , initialState :: state
   , inputs :: Array (Signal action)
   }

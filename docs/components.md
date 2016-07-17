@@ -113,7 +113,7 @@ rendered to the DOM. An application is a record that consists of an `html` and
 DOM using `renderToDOM`:
 
 ```purescript
-import Prelude (bind)
+import Prelude (bind, map)
 import Pux (start, fromSimple, renderToDOM)
 import Counter (update, view)
 
@@ -121,7 +121,7 @@ main = do
   app <- start
     { initialState: 0
     , update: fromSimple update
-    , view: view
+    , view: map view
     , inputs: [] }
 
   renderToDOM "#app" app.html

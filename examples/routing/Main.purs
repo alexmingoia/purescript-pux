@@ -1,6 +1,6 @@
 module RoutingExample where
 
-import Prelude ((<<<), bind)
+import Prelude ((<<<), bind, map)
 import Pux (start, fromSimple, renderToDOM)
 import Pux.Router (sampleUrl)
 import Signal ((~>))
@@ -15,7 +15,7 @@ main = do
   app <- start
     { initialState: init
     , update: fromSimple update
-    , view: view
+    , view: map view
     , inputs: [routeSignal]
     }
 

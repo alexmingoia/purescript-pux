@@ -52,7 +52,7 @@ main = do
   app <- start
     { initialState: { currentRoute: Home }
     , update: update
-    , view: home
+    , view: map home
     , inputs: [routeSignal]
     }
 ```

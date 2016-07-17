@@ -12,7 +12,7 @@ Start an application. The resulting html signal is fed into `renderToDOM`.
 main = do
   app <- start
     { update: update
-    , view: view
+    , view: map view
     , initialState: initialState
     , inputs: [] }
 
@@ -22,7 +22,7 @@ main = do
 #### `Config`
 
 ``` purescript
-type Config state action eff = { update :: Update state action eff, view :: state -> Html action, initialState :: state, inputs :: Array (Signal action) }
+type Config state action eff = { update :: Update state action eff, view :: Signal state -> Signal (Html action), initialState :: state, inputs :: Array (Signal action) }
 ```
 
 The configuration of an app consists of update and view functions along
