@@ -10,7 +10,7 @@ to return a React class:
 module Counter where
 
 import Control.Monad.Eff (Eff)
-import Prelude ((+), (-), bind, const, show)
+import Prelude ((+), (-), bind, const, map, show)
 import Pux (CoreEffects, ReactClass)
 import Pux.Html (Html, div, span, button, text)
 import Pux.Html.Events (onClick)
@@ -38,7 +38,7 @@ toReact state = do
   comp <- Pux.start
     { initialState: state
     , update: fromSimple update
-    , view: view
+    , view: map view
     , inputs: []
     }
 
