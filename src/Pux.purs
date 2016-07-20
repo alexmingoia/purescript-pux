@@ -16,6 +16,7 @@ module Pux
   ) where
 
 import Control.Monad.Aff (Aff, launchAff, later)
+import Control.Monad.Aff.Unsafe (unsafeInterleaveAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
@@ -59,7 +60,7 @@ start config = do
       stateSignal = effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
         (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
-      mapAffect affect = launchAff $ do
+      mapAffect affect = launchAff $ unsafeInterleaveAff do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
@@ -114,7 +115,7 @@ type Update state action eff = action -> state -> EffModel state action eff
 -- | effects which return an action.
 type EffModel state action eff =
   { state :: state
-  , effects :: Array (Aff (channel :: CHANNEL | eff) action) }
+  , effects :: Array (Aff (CoreEffects eff) action) }
 
 -- | Create an `Update` function from a simple step function.
 fromSimple :: forall s a eff. (a -> s -> s) -> Update s a eff
@@ -125,7 +126,7 @@ noEffects :: forall state action eff. state -> EffModel state action eff
 noEffects state = { state: state, effects: [] }
 
 onlyEffects :: forall state action eff.
-               state -> Array (Aff (channel :: CHANNEL | eff) action) -> EffModel state action eff
+               state -> Array (Aff (CoreEffects eff) action) -> EffModel state action eff
 onlyEffects state effects = { state: state, effects: effects }
 
 -- | Map over the state of an `EffModel`.
