@@ -11,7 +11,9 @@ module Counter where
 
 import Control.Monad.Eff (Eff)
 import Prelude ((+), (-), bind, const, show)
-import Pux (CoreEffects, ReactClass)
+import Pux as Pux
+import Pux (CoreEffects)
+import React (ReactClass)
 import Pux.Html (Html, div, span, button, text)
 import Pux.Html.Events (onClick)
 
@@ -49,5 +51,5 @@ After your PureScript has been compiled, call this module's `toReact` method to
 return your class:
 
 ```javascript
-const Counter = PS.Counter.toReact(state)
+const Counter = PS.Counter.toReact(state)()
 ```
