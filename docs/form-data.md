@@ -26,8 +26,8 @@ meant to be handled by the parent component to deal with authentication.
 ```purescript
 update :: Action -> State -> State
 update (SignIn) state = state
-update (UsernameChange ev) = state { username = ev.target.value }
-update (PasswordChange ev) = state { password = ev.target.value }
+update (UsernameChange ev) state = state { username = ev.target.value }
+update (PasswordChange ev) state = state { password = ev.target.value }
 ```
 
 Our update function responds to changes from the form inputs. This is where any
