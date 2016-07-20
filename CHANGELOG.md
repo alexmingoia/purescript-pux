@@ -1,5 +1,18 @@
 # Change Log
 
+## [v5.0.3] - 2016-07-20
+
+#### Changed
+
+- Allow EXCEPTION effect in updates
+  [#58](https://github.com/alexmingoia/purescript-pux/pull/58)
+
+#### Fixed
+
+- Invoke React.createElement correctly when passing it children
+  [#51](https://github.com/alexmingoia/purescript-pux/pull/51)
+- Various docs updated for purescript 0.9
+
 ## [v5.0.2] - 2016-07-09
 
 #### Fixed
