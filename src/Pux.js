@@ -56,14 +56,14 @@ exports.fromReact = function (comp) {
         return obj;
       }, {});
 
-      return React.createElement(comp, props, children);
+      return React.createElement.apply(null, [comp, props].concat(children))
     };
   };
 };
 
 exports.render = function (input, parentAction, html) {
   if (typeof html === 'string') {
-    html = React.createElement('div', null, [html]);
+    html = React.createElement('div', null, html);
   }
 
   function composeAction(parentAction, html) {
