@@ -24,10 +24,10 @@
     "url": "git://github.com/alexmingoia/purescript-pux.git"
   },
   "dependencies": {
-    "purescript-aff": "^1.0.0",
+    "purescript-aff": "^1.1.0",
     "purescript-eff": "^1.0.0",
     "purescript-lists": "^1.0.1",
-    "purescript-signal": "^6.0.0",
+    "purescript-signal": "^7.0.0",
     "purescript-maps": "^1.0.0",
     "purescript-functions": "^1.0.0",
     "purescript-profunctor": "^1.0.0",
@@ -35,7 +35,7 @@
     "purescript-globals": "^1.0.0"
   },
   "devDependencies": {
-    "purescript-affjax": "^1.0.0",
+    "purescript-affjax": "^2.0.0",
     "purescript-argonaut": "^1.0.0"
   }
 }
