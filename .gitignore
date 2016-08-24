@@ -3,6 +3,6 @@ bower_components
 **DS_Store
 output
 .pulp-cache
-.psci_modules
+.psc*
 _book
 examples/*/*.js
