@@ -30,7 +30,7 @@ import Prelude as Prelude
 import Pux.Html (Html)
 import React (ReactClass)
 import Signal (Signal, (~>), mergeMany, foldp, runSignal)
-import Signal.Channel (CHANNEL, channel, subscribe, send)
+import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
 -- |
@@ -65,7 +65,7 @@ start config = do
         liftEff $ send actionChannel (singleton action)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
-  pure $ { html: htmlSignal, state: stateSignal }
+  pure $ { html: htmlSignal, state: stateSignal, actionChannel: actionChannel }
   where bind = Prelude.bind
 
 foreign import render :: forall a eff. Fn3 (a -> Eff eff Unit) (a -> a) (Html a) (Html a)
@@ -105,7 +105,9 @@ type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
 -- | * `state` – A signal representing the application's current state.
 type App state action =
   { html :: Signal (Html action)
-  , state :: Signal state }
+  , state :: Signal state
+  , actionChannel :: Channel (List action)
+  }
 
 -- | Synonym for an update function that returns state and an array of
 -- | asynchronous effects that return an action.
