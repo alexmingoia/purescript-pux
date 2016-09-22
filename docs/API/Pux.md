@@ -54,7 +54,7 @@ main state = do
 #### `App`
 
 ``` purescript
-type App state action = { html :: Signal (Html action), state :: Signal state }
+type App state action = { html :: Signal (Html action), state :: Signal state, actionChannel :: Channel (List action) }
 ```
 
 An `App` consists of three signals:
@@ -76,7 +76,7 @@ asynchronous effects that return an action.
 #### `EffModel`
 
 ``` purescript
-type EffModel state action eff = { state :: state, effects :: Array (Aff (channel :: CHANNEL | eff) action) }
+type EffModel state action eff = { state :: state, effects :: Array (Aff (CoreEffects eff) action) }
 ```
 
 `EffModel` is a container for state and a collection of asynchronous
@@ -101,7 +101,7 @@ Create an `EffModel` with no effects from a given state.
 #### `onlyEffects`
 
 ``` purescript
-onlyEffects :: forall state action eff. state -> Array (Aff (channel :: CHANNEL | eff) action) -> EffModel state action eff
+onlyEffects :: forall state action eff. state -> Array (Aff (CoreEffects eff) action) -> EffModel state action eff
 ```
 
 #### `mapState`

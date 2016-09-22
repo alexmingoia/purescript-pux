@@ -35,7 +35,7 @@ button ! className "primary" ! onClick (const Increment) # text "Increment"
 #### `(!)`
 
 ``` purescript
-infixl 4 withAttr as !
+infixl 1 withAttr as !
 ```
 
 #### `withChild`
@@ -56,7 +56,13 @@ div # do
 #### `(#)`
 
 ``` purescript
-infixl 4 withChild as #
+infixr 0 withChild as #
+```
+
+#### `(#>)`
+
+``` purescript
+infixr 0 withChildren as #>
 ```
 
 #### `withChildren`
@@ -68,7 +74,7 @@ withChildren :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> A
 #### `(##)`
 
 ``` purescript
-infixl 4 withChildren as ##
+infixr 4 withChildren as ##
 ```
 
 
