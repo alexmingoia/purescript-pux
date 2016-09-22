@@ -80,7 +80,7 @@ withTextChild :: forall a.
              Html a
 withTextChild f txt = f # Elements.text txt
 
-infixr 0 withChildren as #>
+infixr 0 withTextChild as #>
 
 withChildren :: forall a.
              (Array (Attribute a) -> Array (Html a) -> Html a) ->
