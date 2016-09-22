@@ -3,7 +3,7 @@
 #### `Target`
 
 ``` purescript
-type Target = { value :: String }
+type Target = { value :: String, checked :: Boolean }
 ```
 
 #### `ClipboardEvent`

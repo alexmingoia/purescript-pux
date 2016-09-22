@@ -2,6 +2,7 @@ module Pux.Html
   ( module Elements
   , (!)
   , (#)
+  , (#>)
   , (##)
   , bind
   , withAttr
@@ -44,7 +45,7 @@ withAttr :: forall a.
             (Array (Attribute a) -> Array (Html a) -> Html a)
 withAttr f attr = \attrs children -> f (attr : attrs) children
 
-infixl 4 withAttr as !
+infixl 1 withAttr as !
 
 -- | Append child to parent element.
 -- |
@@ -60,7 +61,26 @@ withChild :: forall a.
                 Html a
 withChild f html = f [] $ singleton html
 
-infixl 4 withChild as #
+infixr 0 withChild as #
+
+-- | Append a single text child to parent element.
+-- | 
+-- | Cleans up repetitive `# text "foo"` usage.
+-- | Here is the previous example again with `#>`:
+-- |
+-- | ```purescript
+-- | div # do
+-- |   button ! onClick (const Increment) #> "Increment"
+-- |   span #> "Counter: " <> show count
+-- |   button ! onClick (const Decrement) #> "Decrement"
+-- | ```
+withTextChild :: forall a.
+             (Array (Attribute a) -> Array (Html a) -> Html a) ->
+             String ->
+             Html a
+withTextChild f txt = f # Elements.text txt
+
+infixr 0 withChildren as #>
 
 withChildren :: forall a.
              (Array (Attribute a) -> Array (Html a) -> Html a) ->
@@ -68,4 +88,4 @@ withChildren :: forall a.
              Html a
 withChildren f htmls = f [] htmls
 
-infixl 4 withChildren as ##
+infixr 4 withChildren as ##
