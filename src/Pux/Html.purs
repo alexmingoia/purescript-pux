@@ -89,4 +89,4 @@ withChildren :: forall a.
              Html a
 withChildren f htmls = f [] htmls
 
-infixr 4 withChildren as ##
+infixr 0 withChildren as ##
