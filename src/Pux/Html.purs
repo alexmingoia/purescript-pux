@@ -6,6 +6,7 @@ module Pux.Html
   , (##)
   , bind
   , withAttr
+  , withTextChild
   , withChild
   , withChildren
   ) where
