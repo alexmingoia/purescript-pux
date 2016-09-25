@@ -1,5 +1,26 @@
 # Change Log
 
+## [v6.0.1] - 2016-09-25
+
+### Fixed
+
+- Fix typo with `withTextChild` and `withChildren` precendence.
+  [#70](https://github.com/alexmingoia/purescript-pux/pull/70)
+
+## [v6.0.0] - 2016-09-21
+
+### Changed
+
+- Tweak fixity of `Html` operators
+  [#64](https://github.com/alexmingoia/purescript-pux/pull/64)
+
+### Added
+
+- Export `actionChannel` with `App`
+  [#66](https://github.com/alexmingoia/purescript-pux/pull/66)
+- Support `event.target.checked`
+  [#62](https://github.com/alexmingoia/purescript-pux/pull/62)
+
 ## [v5.0.3] - 2016-07-20
 
 #### Changed
