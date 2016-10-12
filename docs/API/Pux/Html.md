@@ -1,25 +1,5 @@
 ## Module Pux.Html
 
-#### `bind`
-
-``` purescript
-bind :: forall a. Html a -> (Unit -> Html a) -> Html a
-```
-
-This version of bind is for appending `Html` using a `do` block.
-
-```purescript
-import Pux.Html (Html, (#), (!), bind, div, span, button, text)
-import Pux.Html.Events (onClick)
-
-view :: State -> Html Action
-view state =
-  div # do
-    button ! onClick (const Increment) # text "Increment"
-    span # text (show count)
-    button ! onClick (const Decrement) # text "Decrement"
-```
-
 #### `withAttr`
 
 ``` purescript
@@ -47,10 +27,11 @@ withChild :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> Html
 Append child to parent element.
 
 ```purescript
-div # do
-  button ! onClick (const Increment) # text "Increment"
-  span # text ("Counter: " <> show count)
-  button ! onClick (const Decrement) # text "Decrement"
+div ##
+  [ button ! onClick (const Increment) # text "Increment"
+  , span # text ("Counter: " <> show count)
+  , button ! onClick (const Decrement) # text "Decrement"
+  ]
 ```
 
 #### `(#)`
@@ -59,10 +40,29 @@ div # do
 infixr 0 withChild as #
 ```
 
+#### `withTextChild`
+
+``` purescript
+withTextChild :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> String -> Html a
+```
+
+Append a single text child to parent element.
+
+Cleans up repetitive `# text "foo"` usage.
+Here is the previous example again with `#>`:
+
+```purescript
+div ##
+  [ button ! onClick (const Increment) #> "Increment"
+  , span #> "Counter: " <> show count
+  , button ! onClick (const Decrement) #> "Decrement"
+  ]
+```
+
 #### `(#>)`
 
 ``` purescript
-infixr 0 withChildren as #>
+infixr 0 withTextChild as #>
 ```
 
 #### `withChildren`
@@ -74,7 +74,7 @@ withChildren :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> A
 #### `(##)`
 
 ``` purescript
-infixr 4 withChildren as ##
+infixr 0 withChildren as ##
 ```
 
 
