@@ -20,7 +20,7 @@ matched route:
 
 ```purescript
 match :: String -> Action
-match url = PageView $ fromMaybe NotFound $ router url
+match url = PageView $ fromMaybe NotFound $ router url $
   Home <$ end
   <|>
   Users <$> (lit "users" *> param "sortBy") <* end
