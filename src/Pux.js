@@ -44,23 +44,6 @@ exports.toReact = function (htmlSignal) {
   };
 };
 
-exports.fromReact = function (comp) {
-  return function (attrs) {
-    return function (children) {
-      if (Array.isArray(children[0])) children = children[0];
-
-      var props = attrs.reduce(function (obj, attr) {
-        var key = attr[0];
-        var val = attr[1];
-        obj[key] = val;
-        return obj;
-      }, {});
-
-      return React.createElement.apply(null, [comp, props].concat(children))
-    };
-  };
-};
-
 exports.render = function (input, parentAction, html) {
   if (typeof html === 'string') {
     html = React.createElement('div', null, html);
