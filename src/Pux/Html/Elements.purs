@@ -182,6 +182,9 @@ head = runFn3 element "head"
 header :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 header = runFn3 element "header"
 
+hgroup :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+hgroup = runFn3 element "hgroup"
+
 hr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 hr = runFn3 element "hr"
 
@@ -286,6 +289,9 @@ rp = runFn3 element "rp"
 
 rt :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 rt = runFn3 element "rt"
+
+rtc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+rtc = runFn3 element "rtc"
 
 ruby :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ruby = runFn3 element "ruby"
