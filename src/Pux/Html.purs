@@ -11,8 +11,6 @@ module Pux.Html
   ) where
 
 import Data.Array ((:), singleton)
-import Data.Function.Uncurried (Fn2, runFn2)
-import Prelude (Unit, ($), unit)
 import Pux.Html.Elements as Elements
 import Pux.Html.Elements (Html, Attribute)
 
@@ -42,7 +40,7 @@ withChild :: forall a.
                 (Array (Attribute a) -> Array (Html a) -> Html a) ->
                 Html a ->
                 Html a
-withChild f html = f [] $ singleton html
+withChild f html = f [] (singleton html)
 
 infixr 0 withChild as #
 

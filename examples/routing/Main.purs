@@ -1,13 +1,15 @@
 module RoutingExample where
 
-import Prelude ((<<<), bind)
-import Pux (start, fromSimple, renderToDOM)
+import Control.Monad.Eff (Eff)
+import DOM (DOM)
+import Prelude ((<<<), bind, Unit)
+import Pux (start, fromSimple, renderToDOM, CoreEffects)
 import Pux.Router (sampleUrl)
-import Signal ((~>))
-
 import RoutingExample.Routes (match)
 import RoutingExample.App (Action(PageView), init, update, view)
+import Signal ((~>))
 
+main :: Eff (CoreEffects (dom :: DOM)) Unit
 main = do
   urlSignal <- sampleUrl
   let routeSignal = urlSignal ~> (PageView <<< match)
