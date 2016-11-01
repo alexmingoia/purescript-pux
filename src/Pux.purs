@@ -16,7 +16,7 @@ module Pux
   ) where
 
 import Control.Monad.Aff (Aff, launchAff, later)
-import Control.Monad.Aff.Unsafe (unsafeInterleaveAff)
+import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
@@ -60,7 +60,7 @@ start config = do
       stateSignal = effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
         (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
-      mapAffect affect = launchAff $ unsafeInterleaveAff do
+      mapAffect affect = launchAff $ unsafeCoerceAff do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
