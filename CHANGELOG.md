@@ -1,5 +1,23 @@
 # Change Log
 
+## [v7.0] - 2016-10-24
+
+### Changed
+
+- Switched version scheme from [SemVer](http://semver.org/) to [ComVer](https://github.com/staltz/comver)
+- Updated for latest PureScript version 0.10.1
+
+### Added
+
+- Additional HTML element constructors.
+  [#74](https://github.com/alexmingoia/purescript-pux/pull/74)
+
+### Removed
+
+- Remove bind/append functions in favor of operators. Fixes bug with `Html` and
+  `Functor` instance.
+  [#72](https://github.com/alexmingoia/purescript-pux/pull/72)
+
 ## [v6.0.1] - 2016-09-25
 
 ### Fixed

@@ -1,7 +1,9 @@
 # Pux
 
-[![Latest release](https://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/releases)
+[![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/staltz/comver)
 [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux)
+[![NPM Version](https://img.shields.io/npm/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/blob/master/CHANGELOG.md)
+[![Bower Version](https://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/blob/master/CHANGELOG.md)
 [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/purescript-pux)
 
 Pux is a PureScript interface to React, similar to the [Elm app

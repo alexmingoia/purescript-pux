@@ -354,6 +354,12 @@ s :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ruby :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
+#### `rtc`
+
+``` purescript
+rtc :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
 #### `rt`
 
 ``` purescript
@@ -658,6 +664,12 @@ hr :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 
 ``` purescript
 hkern :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
+```
+
+#### `hgroup`
+
+``` purescript
+hgroup :: forall a. Array (Attribute a) -> Array (Html a) -> Html a
 ```
 
 #### `header`
