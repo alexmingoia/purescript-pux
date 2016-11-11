@@ -3,22 +3,20 @@ module Pux.Html.Events where
 import Data.Function.Uncurried (Fn2, runFn2)
 import Pux.Html (Attribute)
 
-type Target = { value :: String, checked :: Boolean }
-
-type ClipboardEvent =
-  { target :: Target
-  , currentTarget :: Target
+type ClipboardEvent a b =
+  { target :: a
+  , currentTarget :: b
   }
 
-type CompositionEvent =
-  { target :: Target
-  , currentTarget :: Target
+type CompositionEvent a b =
+  { target :: a
+  , currentTarget :: b
   , data :: String
   }
 
-type KeyboardEvent =
-  { target :: Target
-  , currentTarget :: Target
+type KeyboardEvent a b =
+  { target :: a
+  , currentTarget :: b
   , altKey   :: Boolean
   , ctrlKey  :: Boolean
   , charCode :: Int
@@ -32,20 +30,20 @@ type KeyboardEvent =
   , which    :: Int
   }
 
-type FocusEvent =
-  { target :: Target
-  , currentTarget :: Target
-  , relatedTarget :: Target
+type FocusEvent a b c =
+  { target :: a
+  , currentTarget :: b
+  , relatedTarget :: c
   }
 
-type FormEvent =
-  { target :: Target
-  , currentTarget :: Target
+type FormEvent a b =
+  { target :: a
+  , currentTarget :: b
   }
 
-type MouseEvent =
-  { target :: Target
-  , currentTarget :: Target
+type MouseEvent a b =
+  { target :: a
+  , currentTarget :: b
   , altKey :: Boolean
   , button :: Number
   , buttons :: Number
@@ -60,231 +58,231 @@ type MouseEvent =
   , shiftKey :: Boolean
   }
 
-type SelectionEvent =
-  { target :: Target
-  , currentTarget :: Target
+type SelectionEvent a b =
+  { target :: a
+  , currentTarget :: b
 }
 
-type TouchEvent =
-  { target :: Target
-  , currentTarget :: Target
+type TouchEvent a b =
+  { target :: a
+  , currentTarget :: b
   , altKey :: Boolean
   , ctrlKey :: Boolean
   , metaKey :: Boolean
   , shiftKey :: Boolean
   }
 
-type UIEvent =
-  { target :: Target
-  , currentTarget :: Target
+type UIEvent a b =
+  { target :: a
+  , currentTarget :: b
   , detail :: Number
   }
 
-type WheelEvent =
-  { target :: Target
-  , currentTarget :: Target
+type WheelEvent a b =
+  { target :: a
+  , currentTarget :: b
   , deltaMode :: Number
   , deltaX :: Number
   , deltaY :: Number
   , deltaZ :: Number
   }
 
-type MediaEvent =
-  { target :: Target
-  , currentTarget :: Target
+type MediaEvent a b =
+  { target :: a
+  , currentTarget :: b
   }
 
-onCopy :: forall action. (ClipboardEvent -> action) -> Attribute action
+onCopy :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 onCopy = runFn2 handler "onCopy"
 
-onCut :: forall action. (ClipboardEvent -> action) -> Attribute action
+onCut :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 onCut = runFn2 handler "onCut"
 
-onPaste :: forall action. (ClipboardEvent -> action) -> Attribute action
+onPaste :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 onPaste = runFn2 handler "onPaste"
 
-onCompositionEnd :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionEnd :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 onCompositionEnd = runFn2 handler "onCompositionEnd"
 
-onCompositionStart :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionStart :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 onCompositionStart = runFn2 handler "onCompositionStart"
 
-onCompositionUpdate :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionUpdate :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 onCompositionUpdate = runFn2 handler "onCompositionUpdate"
 
-onKeyDown :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyDown :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 onKeyDown = runFn2 handler "onKeyDown"
 
-onKeyPress :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyPress :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 onKeyPress = runFn2 handler "onKeyPress"
 
-onKeyUp :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyUp :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 onKeyUp = runFn2 handler "onKeyUp"
 
 -- | Send action only if specified key is pressed (on key up)
-onKey :: forall action. String -> (KeyboardEvent -> action) -> Attribute action
+onKey :: forall action a b. String -> (KeyboardEvent a b -> action) -> Attribute action
 onKey = runFn2 onKeyHandler
 
-onFocus :: forall action. (FocusEvent -> action) -> Attribute action
+onFocus :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
 onFocus = runFn2 handler "onFocus"
 
-onBlur :: forall action. (FocusEvent -> action) -> Attribute action
+onBlur :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
 onBlur = runFn2 handler "onBlur"
 
-onChange :: forall action. (FormEvent -> action) -> Attribute action
+onChange :: forall action a b. (FormEvent a b -> action) -> Attribute action
 onChange = runFn2 handler "onChange"
 
-onInput :: forall action. (FormEvent -> action) -> Attribute action
+onInput :: forall action a b. (FormEvent a b -> action) -> Attribute action
 onInput = runFn2 handler "onInput"
 
-onSubmit :: forall action. (FormEvent -> action) -> Attribute action
+onSubmit :: forall action a b. (FormEvent a b -> action) -> Attribute action
 onSubmit = runFn2 handler "onSubmit"
 
-onClick :: forall action. (MouseEvent -> action) -> Attribute action
+onClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onClick = runFn2 handler "onClick"
 
-onContextMenu :: forall action. (MouseEvent -> action) -> Attribute action
+onContextMenu :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onContextMenu = runFn2 handler "onContextMenu"
 
-onDoubleClick :: forall action. (MouseEvent -> action) -> Attribute action
+onDoubleClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDoubleClick = runFn2 handler "onDoubleClick"
 
-onDrag :: forall action. (MouseEvent -> action) -> Attribute action
+onDrag :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDrag = runFn2 handler "onDrag"
 
-onDragEnd :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnd :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragEnd = runFn2 handler "onDragEnd"
 
-onDragEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragEnter = runFn2 handler "onDragEnter"
 
-onDragExit :: forall action. (MouseEvent -> action) -> Attribute action
+onDragExit :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragExit = runFn2 handler "onDragExit"
 
-onDragLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onDragLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragLeave = runFn2 handler "onDragLeave"
 
-onDragOver :: forall action. (MouseEvent -> action) -> Attribute action
+onDragOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragOver = runFn2 handler "onDragOver"
 
-onDragStart :: forall action. (MouseEvent -> action) -> Attribute action
+onDragStart :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDragStart = runFn2 handler "onDragStart"
 
-onDrop :: forall action. (MouseEvent -> action) -> Attribute action
+onDrop :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onDrop = runFn2 handler "onDrop"
 
-onMouseDown :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseDown :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseDown = runFn2 handler "onMouseDown"
 
-onMouseEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseEnter = runFn2 handler "onMouseEnter"
 
-onMouseLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseLeave = runFn2 handler "onMouseLeave"
 
-onMouseMove :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseMove :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseMove = runFn2 handler "onMouseMove"
 
-onMouseOut :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOut :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseOut = runFn2 handler "onMouseOut"
 
-onMouseOver :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseOver = runFn2 handler "onMouseOver"
 
-onMouseUp :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseUp :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 onMouseUp = runFn2 handler "onMouseUp"
 
-onSelect :: forall action. (SelectionEvent -> action) -> Attribute action
+onSelect :: forall action a b. (SelectionEvent a b -> action) -> Attribute action
 onSelect = runFn2 handler "onSelect"
 
-onTouchCancel :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchCancel :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 onTouchCancel = runFn2 handler "onTouchCancel"
 
-onTouchEnd :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchEnd :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 onTouchEnd = runFn2 handler "onTouchEnd"
 
-onTouchMove :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchMove :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 onTouchMove = runFn2 handler "onTouchMove"
 
-onTouchStart :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchStart :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 onTouchStart = runFn2 handler "onTouchStart"
 
-onScroll :: forall action. (UIEvent -> action) -> Attribute action
+onScroll :: forall action a b. (UIEvent a b -> action) -> Attribute action
 onScroll = runFn2 handler "onScroll"
 
-onWheel :: forall action. (WheelEvent -> action) -> Attribute action
+onWheel :: forall action a b. (WheelEvent a b -> action) -> Attribute action
 onWheel = runFn2 handler "onWheel"
 
-onAbort :: forall action. (MediaEvent -> action) -> Attribute action
+onAbort :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onAbort = runFn2 handler "onAbort"
 
-onCanPlay :: forall action. (MediaEvent -> action) -> Attribute action
+onCanPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onCanPlay = runFn2 handler "onCanPlay"
 
-onCanPlayThrough :: forall action. (MediaEvent -> action) -> Attribute action
+onCanPlayThrough :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onCanPlayThrough = runFn2 handler "onCanPlayThrough"
 
-onDurationChange :: forall action. (MediaEvent -> action) -> Attribute action
+onDurationChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onDurationChange = runFn2 handler "onDurationChange"
 
-onEmptied :: forall action. (MediaEvent -> action) -> Attribute action
+onEmptied :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onEmptied = runFn2 handler "onEmptied"
 
-onEncrypted :: forall action. (MediaEvent -> action) -> Attribute action
+onEncrypted :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onEncrypted = runFn2 handler "onEncrypted"
 
-onEnded :: forall action. (MediaEvent -> action) -> Attribute action
+onEnded :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onEnded = runFn2 handler "onEnded"
 
-onError :: forall action. (MediaEvent -> action) -> Attribute action
+onError :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onError = runFn2 handler "onError"
 
-onLoad :: forall action. (MediaEvent -> action) -> Attribute action
+onLoad :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onLoad = runFn2 handler "onLoad"
 
-onLoadedData :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadedData :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onLoadedData = runFn2 handler "onLoadedData"
 
-onLoadedMetadata :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadedMetadata :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onLoadedMetadata = runFn2 handler "onLoadedMetadata"
 
-onLoadStart :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadStart :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onLoadStart = runFn2 handler "onLoadStart"
 
-onPause :: forall action. (MediaEvent -> action) -> Attribute action
+onPause :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onPause = runFn2 handler "onPause"
 
-onPlay :: forall action. (MediaEvent -> action) -> Attribute action
+onPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onPlay = runFn2 handler "onPlay"
 
-onPlaying :: forall action. (MediaEvent -> action) -> Attribute action
+onPlaying :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onPlaying = runFn2 handler "onPlaying"
 
-onProgress :: forall action. (MediaEvent -> action) -> Attribute action
+onProgress :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onProgress = runFn2 handler "onProgress"
 
-onRateChange :: forall action. (MediaEvent -> action) -> Attribute action
+onRateChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onRateChange = runFn2 handler "onRateChange"
 
-onSeeked :: forall action. (MediaEvent -> action) -> Attribute action
+onSeeked :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onSeeked = runFn2 handler "onSeeked"
 
-onSeeking :: forall action. (MediaEvent -> action) -> Attribute action
+onSeeking :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onSeeking = runFn2 handler "onSeeking"
 
-onStalled :: forall action. (MediaEvent -> action) -> Attribute action
+onStalled :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onStalled = runFn2 handler "onStalled"
 
-onSuspend :: forall action. (MediaEvent -> action) -> Attribute action
+onSuspend :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onSuspend = runFn2 handler "onSuspend"
 
-onTimeUpdate :: forall action. (MediaEvent -> action) -> Attribute action
+onTimeUpdate :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onTimeUpdate = runFn2 handler "onTimeUpdate"
 
-onVolumeChange :: forall action. (MediaEvent -> action) -> Attribute action
+onVolumeChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onVolumeChange = runFn2 handler "onVolumeChange"
 
-onWaiting :: forall action. (MediaEvent -> action) -> Attribute action
+onWaiting :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 onWaiting = runFn2 handler "onWaiting"
 
 foreign import handler :: forall ev a. Fn2 String (ev -> a) (Attribute a)

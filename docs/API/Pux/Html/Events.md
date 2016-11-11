@@ -1,135 +1,129 @@
 ## Module Pux.Html.Events
 
-#### `Target`
-
-``` purescript
-type Target = { value :: String, checked :: Boolean }
-```
-
 #### `ClipboardEvent`
 
 ``` purescript
-type ClipboardEvent = { target :: Target, currentTarget :: Target }
+type ClipboardEvent a b = { target :: a, currentTarget :: b }
 ```
 
 #### `CompositionEvent`
 
 ``` purescript
-type CompositionEvent = { target :: Target, currentTarget :: Target, data :: String }
+type CompositionEvent a b = { target :: a, currentTarget :: b, data :: String }
 ```
 
 #### `KeyboardEvent`
 
 ``` purescript
-type KeyboardEvent = { target :: Target, currentTarget :: Target, altKey :: Boolean, ctrlKey :: Boolean, charCode :: Int, key :: String, keyCode :: Int, locale :: String, location :: Int, metaKey :: Boolean, repeat :: Boolean, shiftKey :: Boolean, which :: Int }
+type KeyboardEvent a b = { target :: a, currentTarget :: b, altKey :: Boolean, ctrlKey :: Boolean, charCode :: Int, key :: String, keyCode :: Int, locale :: String, location :: Int, metaKey :: Boolean, repeat :: Boolean, shiftKey :: Boolean, which :: Int }
 ```
 
 #### `FocusEvent`
 
 ``` purescript
-type FocusEvent = { target :: Target, currentTarget :: Target, relatedTarget :: Target }
+type FocusEvent a b c = { target :: a, currentTarget :: b, relatedTarget :: c }
 ```
 
 #### `FormEvent`
 
 ``` purescript
-type FormEvent = { target :: Target, currentTarget :: Target }
+type FormEvent a b = { target :: a, currentTarget :: b }
 ```
 
 #### `MouseEvent`
 
 ``` purescript
-type MouseEvent = { target :: Target, currentTarget :: Target, altKey :: Boolean, button :: Number, buttons :: Number, clientX :: Number, clientY :: Number, ctrlKey :: Boolean, metaKey :: Boolean, pageX :: Number, pageY :: Number, screenX :: Number, screenY :: Number, shiftKey :: Boolean }
+type MouseEvent a b = { target :: a, currentTarget :: b, altKey :: Boolean, button :: Number, buttons :: Number, clientX :: Number, clientY :: Number, ctrlKey :: Boolean, metaKey :: Boolean, pageX :: Number, pageY :: Number, screenX :: Number, screenY :: Number, shiftKey :: Boolean }
 ```
 
 #### `SelectionEvent`
 
 ``` purescript
-type SelectionEvent = { target :: Target, currentTarget :: Target }
+type SelectionEvent a b = { target :: a, currentTarget :: b }
 ```
 
 #### `TouchEvent`
 
 ``` purescript
-type TouchEvent = { target :: Target, currentTarget :: Target, altKey :: Boolean, ctrlKey :: Boolean, metaKey :: Boolean, shiftKey :: Boolean }
+type TouchEvent a b = { target :: a, currentTarget :: b, altKey :: Boolean, ctrlKey :: Boolean, metaKey :: Boolean, shiftKey :: Boolean }
 ```
 
 #### `UIEvent`
 
 ``` purescript
-type UIEvent = { target :: Target, currentTarget :: Target, detail :: Number }
+type UIEvent a b = { target :: a, currentTarget :: b, detail :: Number }
 ```
 
 #### `WheelEvent`
 
 ``` purescript
-type WheelEvent = { target :: Target, currentTarget :: Target, deltaMode :: Number, deltaX :: Number, deltaY :: Number, deltaZ :: Number }
+type WheelEvent a b = { target :: a, currentTarget :: b, deltaMode :: Number, deltaX :: Number, deltaY :: Number, deltaZ :: Number }
 ```
 
 #### `MediaEvent`
 
 ``` purescript
-type MediaEvent = { target :: Target, currentTarget :: Target }
+type MediaEvent a b = { target :: a, currentTarget :: b }
 ```
 
 #### `onCopy`
 
 ``` purescript
-onCopy :: forall action. (ClipboardEvent -> action) -> Attribute action
+onCopy :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onCut`
 
 ``` purescript
-onCut :: forall action. (ClipboardEvent -> action) -> Attribute action
+onCut :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onPaste`
 
 ``` purescript
-onPaste :: forall action. (ClipboardEvent -> action) -> Attribute action
+onPaste :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onCompositionEnd`
 
 ``` purescript
-onCompositionEnd :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionEnd :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 ```
 
 #### `onCompositionStart`
 
 ``` purescript
-onCompositionStart :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionStart :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 ```
 
 #### `onCompositionUpdate`
 
 ``` purescript
-onCompositionUpdate :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionUpdate :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
 ```
 
 #### `onKeyDown`
 
 ``` purescript
-onKeyDown :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyDown :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onKeyPress`
 
 ``` purescript
-onKeyPress :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyPress :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onKeyUp`
 
 ``` purescript
-onKeyUp :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyUp :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
 ```
 
 #### `onKey`
 
 ``` purescript
-onKey :: forall action. String -> (KeyboardEvent -> action) -> Attribute action
+onKey :: forall action a b. String -> (KeyboardEvent a b -> action) -> Attribute action
 ```
 
 Send action only if specified key is pressed (on key up)
@@ -137,325 +131,325 @@ Send action only if specified key is pressed (on key up)
 #### `onFocus`
 
 ``` purescript
-onFocus :: forall action. (FocusEvent -> action) -> Attribute action
+onFocus :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
 ```
 
 #### `onBlur`
 
 ``` purescript
-onBlur :: forall action. (FocusEvent -> action) -> Attribute action
+onBlur :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
 ```
 
 #### `onChange`
 
 ``` purescript
-onChange :: forall action. (FormEvent -> action) -> Attribute action
+onChange :: forall action a b. (FormEvent a b -> action) -> Attribute action
 ```
 
 #### `onInput`
 
 ``` purescript
-onInput :: forall action. (FormEvent -> action) -> Attribute action
+onInput :: forall action a b. (FormEvent a b -> action) -> Attribute action
 ```
 
 #### `onSubmit`
 
 ``` purescript
-onSubmit :: forall action. (FormEvent -> action) -> Attribute action
+onSubmit :: forall action a b. (FormEvent a b -> action) -> Attribute action
 ```
 
 #### `onClick`
 
 ``` purescript
-onClick :: forall action. (MouseEvent -> action) -> Attribute action
+onClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onContextMenu`
 
 ``` purescript
-onContextMenu :: forall action. (MouseEvent -> action) -> Attribute action
+onContextMenu :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDoubleClick`
 
 ``` purescript
-onDoubleClick :: forall action. (MouseEvent -> action) -> Attribute action
+onDoubleClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDrag`
 
 ``` purescript
-onDrag :: forall action. (MouseEvent -> action) -> Attribute action
+onDrag :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragEnd`
 
 ``` purescript
-onDragEnd :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnd :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragEnter`
 
 ``` purescript
-onDragEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragExit`
 
 ``` purescript
-onDragExit :: forall action. (MouseEvent -> action) -> Attribute action
+onDragExit :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragLeave`
 
 ``` purescript
-onDragLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onDragLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragOver`
 
 ``` purescript
-onDragOver :: forall action. (MouseEvent -> action) -> Attribute action
+onDragOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDragStart`
 
 ``` purescript
-onDragStart :: forall action. (MouseEvent -> action) -> Attribute action
+onDragStart :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onDrop`
 
 ``` purescript
-onDrop :: forall action. (MouseEvent -> action) -> Attribute action
+onDrop :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseDown`
 
 ``` purescript
-onMouseDown :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseDown :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseEnter`
 
 ``` purescript
-onMouseEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseLeave`
 
 ``` purescript
-onMouseLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseMove`
 
 ``` purescript
-onMouseMove :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseMove :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseOut`
 
 ``` purescript
-onMouseOut :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOut :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseOver`
 
 ``` purescript
-onMouseOver :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onMouseUp`
 
 ``` purescript
-onMouseUp :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseUp :: forall action a b. (MouseEvent a b -> action) -> Attribute action
 ```
 
 #### `onSelect`
 
 ``` purescript
-onSelect :: forall action. (SelectionEvent -> action) -> Attribute action
+onSelect :: forall action a b. (SelectionEvent a b -> action) -> Attribute action
 ```
 
 #### `onTouchCancel`
 
 ``` purescript
-onTouchCancel :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchCancel :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 ```
 
 #### `onTouchEnd`
 
 ``` purescript
-onTouchEnd :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchEnd :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 ```
 
 #### `onTouchMove`
 
 ``` purescript
-onTouchMove :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchMove :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 ```
 
 #### `onTouchStart`
 
 ``` purescript
-onTouchStart :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchStart :: forall action a b. (TouchEvent a b -> action) -> Attribute action
 ```
 
 #### `onScroll`
 
 ``` purescript
-onScroll :: forall action. (UIEvent -> action) -> Attribute action
+onScroll :: forall action a b. (UIEvent a b -> action) -> Attribute action
 ```
 
 #### `onWheel`
 
 ``` purescript
-onWheel :: forall action. (WheelEvent -> action) -> Attribute action
+onWheel :: forall action a b. (WheelEvent a b -> action) -> Attribute action
 ```
 
 #### `onAbort`
 
 ``` purescript
-onAbort :: forall action. (MediaEvent -> action) -> Attribute action
+onAbort :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onCanPlay`
 
 ``` purescript
-onCanPlay :: forall action. (MediaEvent -> action) -> Attribute action
+onCanPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onCanPlayThrough`
 
 ``` purescript
-onCanPlayThrough :: forall action. (MediaEvent -> action) -> Attribute action
+onCanPlayThrough :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onDurationChange`
 
 ``` purescript
-onDurationChange :: forall action. (MediaEvent -> action) -> Attribute action
+onDurationChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onEmptied`
 
 ``` purescript
-onEmptied :: forall action. (MediaEvent -> action) -> Attribute action
+onEmptied :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onEncrypted`
 
 ``` purescript
-onEncrypted :: forall action. (MediaEvent -> action) -> Attribute action
+onEncrypted :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onEnded`
 
 ``` purescript
-onEnded :: forall action. (MediaEvent -> action) -> Attribute action
+onEnded :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onError`
 
 ``` purescript
-onError :: forall action. (MediaEvent -> action) -> Attribute action
+onError :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onLoad`
 
 ``` purescript
-onLoad :: forall action. (MediaEvent -> action) -> Attribute action
+onLoad :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onLoadedData`
 
 ``` purescript
-onLoadedData :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadedData :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onLoadedMetadata`
 
 ``` purescript
-onLoadedMetadata :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadedMetadata :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onLoadStart`
 
 ``` purescript
-onLoadStart :: forall action. (MediaEvent -> action) -> Attribute action
+onLoadStart :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onPause`
 
 ``` purescript
-onPause :: forall action. (MediaEvent -> action) -> Attribute action
+onPause :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onPlay`
 
 ``` purescript
-onPlay :: forall action. (MediaEvent -> action) -> Attribute action
+onPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onPlaying`
 
 ``` purescript
-onPlaying :: forall action. (MediaEvent -> action) -> Attribute action
+onPlaying :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onProgress`
 
 ``` purescript
-onProgress :: forall action. (MediaEvent -> action) -> Attribute action
+onProgress :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onRateChange`
 
 ``` purescript
-onRateChange :: forall action. (MediaEvent -> action) -> Attribute action
+onRateChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onSeeked`
 
 ``` purescript
-onSeeked :: forall action. (MediaEvent -> action) -> Attribute action
+onSeeked :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onSeeking`
 
 ``` purescript
-onSeeking :: forall action. (MediaEvent -> action) -> Attribute action
+onSeeking :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onStalled`
 
 ``` purescript
-onStalled :: forall action. (MediaEvent -> action) -> Attribute action
+onStalled :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onSuspend`
 
 ``` purescript
-onSuspend :: forall action. (MediaEvent -> action) -> Attribute action
+onSuspend :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onTimeUpdate`
 
 ``` purescript
-onTimeUpdate :: forall action. (MediaEvent -> action) -> Attribute action
+onTimeUpdate :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onVolumeChange`
 
 ``` purescript
-onVolumeChange :: forall action. (MediaEvent -> action) -> Attribute action
+onVolumeChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `onWaiting`
 
 ``` purescript
-onWaiting :: forall action. (MediaEvent -> action) -> Attribute action
+onWaiting :: forall action a b. (MediaEvent a b -> action) -> Attribute action
 ```
 
 #### `handler`

@@ -7,14 +7,16 @@ build a simple login component to demonstrate.
 Our state is simple and need only keep track of the form input:
 
 ```purescript
+import DOM.HTML.Types (HTMLElement)
+
 type State =
   { username :: String
   , password :: String }
 
 data Action
   = SignIn
-  | UsernameChange FormEvent
-  | PasswordChange FormEvent
+  | UsernameChange (FormEvent HTMLElement HTMLElement)
+  | PasswordChange (FormEvent HTMLElement HTMLElement)
 ```
 
 Our login component has three actions. `UsernameChange` and `PasswordChange`
