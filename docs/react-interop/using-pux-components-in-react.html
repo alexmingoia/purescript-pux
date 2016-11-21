@@ -55,7 +55,7 @@
         data-chapter-title="Using Pux components in React"
         data-filepath="docs/react-interop/using-pux-components-in-react.md"
         data-basepath="../.."
-        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-revision="Mon Nov 21 2016 19:50:21 GMT+1100 (AEDT)"
         data-innerlanguage="">
     
 
@@ -404,7 +404,9 @@ to return a React class:</p>
 
 <span class="token keyword">import</span> Control.Monad.Eff</span> <span class="token punctuation">(</span><span class="token constant">Eff</span><span class="token punctuation">)</span><span class="token import_statement">
 <span class="token keyword">import</span> Prelude</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token hvariable">bind</span><span class="token punctuation">,</span> <span class="token builtin">const</span><span class="token punctuation">,</span> <span class="token builtin">show</span><span class="token punctuation">)</span><span class="token import_statement">
-<span class="token keyword">import</span> Pux</span> <span class="token punctuation">(</span><span class="token constant">CoreEffects</span><span class="token punctuation">,</span> <span class="token constant">ReactClass</span><span class="token punctuation">)</span><span class="token import_statement">
+<span class="token keyword">import</span> Pux <span class="token keyword">as</span> Pux</span><span class="token import_statement">
+<span class="token keyword">import</span> Pux</span> <span class="token punctuation">(</span><span class="token constant">CoreEffects</span><span class="token punctuation">)</span><span class="token import_statement">
+<span class="token keyword">import</span> React</span> <span class="token punctuation">(</span><span class="token constant">ReactClass</span><span class="token punctuation">)</span><span class="token import_statement">
 <span class="token keyword">import</span> Pux.Html</span> <span class="token punctuation">(</span><span class="token constant">Html</span><span class="token punctuation">,</span> <span class="token builtin">div</span><span class="token punctuation">,</span> <span class="token builtin">span</span><span class="token punctuation">,</span> <span class="token hvariable">button</span><span class="token punctuation">,</span> <span class="token hvariable">text</span><span class="token punctuation">)</span><span class="token import_statement">
 <span class="token keyword">import</span> Pux.Html.Events</span> <span class="token punctuation">(</span><span class="token hvariable">onClick</span><span class="token punctuation">)</span>
 
@@ -439,7 +441,7 @@ to return a React class:</p>
 </code></pre>
 <p>After your PureScript has been compiled, call this module&apos;s <code>toReact</code> method to
 return your class:</p>
-<pre><code class="lang-javascript"><span class="token keyword">const</span> Counter <span class="token operator">=</span> PS<span class="token punctuation">.</span>Counter<span class="token punctuation">.</span><span class="token function">toReact</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> Counter <span class="token operator">=</span> PS<span class="token punctuation">.</span>Counter<span class="token punctuation">.</span><span class="token function">toReact</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 
                     

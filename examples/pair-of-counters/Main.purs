@@ -1,9 +1,11 @@
 module CounterPairExample where
 
 import CounterPairExample.App (init, update, view)
-import Prelude (bind)
-import Pux (start, fromSimple, renderToDOM)
+import Control.Monad.Eff (Eff)
+import Prelude (bind, Unit)
+import Pux (start, fromSimple, renderToDOM, CoreEffects)
 
+main :: forall e. Eff (CoreEffects e) Unit
 main = do
   app <- start
     { initialState: init 0

@@ -3,7 +3,7 @@ module Pux.Html.Events where
 import Data.Function.Uncurried (Fn2, runFn2)
 import Pux.Html (Attribute)
 
-type Target = { value :: String }
+type Target = { value :: String, checked :: Boolean }
 
 type ClipboardEvent =
   { target :: Target

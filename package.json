@@ -9,17 +9,21 @@
     "docs:watch": "npm run docs:api && npm run docs:prepare && gitbook serve",
     "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update book.' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update book.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "build": "pulp build",
-    "test": "pulp build --main BasicExample --to output/bundle.js -I examples/basic-counter"
+    "build:example:basic": "pulp build --main BasicExample --to output/bundle.js -I examples/basic-counter",
+    "build:example:multiple-components": "pulp build --main CounterPairExample --to output/bundle.js -I examples/pair-of-counters",
+    "build:example:ajax": "pulp build --main AjaxExample --to output/bundle.js -I examples/ajax",
+    "build:example:routing": "pulp build --main RoutingExample --to output/bundle.js -I examples/routing",
+    "test": "npm run build:example:basic && npm run build:example:multiple-components && npm run build:example:ajax && npm run build:example:routing"
   },
   "devDependencies": {
     "bower": "^1.7.9",
     "gitbook-cli": "^2.1.2",
     "pulp": "^9.0.1",
-    "purescript": "^0.9.1"
+    "purescript": "^0.10.1"
   },
   "name": "purescript-pux",
   "description": "Pux is a PureScript interface to React, similar to the Elm app architecture.",
-  "version": "5.0.2",
+  "version": "7.0.0",
   "main": "src/Pux.js",
   "directories": {
     "doc": "docs",

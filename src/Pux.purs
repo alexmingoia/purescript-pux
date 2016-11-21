@@ -16,6 +16,7 @@ module Pux
   ) where
 
 import Control.Monad.Aff (Aff, launchAff, later)
+import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
@@ -29,7 +30,7 @@ import Prelude as Prelude
 import Pux.Html (Html)
 import React (ReactClass)
 import Signal (Signal, (~>), mergeMany, foldp, runSignal)
-import Signal.Channel (CHANNEL, channel, subscribe, send)
+import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
 -- |
@@ -59,12 +60,12 @@ start config = do
       stateSignal = effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
         (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
-      mapAffect affect = launchAff $ do
+      mapAffect affect = launchAff $ unsafeCoerceAff do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
-  pure $ { html: htmlSignal, state: stateSignal }
+  pure $ { html: htmlSignal, state: stateSignal, actionChannel: actionChannel }
   where bind = Prelude.bind
 
 foreign import render :: forall a eff. Fn3 (a -> Eff eff Unit) (a -> a) (Html a) (Html a)
@@ -104,7 +105,9 @@ type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
 -- | * `state` – A signal representing the application's current state.
 type App state action =
   { html :: Signal (Html action)
-  , state :: Signal state }
+  , state :: Signal state
+  , actionChannel :: Channel (List action)
+  }
 
 -- | Synonym for an update function that returns state and an array of
 -- | asynchronous effects that return an action.
@@ -114,7 +117,7 @@ type Update state action eff = action -> state -> EffModel state action eff
 -- | effects which return an action.
 type EffModel state action eff =
   { state :: state
-  , effects :: Array (Aff (channel :: CHANNEL | eff) action) }
+  , effects :: Array (Aff (CoreEffects eff) action) }
 
 -- | Create an `Update` function from a simple step function.
 fromSimple :: forall s a eff. (a -> s -> s) -> Update s a eff
@@ -125,7 +128,7 @@ noEffects :: forall state action eff. state -> EffModel state action eff
 noEffects state = { state: state, effects: [] }
 
 onlyEffects :: forall state action eff.
-               state -> Array (Aff (channel :: CHANNEL | eff) action) -> EffModel state action eff
+               state -> Array (Aff (CoreEffects eff) action) -> EffModel state action eff
 onlyEffects state effects = { state: state, effects: effects }
 
 -- | Map over the state of an `EffModel`.

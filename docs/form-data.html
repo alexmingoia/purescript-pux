@@ -55,7 +55,7 @@
         data-chapter-title="Forms"
         data-filepath="docs/form-data.md"
         data-basepath=".."
-        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-revision="Mon Nov 21 2016 19:50:21 GMT+1100 (AEDT)"
         data-innerlanguage="">
     
 
@@ -416,8 +416,8 @@ information. The <code>SignIn</code> action is sent when the form is submitted, 
 meant to be handled by the parent component to deal with authentication.</p>
 <pre><code class="lang-haskell"><span class="token hvariable">update</span> <span class="token operator">::</span> <span class="token constant">Action</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span> <span class="token operator">-&gt;</span> <span class="token constant">State</span>
 <span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">SignIn</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span> <span class="token hvariable">state</span>
-<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">UsernameChange</span> <span class="token hvariable">ev</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">username</span> <span class="token operator">=</span> <span class="token hvariable">ev</span><span class="token punctuation">.</span><span class="token hvariable">target</span><span class="token punctuation">.</span><span class="token hvariable">value</span> <span class="token punctuation">}</span>
-<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">PasswordChange</span> <span class="token hvariable">ev</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">password</span> <span class="token operator">=</span> <span class="token hvariable">ev</span><span class="token punctuation">.</span><span class="token hvariable">target</span><span class="token punctuation">.</span><span class="token hvariable">value</span> <span class="token punctuation">}</span>
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">UsernameChange</span> <span class="token hvariable">ev</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">username</span> <span class="token operator">=</span> <span class="token hvariable">ev</span><span class="token punctuation">.</span><span class="token hvariable">target</span><span class="token punctuation">.</span><span class="token hvariable">value</span> <span class="token punctuation">}</span>
+<span class="token hvariable">update</span> <span class="token punctuation">(</span><span class="token constant">PasswordChange</span> <span class="token hvariable">ev</span><span class="token punctuation">)</span> <span class="token hvariable">state</span> <span class="token operator">=</span> <span class="token hvariable">state</span> <span class="token punctuation">{</span> <span class="token hvariable">password</span> <span class="token operator">=</span> <span class="token hvariable">ev</span><span class="token punctuation">.</span><span class="token hvariable">target</span><span class="token punctuation">.</span><span class="token hvariable">value</span> <span class="token punctuation">}</span>
 </code></pre>
 <p>Our update function responds to changes from the form inputs. This is where any
 validation logic would go.</p>

@@ -1,5 +1,57 @@
 # Change Log
 
+## [v7.0] - 2016-10-24
+
+### Changed
+
+- Switched version scheme from [SemVer](http://semver.org/) to [ComVer](https://github.com/staltz/comver)
+- Updated for latest PureScript version 0.10.1
+
+### Added
+
+- Additional HTML element constructors.
+  [#74](https://github.com/alexmingoia/purescript-pux/pull/74)
+
+### Removed
+
+- Remove bind/append functions in favor of operators. Fixes bug with `Html` and
+  `Functor` instance.
+  [#72](https://github.com/alexmingoia/purescript-pux/pull/72)
+
+## [v6.0.1] - 2016-09-25
+
+### Fixed
+
+- Fix typo with `withTextChild` and `withChildren` precendence.
+  [#70](https://github.com/alexmingoia/purescript-pux/pull/70)
+
+## [v6.0.0] - 2016-09-21
+
+### Changed
+
+- Tweak fixity of `Html` operators
+  [#64](https://github.com/alexmingoia/purescript-pux/pull/64)
+
+### Added
+
+- Export `actionChannel` with `App`
+  [#66](https://github.com/alexmingoia/purescript-pux/pull/66)
+- Support `event.target.checked`
+  [#62](https://github.com/alexmingoia/purescript-pux/pull/62)
+
+## [v5.0.3] - 2016-07-20
+
+#### Changed
+
+- Allow EXCEPTION effect in updates
+  [#58](https://github.com/alexmingoia/purescript-pux/pull/58)
+
+#### Fixed
+
+- Invoke React.createElement correctly when passing it children
+  [#51](https://github.com/alexmingoia/purescript-pux/pull/51)
+- Various docs updated for purescript 0.9
+
 ## [v5.0.2] - 2016-07-09
 
 #### Fixed

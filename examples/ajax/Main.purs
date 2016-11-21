@@ -1,9 +1,12 @@
 module AjaxExample where
 
 import AjaxExample.Todos (init, update, view)
-import Prelude (bind)
-import Pux (start, renderToDOM)
+import Control.Monad.Eff (Eff)
+import Prelude (bind, Unit)
+import Network.HTTP.Affjax (AJAX)
+import Pux (start, renderToDOM, CoreEffects)
 
+main :: Eff (CoreEffects (ajax :: AJAX)) Unit
 main = do
   app <- start
     { initialState: init

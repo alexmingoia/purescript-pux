@@ -2,7 +2,7 @@ module CounterPairExample.App where
 
 import CounterPairExample.Counter as Counter
 import Prelude (($), const, map)
-import Pux.Html (Html, (!), (#), bind, div, button, text)
+import Pux.Html (Html, (!), (##), (#>), div, button)
 import Pux.Html.Events (onClick)
 
 data Action
@@ -27,7 +27,8 @@ update (Bottom action) state =
 update Reset state = state { topCount = 0, bottomCount = 0 }
 
 view :: State -> Html Action
-view state = div # do
-  map Top $ Counter.view state.topCount
-  map Bottom $ Counter.view state.bottomCount
-  button ! onClick (const Reset) # text "Reset"
+view state = div ##
+  [ map Top $ Counter.view state.topCount
+  , map Bottom $ Counter.view state.bottomCount
+  , button ! onClick (const Reset) #> "Reset"
+  ]

@@ -55,7 +55,7 @@
         data-chapter-title="Routing"
         data-filepath="docs/routing.md"
         data-basepath=".."
-        data-revision="Sat Jul 09 2016 10:18:26 GMT+0800 (CST)"
+        data-revision="Mon Nov 21 2016 19:50:21 GMT+1100 (AEDT)"
         data-innerlanguage="">
     
 
@@ -411,7 +411,7 @@ to contain the matched URL along with parameter and query data.</p>
 build using routing applicatives and pass to <code>router</code> to return the
 matched route:</p>
 <pre><code class="lang-haskell"><span class="token hvariable">match</span> <span class="token operator">::</span> <span class="token constant">String</span> <span class="token operator">-&gt;</span> <span class="token constant">Action</span>
-<span class="token hvariable">match</span> <span class="token hvariable">url</span> <span class="token operator">=</span> <span class="token constant">PageView</span> <span class="token operator">$</span> <span class="token hvariable">fromMaybe</span> <span class="token constant">NotFound</span> <span class="token operator">$</span> <span class="token hvariable">router</span> <span class="token hvariable">url</span>
+<span class="token hvariable">match</span> <span class="token hvariable">url</span> <span class="token operator">=</span> <span class="token constant">PageView</span> <span class="token operator">$</span> <span class="token hvariable">fromMaybe</span> <span class="token constant">NotFound</span> <span class="token operator">$</span> <span class="token hvariable">router</span> <span class="token hvariable">url</span> <span class="token operator">$</span>
   <span class="token constant">Home</span> <span class="token operator">&lt;$</span> <span class="token hvariable">end</span>
   <span class="token operator">&lt;|&gt;</span>
   <span class="token constant">Users</span> <span class="token operator">&lt;$&gt;</span> <span class="token punctuation">(</span><span class="token hvariable">lit</span> <span class="token string">&quot;users&quot;</span> <span class="token operator">*&gt;</span> <span class="token hvariable">param</span> <span class="token string">&quot;sortBy&quot;</span><span class="token punctuation">)</span> <span class="token operator">&lt;*</span> <span class="token hvariable">end</span>

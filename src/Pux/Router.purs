@@ -28,12 +28,11 @@ import Data.Foldable (foldr)
 import Data.Function.Uncurried (runFn3)
 import Data.Int (fromString)
 import Data.List (catMaybes, List(Nil, Cons), fromFoldable, drop)
-import Data.Maybe (Maybe(Just, Nothing), maybe, fromMaybe)
+import Data.Maybe (Maybe(Just, Nothing), maybe)
 import Data.Profunctor (lmap)
-import Data.Traversable (traverse)
 import Data.Tuple (Tuple(Tuple), fst, snd)
 import Global (readFloat, isNaN)
-import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), otherwise, pure, unit, (<>))
+import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), pure, unit, (<>))
 import Pux.Html (Html, Attribute, element)
 import Pux.Html.Attributes (attr)
 import Signal (constant, Signal)
@@ -158,25 +157,25 @@ instance matchApplicative :: Applicative Match where
 
 routeFromUrl :: String -> Route
 routeFromUrl "/" = Nil
-routeFromUrl url = case S.indexOf "?" url of
+routeFromUrl url = case S.indexOf (S.Pattern "?") url of
                     Nothing -> parsePath Nil url
                     Just queryPos ->
                       let queryPart = parseQuery <<< S.drop queryPos $ url
                       in parsePath (Cons queryPart Nil) <<< S.take queryPos $ url
   where
     parsePath :: Route -> String -> Route
-    parsePath query = drop 1 <<< foldr prependPath query <<< S.split "/"
+    parsePath query = drop 1 <<< foldr prependPath query <<< S.split (S.Pattern "/")
       where prependPath = lmap Path Cons
 
 parseQuery :: String -> RoutePart
-parseQuery s = Query <<< M.fromList <<< catMaybes <<< map part2tuple $ parts
+parseQuery s = Query <<< M.fromFoldable <<< catMaybes <<< map part2tuple $ parts
   where
   parts :: List String
-  parts = fromFoldable $ S.split "&" $ S.drop 1 s
+  parts = fromFoldable $ S.split (S.Pattern "&") $ S.drop 1 s
 
   part2tuple :: String -> Maybe (Tuple String String)
   part2tuple part = do
-    let param' = S.split "=" part
+    let param' = S.split (S.Pattern "=") part
     guard $ A.length param' == 2
     Tuple <$> (A.head param') <*> (param' A.!! 1)
 

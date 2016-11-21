@@ -1,7 +1,7 @@
 module CounterPairExample.Counter where
 
 import Prelude ((-), (+), const, show)
-import Pux.Html (Html, div, span, button, text)
+import Pux.Html (Html, (!), (##), (#>), div, span, button)
 import Pux.Html.Events (onClick)
 
 data Action = Increment | Decrement
@@ -17,9 +17,8 @@ update Decrement count = count - 1
 
 view :: State -> Html Action
 view count =
-  div
-    []
-    [ button [ onClick (const Increment) ] [ text "Increment" ]
-    , span [] [ text (show count) ]
-    , button [ onClick (const Decrement) ] [ text "Decrement" ]
+  div ##
+    [ button ! onClick (const Increment) #> "Increment"
+    , span #> show count
+    , button ! onClick (const Decrement) #> "Decrement"
     ]
