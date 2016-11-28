@@ -48,6 +48,7 @@ exports.fromReact = function (comp) {
   return function (attrs) {
     return function (children) {
       if (Array.isArray(children[0])) children = children[0];
+      if (Array.isArray(children) && children.length === 0) children = undefined;
 
       var props = attrs.reduce(function (obj, attr) {
         var key = attr[0];
