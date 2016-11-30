@@ -9,6 +9,7 @@ module Pux
   , fromSimple
   , mapState
   , mapEffects
+  , render
   , renderToDOM
   , renderToString
   , start
