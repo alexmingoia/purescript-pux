@@ -11,6 +11,7 @@
     "build": "pulp build",
     "build:example:basic": "pulp build --main BasicExample --to output/bundle.js -I examples/basic-counter",
     "build:example:multiple-components": "pulp build --main CounterPairExample --to output/bundle.js -I examples/pair-of-counters",
+    "build:example:forms": "pulp build --main FormsExample --to output/bundle.js -I examples/forms",
     "build:example:ajax": "pulp build --main AjaxExample --to output/bundle.js -I examples/ajax",
     "build:example:routing": "pulp build --main RoutingExample --to output/bundle.js -I examples/routing",
     "test": "npm run build:example:basic && npm run build:example:multiple-components && npm run build:example:ajax && npm run build:example:routing"
