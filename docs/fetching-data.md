@@ -73,7 +73,7 @@ update (RequestTodos) state =
       res <- attempt $ get "http://jsonplaceholder.typicode.com/users/1/todos"
       let decode res = decodeJson res.response :: Either String Todos
       let todos = either (Left <<< show) decode res
-      return $ ReceiveTodos todos
+      pure $ ReceiveTodos todos
     ]
   }
 ```
