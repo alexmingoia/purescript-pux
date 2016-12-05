@@ -1,7 +1,7 @@
 module FormsExample.Form where
 
 import Prelude (const)
-import Pux.Html (Html, form, span, button, text, input)
+import Pux.Html (Html, form, button, text, input)
 import Pux.Html.Events (onSubmit, onChange, FormEvent)
 import Pux.Html.Attributes (name, type_, value)
 
