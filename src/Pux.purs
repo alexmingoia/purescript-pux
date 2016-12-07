@@ -15,6 +15,7 @@ module Pux
   , toReact
   ) where
 
+import Prelude as Prelude
 import Control.Monad.Aff (Aff, launchAff, later)
 import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
@@ -26,10 +27,9 @@ import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe (fromJust)
 import Partial.Unsafe (unsafePartial)
 import Prelude (Unit, ($), (<<<), map, pure)
-import Prelude as Prelude
 import Pux.Html (Html)
 import React (ReactClass)
-import Signal (Signal, (~>), mergeMany, foldp, runSignal)
+import Signal (dropRepeats', Signal, (~>), mergeMany, foldp, runSignal)
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
@@ -57,7 +57,7 @@ start config = do
         foldl foldState (noEffects effModel.state) actions
       effModelSignal =
         foldp foldActions (noEffects config.initialState) input
-      stateSignal = effModelSignal ~> _.state
+      stateSignal = dropRepeats' $ effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
         (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
       mapAffect affect = launchAff $ unsafeCoerceAff do
