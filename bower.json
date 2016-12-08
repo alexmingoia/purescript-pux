@@ -32,13 +32,14 @@
     "purescript-functions": "^2.0.0",
     "purescript-profunctor": "^2.0.0",
     "purescript-react": "^2.0.0",
-    "purescript-globals": "^2.0.0"
+    "purescript-globals": "^2.0.0",
+    "purescript-dom": "^3.3.0"
   },
   "devDependencies": {
     "purescript-affjax": "^3.0.0",
     "purescript-argonaut": "^2.0.0"
   },
   "resolutions": {
-    "purescript-dom": "^3.1.0"
+    "purescript-dom": "^3.3.0"
   }
 }

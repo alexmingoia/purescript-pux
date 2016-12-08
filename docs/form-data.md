@@ -15,21 +15,22 @@ type State =
 
 data Action
   = SignIn
-  | UsernameChange (FormEvent HTMLElement HTMLElement)
-  | PasswordChange (FormEvent HTMLElement HTMLElement)
+  | UsernameChange (Event)
+  | PasswordChange (Event)
 ```
 
 Our login component has three actions. `UsernameChange` and `PasswordChange`
-are events which happen every time the inputs change, and receive a
-[`FormEvent`](/API/Pux/Html/Events.html#formevent) containing event
-information. The `SignIn` action is sent when the form is submitted, and is
-meant to be handled by the parent component to deal with authentication.
+are actions which happen every time the inputs change, and receive a DOM
+[`Event`](https://pursuit.purescript.org/packages/purescript-dom/3.3.0/docs/DOM.Event.Types#t:Event)
+from [purescript-dom](https://pursuit.purescript.org/packages/purescript-dom/3.3.0).
+The `SignIn` action is sent when the form is submitted, and is meant to be
+handled by the parent component to deal with authentication.
 
 ```purescript
 update :: Action -> State -> State
 update (SignIn) state = state
-update (UsernameChange ev) state = state { username = ev.target.value }
-update (PasswordChange ev) state = state { password = ev.target.value }
+update (UsernameChange ev) state = state { username = ev # target # value }
+update (PasswordChange ev) state = state { password = ev # target # value }
 ```
 
 Our update function responds to changes from the form inputs. This is where any

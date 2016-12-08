@@ -1,23 +1,35 @@
 module Pux.Html.Events where
 
-import Data.Function.Uncurried (Fn2, runFn2)
+import Control.Monad.Eff (Eff)
+import DOM.Event.Types (Event)
+import Data.Function.Uncurried (Fn3, runFn3)
 import Pux.Html (Attribute)
 
-type ClipboardEvent a b =
-  { target :: a
-  , currentTarget :: b
-  }
+-- An `EventDecoder` is a function which maps a raw DOM event to the event
+-- type consumed by an application. A default implementation is used by the
+-- event attribute constructors such as `onClick`, `onInput`, etc.
+--
+-- The default implementation calls `.preventDefault()` on DOM events to prevent
+-- UI changes that aren't described by the application.
+type EventDecoder fx ev = Event -> Eff fx ev
 
-type CompositionEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , data :: String
-  }
+-- Create an attribute that declares an event handler. This function can be used
+-- to specify a custom event decoder when attaching event handlers.
+foreign import on :: forall fx ev a. Fn3 String (EventDecoder fx ev) (ev -> a) (Attribute a)
 
-type KeyboardEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , altKey   :: Boolean
+-- Default event decoder used for event attribute constructors such as
+-- `onClick`, `onInput`, etc.
+foreign import defaultDecoder :: forall fx ev. EventDecoder fx ev
+
+type ChangeEvent = { currentTarget :: { value :: String } }
+
+type InputEvent = ChangeEvent
+type FormEvent = ChangeEvent
+
+type CompositionEvent = { data :: String }
+
+type KeyboardEvent =
+  { altKey   :: Boolean
   , ctrlKey  :: Boolean
   , charCode :: Int
   , key      :: String
@@ -30,21 +42,8 @@ type KeyboardEvent a b =
   , which    :: Int
   }
 
-type FocusEvent a b c =
-  { target :: a
-  , currentTarget :: b
-  , relatedTarget :: c
-  }
-
-type FormEvent a b =
-  { target :: a
-  , currentTarget :: b
-  }
-
-type MouseEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , altKey :: Boolean
+type MouseEvent =
+  { altKey :: Boolean
   , button :: Number
   , buttons :: Number
   , clientX :: Number
@@ -58,233 +57,211 @@ type MouseEvent a b =
   , shiftKey :: Boolean
   }
 
-type SelectionEvent a b =
-  { target :: a
-  , currentTarget :: b
-}
-
-type TouchEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , altKey :: Boolean
+type TouchEvent =
+  { altKey :: Boolean
   , ctrlKey :: Boolean
   , metaKey :: Boolean
   , shiftKey :: Boolean
   }
 
-type UIEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , detail :: Number
-  }
-
-type WheelEvent a b =
-  { target :: a
-  , currentTarget :: b
-  , deltaMode :: Number
+type WheelEvent =
+  { deltaMode :: Number
   , deltaX :: Number
   , deltaY :: Number
   , deltaZ :: Number
   }
 
-type MediaEvent a b =
-  { target :: a
-  , currentTarget :: b
-  }
+onCopy :: forall action. (Event -> action) -> Attribute action
+onCopy = runFn3 on "copy" (defaultDecoder)
 
-onCopy :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
-onCopy = runFn2 handler "onCopy"
+onCut :: forall action. (Event -> action) -> Attribute action
+onCut = runFn3 on "cut" (defaultDecoder)
 
-onCut :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
-onCut = runFn2 handler "onCut"
+onPaste :: forall action. (Event -> action) -> Attribute action
+onPaste = runFn3 on "paste" (defaultDecoder)
 
-onPaste :: forall action a b. (ClipboardEvent a b -> action) -> Attribute action
-onPaste = runFn2 handler "onPaste"
+onCompositionEnd :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionEnd = runFn3 on "compositionend" (defaultDecoder)
 
-onCompositionEnd :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
-onCompositionEnd = runFn2 handler "onCompositionEnd"
+onCompositionStart :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionStart = runFn3 on "compositionstart" (defaultDecoder)
 
-onCompositionStart :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
-onCompositionStart = runFn2 handler "onCompositionStart"
+onCompositionUpdate :: forall action. (CompositionEvent -> action) -> Attribute action
+onCompositionUpdate = runFn3 on "compositionupdate" (defaultDecoder)
 
-onCompositionUpdate :: forall action a b. (CompositionEvent a b -> action) -> Attribute action
-onCompositionUpdate = runFn2 handler "onCompositionUpdate"
+onKeyDown :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyDown = runFn3 on "keydown" (defaultDecoder)
 
-onKeyDown :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
-onKeyDown = runFn2 handler "onKeyDown"
+onKeyPress :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyPress = runFn3 on "keypress" (defaultDecoder)
 
-onKeyPress :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
-onKeyPress = runFn2 handler "onKeyPress"
-
-onKeyUp :: forall action a b. (KeyboardEvent a b -> action) -> Attribute action
-onKeyUp = runFn2 handler "onKeyUp"
+onKeyUp :: forall action. (KeyboardEvent -> action) -> Attribute action
+onKeyUp = runFn3 on "keyup" (defaultDecoder)
 
 -- | Send action only if specified key is pressed (on key up)
-onKey :: forall action a b. String -> (KeyboardEvent a b -> action) -> Attribute action
-onKey = runFn2 onKeyHandler
+onKey :: forall action. String -> (KeyboardEvent -> action) -> Attribute action
+onKey keyName = runFn3 onKeyHandler keyName (defaultDecoder)
 
-onFocus :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
-onFocus = runFn2 handler "onFocus"
+foreign import onKeyHandler :: forall fx ev a. Fn3 String (EventDecoder fx ev) (ev -> a) (Attribute a)
 
-onBlur :: forall action a b c. (FocusEvent a b c -> action) -> Attribute action
-onBlur = runFn2 handler "onBlur"
+onFocus :: forall action. (Event -> action) -> Attribute action
+onFocus = runFn3 on "focus" (defaultDecoder)
 
-onChange :: forall action a b. (FormEvent a b -> action) -> Attribute action
-onChange = runFn2 handler "onChange"
+onBlur :: forall action. (Event -> action) -> Attribute action
+onBlur = runFn3 on "blur" (defaultDecoder)
 
-onInput :: forall action a b. (FormEvent a b -> action) -> Attribute action
-onInput = runFn2 handler "onInput"
+onChange :: forall action. (ChangeEvent -> action) -> Attribute action
+onChange = runFn3 on "change" (defaultDecoder)
 
-onSubmit :: forall action a b. (FormEvent a b -> action) -> Attribute action
-onSubmit = runFn2 handler "onSubmit"
+onInput :: forall action. (InputEvent -> action) -> Attribute action
+onInput = runFn3 on "input" (defaultDecoder)
 
-onClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onClick = runFn2 handler "onClick"
+onSubmit :: forall action. (Event -> action) -> Attribute action
+onSubmit = runFn3 on "submit" (defaultDecoder)
 
-onContextMenu :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onContextMenu = runFn2 handler "onContextMenu"
+onClick :: forall action. (MouseEvent -> action) -> Attribute action
+onClick = runFn3 on "click" (defaultDecoder)
 
-onDoubleClick :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDoubleClick = runFn2 handler "onDoubleClick"
+onContextMenu :: forall action. (MouseEvent -> action) -> Attribute action
+onContextMenu = runFn3 on "contextmenu" (defaultDecoder)
 
-onDrag :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDrag = runFn2 handler "onDrag"
+onDoubleClick :: forall action. (MouseEvent -> action) -> Attribute action
+onDoubleClick = runFn3 on "doubleclick" (defaultDecoder)
 
-onDragEnd :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragEnd = runFn2 handler "onDragEnd"
+onDrag :: forall action. (MouseEvent -> action) -> Attribute action
+onDrag = runFn3 on "drag" (defaultDecoder)
 
-onDragEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragEnter = runFn2 handler "onDragEnter"
+onDragEnd :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnd = runFn3 on "dragend" (defaultDecoder)
 
-onDragExit :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragExit = runFn2 handler "onDragExit"
+onDragEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onDragEnter = runFn3 on "dragenter" (defaultDecoder)
 
-onDragLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragLeave = runFn2 handler "onDragLeave"
+onDragExit :: forall action. (MouseEvent -> action) -> Attribute action
+onDragExit = runFn3 on "dragexit" (defaultDecoder)
 
-onDragOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragOver = runFn2 handler "onDragOver"
+onDragLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onDragLeave = runFn3 on "dragleave" (defaultDecoder)
 
-onDragStart :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDragStart = runFn2 handler "onDragStart"
+onDragOver :: forall action. (MouseEvent -> action) -> Attribute action
+onDragOver = runFn3 on "dragover" (defaultDecoder)
 
-onDrop :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onDrop = runFn2 handler "onDrop"
+onDragStart :: forall action. (MouseEvent -> action) -> Attribute action
+onDragStart = runFn3 on "dragstart" (defaultDecoder)
 
-onMouseDown :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseDown = runFn2 handler "onMouseDown"
+onDrop :: forall action. (MouseEvent -> action) -> Attribute action
+onDrop = runFn3 on "drop" (defaultDecoder)
 
-onMouseEnter :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseEnter = runFn2 handler "onMouseEnter"
+onMouseDown :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseDown = runFn3 on "mousedown" (defaultDecoder)
 
-onMouseLeave :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseLeave = runFn2 handler "onMouseLeave"
+onMouseEnter :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseEnter = runFn3 on "mouseenter" (defaultDecoder)
 
-onMouseMove :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseMove = runFn2 handler "onMouseMove"
+onMouseLeave :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseLeave = runFn3 on "mouseleave" (defaultDecoder)
 
-onMouseOut :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseOut = runFn2 handler "onMouseOut"
+onMouseMove :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseMove = runFn3 on "mousemove" (defaultDecoder)
 
-onMouseOver :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseOver = runFn2 handler "onMouseOver"
+onMouseOut :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOut = runFn3 on "mouseout" (defaultDecoder)
 
-onMouseUp :: forall action a b. (MouseEvent a b -> action) -> Attribute action
-onMouseUp = runFn2 handler "onMouseUp"
+onMouseOver :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseOver = runFn3 on "mouseover" (defaultDecoder)
 
-onSelect :: forall action a b. (SelectionEvent a b -> action) -> Attribute action
-onSelect = runFn2 handler "onSelect"
+onMouseUp :: forall action. (MouseEvent -> action) -> Attribute action
+onMouseUp = runFn3 on "mouseup" (defaultDecoder)
 
-onTouchCancel :: forall action a b. (TouchEvent a b -> action) -> Attribute action
-onTouchCancel = runFn2 handler "onTouchCancel"
+onSelect :: forall action. (Event -> action) -> Attribute action
+onSelect = runFn3 on "select" (defaultDecoder)
 
-onTouchEnd :: forall action a b. (TouchEvent a b -> action) -> Attribute action
-onTouchEnd = runFn2 handler "onTouchEnd"
+onTouchCancel :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchCancel = runFn3 on "touchcancel" (defaultDecoder)
 
-onTouchMove :: forall action a b. (TouchEvent a b -> action) -> Attribute action
-onTouchMove = runFn2 handler "onTouchMove"
+onTouchEnd :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchEnd = runFn3 on "touchend" (defaultDecoder)
 
-onTouchStart :: forall action a b. (TouchEvent a b -> action) -> Attribute action
-onTouchStart = runFn2 handler "onTouchStart"
+onTouchMove :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchMove = runFn3 on "touchmove" (defaultDecoder)
 
-onScroll :: forall action a b. (UIEvent a b -> action) -> Attribute action
-onScroll = runFn2 handler "onScroll"
+onTouchStart :: forall action. (TouchEvent -> action) -> Attribute action
+onTouchStart = runFn3 on "touchstart" (defaultDecoder)
 
-onWheel :: forall action a b. (WheelEvent a b -> action) -> Attribute action
-onWheel = runFn2 handler "onWheel"
+onScroll :: forall action. (Event -> action) -> Attribute action
+onScroll = runFn3 on "scroll" (defaultDecoder)
 
-onAbort :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onAbort = runFn2 handler "onAbort"
+onWheel :: forall action. (WheelEvent -> action) -> Attribute action
+onWheel = runFn3 on "wheel" (defaultDecoder)
 
-onCanPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onCanPlay = runFn2 handler "onCanPlay"
+onAbort :: forall action. (Event -> action) -> Attribute action
+onAbort = runFn3 on "abort" (defaultDecoder)
 
-onCanPlayThrough :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onCanPlayThrough = runFn2 handler "onCanPlayThrough"
+onCanPlay :: forall action. (Event -> action) -> Attribute action
+onCanPlay = runFn3 on "canplay" (defaultDecoder)
 
-onDurationChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onDurationChange = runFn2 handler "onDurationChange"
+onCanPlayThrough :: forall action. (Event -> action) -> Attribute action
+onCanPlayThrough = runFn3 on "canplaythrough" (defaultDecoder)
 
-onEmptied :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onEmptied = runFn2 handler "onEmptied"
+onDurationChange :: forall action. (Event -> action) -> Attribute action
+onDurationChange = runFn3 on "durationchange" (defaultDecoder)
 
-onEncrypted :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onEncrypted = runFn2 handler "onEncrypted"
+onEmptied :: forall action. (Event -> action) -> Attribute action
+onEmptied = runFn3 on "emptied" (defaultDecoder)
 
-onEnded :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onEnded = runFn2 handler "onEnded"
+onEncrypted :: forall action. (Event -> action) -> Attribute action
+onEncrypted = runFn3 on "encrypted" (defaultDecoder)
 
-onError :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onError = runFn2 handler "onError"
+onEnded :: forall action. (Event -> action) -> Attribute action
+onEnded = runFn3 on "ended" (defaultDecoder)
 
-onLoad :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onLoad = runFn2 handler "onLoad"
+onError :: forall action. (Event -> action) -> Attribute action
+onError = runFn3 on "error" (defaultDecoder)
 
-onLoadedData :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onLoadedData = runFn2 handler "onLoadedData"
+onLoad :: forall action. (Event -> action) -> Attribute action
+onLoad = runFn3 on "load" (defaultDecoder)
 
-onLoadedMetadata :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onLoadedMetadata = runFn2 handler "onLoadedMetadata"
+onLoadedData :: forall action. (Event -> action) -> Attribute action
+onLoadedData = runFn3 on "loadeddata" (defaultDecoder)
 
-onLoadStart :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onLoadStart = runFn2 handler "onLoadStart"
+onLoadedMetadata :: forall action. (Event -> action) -> Attribute action
+onLoadedMetadata = runFn3 on "loadedmetadata" (defaultDecoder)
 
-onPause :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onPause = runFn2 handler "onPause"
+onLoadStart :: forall action. (Event -> action) -> Attribute action
+onLoadStart = runFn3 on "loadstart" (defaultDecoder)
 
-onPlay :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onPlay = runFn2 handler "onPlay"
+onPause :: forall action. (Event -> action) -> Attribute action
+onPause = runFn3 on "pause" (defaultDecoder)
 
-onPlaying :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onPlaying = runFn2 handler "onPlaying"
+onPlay :: forall action. (Event -> action) -> Attribute action
+onPlay = runFn3 on "play" (defaultDecoder)
 
-onProgress :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onProgress = runFn2 handler "onProgress"
+onPlaying :: forall action. (Event -> action) -> Attribute action
+onPlaying = runFn3 on "playing" (defaultDecoder)
 
-onRateChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onRateChange = runFn2 handler "onRateChange"
+onProgress :: forall action. (Event -> action) -> Attribute action
+onProgress = runFn3 on "progress" (defaultDecoder)
 
-onSeeked :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onSeeked = runFn2 handler "onSeeked"
+onRateChange :: forall action. (Event -> action) -> Attribute action
+onRateChange = runFn3 on "ratechange" (defaultDecoder)
 
-onSeeking :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onSeeking = runFn2 handler "onSeeking"
+onSeeked :: forall action. (Event -> action) -> Attribute action
+onSeeked = runFn3 on "seeked" (defaultDecoder)
 
-onStalled :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onStalled = runFn2 handler "onStalled"
+onSeeking :: forall action. (Event -> action) -> Attribute action
+onSeeking = runFn3 on "seeking" (defaultDecoder)
 
-onSuspend :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onSuspend = runFn2 handler "onSuspend"
+onStalled :: forall action. (Event -> action) -> Attribute action
+onStalled = runFn3 on "stalled" (defaultDecoder)
 
-onTimeUpdate :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onTimeUpdate = runFn2 handler "onTimeUpdate"
+onSuspend :: forall action. (Event -> action) -> Attribute action
+onSuspend = runFn3 on "suspend" (defaultDecoder)
 
-onVolumeChange :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onVolumeChange = runFn2 handler "onVolumeChange"
+onTimeUpdate :: forall action. (Event -> action) -> Attribute action
+onTimeUpdate = runFn3 on "timeupdate" (defaultDecoder)
 
-onWaiting :: forall action a b. (MediaEvent a b -> action) -> Attribute action
-onWaiting = runFn2 handler "onWaiting"
+onVolumeChange :: forall action. (Event -> action) -> Attribute action
+onVolumeChange = runFn3 on "volumechange" (defaultDecoder)
 
-foreign import handler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
-
-foreign import onKeyHandler :: forall ev a. Fn2 String (ev -> a) (Attribute a)
+onWaiting :: forall action. (Event -> action) -> Attribute action
+onWaiting = runFn3 on "waiting" (defaultDecoder)
