@@ -1,10 +1,10 @@
 module FormsExample where
 
+import Control.Bind (bind)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Data.Unit (Unit)
 import FormsExample.Form (update, view, init)
-import Prelude (Unit, bind)
 import Pux (start, fromSimple, renderToDOM)
 import Signal.Channel (CHANNEL)
 
