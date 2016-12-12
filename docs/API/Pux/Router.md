@@ -34,10 +34,17 @@ data RoutePart
   | Query (Map String String)
 ```
 
+#### `Route`
+
+``` purescript
+type Route = List RoutePart
+```
+
 #### `Match`
 
 ``` purescript
 newtype Match a
+  = Match (Route -> Maybe (Tuple Route a))
 ```
 
 ##### Instances

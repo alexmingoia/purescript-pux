@@ -19,6 +19,12 @@ main = do
   renderToDOM "#app" app.html
 ```
 
+#### `render`
+
+``` purescript
+render :: forall s a eff. (a -> Eff eff Unit) -> (Signal s) -> (s -> Html a) -> (Html a)
+```
+
 #### `Config`
 
 ``` purescript

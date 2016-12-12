@@ -77,6 +77,12 @@ withChildren :: forall a. (Array (Attribute a) -> Array (Html a) -> Html a) -> A
 infixr 0 withChildren as ##
 ```
 
+#### `memoize`
+
+``` purescript
+memoize :: forall s a. (s -> Html a) -> s -> Html a
+```
+
 
 ### Re-exported from Pux.Html.Elements:
 

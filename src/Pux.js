@@ -5,16 +5,53 @@
 var React = (typeof require === 'function' && require('react'))
          || (typeof window === 'object' && window.React);
 
+function composeAction (parentAction, html) {
+  var childAction = html.props && html.props.puxParentAction;
+  var action = parentAction;
+  if (childAction) {
+    action = function (a) {
+      return parentAction(childAction(a));
+    };
+  }
+  return action;
+};
+
+function threadInput (input, parentAction, html) {
+  var props = html.props
+  var newProps = {};
+
+  for (var key in props) {
+    if (key !== 'puxParentAction' && key !== 'view' && typeof props[key] === 'function') {
+      newProps[key] = props[key](input, parentAction);
+    }
+  }
+
+  var newChildren = React.Children.map(html.props.children, function (child) {
+    if (typeof child === 'string') {
+      return child;
+    } else {
+      return threadInput(input, composeAction(parentAction, child), child);
+    }
+  });
+
+  return React.cloneElement(html, newProps, newChildren);
+};
+
 function reactClass(htmlSignal) {
   return React.createClass({
+    getInitialState: function () {
+      return { html: htmlSignal.get() }
+    },
     componentWillMount: function () {
       var ctx = this;
-      htmlSignal.subscribe(function () {
-        ctx.forceUpdate();
+      htmlSignal.subscribe(function (html) {
+        if (html !== ctx.state.html) {
+          ctx.setState({ html: html })
+        }
       });
     },
     render: function () {
-      return htmlSignal.get()
+      return this.state.html;
     }
   });
 }
@@ -23,8 +60,7 @@ exports.renderToDOM = function (selector) {
   var ReactDOM = (typeof require === 'function' && require('react-dom'))
               || (typeof window === 'object' && window.ReactDOM);
   return function (htmlSignal) {
-    var elem = React.createElement(reactClass(htmlSignal));
-    ReactDOM.render(elem, document.querySelector(selector))
+    ReactDOM.render(htmlSignal.get(), document.querySelector(selector))
     return function () {};
   };
 };
@@ -32,9 +68,8 @@ exports.renderToDOM = function (selector) {
 exports.renderToString = function (htmlSignal) {
   var ReactDOMServer = (typeof require === 'function' && require('react-dom/server'))
                     || (typeof window === 'object' && window.ReactDOMServer);
-  var elem = React.createElement(reactClass(htmlSignal));
   return function () {
-    return ReactDOMServer.renderToString(elem);
+    return ReactDOMServer.renderToString(htmlSignal.get());
   };
 };
 
@@ -61,42 +96,35 @@ exports.fromReact = function (comp) {
   };
 };
 
-exports.render = function (input, parentAction, html) {
-  if (typeof html === 'string') {
-    html = React.createElement('div', null, html);
-  }
-
-  function composeAction(parentAction, html) {
-    var childAction = html.props && html.props.puxParentAction;
-    var action = parentAction;
-    if (childAction) {
-      action = function (a) {
-        return parentAction(childAction(a));
-      };
-    }
-    return action;
-  }
-
-  function render(input, parentAction, html) {
-    var props = html.props
-    var newProps = {};
-
-    for (var key in props) {
-      if (key !== 'puxParentAction' && typeof props[key] === 'function') {
-        newProps[key] = props[key](input, parentAction);
+exports.render = function (input) {
+  return function (stateSignal) {
+    return function (view) {
+      if (typeof html === 'string') {
+        html = React.createElement('div', null, html);
       }
-    }
 
-    var newChildren = React.Children.map(html.props.children, function (child) {
-      if (typeof child === 'string') {
-        return child;
-      } else {
-        return render(input, composeAction(parentAction, child), child);
-      }
-    });
-
-    return React.cloneElement(html, newProps, newChildren);
-  }
-
-  return render(input, composeAction(parentAction, html), html);
+      return React.createElement(React.createClass({
+        componentWillMount: function () {
+          var ctx = this;
+          stateSignal.subscribe(function (state) {
+            ctx.setState({ state: state })
+          });
+        },
+        getInitialState: function () {
+          return { state: stateSignal.get() }
+        },
+        childContextTypes: {
+          input: React.PropTypes.func
+        },
+        getChildContext: function () {
+          return { input: input };
+        },
+        render: function () {
+          var html = view(this.state.state);
+          var parentAction = function (a) { return a; };
+          return threadInput(input, composeAction(parentAction, html), html);
+        }
+      }));
+    };
+  };
 };

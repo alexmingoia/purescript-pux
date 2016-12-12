@@ -23,14 +23,13 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Data.Foldable (foldl, sequence_)
-import Data.Function.Uncurried (Fn3, runFn3)
 import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe (fromJust)
 import Partial.Unsafe (unsafePartial)
 import Prelude (Unit, ($), (<<<), map, pure)
 import Pux.Html (Html)
 import React (ReactClass)
-import Signal (dropRepeats', Signal, (~>), mergeMany, foldp, runSignal)
+import Signal (Signal, constant, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
@@ -59,8 +58,7 @@ start config = do
       effModelSignal =
         foldp foldActions (noEffects config.initialState) input
       stateSignal = dropRepeats' $ effModelSignal ~> _.state
-      htmlSignal = stateSignal ~> \state ->
-        (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
+      htmlSignal = constant $ render (send actionChannel <<< singleton) stateSignal config.view
       mapAffect affect = launchAff $ unsafeCoerceAff do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
@@ -69,7 +67,7 @@ start config = do
   pure $ { html: htmlSignal, state: stateSignal, actionChannel: actionChannel }
   where bind = Prelude.bind
 
-foreign import render :: forall a eff. Fn3 (a -> Eff eff Unit) (a -> a) (Html a) (Html a)
+foreign import render :: forall s a eff. (a -> Eff eff Unit) -> (Signal s) -> (s -> Html a) -> (Html a)
 
 -- | The configuration of an app consists of update and view functions along
 -- | with an initial state.

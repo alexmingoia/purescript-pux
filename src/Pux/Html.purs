@@ -8,6 +8,7 @@ module Pux.Html
   , withTextChild
   , withChild
   , withChildren
+  , memoize
   ) where
 
 import Data.Array ((:), singleton)
@@ -71,3 +72,5 @@ withChildren :: forall a.
 withChildren f htmls = f [] htmls
 
 infixr 0 withChildren as ##
+
+foreign import memoize :: forall s a. (s -> Html a) -> s -> Html a
