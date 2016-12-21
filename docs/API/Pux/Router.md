@@ -1,31 +1,5 @@
 ## Module Pux.Router
 
-#### `navigateTo`
-
-``` purescript
-navigateTo :: forall eff. String -> Eff (dom :: DOM | eff) Unit
-```
-
-#### `sampleUrl`
-
-``` purescript
-sampleUrl :: forall eff. Eff (dom :: DOM | eff) (Signal String)
-```
-
-Returns a signal containing the current window location path and query.
-
-#### `link`
-
-``` purescript
-link :: forall a. String -> Array (Attribute a) -> Array (Html a) -> Html a
-```
-
-Creates an anchor that pushes new location to HTML5 history.
-
-```purescript
-link "/" [] [ text "Home" ]
-```
-
 #### `RoutePart`
 
 ``` purescript

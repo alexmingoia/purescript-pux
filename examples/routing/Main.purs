@@ -1,24 +1,30 @@
 module RoutingExample where
 
+import Control.Bind ((=<<), bind)
+import Control.Monad.Aff.Console (CONSOLE)
 import Control.Monad.Eff (Eff)
 import DOM (DOM)
-import Prelude ((<<<), bind, Unit)
-import Pux (start, fromSimple, renderToDOM, CoreEffects)
-import Pux.Router (sampleUrl)
+import DOM.HTML (window)
+import DOM.HTML.Types (HISTORY)
+import Data.Function ((<<<))
+import Data.Unit (Unit)
+import Pux (start, CoreEffects)
+import Pux.DOM.History (sampleURL)
+import Pux.Renderer.React (renderToDOM)
+import RoutingExample.App (Event(PageView), init, foldp, view)
 import RoutingExample.Routes (match)
-import RoutingExample.App (Action(PageView), init, update, view)
 import Signal ((~>))
 
-main :: Eff (CoreEffects (dom :: DOM)) Unit
+main :: Eff (CoreEffects (history :: HISTORY, console :: CONSOLE, dom :: DOM)) Unit
 main = do
-  urlSignal <- sampleUrl
+  urlSignal <- sampleURL =<< window
   let routeSignal = urlSignal ~> (PageView <<< match)
 
   app <- start
     { initialState: init
-    , update: fromSimple update
-    , view: view
+    , view
+    , foldp
     , inputs: [routeSignal]
     }
 
-  renderToDOM "#app" app.html
+  renderToDOM "#app" app.markup app.input

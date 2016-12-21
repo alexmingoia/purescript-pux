@@ -3,47 +3,40 @@
 #### `start`
 
 ``` purescript
-start :: forall state action eff. Config state action eff -> Eff (CoreEffects eff) (App state action)
+start :: forall e ev st fx. Config e ev st fx -> Eff (CoreEffects fx) (App e ev st)
 ```
 
-Start an application. The resulting html signal is fed into `renderToDOM`.
+Create an application, which exposes a markup signal that can be used by
+renderers.
 
 ```purescript
 main = do
   app <- start
-    { update: update
-    , view: view
-    , initialState: initialState
-    , inputs: [] }
+   { initialState
+   , view
+   , foldp
+   , inputs: [] }
 
-  renderToDOM "#app" app.html
-```
-
-#### `render`
-
-``` purescript
-render :: forall s a eff. (a -> Eff eff Unit) -> (Signal s) -> (s -> Html a) -> (Html a)
+  renderToDOM "#app" app.markup app.input
 ```
 
 #### `Config`
 
 ``` purescript
-type Config state action eff = { update :: Update state action eff, view :: state -> Html action, initialState :: state, inputs :: Array (Signal action) }
+type Config e ev st fx = { "initialState" :: st, "view" :: st -> Markup e, "foldp" :: FoldP st ev fx, "inputs" :: Array (Signal ev) }
 ```
 
-The configuration of an app consists of update and view functions along
-with an initial state.
+The configuration of an app consists of foldp and view functions along
+with an initial state. The `foldp` and `view` functions describe how to
+step the state and view | the state.
 
-The `update` and `view` functions describe how to step the state and view
-the state.
-
-The `inputs` array is for any external signals you might need. These will
+The `inputs` array is for any external inputs you might need. These will
 be merged into the app's input signal.
 
 #### `CoreEffects`
 
 ``` purescript
-type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
+type CoreEffects fx = ("channel" :: CHANNEL, "err" :: EXCEPTION | fx)
 ```
 
 The set of effects every Pux app needs to allow through when using `start`.
@@ -52,7 +45,7 @@ Extend this type with your own app's effects, for example:
 ```purescript
 type AppEffects = (console :: CONSOLE, dom :: DOM)
 
-main :: State -> Eff (CoreEffects AppEffects) (App State Action)
+main :: State -> Eff (CoreEffects AppEffects) (App DOMEvent State Event)
 main state = do
   -- ...
 ```
@@ -60,46 +53,39 @@ main state = do
 #### `App`
 
 ``` purescript
-type App state action = { html :: Signal (Html action), state :: Signal state, actionChannel :: Channel (List action) }
+type App e ev st = { "markup" :: Signal (Markup e), "state" :: Signal st, "events" :: Signal (List ev), "input" :: Channel (List ev) }
 ```
 
-An `App` consists of three signals:
+An `App` is a record consisting of:
 
-* `html` – A signal of `Html` representing the current view of your
-  app. This should be fed into `renderToDOM`.
+* `markup` – A signal of `Markup e` representing the current view of the
+  app. This is consumed by renderers.
 
 * `state` – A signal representing the application's current state.
 
-#### `Update`
+* `input` – A channel representing the application's event input.
+
+#### `FoldP`
 
 ``` purescript
-type Update state action eff = action -> state -> EffModel state action eff
+type FoldP st ev fx = ev -> st -> EffModel st ev fx
 ```
 
-Synonym for an update function that returns state and an array of
-asynchronous effects that return an action.
+Return an `EffModel` from the current event and state.
 
 #### `EffModel`
 
 ``` purescript
-type EffModel state action eff = { state :: state, effects :: Array (Aff (CoreEffects eff) action) }
+type EffModel st ev fx = { "state" :: st, "effects" :: Array (Aff (CoreEffects fx) (Maybe ev)) }
 ```
 
-`EffModel` is a container for state and a collection of asynchronous
-effects which return an action.
-
-#### `fromSimple`
-
-``` purescript
-fromSimple :: forall s a eff. (a -> s -> s) -> Update s a eff
-```
-
-Create an `Update` function from a simple step function.
+`EffModel` is a container for state and asynchronous effects which return
+an event.
 
 #### `noEffects`
 
 ``` purescript
-noEffects :: forall state action eff. state -> EffModel state action eff
+noEffects :: forall st ev fx. st -> EffModel st ev fx
 ```
 
 Create an `EffModel` with no effects from a given state.
@@ -107,13 +93,13 @@ Create an `EffModel` with no effects from a given state.
 #### `onlyEffects`
 
 ``` purescript
-onlyEffects :: forall state action eff. state -> Array (Aff (CoreEffects eff) action) -> EffModel state action eff
+onlyEffects :: forall st ev fx. st -> Array (Aff (CoreEffects fx) (Maybe ev)) -> EffModel st ev fx
 ```
 
 #### `mapState`
 
 ``` purescript
-mapState :: forall sa sb a e. (sa -> sb) -> EffModel sa a e -> EffModel sb a e
+mapState :: forall a b ev fx. (a -> b) -> EffModel a ev fx -> EffModel b ev fx
 ```
 
 Map over the state of an `EffModel`.
@@ -121,29 +107,25 @@ Map over the state of an `EffModel`.
 #### `mapEffects`
 
 ``` purescript
-mapEffects :: forall s a b e. (a -> b) -> EffModel s a e -> EffModel s b e
+mapEffects :: forall a b st fx. (a -> b) -> EffModel st a fx -> EffModel st b fx
 ```
 
-Map over the effectful actions of an `EffModel`.
+Map over the effects of an `EffModel`.
 
-#### `renderToDOM`
+#### `waitEvent`
 
 ``` purescript
-renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff Unit
+waitEvent :: forall e ev st fx. (ev -> Boolean) -> App e ev st -> Aff fx st
 ```
 
-#### `renderToString`
+Wait for a specific event until returning the app state.
+
+#### `waitState`
 
 ``` purescript
-renderToString :: forall a eff. Signal (Html a) -> Eff eff String
+waitState :: forall e ev st fx. (st -> Boolean) -> App e ev st -> Aff fx st
 ```
 
-#### `toReact`
-
-``` purescript
-toReact :: forall a props eff. Signal (Html a) -> Eff eff (ReactClass props)
-```
-
-Return a ReactClass from a Pux component's html signal.
+Wait for a specific state before returning the app state.
 
 

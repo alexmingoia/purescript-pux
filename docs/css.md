@@ -1,51 +1,58 @@
 # CSS
 
-## Type-safe CSS
-
 CSS can and should be composed in a type-safe manner by using
-[purescript-css](https://github.com/slamdata/purescript-css) and
-[purescript-pux-css](https://github.com/alexmingoia/pux-css).
-
-[purescript-css](https://github.com/slamdata/purescript-css) provides a monad
-for specifying styles, and
-[purescript-pux-css](https://github.com/alexmingoia/pux-css) provides the `css`
-method for rendering to tuples, and a `style` attribute that takes `CSS`
-directly and returns an `Attribute`.
-
-For example:
-
-```purescript
-import Pux.CSS (color, em, fontSize, fontWeight, marginTop, px, rgb, size, style, weight)
-import Pux.Html (h1, text)
-
-h1
-  [ style $ do
-      color (rgb 66 66 84)
-      fontSize (1.2 # em)
-      fontWeight (weight 400.0)
-      marginTop (0.0 # px)
-  ]
-  [ text "Styled header" ]
-```
+[purescript-css](https://github.com/slamdata/purescript-css), which provides the
+`CSS` monad. Pux provides `style` constructors that take `CSS` and return a
+style element or attribute.
 
 ## Inline styles
 
-The [`Pux.style`](/API/Pux/Html/Attributes.html#style) attribute can be used to
-specify inline styles, and takes an array of tuples, representing a CSS rule
-name and value:
+For example, the [`style`](/docs/API/Pux/DOM/HTML/Attributes#style)
+attribute constructor can be used for inline styles:
 
 ```purescript
-h1
-  [ style
-      [ Tuple "fontSize" "1.2em"
-      , Tuple "fontWeight" "400"
-      ]
-  ]
-  [ text "Styled header" ]
+import CSS (color, fontSize, fontWeight, marginTop, lighter, rgb, em, px)
+import Control.Bind (bind)
+import Data.Function (($) (#))
+import Pux.DOM.HTML (HTML, h1)
+import Pux.DOM.HTML.Attributes (style)
+import Text.Smolder.Markup ((!), text)
+
+view :: ∀ ev st. st -> HTML ev
+view st =
+  h1 ! style do
+         color (rgb 66 66 84)
+         fontSize (1.2 # em)
+         fontWeight lighter
+         marginTop (0.0 # px)
+     $ text "Styled header"
 ```
 
-## Component-specific styles
+## Stylesheets
 
 One approach to rendering a stylesheet for a specific component is to insert a
-`style` element in the component's view with that component's CSS. It will be
-added when the component mounts and removed when it unmounts.
+[`style`](/docs/API/Pux/DOM/HTML#style) element in the component's view with that
+component's CSS. It will be added when the component mounts and removed when it
+unmounts.
+
+```purescript
+import CSS ((?), fromString, color, fontSize, fontWeight, marginTop, lighter, rgb, em, px)
+import Control.Bind (bind)
+import Data.Function (($) (#))
+import Pux.DOM.HTML (HTML, h1, style)
+import Text.Smolder.Markup ((!), text)
+
+view :: ∀ ev st. st -> HTML ev
+view st =
+  div do
+    style do
+      fromString ".header" ? do
+        color (rgb 66 66 84)
+        fontSize (1.2 # em)
+        fontWeight lighter
+        marginTop (0.0 # px)
+    h1 $ text "Styled header"
+```
+
+> #### Next: [React interop](/docs/react-interop)
+> #### Previous: [Routing](/docs/routing)

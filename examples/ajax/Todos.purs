@@ -1,18 +1,27 @@
 module AjaxExample.Todos where
 
+import Control.Applicative (pure)
+import Control.Bind (bind)
 import Control.Monad.Aff (attempt)
 import Data.Argonaut (class DecodeJson, decodeJson, (.?))
 import Data.Either (Either(Left, Right), either)
+import Data.Foldable (for_)
+import Data.Function (($), (<<<), const)
+import Data.Maybe (Maybe(..))
+import Data.Semigroup ((<>))
+import Data.Show (show)
 import Network.HTTP.Affjax (AJAX, get)
-import Prelude (($), bind, map, const, show, (<>), pure, (<<<))
 import Pux (EffModel, noEffects)
-import Pux.Html (Html, div, h1, ol, li, button, text)
-import Pux.Html.Attributes (key, className)
-import Pux.Html.Events (onClick)
+import Pux.DOM.Events (onClick)
+import Pux.DOM.HTML (HTML)
+import Pux.DOM.HTML.Attributes (key)
+import Text.Smolder.HTML (button, div, h1, li, ol)
+import Text.Smolder.HTML.Attributes (className)
+import Text.Smolder.Markup ((!), (#!), text)
 
 -- | Because AJAX is effectful and asynchronous, we represent requests and
--- | responses as input actions.
-data Action = RequestTodos | ReceiveTodos (Either String Todos)
+-- | responses as input events.
+data Event = RequestTodos | ReceiveTodos (Either String Todos)
 
 type State =
   { todos :: Todos
@@ -37,33 +46,29 @@ instance decodeJsonTodo :: DecodeJson Todo where
 
 -- | Our update function requests data from the server, and handles data
 -- | received from input.
-update :: Action -> State -> EffModel State Action (ajax :: AJAX)
-update (ReceiveTodos (Left err)) state =
+foldp :: Event -> State -> EffModel State Event (ajax :: AJAX)
+foldp (ReceiveTodos (Left err)) state =
   noEffects $ state { status = "Error fetching todos: " <> show err }
-update (ReceiveTodos (Right todos)) state =
+foldp (ReceiveTodos (Right todos)) state =
   noEffects $ state { todos = todos, status = "Todos" }
-update (RequestTodos) state =
+foldp (RequestTodos) state =
   { state: state { status = "Fetching todos..." }
   , effects: [ do
       res <- attempt $ get "http://jsonplaceholder.typicode.com/users/1/todos"
       let decode r = decodeJson r.response :: Either String Todos
       let todos = either (Left <<< show) decode res
-      pure $ ReceiveTodos todos
+      pure $ Just $ ReceiveTodos todos
     ]
   }
 
-view :: State -> Html Action
+view :: State -> HTML Event
 view state =
-  div
-    []
-    [ h1 [] [ text state.status ]
-    , div
-        []
-        [ button [ onClick (const RequestTodos) ] [ text "Fetch todos" ]
-        , ol [] $ map todo state.todos
-        ]
-    ]
+  div do
+    h1 $ text state.status
+    div do
+      button #! onClick (const RequestTodos) $ text "Fetch todos"
+      ol $ for_ state.todos todo
 
-todo :: Todo -> Html Action
+todo :: Todo -> HTML Event
 todo (Todo state) =
-  li [ key (show state.id), className "todo" ] [ text state.title ]
+  li ! key (show state.id) ! className "todo" $ text state.title

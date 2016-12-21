@@ -2,10 +2,7 @@ module Pux.Router
   ( Match(..)
   , Route
   , RoutePart(..)
-  , sampleUrl
   , router
-  , navigateTo
-  , link
   , lit
   , str
   , num
@@ -17,51 +14,26 @@ module Pux.Router
   , end
   ) where
 
-import Data.Array as A
-import Data.Map as M
-import Data.String as S
 import Control.Alt (class Alt)
-import Control.Monad.Eff (Eff)
+import Control.Applicative (class Applicative, pure)
+import Control.Apply (class Apply, (<*>))
+import Control.Bind (bind)
 import Control.MonadPlus (guard)
 import Control.Plus (class Plus)
-import DOM (DOM)
+import Data.Array as A
+import Data.Eq ((==))
+import Data.Functor (class Functor, map, (<$>))
+import Data.Function (($), (<<<))
 import Data.Foldable (foldr)
-import Data.Function.Uncurried (runFn3)
 import Data.Int (fromString)
 import Data.List (catMaybes, List(Nil, Cons), fromFoldable, drop)
 import Data.Maybe (Maybe(Just, Nothing), maybe)
+import Data.Map as M
 import Data.Profunctor (lmap)
+import Data.String as S
 import Data.Tuple (Tuple(Tuple), fst, snd)
+import Data.Unit (Unit, unit)
 import Global (readFloat, isNaN)
-import Prelude (class Applicative, class Apply, class Functor, Unit, (<<<), ($), map, (==), bind, (<*>), (<$>), pure, unit, (<>))
-import Pux.Html (Html, Attribute, element)
-import Pux.Html.Attributes (attr)
-import Signal (constant, Signal)
-
-foreign import createUrlSignal :: forall eff url.
-                                  (url -> Signal url) ->
-                                  Eff (dom :: DOM | eff) (Signal String)
-
-foreign import linkHandler :: forall a. String -> Attribute a
-
-foreign import navigateTo :: forall eff. String -> Eff (dom :: DOM | eff) Unit
-
--- | Returns a signal containing the current window location path and query.
-sampleUrl :: forall eff. Eff (dom :: DOM | eff) (Signal String)
-sampleUrl = createUrlSignal constant
-
--- | Creates an anchor that pushes new location to HTML5 history.
--- |
--- | ```purescript
--- | link "/" [] [ text "Home" ]
--- | ```
-link :: forall a. String -> Array (Attribute a) -> Array (Html a) -> Html a
-link url attrs children = runFn3 element "a" newAttrs children
-  where
-    newAttrs = attrs <>
-      [ linkHandler url
-      , attr "href" url
-      ]
 
 data RoutePart = Path String | Query (M.Map String String)
 type Route = List RoutePart
@@ -138,7 +110,8 @@ instance matchFunctor :: Functor Match where
 
 instance matchAlt :: Alt Match where
   alt (Match a) (Match b) = Match $ \r ->
-    case a r of -- Manual implementation to avoid unnecessary evaluation of b r in case a r is true. PureScript is strict! God I love Haskell ;-)
+    -- Manual implementation to avoid unnecessary evaluation of b r in case a r is true.
+    case a r of
       Nothing -> b r
       Just x  -> Just x
 
@@ -180,6 +153,6 @@ parseQuery s = Query <<< M.fromFoldable <<< catMaybes <<< map part2tuple $ parts
     guard $ A.length param' == 2
     Tuple <$> (A.head param') <*> (param' A.!! 1)
 
-router :: forall a. String -> Match a -> Maybe a
+router :: ∀ a. String -> Match a -> Maybe a
 router url (Match match) = maybe Nothing (Just <<< snd) result
   where result = match $ routeFromUrl url

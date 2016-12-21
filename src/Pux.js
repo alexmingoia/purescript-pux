@@ -1,130 +1,163 @@
-"use strict";
+exports.start_ = function (app) {
+  if (typeof window === 'object' && typeof CustomEvent === 'function') {
+    var initialized, setState, index, events, states;
 
-// module Pux
+    // Listen for devtool and connect
+    window.addEventListener('pux:devtool:init', function () {
+      index = 0;
+      events = [app.events.get()];
+      states = [app.state.get()];
 
-var React = (typeof require === 'function' && require('react'))
-         || (typeof window === 'object' && window.React);
-
-function composeAction (parentAction, html) {
-  var childAction = html.props && html.props.puxParentAction;
-  var action = parentAction;
-  if (childAction) {
-    action = function (a) {
-      return parentAction(childAction(a));
-    };
-  }
-  return action;
-};
-
-function threadInput (input, parentAction, html) {
-  var props = html.props
-  var newProps = {};
-
-  for (var key in props) {
-    if (key !== 'puxParentAction' && key !== 'view' && typeof props[key] === 'function') {
-      newProps[key] = props[key](input, parentAction);
-    }
-  }
-
-  var newChildren = React.Children.map(html.props.children, function (child) {
-    if (typeof child === 'string') {
-      return child;
-    } else {
-      return threadInput(input, composeAction(parentAction, child), child);
-    }
-  });
-
-  return React.cloneElement(html, newProps, newChildren);
-};
-
-function reactClass(htmlSignal) {
-  return React.createClass({
-    getInitialState: function () {
-      return { html: htmlSignal.get() }
-    },
-    componentWillMount: function () {
-      var ctx = this;
-      htmlSignal.subscribe(function (html) {
-        if (html !== ctx.state.html) {
-          ctx.setState({ html: html })
-        }
-      });
-    },
-    render: function () {
-      return this.state.html;
-    }
-  });
-}
-
-exports.renderToDOM = function (selector) {
-  var ReactDOM = (typeof require === 'function' && require('react-dom'))
-              || (typeof window === 'object' && window.ReactDOM);
-  return function (htmlSignal) {
-    ReactDOM.render(htmlSignal.get(), document.querySelector(selector))
-    return function () {};
-  };
-};
-
-exports.renderToString = function (htmlSignal) {
-  var ReactDOMServer = (typeof require === 'function' && require('react-dom/server'))
-                    || (typeof window === 'object' && window.ReactDOMServer);
-  return function () {
-    return ReactDOMServer.renderToString(htmlSignal.get());
-  };
-};
-
-exports.toReact = function (htmlSignal) {
-  return function () {
-    return reactClass(htmlSignal);
-  };
-};
-
-exports.fromReact = function (comp) {
-  return function (attrs) {
-    return function (children) {
-      if (Array.isArray(children[0])) children = children[0];
-
-      var props = attrs.reduce(function (obj, attr) {
-        var key = attr[0];
-        var val = attr[1];
-        obj[key] = val;
-        return obj;
-      }, {});
-
-      return React.createElement.apply(null, [comp, props].concat(children))
-    };
-  };
-};
-
-exports.render = function (input) {
-  return function (stateSignal) {
-    return function (view) {
-      if (typeof html === 'string') {
-        html = React.createElement('div', null, html);
-      }
-
-      return React.createElement(React.createClass({
-        componentWillMount: function () {
-          var ctx = this;
-          stateSignal.subscribe(function (state) {
-            ctx.setState({ state: state })
-          });
-        },
-        getInitialState: function () {
-          return { state: stateSignal.get() }
-        },
-        childContextTypes: {
-          input: React.PropTypes.func
-        },
-        getChildContext: function () {
-          return { input: input };
-        },
-        render: function () {
-          var html = view(this.state.state);
-          var parentAction = function (a) { return a; };
-          return threadInput(input, composeAction(parentAction, html), html);
+      window.dispatchEvent(new CustomEvent('pux:state:change', {
+        detail: {
+          index: index,
+          length: states.length,
+          state: stateToString(app.state.get()),
+          event: eventToString(app.events.get())
         }
       }));
+
+      if (initialized) return;
+      initialized = true
+
+      app.events.subscribe(function (ev) {
+        events.push(ev);
+      });
+
+      app.state.subscribe(function (st) {
+        setTimeout(function () {
+          if (!setState) {
+            states.push(st);
+            index = states.length - 1;
+          }
+          setState = false;
+          window.dispatchEvent(new CustomEvent('pux:state:change', {
+            detail: {
+              index: index,
+              length: states.length,
+              state: stateToString(st),
+              event: eventToString(events[index])
+            }
+          }));
+        }, 1);
+      });
+
+      window.addEventListener('pux:state:first', function () {
+        setState = true;
+        index = 0;
+        app.state.set(states[0]);
+      })
+
+      window.addEventListener('pux:state:prev', function () {
+        setState = true;
+        if (states[index - 1]) index--;
+        app.state.set(states[index]);
+      })
+
+      window.addEventListener('pux:state:next', function () {
+        setState = true;
+        if (states[index + 1]) index++;
+        app.state.set(states[index]);
+      })
+
+      window.addEventListener('pux:state:last', function () {
+        setState = true;
+        index = states.length - 1;
+        app.state.set(states[index]);
+      })
+    });
+  }
+
+  return app;
+};
+
+function eventToString (a) {
+  a = a.value0 ? a.value0 : a;
+
+  function toString(a) {
+    var name = a.constructor.name.match(/(String|Number|Boolean)/) ? a : a.constructor.name;
+    var str = [name];
+    if (a.constructor.name === 'Object') {
+      return JSON.stringify(stateToJSON(a));
+    }
+    Object.keys(a).forEach(function (key) {
+      if (key[0] === 'v' && key[4] === 'e') {
+        str.push('(' + toString(a[key]) + ')');
+      }
+    });
+    return str.join(' ');
+  }
+
+  return toString(a);
+};
+
+function eventToJSON (a) {
+  function toJSON(a, obj) {
+    if (a.constructor.name.match(/(String|Number|Boolean)/)) {
+      return a;
+    } else if (a.constructor.name === 'Object') {
+      Object.keys(a).forEach(function (key) {
+        obj[key] = toJSON(a[key], obj[key] || {});
+      });
+    } else if (a.constructor.name === 'Array') {
+      return a.map(function (b) {
+        return toJSON(b, {});
+      });
+    } else {
+      obj[a.constructor.name] = {};
+      if (a.value0 && !a.value1) {
+        obj[a.constructor.name] = toJSON(a.value0, obj[a.constructor.name] || {});
+      } else {
+        Object.keys(a).forEach(function (key) {
+          if (key[0] === 'v' && key[4] === 'e') {
+            obj[a.constructor.name][key[5]] = toJSON(a[key], obj[a.constructor.name][key[5]] || {});
+          }
+        });
+      }
+    }
+    return obj;
+  }
+
+  return toJSON(a, {});
+};
+
+function stateToString (s) {
+  return JSON.stringify(s, function (key, val) {
+    if (!val.constructor.name.match(/(Object|Boolean|Array|String|Number|Date|Symbol)/)) {
+      return eventToJSON(val);
+    }
+    return val;
+  }, 2)
+};
+
+exports.waitState_ = function (until) {
+  return function (app) {
+    return function (success) {
+      return function () {
+        var run = false;
+        app.state.subscribe(function (st) {
+          if (!run && until(st)) {
+            run = true;
+            success(st)();
+          }
+        });
+      };
+    };
+  };
+};
+
+exports.waitEvent_ = function (until) {
+  return function (app) {
+    return function (success) {
+      return function () {
+        var run = false;
+        app.input.subscribe(function (ev) {
+          if (!run && until(ev)) {
+            run = true;
+            success(app.state.get())();
+          }
+        });
+      };
     };
   };
 };

@@ -1,5 +1,28 @@
 # Change Log
 
+## [v8.0] - 2017-01-01
+
+This is a major upgrade and rewrite with breaking changes:
+
+- Markup now uses purescript-smolder and `Html` has been replaced with a new
+  `HTML` type.
+- Event handlers now receive the raw DOM event from purescript-dom, and Pux no
+  longer provides its own event types.
+- Type signatures for `start`, `Config`, `App` have changed to include a new
+  type parameter and different labels.
+- Effects in the EffModel now return `Maybe a` instead of `a`.
+- Rendering is no longer tied to React. Other virtual DOM renderers can be
+  implemented.
+- Added memoize function for views is provided to prevent unnecessary renders.
+- Added constructor for style element and attribute which takes `CSS` from
+  purescript-css.
+- Added full isomorphic routing and rendering setup to pux-starter-app.
+- Actions are now referred to as events in source code and documentation.
+- The "update" function is now referred to as the "foldp" function in source
+  code and documentation.
+
+See the updated [guide](https://www.purescript-pux.org) for help upgrading to Pux 8.
+
 ## [v7.0] - 2016-10-24
 
 ### Changed

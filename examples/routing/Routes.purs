@@ -2,9 +2,9 @@ module RoutingExample.Routes where
 
 import Control.Alt ((<|>))
 import Control.Apply ((<*), (*>))
-import Data.Functor ((<$))
+import Data.Functor ((<$), (<$>))
+import Data.Function (($))
 import Data.Maybe (fromMaybe)
-import Prelude (($), (<$>))
 import Pux.Router (param, router, lit, int, end)
 
 data Route = Home | Users String | User Int | NotFound

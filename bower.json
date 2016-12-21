@@ -1,6 +1,6 @@
 {
   "name": "purescript-pux",
-  "description": "Pux is an FRP interface to React, based on the Elm app architecture.",
+  "description": "Pux is a library for building purely functional interactive UIs with PureScript.",
   "authors": [
     "Alexander Mingoia <talk@alexmingoia.com>"
   ],
@@ -33,13 +33,15 @@
     "purescript-profunctor": "^2.0.0",
     "purescript-react": "^2.0.0",
     "purescript-globals": "^2.0.0",
-    "purescript-dom": "^3.3.0"
+    "purescript-dom": "^3.8.0",
+    "purescript-smolder": "^6.0.0",
+    "purescript-css": "^2.0.0"
   },
   "devDependencies": {
     "purescript-affjax": "^3.0.0",
     "purescript-argonaut": "^2.0.0"
   },
   "resolutions": {
-    "purescript-dom": "^3.3.0"
+    "purescript-dom": "^3.8.0"
   }
 }

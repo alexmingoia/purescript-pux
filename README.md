@@ -1,85 +1,80 @@
 # Pux
 
-[![ComVer](https://img.shields.io/badge/ComVer-compliant-brightgreen.svg)](https://github.com/staltz/comver)
+[![Latest Release](http://img.shields.io/github/release/alexmingoia/purescript-pux.svg)](https://pursuit.purescript.org/packages/purescript-pux)
+[![ComVer](https://img.shields.io/badge/comver-compliant-brightgreen.svg)](https://github.com/staltz/comver)
 [![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux)
-[![NPM Version](https://img.shields.io/npm/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/blob/master/CHANGELOG.md)
-[![Bower Version](https://img.shields.io/bower/v/purescript-pux.svg)](https://github.com/alexmingoia/purescript-pux/blob/master/CHANGELOG.md)
 [![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/purescript-pux)
 
-Pux is a PureScript interface to React, similar to the [Elm app
-architecture](https://github.com/evancz/elm-architecture-tutorial). It is a
-simple pattern for modular, nested components that are easy to test, refactor,
-and debug - making it simple and straightforward to build complex web
-applications.
+Build purely functional, type-safe web applications.
 
-- Build React UIs as a fold of actions to state.
-- Type-safe routing
-- Server-side rendering (isomorphic applications)
-- Hot-reloading of components
-- Interop with existing React components
+- Isomorphic routing and rendering
+- Hot reloading
+- Render to React (or any virtual DOM library)
+- Time-travelling debug extension
 
----
+### Learn more
 
-- [Guide](http://alexmingoia.github.io/purescript-pux)
-- [API Reference](http://alexmingoia.github.io/purescript-pux/docs/API/Pux.html)
-- [Starter app](https://github.com/alexmingoia/pux-starter-app)
+Read the [Guide](https://www.purescript-pux.org/docs/architecture) to learn more about Pux.
 
-### Installation
+### Quick start
 
-The easiest way to get started is to clone the
-[starter app](http://github.com/alexmingoia/pux-starter-app),
-which includes a hot-reloading setup using webpack:
+The [starter app](http://github.com/alexmingoia/pux-starter-app) provides
+everything you need to get started:
 
 ```sh
-git clone git://github.com/alexmingoia/pux-starter-app.git example
-cd example
+git clone git://github.com/alexmingoia/pux-starter-app.git my-awesome-pux-app
+cd my-awesome-pux-app
 npm install
 npm start
 ```
 
-Pux is also available as the bower package `purescript-pux`.
-
 ### Example
 
-The following chunk of code sets up a basic counter that you can increment and
-decrement:
+The following chunk of code sets up a basic counter that can be incremented and
+decremented:
 
 ```purescript
-import Prelude (Unit, bind, const, show, (-), (+))
+module Main where
 
+import Control.Bind (bind)
 import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Exception (EXCEPTION)
-import Signal.Channel (CHANNEL)
+import Data.Function (const, ($))
+import Data.Ring ((+), (-))
+import Data.Show (show)
+import Data.Unit (Unit)
+import Pux (CoreEffects, start)
+import Pux.DOM.Events (onClick)
+import Pux.DOM.HTML (HTML)
+import Pux.Renderer.React (renderToDOM)
+import Text.Smolder.HTML (button, div, span)
+import Text.Smolder.Markup (text, (#!))
 
-import Pux (renderToDOM, fromSimple, start)
-import Pux.Html (Html, text, button, span, div)
-import Pux.Html.Events (onClick)
+data Event = Increment | Decrement
 
-data Action = Increment | Decrement
+newtype State = State Int
 
-type State = Int
+-- | Return a new state (and effects) from each event
+foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp Increment (State n) = { state: State (n + 1), effects: [] }
+foldp Decrement (State n) = { state: State (n - 1), effects: [] }
 
-update :: Action -> State -> State
-update Increment count = count + 1
-update Decrement count = count - 1
+-- | Return markup from the state
+view :: State -> HTML Event
+view (State n) =
+  div do
+    button #! onClick (const Increment) $ text "Increment"
+    span $ text (show n)
+    button #! onClick (const Decrement) $ text "Decrement"
 
-view :: State -> Html Action
-view count =
-  div
-    []
-    [ button [ onClick (const Increment) ] [ text "Increment" ]
-    , span [] [ text (show count) ]
-    , button [ onClick (const Decrement) ] [ text "Decrement" ]
-    ]
-
-main :: forall e. Eff (err :: EXCEPTION, channel :: CHANNEL | e) Unit
+-- | Start and render the app
+main :: ∀ fx. Eff (CoreEffects fx) Unit
 main = do
   app <- start
-    { initialState: 0
-    , update: fromSimple update
-    , view: view
+    { initialState: State 0
+    , view
+    , foldp
     , inputs: []
     }
 
-  renderToDOM "#app" app.html
+  renderToDOM "#app" app.markup app.input
 ```

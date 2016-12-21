@@ -1,8 +1,9 @@
-node_modules
-bower_components
+**node_modules/
+**bower_components/
 **DS_Store
-output
+**output/
+**dist/
+**static/dist/
 .pulp-cache
 .psc*
-_book
 examples/*/*.js

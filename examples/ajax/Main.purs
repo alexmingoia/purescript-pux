@@ -1,17 +1,19 @@
 module AjaxExample where
 
-import AjaxExample.Todos (init, update, view)
+import AjaxExample.Todos (init, foldp, view)
+import Control.Bind (bind)
 import Control.Monad.Eff (Eff)
-import Prelude (bind, Unit)
+import Data.Unit (Unit)
 import Network.HTTP.Affjax (AJAX)
-import Pux (start, renderToDOM, CoreEffects)
+import Pux (start, CoreEffects)
+import Pux.Renderer.React (renderToDOM)
 
 main :: Eff (CoreEffects (ajax :: AJAX)) Unit
 main = do
   app <- start
     { initialState: init
-    , update: update
-    , view: view
+    , view
+    , foldp
     , inputs: [] }
 
-  renderToDOM "#app" app.html
+  renderToDOM "#app" app.markup app.input

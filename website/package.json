@@ -1,0 +1,44 @@
+{
+  "name": "pux-website",
+  "private": true,
+  "main": "support/server.entry.js",
+  "scripts": {
+    "postinstall": "bower cache clean && bower install",
+    "clean": "rimraf static/dist && rimraf dist",
+    "build": "npm run build:app && npm run build:scrape",
+    "build:app": "npm run clean && webpack --config ./webpack.config.server.js --profile --colors",
+    "build:scrape": "node ./support/generate-static-website-html.js",
+    "watch:server": "webpack --watch --config ./webpack.config.server.js --profile --colors",
+    "watch:server:start": "just-wait --timeout 180 --pattern \"dist/server.js\" && node ./dist/server.js",
+    "watch": "npm run clean && concurrently --kill-others \"npm run watch:server:start\" \"npm run watch:server\"",
+    "serve": "npm run build:app && node ./dist/server.js",
+    "start": "npm run watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexmingoia/purescript-pux.git"
+  },
+  "author": "Alexander C. Mingoia",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/alexmingoia/purescript-pux/issues"
+  },
+  "dependencies": {
+    "bower": "^1.7.9",
+    "concurrently": "^3.1.0",
+    "connect-history-api-fallback": "^1.2.0",
+    "express": "^4.13.4",
+    "just-wait": "^1.0.9",
+    "preact": "^7.1.0",
+    "preact-compat": "^3.9.4",
+    "purescript": "^0.10.1",
+    "purescript-psa": "^0.3.9",
+    "purs-loader": "^2.1.1",
+    "rimraf": "^2.5.2",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack-node-externals": "^1.5.4",
+    "website-scraper": "^1.2.3"
+  }
+}

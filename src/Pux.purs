@@ -1,87 +1,89 @@
 module Pux
   ( App
   , Config
-  , Update
+  , FoldP
   , EffModel
   , CoreEffects
   , noEffects
   , onlyEffects
-  , fromSimple
   , mapState
   , mapEffects
-  , render
-  , renderToDOM
-  , renderToString
   , start
-  , toReact
+  , waitEvent
+  , waitState
   ) where
 
-import Prelude as Prelude
-import Control.Monad.Aff (Aff, launchAff, later)
+import Control.Applicative (pure)
+import Control.Bind (bind)
+import Control.Monad.Aff (Aff, later, launchAff, makeAff)
 import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Data.Foldable (foldl, sequence_)
+import Data.Function (($), (<<<))
+import Data.Functor (map)
 import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
-import Data.Maybe (fromJust)
+import Data.Maybe (fromJust, Maybe(..))
+import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
-import Prelude (Unit, ($), (<<<), map, pure)
-import Pux.Html (Html)
-import React (ReactClass)
-import Signal (Signal, constant, dropRepeats', foldp, mergeMany, runSignal, (~>))
+import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
+import Text.Smolder.Markup (Markup)
 
--- | Start an application. The resulting html signal is fed into `renderToDOM`.
+-- | Create an application, which exposes a markup signal that can be used by
+-- | renderers.
 -- |
 -- | ```purescript
 -- | main = do
 -- |   app <- start
--- |     { update: update
--- |     , view: view
--- |     , initialState: initialState
--- |     , inputs: [] }
+-- |    { initialState
+-- |    , view
+-- |    , foldp
+-- |    , inputs: [] }
 -- |
--- |   renderToDOM "#app" app.html
+-- |   renderToDOM "#app" app.markup app.input
 -- | ```
-start :: forall state action eff.
-         Config state action eff ->
-         Eff (CoreEffects eff) (App state action)
+start :: ∀ e ev st fx. Config e ev st fx -> Eff (CoreEffects fx) (App e ev st)
 start config = do
-  actionChannel <- channel Nil
-  let actionSignal = subscribe actionChannel
+  evChannel <- channel Nil
+  let evSignal = subscribe evChannel
       input = unsafePartial $ fromJust $ mergeMany $
-        reverse (actionSignal : map (map singleton) (fromFoldable $ config.inputs))
-      foldState effModel action = config.update action effModel.state
-      foldActions actions effModel =
-        foldl foldState (noEffects effModel.state) actions
+        reverse (evSignal : map (map singleton) (fromFoldable $ config.inputs))
+      foldState effModel ev = config.foldp ev effModel.state
+      foldEvents evs effModel =
+        foldl foldState (noEffects effModel.state) evs
       effModelSignal =
-        foldp foldActions (noEffects config.initialState) input
+        foldp foldEvents (noEffects config.initialState) input
       stateSignal = dropRepeats' $ effModelSignal ~> _.state
-      htmlSignal = constant $ render (send actionChannel <<< singleton) stateSignal config.view
+      htmlSignal = stateSignal ~> config.view
       mapAffect affect = launchAff $ unsafeCoerceAff do
-        action <- later affect
-        liftEff $ send actionChannel (singleton action)
+        ev <- affect
+        later $ case ev of
+          Nothing -> pure unit
+          Just e -> liftEff $ send evChannel (singleton e)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
-  pure $ { html: htmlSignal, state: stateSignal, actionChannel: actionChannel }
-  where bind = Prelude.bind
+  pure $ start_ $
+    { markup: htmlSignal
+    , state: stateSignal
+    , events: input
+    , input: evChannel
+    }
 
-foreign import render :: forall s a eff. (a -> Eff eff Unit) -> (Signal s) -> (s -> Html a) -> (Html a)
+foreign import start_ :: ∀ e ev st. App e ev st -> App e ev st
 
--- | The configuration of an app consists of update and view functions along
--- | with an initial state.
+-- | The configuration of an app consists of foldp and view functions along
+-- | with an initial state. The `foldp` and `view` functions describe how to
+-- | step the state and view | the state.
 -- |
--- | The `update` and `view` functions describe how to step the state and view
--- | the state.
--- |
--- | The `inputs` array is for any external signals you might need. These will
+-- | The `inputs` array is for any external inputs you might need. These will
 -- | be merged into the app's input signal.
-type Config state action eff =
-  { update :: Update state action eff
-  , view :: state -> Html action
-  , initialState :: state
-  , inputs :: Array (Signal action)
+type Config e ev st fx =
+  { initialState :: st
+  , view :: st -> Markup e
+  , foldp :: FoldP st ev fx
+  , inputs :: Array (Signal ev)
   }
 
 -- | The set of effects every Pux app needs to allow through when using `start`.
@@ -90,61 +92,72 @@ type Config state action eff =
 -- | ```purescript
 -- | type AppEffects = (console :: CONSOLE, dom :: DOM)
 -- |
--- | main :: State -> Eff (CoreEffects AppEffects) (App State Action)
+-- | main :: State -> Eff (CoreEffects AppEffects) (App DOMEvent State Event)
 -- | main state = do
 -- |   -- ...
 -- | ```
-type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
+type CoreEffects fx = (channel :: CHANNEL, err :: EXCEPTION | fx)
 
--- | An `App` consists of three signals:
+-- | An `App` is a record consisting of:
 -- |
--- | * `html` – A signal of `Html` representing the current view of your
--- |   app. This should be fed into `renderToDOM`.
+-- | * `markup` – A signal of `Markup e` representing the current view of the
+-- |   app. This is consumed by renderers.
 -- |
 -- | * `state` – A signal representing the application's current state.
-type App state action =
-  { html :: Signal (Html action)
-  , state :: Signal state
-  , actionChannel :: Channel (List action)
+-- |
+-- | * `input` – A channel representing the application's event input.
+type App e ev st =
+  { markup :: Signal (Markup e)
+  , state :: Signal st
+  , events :: Signal (List ev)
+  , input :: Channel (List ev)
   }
 
--- | Synonym for an update function that returns state and an array of
--- | asynchronous effects that return an action.
-type Update state action eff = action -> state -> EffModel state action eff
+-- | Return an `EffModel` from the current event and state.
+type FoldP st ev fx = ev -> st -> EffModel st ev fx
 
--- | `EffModel` is a container for state and a collection of asynchronous
--- | effects which return an action.
-type EffModel state action eff =
-  { state :: state
-  , effects :: Array (Aff (CoreEffects eff) action) }
-
--- | Create an `Update` function from a simple step function.
-fromSimple :: forall s a eff. (a -> s -> s) -> Update s a eff
-fromSimple update = \action state -> noEffects $ update action state
+-- | `EffModel` is a container for state and asynchronous effects which return
+-- | an event.
+type EffModel st ev fx =
+  { state :: st
+  , effects :: Array (Aff (CoreEffects fx) (Maybe ev)) }
 
 -- | Create an `EffModel` with no effects from a given state.
-noEffects :: forall state action eff. state -> EffModel state action eff
+noEffects :: ∀ st ev fx. st -> EffModel st ev fx
 noEffects state = { state: state, effects: [] }
 
-onlyEffects :: forall state action eff.
-               state -> Array (Aff (CoreEffects eff) action) -> EffModel state action eff
+onlyEffects :: ∀ st ev fx.
+               st -> Array (Aff (CoreEffects fx) (Maybe ev)) -> EffModel st ev fx
 onlyEffects state effects = { state: state, effects: effects }
 
 -- | Map over the state of an `EffModel`.
-mapState :: forall sa sb a e. (sa -> sb) -> EffModel sa a e -> EffModel sb a e
+mapState :: ∀ a b ev fx. (a -> b) -> EffModel a ev fx -> EffModel b ev fx
 mapState a2b effmodel =
   { state: a2b effmodel.state, effects: effmodel.effects }
 
--- | Map over the effectful actions of an `EffModel`.
-mapEffects :: forall s a b e. (a -> b) -> EffModel s a e -> EffModel s b e
-mapEffects action effmodel =
-  { state: effmodel.state, effects: map (map action) effmodel.effects }
+-- | Map over the effects of an `EffModel`.
+mapEffects :: ∀ a b st fx. (a -> b) -> EffModel st a fx -> EffModel st b fx
+mapEffects a2b effmodel =
+  { state: effmodel.state, effects: map (map (map a2b)) effmodel.effects }
 
-foreign import renderToDOM :: forall a eff. String -> Signal (Html a) -> Eff eff Unit
+-- | Wait for a specific event until returning the app state.
+waitEvent :: ∀ e ev st fx.
+             (ev -> Boolean) -> App e ev st -> Aff fx st
+waitEvent until app = makeAff \error success -> waitEvent_ until app success
 
-foreign import renderToString :: forall a eff. Signal (Html a) -> Eff eff String
+foreign import waitEvent_ :: ∀ e ev st fx
+                             .  (ev -> Boolean)
+                             -> App e ev st
+                             -> (st -> Eff fx Unit)
+                             -> Eff fx Unit
 
--- | Return a ReactClass from a Pux component's html signal.
-foreign import toReact :: forall a props eff.
-                          Signal (Html a) ->
-                          Eff eff (ReactClass props)
+-- | Wait for a specific state before returning the app state.
+waitState :: ∀ e ev st fx.
+             (st -> Boolean) -> App e ev st -> Aff fx st
+waitState until app = makeAff \error success -> waitState_ until app success
+
+foreign import waitState_ :: ∀ e ev st fx
+                             .  (st -> Boolean)
+                             -> App e ev st
+                             -> (st -> Eff fx Unit)
+                             -> Eff fx Unit
