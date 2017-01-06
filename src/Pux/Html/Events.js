@@ -20,11 +20,11 @@ exports.handler = function (key, action) {
 };
 
 exports.onKeyHandler = function (keyName, action) {
-  return ["onKeyUp", function (input, parentAction) {
+  return ["onKeyUp", puxHandler(function (input, parentAction) {
     return function (ev) {
       if (ev.key.toLowerCase() === keyName.toLowerCase()) {
         input(parentAction(action(ev)))();
       }
     };
-  }];
+  })];
 };
