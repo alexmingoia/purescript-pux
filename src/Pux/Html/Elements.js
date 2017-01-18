@@ -37,16 +37,20 @@ exports.forwardTo = function (parentAction) {
   };
 };
 
+function puxHandler(h) {
+  h.isPuxHandler = true
+  return h;
+}
 // :: (a -> b) -> Attribute a -> Attribute b
 exports.mapAttribute = function (f) {
   return function (attr) {
     if (typeof attr[1] !== 'function') {
       return attr;
     }
-    return [attr[0], function(input, parentAction) {
+    return [attr[0], puxHandler(function(input, parentAction) {
       return attr[1](input, function(e) {
         return f(parentAction(e));
       });
-    }];
+    })];
   };
 };
