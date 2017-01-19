@@ -87,13 +87,19 @@ exports.render = function (input, parentAction, html) {
       }
     }
 
-    var newChildren = React.Children.map(html.props.children, function (child) {
+    var composeChild = function (child) {
       if (typeof child === 'string') {
         return child;
       } else {
         return render(input, composeAction(parentAction, child), child);
       }
-    });
+    };
+
+    var children = html.props && html.props.children;
+    var newChildren = !children || Array.isArray(children)
+      ? React.Children.map(children, composeChild)
+      : composeChild(children)
+      ;
 
     return React.cloneElement(html, newProps, newChildren);
   }
