@@ -10,7 +10,10 @@ module Pux.Base
   , mapState
   , mapEffects
   , start
+  , start'
   , element
+  , render
+  , Renderer
   ) where
 
 import Control.Monad.Aff (Aff, launchAff, later)
@@ -29,6 +32,8 @@ import Pux.Html.Elements (Attribute)
 import Signal (Signal, (~>), mergeMany, foldp, runSignal)
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 
+type Renderer target a eff = Fn3 (a -> Eff eff Unit) (a -> a) (target a) (target a)
+
 -- | Start an application. The resulting html signal is fed into `renderToDOM`.
 -- |
 -- | ```purescript
@@ -41,10 +46,11 @@ import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 -- |
 -- |   renderToDOM "#app" app.html
 -- | ```
-start :: forall state action eff target.
-         Config state action eff target ->
-         Eff (CoreEffects eff) (App state action target)
-start config = do
+start' :: forall state action eff target.
+         Renderer target action (CoreEffects eff) ->
+         Config target state action eff ->
+         Eff (CoreEffects eff) (App target state action)
+start' render' config = do
   actionChannel <- channel Nil
   let actionSignal = subscribe actionChannel
       input = unsafePartial $ fromJust $ mergeMany $
@@ -56,7 +62,7 @@ start config = do
         foldp foldActions (noEffects config.initialState) input
       stateSignal = effModelSignal ~> _.state
       htmlSignal = stateSignal ~> \state ->
-        (runFn3 render) (send actionChannel <<< singleton) (\a -> a) (config.view state)
+        (runFn3 render') (send actionChannel <<< singleton) (\a -> a) (config.view state)
       mapAffect affect = launchAff $ unsafeCoerceAff do
         action <- later affect
         liftEff $ send actionChannel (singleton action)
@@ -65,7 +71,12 @@ start config = do
   pure $ { html: htmlSignal, state: stateSignal, actionChannel: actionChannel }
   where bind = Prelude.bind
 
-foreign import render :: forall a eff target. Fn3 (a -> Eff eff Unit) (a -> a) (target a) (target a)
+start :: forall state action eff target.
+         Config target state action eff ->
+         Eff (CoreEffects eff) (App target state action)
+start = start' render
+
+foreign import render :: forall a eff target. Renderer target a eff
 
 -- | The configuration of an app consists of update and view functions along
 -- | with an initial state.
@@ -75,7 +86,7 @@ foreign import render :: forall a eff target. Fn3 (a -> Eff eff Unit) (a -> a) (
 -- |
 -- | The `inputs` array is for any external signals you might need. These will
 -- | be merged into the app's input signal.
-type Config state action eff target =
+type Config target state action eff =
   { update :: Update state action eff
   , view :: state -> target action
   , initialState :: state
@@ -100,7 +111,7 @@ type CoreEffects eff = (channel :: CHANNEL, err :: EXCEPTION | eff)
 -- |   app. This should be fed into `renderToDOM`.
 -- |
 -- | * `state` – A signal representing the application's current state.
-type App state action target =
+type App target state action =
   { html :: Signal (target action)
   , state :: Signal state
   , actionChannel :: Channel (List action)
