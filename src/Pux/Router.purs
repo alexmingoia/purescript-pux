@@ -19,7 +19,7 @@ module Pux.Router
 import Data.Array as A
 import Data.Map as M
 import Data.String as S
-import Control.Alt (class Alt, (<|>))
+import Control.Alt (class Alt)
 import Control.Monad.Eff (Eff)
 import Control.MonadPlus (guard)
 import Control.Plus (class Plus)
