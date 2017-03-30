@@ -1,5 +1,6 @@
 module Pux.Router
-  ( Match()
+  ( Match(..)
+  , Route
   , RoutePart(..)
   , sampleUrl
   , router
