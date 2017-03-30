@@ -23,9 +23,10 @@ exports.renderToDOM = function (selector) {
   var ReactDOM = (typeof require === 'function' && require('react-dom'))
               || (typeof window === 'object' && window.ReactDOM);
   return function (htmlSignal) {
-    var elem = React.createElement(reactClass(htmlSignal));
-    ReactDOM.render(elem, document.querySelector(selector))
-    return function () {};
+    return function () {
+      var elem = React.createElement(reactClass(htmlSignal));
+      ReactDOM.render(elem, document.querySelector(selector))
+    }
   };
 };
 
