@@ -1,5 +1,11 @@
 # Change Log
 
+## [v7.1] - 2017-03-30
+
+- Remove unused `(<|>)` import
+- Use `CustomEvent` instead of `Event` (fixes #76)
+- Fix #102
+
 ## [v7.0] - 2016-10-24
 
 ### Changed
