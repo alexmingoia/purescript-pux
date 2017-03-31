@@ -1,6 +1,12 @@
 # Change Log
 
-## [v8.0] - 2017-01-01
+## [v8.1] - 2017-03-31
+
+### Fixed
+
+- Fix referential transparency of `memoize` [#113](https://github.com/alexmingoia/purescript-pux/issues/113)
+
+## [v8.0] - 2017-03-30
 
 This is a major upgrade and rewrite with breaking changes:
 
