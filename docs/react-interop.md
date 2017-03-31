@@ -12,14 +12,14 @@ class.
 ```purescript
 module FancyComponent where
 
--- State, Event, update, view functions...
+-- State, Event, foldp, view functions...
 
 toReact :: ∀ props fx. Eff (CoreEffects fx) (ReactClass props)
 toReact state = do
   app <- start
     { initialState: state
-    , view: view
-    , update: update
+    , view
+    , foldp
     , inputs: []
     }
 

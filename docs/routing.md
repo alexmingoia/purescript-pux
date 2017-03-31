@@ -55,8 +55,8 @@ main = do
 
   app <- start
     { initialState: { currentRoute: Home }
-    , update
     , view
+    , foldp
     , inputs: [routeSignal]
     }
 ```
@@ -67,8 +67,8 @@ parameters. `Navigate` is used to change the location in response to the user
 clicking a link, using the HTML5 History methods provided by purescript-dom.
 
 ```purescript
-update :: ∀ fx. Event -> State -> EffModel State Event (history :: HISTORY, dom :: DOM | fx)
-update (Navigate url ev) st =
+foldp :: ∀ fx. Event -> State -> EffModel State Event (history :: HISTORY, dom :: DOM | fx)
+foldp (Navigate url ev) st =
   { state: st
   , effects: [
       liftEff do
@@ -79,7 +79,7 @@ update (Navigate url ev) st =
     ]
   }
 
-update (PageView route) st = noEffects $ st { currentRoute = route }
+foldp (PageView route) st = noEffects $ st { currentRoute = route }
 ```
 
 Finally, we might want to create links to our routes and show different views
