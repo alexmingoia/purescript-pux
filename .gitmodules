@@ -1,0 +1,3 @@
+[submodule "examples/todomvc"]
+	path = examples/todomvc
+	url = git://github.com/alexmingoia/pux-todomvc.git
