@@ -10,22 +10,24 @@ module Pux.Renderer.React
 import Control.Applicative (pure)
 import Control.Bind (bind, (=<<))
 import Control.Monad.Eff (Eff)
-import Data.Array (fromFoldable)
+import Data.Array ((:))
 import Data.CatList (CatList)
 import Data.Foldable (foldl)
-import Data.Function (($), (<<<))
-import Data.Function.Uncurried (Fn5, runFn5)
+import Data.Function (($), (>>>))
+import Data.Function.Uncurried (Fn7, runFn7)
 import Data.Functor (map)
 import Data.List (List(..), singleton)
+import Data.Nullable (Nullable, toNullable)
+import Data.StrMap (fromFoldable) as StrMap
 import Data.StrMap (StrMap, empty, insert)
+import Data.Tuple (Tuple(..))
 import Data.Unit (Unit)
 import Pux.DOM.HTML (HTML)
 import Pux.DOM.HTML.Attributes (key)
 import React (ReactClass, ReactElement)
 import Signal (Signal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, send)
-import Text.Smolder.Markup (Attribute, EventHandler(EventHandler), attribute, parent, (!))
-import Text.Smolder.Renderer.Util (Node(..), renderMarkup)
+import Text.Smolder.Markup (Attr(..), Attribute, EventHandler(EventHandler), Markup, MarkupM(..), attribute, parent, (!))
 
 -- | ```purescript
 -- | main = do
@@ -69,7 +71,7 @@ renderToReact :: ∀ ev props fx
                  -> Channel (List ev)
                  -> Eff (channel :: CHANNEL | fx) (ReactClass props)
 renderToReact markup input =
-  pure $ toReact $ markup ~> renderNodes input <<< renderMarkup
+  pure $ toReact $ markup ~> renderNodes (hook input)
 
 -- | Create an HTML constructor for a React class using a unique key. When
 -- | rendered this element is replaced with the class.
@@ -80,22 +82,25 @@ reactClass component key' = \children ->
 dangerouslySetInnerHTML :: String -> Attribute
 dangerouslySetInnerHTML = attribute "dangerouslySetInnerHTML"
 
-foreign import toReact :: ∀ props. Signal ReactElement -> ReactClass props
+foreign import toReact :: ∀ props. Signal (Array ReactElement) -> ReactClass props
 foreign import registerClass :: ∀ ev props. ReactClass props -> String -> HTML ev -> HTML ev
 foreign import renderToDOM_ :: ∀ props fx. String -> ReactClass props -> Eff fx Unit
 foreign import renderToString_ :: ∀ props fx. ReactClass props -> Eff fx String
 foreign import renderToStaticMarkup_ :: ∀ props fx. ReactClass props -> Eff fx String
-foreign import reactElement :: ∀ a e fx. Fn5 (a -> Eff fx Unit) String (StrMap String) (StrMap e) (Array ReactElement) ReactElement
+foreign import reactElement :: ∀ a e fx. Fn7 ((a -> Eff fx Unit) -> Markup e -> Array ReactElement) (Markup e) (a -> Eff fx Unit) String (StrMap String) (StrMap e) (Nullable (Markup e)) ReactElement
 foreign import reactText :: String -> ReactElement
 
-renderNodes :: ∀ a e. Channel (List a) -> List (Node e) -> ReactElement
-renderNodes input nodes = foldl (\prev curr -> renderNode input curr) (reactText "") nodes
+renderNodes :: ∀ a e fx. (a -> Eff (channel :: CHANNEL | fx) Unit) -> Markup e -> Array ReactElement
+renderNodes input node@(Element n c a e r) =
+  runFn7 reactElement renderNodes node input n (renderAttrs a) (toStrMap e) (toNullable c) : renderNodes input r
+renderNodes input (Content t r) =
+  reactText t : renderNodes input r
+renderNodes input (Return _) = []
 
-renderNode :: ∀ a e. Channel (List a) -> Node e -> ReactElement
-renderNode input (Element n a e c) =
-  runFn5 reactElement (hook input) n a (toStrMap e) (fromFoldable (map (renderNode input) c))
-renderNode input (Text s) =
-  reactText s
+renderAttrs :: CatList Attr -> StrMap String
+renderAttrs = map toTuple >>> StrMap.fromFoldable
+  where
+  toTuple (Attr key value) = Tuple key value
 
 hook :: ∀ a fx. Channel (List a) -> (a -> Eff (channel :: CHANNEL | fx) Unit)
 hook input = \a -> do

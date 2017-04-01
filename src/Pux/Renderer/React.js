@@ -64,7 +64,12 @@ exports.toReact = function (vdomSignal) {
       }
     },
     render: function () {
-      return vdomSignal.get();
+      var vdom = vdomSignal.get();
+
+      if (vdom.length === 1) return vdom[0];
+
+      // Wrap multiple root elements in a div
+      return React.createElement('div', null, vdom);
     }
   })
 };
@@ -78,7 +83,13 @@ exports.registerClass = function (reactClass) {
   };
 };
 
-exports.reactElement = function (input, name, attrs, handlers, children) {
+exports.reactElement = function (renderNodes, node, input, name, attrs, handlers, children) {
+  if (node.__pux_react_elm) return node.__pux_react_elm;
+
+  if (children !== null) {
+    children = renderNodes(input)(children);
+  }
+
   // Support declarative focus attribute
   if (attrs.focused) {
     if (typeof window === 'object') {
@@ -108,15 +119,11 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
     };
   });
 
-  if (children.length === 0) {
-    children = null;
-  }
-
   if (attrs.dangerouslySetInnerHTML) {
     attrs.dangerouslySetInnerHTML = { __html : attrs.dangerouslySetInnerHTML };
-  } else if (name === 'style' && children.length) {
+  } else if (name === 'style' && children && children.length) {
     attrs.dangerouslySetInnerHTML = { __html : children.join(' ') };
-    children = [];
+    children = null
   }
 
   // convert smolder attribute names to react attribute names
@@ -126,6 +133,14 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
       reactAttrs[attrMap[key]] = attrs[key];
     } else {
       reactAttrs[key] = attrs[key];
+    }
+  }
+
+  if (children !== null) {
+    if (children.length === 0) {
+      children = null;
+    } else if (children.length === 1) {
+      children = children[0];
     }
   }
 
@@ -142,7 +157,10 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
     }
   }
 
-  return React.createElement(name, reactAttrs, children);
+  // Cache react element. If the same node is rendered again the cached element will be used.
+  node.__pux_react_elm = React.createElement(name, reactAttrs, children);
+
+  return node.__pux_react_elm;
 };
 
 exports.reactText = function (string) {

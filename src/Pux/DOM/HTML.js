@@ -1,15 +1,13 @@
 exports.memoize = function (fn) {
   return (function () {
-    var memo, vdom = null;
+    var n, memo = null;
 
     return function (st) {
-      console.log('view called')
-      if (st !== memo) {
-        console.log('cache miss')
-        memo = st;
-        vdom = fn(st);
+      if (st !== n) {
+        n = st;
+        memo = fn(st);
       }
-      return vdom;
+      return memo;
     };
   })();
 };
