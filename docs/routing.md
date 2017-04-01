@@ -61,25 +61,22 @@ main = do
     }
 ```
 
-Everytime the location changes and the `PageView` event occurs, we can update
+Every time the location changes and the `PageView` event occurs, we can update
 our state with the current route, which includes any captured path or query
 parameters. `Navigate` is used to change the location in response to the user
 clicking a link, using the HTML5 History methods provided by purescript-dom.
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event (history :: HISTORY, dom :: DOM | fx)
+foldp (PageView route) st =
+  noEffects $ st { currentRoute = route }
 foldp (Navigate url ev) st =
-  { state: st
-  , effects: [
-      liftEff do
-        preventDefault ev
-        h <- history =<< window
-        pushState (toForeign {}) (DocumentTitle "") (URL url) h
-        pure Nothing
-    ]
-  }
-
-foldp (PageView route) st = noEffects $ st { currentRoute = route }
+  onlyEffects st [ liftEff do
+                     preventDefault ev
+                     h <- history =<< window
+                     pushState (toForeign {}) (DocumentTitle "") (URL url) h
+                     pure $ Just $ PageView (match url)
+                 ]
 ```
 
 Finally, we might want to create links to our routes and show different views
