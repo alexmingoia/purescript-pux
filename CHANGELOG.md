@@ -1,5 +1,10 @@
 # Change Log
 
+## [v8.2] - 2017-03-31
+
+- Cache previously rendered elements to improve rendering performance.
+- Fix React attribute normalization.
+
 ## [v8.1] - 2017-03-31
 
 ### Fixed
