@@ -79,6 +79,7 @@ exports.registerClass = function (reactClass) {
 };
 
 exports.reactElement = function (input, name, attrs, handlers, children) {
+  // Support declarative focus attribute
   if (attrs.focused) {
     if (typeof window === 'object') {
       window.__puxActiveElement = true;
@@ -86,8 +87,8 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
     }
   }
 
+  // Parse inline style, because React expects a map instead of a string.
   if (attrs.style) {
-    // Parse inline style, because React expects a map instead of a string.
     attrs.style = attrs.style.split(';').reduce(function (prev, curr) {
       if (!curr) return prev;
       var prop = curr.split(':');
@@ -100,19 +101,16 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
     }, {});
   }
 
+  // Hook event handlers to input channel
   Object.keys(handlers).forEach(function (key) {
     attrs[key] = function (e) {
       input(handlers[key](e))();
     };
   });
 
-  attrMap.forEach(function (attr) {
-    var lowercase = attr[0];
-    var camelcase = attr[1];
-    if (attrs[lowercase]) {
-      attrs[camelcase] = attrs[lowercase];
-    }
-  });
+  if (children.length === 0) {
+    children = null;
+  }
 
   if (attrs.dangerouslySetInnerHTML) {
     attrs.dangerouslySetInnerHTML = { __html : attrs.dangerouslySetInnerHTML };
@@ -121,64 +119,77 @@ exports.reactElement = function (input, name, attrs, handlers, children) {
     children = [];
   }
 
+  // convert smolder attribute names to react attribute names
+  var reactAttrs = {};
+  for (var key in attrs) {
+    if (attrMap[key]) {
+      reactAttrs[attrMap[key]] = attrs[key];
+    } else {
+      reactAttrs[key] = attrs[key];
+    }
+  }
+
+  // Support rendering of foreign react classes registered through
+  // `registerClass`
   if (name === 'reactclass') {
     var key = attrs.key;
     var reactClass = reactClasses[key];
 
     if (reactClass) {
-      return React.createElement(reactClass, attrs, children);
+      return React.createElement(reactClass, reactAttrs, children);
     } else {
-      return React.createElement('div', attrs, children);
+      return React.createElement('div', reactAttrs, children);
     }
   }
 
-  return React.createElement(name, attrs, children);
+  return React.createElement(name, reactAttrs, children);
 };
 
 exports.reactText = function (string) {
   return string;
 };
 
-var attrMap = [
-  ['accesskey', 'accessKey'],
-  ['allowfullscreen', 'allowFullScreen'],
-  ['allowtransparency', 'allowTransparency'],
-  ['autocomplete', 'autoComplete'],
-  ['autofocus', 'autoFocus'],
-  ['autoplay', 'autoPlay'],
-  ['cellpadding', 'cellPadding'],
-  ['cellspacing', 'cellSpacing'],
-  ['charset', 'charSet'],
-  ['class', 'className'],
-  ['classid', 'classID'],
-  ['colspan', 'colSpan'],
-  ['contextmenu', 'contextMenu'],
-  ['crossorigin', 'crossOrigin'],
-  ['datetime', 'dateTime'],
-  ['enctype', 'encType'],
-  ['formaction', 'formAction'],
-  ['formenctype', 'formEncType'],
-  ['formmethod', 'formMethod'],
-  ['formnovalidate', 'formNoValidate'],
-  ['formtarget', 'formTarget'],
-  ['frameborder', 'frameBorder'],
-  ['for', 'htmlFor'],
-  ['inputmode', 'inputMode'],
-  ['keyparams', 'keyParams'],
-  ['keytype', 'keyType'],
-  ['marginheight', 'marginHeight'],
-  ['marginwidth', 'marginWidth'],
-  ['maxlength', 'maxLength'],
-  ['mediagroup', 'mediaGroup'],
-  ['minlength', 'minLength'],
-  ['novalidate', 'noValidate'],
-  ['radiogroup', 'radioGroup'],
-  ['readonly', 'readOnly'],
-  ['rowspan', 'rowSpan'],
-  ['spellcheck', 'spellCheck'],
-  ['srcdoc', 'srcDoc'],
-  ['srclang', 'srcLang'],
-  ['srcset', 'srcSet'],
-  ['tabindex', 'tabIndex'],
-  ['usemap', 'useMap']
-]
+// Normalize Smolder attribute names with React attribute names
+var attrMap = {
+  'accesskey': 'accessKey',
+  'allowfullscreen': 'allowFullScreen',
+  'allowtransparency': 'allowTransparency',
+  'autocomplete': 'autoComplete',
+  'autofocus': 'autoFocus',
+  'autoplay': 'autoPlay',
+  'cellpadding': 'cellPadding',
+  'cellspacing': 'cellSpacing',
+  'charset': 'charSet',
+  'class': 'className',
+  'classid': 'classID',
+  'colspan': 'colSpan',
+  'contextmenu': 'contextMenu',
+  'crossorigin': 'crossOrigin',
+  'datetime': 'dateTime',
+  'enctype': 'encType',
+  'formaction': 'formAction',
+  'formenctype': 'formEncType',
+  'formmethod': 'formMethod',
+  'formnovalidate': 'formNoValidate',
+  'formtarget': 'formTarget',
+  'frameborder': 'frameBorder',
+  'for': 'htmlFor',
+  'inputmode': 'inputMode',
+  'keyparams': 'keyParams',
+  'keytype': 'keyType',
+  'marginheight': 'marginHeight',
+  'marginwidth': 'marginWidth',
+  'maxlength': 'maxLength',
+  'mediagroup': 'mediaGroup',
+  'minlength': 'minLength',
+  'novalidate': 'noValidate',
+  'radiogroup': 'radioGroup',
+  'readonly': 'readOnly',
+  'rowspan': 'rowSpan',
+  'spellcheck': 'spellCheck',
+  'srcdoc': 'srcDoc',
+  'srclang': 'srcLang',
+  'srcset': 'srcSet',
+  'tabindex': 'tabIndex',
+  'usemap': 'useMap'
+}
