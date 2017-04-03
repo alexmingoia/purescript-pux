@@ -40,8 +40,5 @@
   "devDependencies": {
     "purescript-affjax": "^3.0.0",
     "purescript-argonaut": "^2.0.0"
-  },
-  "resolutions": {
-    "purescript-dom": "^3.8.0"
   }
 }
