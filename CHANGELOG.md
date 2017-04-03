@@ -1,5 +1,9 @@
 # Change Log
 
+## [v8.3] - 2017-04-02
+
+- Improve React rendering performance.
+
 ## [v8.2] - 2017-03-31
 
 - Cache previously rendered elements to improve rendering performance.
