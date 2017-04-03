@@ -13,8 +13,7 @@ function to produce HTML to render.
 ### 1. State
 
 A type for the application's state. For example, the state of a simple counter
-that can be incremented or decremented is just an int, but for most web apps the
-state will be more complex:
+that can be incremented or decremented may just be an integer:
 
 ```purescript
 type State = Int
