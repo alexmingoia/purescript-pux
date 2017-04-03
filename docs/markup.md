@@ -144,7 +144,7 @@ where it's important to avoid unnecessary rendering:
 
 ```purescript
 view :: State -> HTML Event
-view state = memoize \(State s) -> div $ text s.message
+view = memoize \state -> div $ text state.message
 ```
 
 > #### Next: [Rendering](/docs/rendering)

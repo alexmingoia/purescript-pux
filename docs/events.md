@@ -90,9 +90,15 @@ foldp (ReceiveTodos t) (State s) =
 
 ### Nesting events
 
+>> Nesting events is not recommended as a way of organizing application code.
+>> Instead, use a single event type for all of your application events (similar
+>> to Redux and its reducers). You can split up your foldp function into multiple files
+>> as needed.
+
 Sometimes you want to compose foldp functions with different event and state
-types. To do this, create a parent event type wrapping the child's type and
-embed the child state in the parent state:
+types when using external libraries or components. To do this, create a parent
+event type wrapping the child's type and embed the child state in the parent
+state:
 
 ```purescript
 -- | Wrap the child event type
