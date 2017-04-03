@@ -12,14 +12,14 @@ import Control.Bind (bind, (=<<))
 import Control.Monad.Eff (Eff)
 import Data.Array ((:))
 import Data.CatList (CatList)
-import Data.Foldable (foldl)
-import Data.Function (($), (>>>))
-import Data.Function.Uncurried (Fn7, runFn7)
-import Data.Functor (map)
+import Data.Function (($))
+import Data.Function.Uncurried (Fn4, runFn4)
+import Data.Functor ((<$>), map)
 import Data.List (List(..), singleton)
 import Data.Nullable (Nullable, toNullable)
 import Data.StrMap (fromFoldable) as StrMap
-import Data.StrMap (StrMap, empty, insert)
+import Data.StrMap (StrMap)
+import Data.Semigroup ((<>))
 import Data.Tuple (Tuple(..))
 import Data.Unit (Unit)
 import Pux.DOM.HTML (HTML)
@@ -71,7 +71,7 @@ renderToReact :: ∀ ev props fx
                  -> Channel (List ev)
                  -> Eff (channel :: CHANNEL | fx) (ReactClass props)
 renderToReact markup input =
-  pure $ toReact $ markup ~> renderNodes (hook input)
+  pure $ toReact $ markup ~> renderNodes (reactHandler (hook input))
 
 -- | Create an HTML constructor for a React class using a unique key. When
 -- | rendered this element is replaced with the class.
@@ -87,24 +87,27 @@ foreign import registerClass :: ∀ ev props. ReactClass props -> String -> HTML
 foreign import renderToDOM_ :: ∀ props fx. String -> ReactClass props -> Eff fx Unit
 foreign import renderToString_ :: ∀ props fx. ReactClass props -> Eff fx String
 foreign import renderToStaticMarkup_ :: ∀ props fx. ReactClass props -> Eff fx String
-foreign import reactElement :: ∀ a e fx. Fn7 ((a -> Eff fx Unit) -> Markup e -> Array ReactElement) (Markup e) (a -> Eff fx Unit) String (StrMap String) (StrMap e) (Nullable (Markup e)) ReactElement
+foreign import reactElement :: ∀ e. Fn4 (Markup e) String (StrMap ReactAttribute) (Nullable (Array ReactElement)) ReactElement
 foreign import reactText :: String -> ReactElement
+foreign import reactHandler :: ∀ a e fx. (a -> Eff (channel :: CHANNEL | fx) Unit) -> e -> ReactAttribute
+foreign import reactAttr :: String -> ReactAttribute
 
-renderNodes :: ∀ a e fx. (a -> Eff (channel :: CHANNEL | fx) Unit) -> Markup e -> Array ReactElement
+foreign import data ReactAttribute :: *
+
+renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
 renderNodes input node@(Element n c a e r) =
-  runFn7 reactElement renderNodes node input n (renderAttrs a) (toStrMap e) (toNullable c) : renderNodes input r
+  runFn4 reactElement node n (renderAttrs input a e) (toNullable (renderNodes input <$> c)) : renderNodes input r
 renderNodes input (Content t r) =
   reactText t : renderNodes input r
 renderNodes input (Return _) = []
 
-renderAttrs :: CatList Attr -> StrMap String
-renderAttrs = map toTuple >>> StrMap.fromFoldable
+renderAttrs :: ∀ e. (e -> ReactAttribute) -> CatList Attr -> CatList (EventHandler e) -> StrMap ReactAttribute
+renderAttrs input attrs handlers = StrMap.fromFoldable tuples
   where
-  toTuple (Attr key value) = Tuple key value
+  tuples = map toTupleA attrs <> map toTupleH handlers
+  toTupleH (EventHandler key value) = Tuple key (input value)
+  toTupleA (Attr key value) = Tuple key (reactAttr value)
 
 hook :: ∀ a fx. Channel (List a) -> (a -> Eff (channel :: CHANNEL | fx) Unit)
 hook input = \a -> do
   send input (singleton a)
-
-toStrMap :: ∀ a. CatList (EventHandler a) -> StrMap a
-toStrMap handlers = foldl (\prev (EventHandler k v) -> insert k v prev) empty handlers

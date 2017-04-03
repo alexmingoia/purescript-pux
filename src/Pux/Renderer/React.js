@@ -36,7 +36,23 @@ exports.renderToStaticMarkup_ = function (reactClass) {
   };
 };
 
+// Return a React component from virtual DOM signal.
 exports.toReact = function (vdomSignal) {
+  var isBrowser = typeof window === 'object';
+
+  // Sets the focus of element with "data-focused" attribute (`focused` constructor).
+  // Provides declarative focus control.
+  function setFocus () {
+    if (isBrowser && window.__puxActiveElement === true) {
+      if (window.__puxActiveElement !== document.activeElement) {
+        var el = window.__puxActiveElement = document.querySelector('[data-focused]')
+        if (el !== null && document.activeElement !== el) {
+          el.focus();
+        }
+      }
+    }
+  }
+
   return React.createClass({
     componentWillMount: function () {
       var ctx = this;
@@ -44,25 +60,8 @@ exports.toReact = function (vdomSignal) {
         ctx.forceUpdate();
       });
     },
-    componentDidMount: function () {
-      this.isBrowser = (typeof window === 'object');
-      this.setFocus();
-    },
-    componentDidUpdate: function () {
-      this.setFocus();
-    },
-    setFocus: function () {
-      if (this.isBrowser) {
-        if (window.__puxActiveElement) {
-          if (window.__puxActiveElement !== document.activeElement) {
-            var el = window.__puxActiveElement = document.querySelector('[data-focused]')
-            if (el && document.activeElement !== el) {
-              el.focus();
-            }
-          }
-        }
-      }
-    },
+    componentDidMount: setFocus,
+    componentDidUpdate: setFocus,
     render: function () {
       var vdom = vdomSignal.get();
 
@@ -71,9 +70,11 @@ exports.toReact = function (vdomSignal) {
       // Wrap multiple root elements in a div
       return React.createElement('div', null, vdom);
     }
-  })
+  });
 };
 
+// Create an HTML constructor for a React class using a unique key.
+// When rendered this element is replaced by the class.
 exports.registerClass = function (reactClass) {
   return function (key) {
     return function (markup) {
@@ -83,15 +84,42 @@ exports.registerClass = function (reactClass) {
   };
 };
 
-exports.reactElement = function (renderNodes, node, input, name, attrs, handlers, children) {
-  if (node.__pux_react_elm) return node.__pux_react_elm;
+exports.reactAttr = function (str) {
+  return str;
+};
 
-  if (children !== null) {
-    children = renderNodes(input)(children);
+exports.reactHandler = function (input) {
+  return function (handler) {
+    return function (ev) {
+      return input(handler(ev))();
+    };
+  };
+};
+
+exports.reactElement = function (node, name, attrs, children) {
+  if (node.__pux_react_elm !== undefined) return node.__pux_react_elm;
+
+  if (name === 'style') {
+    // Convert style element children to string
+    if (children !== null && children.length) {
+      attrs.dangerouslySetInnerHTML = { __html: children.join(' ') };
+      children = null
+    }
+  } else if (name === 'reactclass') {
+    // Support rendering of foreign react classes registered through
+    // `registerClass`
+    var key = attrs.key;
+    var reactClass = reactClasses[key];
+
+    if (reactClass) {
+      return React.createElement(reactClass, reactAttrs, children);
+    } else {
+      return React.createElement('div', reactAttrs, children);
+    }
   }
 
   // Support declarative focus attribute
-  if (attrs.focused) {
+  if (attrs.focused !== undefined) {
     if (typeof window === 'object') {
       window.__puxActiveElement = true;
       attrs['data-focused'] = 'focused';
@@ -99,7 +127,7 @@ exports.reactElement = function (renderNodes, node, input, name, attrs, handlers
   }
 
   // Parse inline style, because React expects a map instead of a string.
-  if (attrs.style) {
+  if (attrs.style !== undefined) {
     attrs.style = attrs.style.split(';').reduce(function (prev, curr) {
       if (!curr) return prev;
       var prop = curr.split(':');
@@ -112,18 +140,8 @@ exports.reactElement = function (renderNodes, node, input, name, attrs, handlers
     }, {});
   }
 
-  // Hook event handlers to input channel
-  Object.keys(handlers).forEach(function (key) {
-    attrs[key] = function (e) {
-      input(handlers[key](e))();
-    };
-  });
-
-  if (attrs.dangerouslySetInnerHTML) {
+  if (attrs.dangerouslySetInnerHTML !== undefined) {
     attrs.dangerouslySetInnerHTML = { __html : attrs.dangerouslySetInnerHTML };
-  } else if (name === 'style' && children && children.length) {
-    attrs.dangerouslySetInnerHTML = { __html : children.join(' ') };
-    children = null
   }
 
   // convert smolder attribute names to react attribute names
@@ -136,25 +154,10 @@ exports.reactElement = function (renderNodes, node, input, name, attrs, handlers
     }
   }
 
-  if (children !== null) {
-    if (children.length === 0) {
-      children = null;
-    } else if (children.length === 1) {
-      children = children[0];
-    }
-  }
-
-  // Support rendering of foreign react classes registered through
-  // `registerClass`
-  if (name === 'reactclass') {
-    var key = attrs.key;
-    var reactClass = reactClasses[key];
-
-    if (reactClass) {
-      return React.createElement(reactClass, reactAttrs, children);
-    } else {
-      return React.createElement('div', reactAttrs, children);
-    }
+  // Eliminate React "key" errors for parents with a single child
+  // (React checks for keys when children is passed as an array)
+  if (children !== null && children.length === 1) {
+    children = children[0];
   }
 
   // Cache react element. If the same node is rendered again the cached element will be used.
