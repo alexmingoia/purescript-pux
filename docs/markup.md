@@ -7,10 +7,10 @@ with `do` notation to describe a state's view:
 
 ```purescript
 view :: State -> HTML Event
-view (State n) =
+view count =
   div do
     button #! onClick (const Increment) $ text "Increment"
-    span $ text (show n)
+    span $ text (show count)
     button #! onClick (const Decrement) $ text "Decrement"
 ```
 

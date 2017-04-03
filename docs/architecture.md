@@ -12,12 +12,12 @@ function to produce HTML to render.
 
 ### 1. State
 
-The application's state is represented using a
-[GADT](https://vimeo.com/12208838). For example, the state of a simple counter
-that can be incremented or decremented:
+A type for the application's state. For example, the state of a simple counter
+that can be incremented or decremented is just an int, but for most web apps the
+state will be more complex:
 
 ```purescript
-data State = State Int
+type State = Int
 ```
 
 ### 2. Events
@@ -39,8 +39,8 @@ produce a new count:
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
-foldp Increment (State n) = { state: State (n + 1), effects: [] }
-foldp Decrement (State n) = { state: State (n - 1), effects: [] }
+foldp Increment n = { state: n + 1, effects: [] }
+foldp Decrement n = { state: n - 1, effects: [] }
 ```
 
 ### 4. Viewing state
@@ -49,10 +49,10 @@ The view function takes state and returns the corresponding HTML.
 
 ```purescript
 view :: State -> HTML Event
-view (State n) =
+view count =
   div do
     button #! onClick (const Increment) $ text "Increment"
-    span $ text (show n)
+    span $ text (show count)
     button #! onClick (const Decrement) $ text "Decrement"
 ```
 

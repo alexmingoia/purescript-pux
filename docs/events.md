@@ -29,8 +29,8 @@ produce a new count:
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
-foldp Increment (State n) = { state: State (n + 1), effects: [] }
-foldp Decrement (State n) = { state: State (n - 1), effects: [] }
+foldp Increment n = { state: n + 1, effects: [] }
+foldp Decrement n = { state: n - 1, effects: [] }
 ```
 
 ### The EffModel
@@ -58,8 +58,8 @@ purescript-aff's `log`:
 
 ```purescript
 foldp :: Event -> State -> EffModel State Event (console :: CONSOLE)
-foldp Increment (State count) =
-  { state: State (count + 1)
+foldp Increment count =
+  { state: count + 1
   , effects: [ log "increment" *> pure Nothing ]
   }
 ```
@@ -73,8 +73,8 @@ event `ReceiveTodos`:
 
 ```purescript
 foldp :: Event -> State -> EffModel State Event (ajax :: AJAX)
-foldp (RequestTodos) (State s) =
-  { state: state { status = "Fetching todos..." }
+foldp (RequestTodos) st =
+  { state: st { status = "Fetching todos..." }
   , effects: [ do
       res <- attempt $ get "http://jsonplaceholder.typicode.com/users/1/todos"
       let todos = either (Left <<< show) (decodeJson r.response :: Either String Todos)
@@ -82,15 +82,15 @@ foldp (RequestTodos) (State s) =
     ]
   }
 
-foldp (ReceiveTodos t) (State s) =
-  noEffects $ State $ case t of
-    Left err -> s { status = "Error fetching todos: " <> show err }
-    Right todos -> s { todos = todos, status = "" }
+foldp (ReceiveTodos t) st =
+  noEffects $ case t of
+    Left err -> st { status = "Error fetching todos: " <> show err }
+    Right todos -> st { todos = todos, status = "" }
 ```
 
 ### Nesting events
 
->> Nesting events is not recommended as a way of organizing application code.
+>> Nesting events is not recommended as a way to organize application code.
 >> Instead, use a single event type for all of your application events (similar
 >> to Redux and its reducers). You can split up your foldp function into multiple files
 >> as needed.
@@ -107,7 +107,7 @@ data Event
   | ChildEvent Child.Event
 
 -- | Extend the state with the child's state
-data State = State
+type State =
   { route :: Route
   , child :: Child.State
   }
@@ -120,11 +120,11 @@ and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/do
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
-foldp (PageView r) (State s) = noEffects $ State s { route = r }
-foldp (ChildEvent e) (State s) =
-  Child.foldp e s.child
+foldp (PageView r) st = noEffects $ st { route = r }
+foldp (ChildEvent e) st =
+  Child.foldp e st.child
     # mapEffects ChildEvent
-    # mapState \sb -> State s { child = sb }
+    # mapState \sb -> st { child = sb }
 ```
 
 > #### Next: [Markup](/docs/markup)

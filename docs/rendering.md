@@ -9,7 +9,7 @@ functions to Pux's [`start`](https://pursuit.purescript.org/packages/purescript-
 main :: ∀ fx. Eff (CoreEffects fx) Unit
 main = do
   app <- start
-    { initialState: State 0
+    { initialState: 0
     , view
     , foldp
     , inputs: []

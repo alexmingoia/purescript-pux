@@ -6,7 +6,7 @@ login form to demonstrate.
 First, state and event types are needed to keep track of changes to form input:
 
 ```purescript
-data State = State
+type State =
   { username :: String
   , password :: String }
 
@@ -27,10 +27,10 @@ The `SignIn` event is triggered when the form is submitted.
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
 foldp (SignIn) state =
   { state, effects: [ log "sign in" *> pure Nothing ] }
-foldp (UsernameChange ev) (State s) =
-  { state: State s { username = targetValue ev, effects: [] }
-foldp (PasswordChange ev) (State s) =
-  { state: State s { password = targetValue ev, effects: [] }
+foldp (UsernameChange ev) state =
+  { state: state { username = targetValue ev, effects: [] }
+foldp (PasswordChange ev) state =
+  { state: state { password = targetValue ev, effects: [] }
 ```
 
 The raw DOM event is used to get the value of the inputs. Pux provides
