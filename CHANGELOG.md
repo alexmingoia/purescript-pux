@@ -1,5 +1,10 @@
 # Change Log
 
+## [v8.4] - 2017-04-04
+
+- Use raw DOM event in React renderer. Fixes an issue with reading foreign event
+  types.
+
 ## [v8.3] - 2017-04-02
 
 - Improve React rendering performance.
