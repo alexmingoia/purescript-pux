@@ -1,3 +1,4 @@
 exports.targetValue = function (ev) {
-  return ev.currentTarget && ev.currentTarget.value || '';
+  if (ev.target === undefined) return '';
+  return ev.target.value;
 };

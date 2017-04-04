@@ -16,7 +16,7 @@ to distinguish from application events.
 targetValue :: DOMEvent -> String
 ```
 
-Return `event.currentTarget.value` if it exists, or an empty string if not.
+Return `event.target.value` if it exists, or an empty string if not.
 
 #### `mapEventHandler`
 

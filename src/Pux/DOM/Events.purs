@@ -8,7 +8,7 @@ import Text.Smolder.Markup (EventHandler(..), EventHandlers, on)
 -- | to distinguish from application events.
 type DOMEvent = Event
 
--- | Return `event.currentTarget.value` if it exists, or an empty string if not.
+-- | Return `event.target.value` if it exists, or an empty string if not.
 foreign import targetValue :: DOMEvent -> String
 
 -- | Map event handler that returns event type `a` to event handler that returns

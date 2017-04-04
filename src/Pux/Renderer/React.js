@@ -92,9 +92,9 @@ exports.reactHandler = function (input) {
   return function (handler) {
     return function (ev) {
       if (ev.nativeEvent === undefined) {
-        return input(handler(ev))();
+        input(handler(ev))();
       }
-      return input(handler(ev.nativeEvent))();
+      input(handler(ev.nativeEvent))();
     };
   };
 };
