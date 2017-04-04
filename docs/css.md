@@ -7,7 +7,7 @@ style element or attribute.
 
 ## Inline styles
 
-For example, the [`style`](/docs/API/Pux/DOM/HTML/Attributes#style)
+For example, the [`style`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes#v:style)
 attribute constructor can be used for inline styles:
 
 ```purescript
@@ -31,9 +31,9 @@ view st =
 ## Stylesheets
 
 One approach to rendering a stylesheet for a specific component is to insert a
-[`style`](/docs/API/Pux/DOM/HTML#style) element in the component's view with that
-component's CSS. It will be added when the component mounts and removed when it
-unmounts.
+[`style`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML#v:style)
+element in the component's view with that component's CSS. It will be added when
+the component mounts and removed when it unmounts.
 
 ```purescript
 import CSS ((?), fromString, color, fontSize, fontWeight, marginTop, lighter, rgb, em, px)

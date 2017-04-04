@@ -6,8 +6,8 @@ Pux components can be rendered to a React class instead of the DOM for use
 inside an existing React application.
 
 Use `start` to initialize your component with state, then use
-[`renderToReact`](/docs/API/Pux/Renderer/React#renderToReact) to return a React
-class.
+[`renderToReact`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.Renderer.React#v:renderToReact)
+to return a React class.
 
 ```purescript
 module FancyComponent where
@@ -38,8 +38,6 @@ const FancyComponent = PS.FancyComponent.toReact(state)()
 Expose your React component by creating a `.js` and `.purs` file of the same
 name, and using the PureScript FFI to bind them:
 
-src/FancyComponent.js :
-
 ```javascript
 const React = require('react')
 
@@ -47,29 +45,29 @@ exports.fancyComponent = React.createClass(..)
 ```
 
 In your PureScript code, add a foreign module definition for the
-`fancyComponent` function:
-
-src/FancyComponent.purs:
+fancyComponent, and use the
+[`reactClass`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.Renderer.React#v:reactClass)
+function to create an HTML element constructor which you can use in your views.
 
 ```purescript
+-- | src/FancyComponent.purs
+
 module FancyComponent where
 
 import React (ReactClass)
 
-foreign import fancyComponent :: ∀ props. ReactClass props
+foreign import fancyClass :: ∀ props. ReactClass props
+
+fancy :: ∀ ev. HTML ev
+fancy = reactClass "fancy" fancyClass
 ```
 
-To use this component in your view use the
-[`reactClass`](/docs/API/Pux/Renderer/React#reactClass) function to create an
-HTML element constructor which you can use in your views.
+You can then use `fancy` in your views:
 
 ```purescript
 view count =
   div
     button #! onClick (const Increment) $ text "Increment"
-    reactClass "fancy" fancyComponent $ text ("Fancy " <> (show count))
+    fancy $ text ("Fancy " <> (show count))
     button #! onClick (const Decrement) $ text "Decrement" 
 ```
-
-`reactClass` takes a unique key which is used to replace the element with the
-React class during rendering.
