@@ -1,5 +1,9 @@
 # Change Log
 
+## [v8.6] - 2017-04-04
+
+- Use `ev.target` instead of `ev.currentTarget` for `targetValue` function.
+
 ## [v8.5] - 2017-04-04
 
 - Fix issue with normalizing attribute names when rendering a foreign react
