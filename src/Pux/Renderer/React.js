@@ -102,16 +102,26 @@ exports.reactHandler = function (input) {
 exports.reactElement = function (node, name, attrs, children) {
   if (node.__pux_react_elm !== undefined) return node.__pux_react_elm;
 
+  // convert smolder attribute names to react attribute names
+  var reactAttrs = {};
+  for (var key in attrs) {
+    if (attrMap[key]) {
+      reactAttrs[attrMap[key]] = attrs[key];
+    } else {
+      reactAttrs[key] = attrs[key];
+    }
+  }
+
   if (name === 'style') {
     // Convert style element children to string
     if (children !== null && children.length) {
-      attrs.dangerouslySetInnerHTML = { __html: children.join(' ') };
+      reactAttrs.dangerouslySetInnerHTML = { __html: children.join(' ') };
       children = null
     }
   } else if (name === 'reactclass') {
     // Support rendering of foreign react classes registered through
     // `registerClass`
-    var key = attrs.key;
+    var key = reactAttrs.key;
     var reactClass = reactClasses[key];
 
     if (reactClass) {
@@ -122,16 +132,16 @@ exports.reactElement = function (node, name, attrs, children) {
   }
 
   // Support declarative focus attribute
-  if (attrs.focused !== undefined) {
+  if (reactAttrs.focused !== undefined) {
     if (typeof window === 'object') {
       window.__puxActiveElement = true;
-      attrs['data-focused'] = 'focused';
+      reactAttrs['data-focused'] = 'focused';
     }
   }
 
   // Parse inline style, because React expects a map instead of a string.
-  if (attrs.style !== undefined) {
-    attrs.style = attrs.style.split(';').reduce(function (prev, curr) {
+  if (reactAttrs.style !== undefined) {
+    reactAttrs.style = reactAttrs.style.split(';').reduce(function (prev, curr) {
       if (!curr) return prev;
       var prop = curr.split(':');
       var key = prop[0].replace(/^ */, '').replace(/ *$/, '').replace(/(-\w)/g, function (m, w) {
@@ -143,18 +153,8 @@ exports.reactElement = function (node, name, attrs, children) {
     }, {});
   }
 
-  if (attrs.dangerouslySetInnerHTML !== undefined) {
-    attrs.dangerouslySetInnerHTML = { __html : attrs.dangerouslySetInnerHTML };
-  }
-
-  // convert smolder attribute names to react attribute names
-  var reactAttrs = {};
-  for (var key in attrs) {
-    if (attrMap[key]) {
-      reactAttrs[attrMap[key]] = attrs[key];
-    } else {
-      reactAttrs[key] = attrs[key];
-    }
+  if (reactAttrs.dangerouslySetInnerHTML !== undefined) {
+    reactAttrs.dangerouslySetInnerHTML = { __html : reactAttrs.dangerouslySetInnerHTML };
   }
 
   // Eliminate React "key" errors for parents with a single child
