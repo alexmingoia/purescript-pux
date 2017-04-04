@@ -91,7 +91,10 @@ exports.reactAttr = function (str) {
 exports.reactHandler = function (input) {
   return function (handler) {
     return function (ev) {
-      return input(handler(ev))();
+      if (ev.nativeEvent === undefined) {
+        return input(handler(ev))();
+      }
+      return input(handler(ev.nativeEvent))();
     };
   };
 };
