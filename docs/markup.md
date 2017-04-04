@@ -147,5 +147,10 @@ view :: State -> HTML Event
 view = memoize \state -> div $ text state.message
 ```
 
+>> It's important that `memoize` is only used at a top-level declaration –
+>> not inside a view. This is because PureScript is eagerly evaluated like
+>> JavaScript. If `memoize` is used inside a view, it will recreate the memoized
+>> function every time the view is called.
+
 > #### Next: [Rendering](/docs/rendering)
 > #### Previous: [Events](/docs/events)
