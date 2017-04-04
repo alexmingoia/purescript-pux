@@ -1,5 +1,10 @@
 # Change Log
 
+## [v8.5] - 2017-04-04
+
+- Fix issue with normalizing attribute names when rendering a foreign react
+  class.
+
 ## [v8.4] - 2017-04-04
 
 - Use raw DOM event in React renderer. Fixes an issue with reading foreign event
