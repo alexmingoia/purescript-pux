@@ -1,75 +1,108 @@
 exports.start_ = function (app) {
   if (typeof window === 'object' && typeof CustomEvent === 'function') {
-    var initialized, setState, index, events, states;
+    var hook = HookDevtool(app);
+
+    if (window.__pux_devtool_hook) {
+      window.removeEventListener('pux:devtool:init', window.__pux_devtool_hook);
+      hook();
+    }
+
+    window.__pux_devtool_hook = hook;
 
     // Listen for devtool and connect
-    window.addEventListener('pux:devtool:init', function () {
-      index = 0;
-      events = [app.events.get()];
-      states = [app.state.get()];
-
-      window.dispatchEvent(new CustomEvent('pux:state:change', {
-        detail: {
-          index: index,
-          length: states.length,
-          state: stateToString(app.state.get()),
-          event: eventToString(app.events.get())
-        }
-      }));
-
-      if (initialized) return;
-      initialized = true
-
-      app.events.subscribe(function (ev) {
-        events.push(ev);
-      });
-
-      app.state.subscribe(function (st) {
-        setTimeout(function () {
-          if (!setState) {
-            states.push(st);
-            index = states.length - 1;
-          }
-          setState = false;
-          window.dispatchEvent(new CustomEvent('pux:state:change', {
-            detail: {
-              index: index,
-              length: states.length,
-              state: stateToString(st),
-              event: eventToString(events[index])
-            }
-          }));
-        }, 1);
-      });
-
-      window.addEventListener('pux:state:first', function () {
-        setState = true;
-        index = 0;
-        app.state.set(states[0]);
-      })
-
-      window.addEventListener('pux:state:prev', function () {
-        setState = true;
-        if (states[index - 1]) index--;
-        app.state.set(states[index]);
-      })
-
-      window.addEventListener('pux:state:next', function () {
-        setState = true;
-        if (states[index + 1]) index++;
-        app.state.set(states[index]);
-      })
-
-      window.addEventListener('pux:state:last', function () {
-        setState = true;
-        index = states.length - 1;
-        app.state.set(states[index]);
-      })
-    });
+    window.addEventListener('pux:devtool:init', window.__pux_devtool_hook);
   }
 
   return app;
 };
+
+function HookDevtool (app) {
+  if (window.__pux_conn === undefined) {
+    window.__pux_conn = {
+      setState: false,
+      index: 0,
+      events: [app.events.get()],
+      states: [app.state.get()]
+    };
+  }
+
+  var conn = window.__pux_conn;
+
+  return function () {
+    window.dispatchEvent(new CustomEvent('pux:state:change', {
+      detail: {
+        index: conn.index,
+        length: conn.states.length,
+        state: stateToString(conn.states[conn.index]),
+        event: eventToString(conn.events[conn.index])
+      }
+    }));
+
+    if (app.__devtool_connected) return;
+    app.__devtool_connected = true;
+
+    app.events.subscribe(function (ev) {
+      conn.events.push(ev);
+      conn.states.push(app.state.get());
+      conn.index = conn.states.length - 1;
+
+      window.dispatchEvent(new CustomEvent('pux:state:change', {
+        detail: {
+          index: conn.index,
+          length: conn.states.length,
+          state: stateToString(conn.states[conn.index]),
+          event: eventToString(ev)
+        }
+      }));
+    });
+
+    app.state.subscribe(function (st) {
+      if (conn.setState) {
+        conn.setState = false;
+        window.dispatchEvent(new CustomEvent('pux:state:change', {
+          detail: {
+            index: conn.index,
+            length: conn.states.length,
+            state: stateToString(st),
+            event: eventToString(conn.events[conn.index])
+          }
+        }));
+      }
+    });
+
+    if (window.__pux_handler) {
+      window.removeEventListener('pux:state:first', window.__pux_handler);
+      window.removeEventListener('pux:state:prev', window.__pux_handler);
+      window.removeEventListener('pux:state:next', window.__pux_handler);
+      window.removeEventListener('pux:state:last', window.__pux_handler);
+    }
+
+    window.__pux_handler = function (ev) {
+      if (ev.type === 'pux:state:first') {
+        conn.setState = true;
+        conn.index = 0;
+        app.state.set(conn.states[0]);
+      } else if (ev.type === 'pux:state:prev') {
+        conn.setState = true;
+        if (conn.states[conn.index - 1]) conn.index--;
+        app.state.set(conn.states[conn.index]);
+      } else if (ev.type === 'pux:state:next') {
+        conn.setState = true;
+        if (conn.states[conn.index + 1]) conn.index++;
+        app.state.set(conn.states[conn.index]);
+      } else if (ev.type === 'pux:state:last') {
+        conn.setState = true;
+        conn.index = conn.states.length - 1;
+        app.state.set(conn.states[conn.index]);
+      }
+    }
+
+    window.addEventListener('pux:state:first', window.__pux_handler);
+    window.addEventListener('pux:state:prev', window.__pux_handler);
+    window.addEventListener('pux:state:next', window.__pux_handler);
+    window.addEventListener('pux:state:last', window.__pux_handler);
+  }
+}
 
 function eventToString (a) {
   a = a.value0 ? a.value0 : a;
