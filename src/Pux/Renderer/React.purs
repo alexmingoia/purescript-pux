@@ -5,6 +5,7 @@ module Pux.Renderer.React
   , renderToStaticMarkup
   , renderToReact
   , reactClass
+  , reactClassWithProps
   ) where
 
 import Control.Applicative (pure)
@@ -17,13 +18,13 @@ import Data.Function.Uncurried (Fn4, runFn4)
 import Data.Functor ((<$>), map)
 import Data.List (List(..), singleton)
 import Data.Nullable (Nullable, toNullable)
+import Data.Semigroup ((<>))
 import Data.StrMap (fromFoldable) as StrMap
 import Data.StrMap (StrMap)
-import Data.Semigroup ((<>))
 import Data.Tuple (Tuple(..))
 import Data.Unit (Unit)
 import Pux.DOM.HTML (HTML)
-import Pux.DOM.HTML.Attributes (key)
+import Pux.DOM.HTML.Attributes (data_)
 import React (ReactClass, ReactElement)
 import Signal (Signal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, send)
@@ -73,17 +74,29 @@ renderToReact :: ∀ ev props fx
 renderToReact markup input =
   pure $ toReact $ markup ~> renderNodes (reactHandler (hook input))
 
--- | Create an HTML constructor for a React class using a unique key. When
+-- | Create an HTML constructor for a React class using a unique name. When
 -- | rendered this element is replaced with the class.
 reactClass :: ∀ ev props. ReactClass props -> String -> (HTML ev -> HTML ev)
 reactClass component key' = \children ->
-  registerClass component key' $ parent "reactclass" children ! key key'
+  registerClass component key'
+    $ parent "reactclass" children ! (data_ "pux-react-class" key')
+
+-- | Create an HTML constructor for a React class using a unique name. When
+-- | rendered this element is replaced with the class. The returned constructor
+-- | takes an arbitrary props argument, which will be passed to the React class
+-- | when rendered.
+reactClassWithProps :: ∀ ev props. ReactClass props -> String -> (props -> HTML ev -> HTML ev)
+reactClassWithProps component key' = \props children ->
+  registerClass component key'
+    $ parent "reactclass" children
+      ! registerProps props (data_ "pux-react-props") ! data_ "pux-react-class" key'
 
 dangerouslySetInnerHTML :: String -> Attribute
 dangerouslySetInnerHTML = attribute "dangerouslySetInnerHTML"
 
 foreign import toReact :: ∀ props. Signal (Array ReactElement) -> ReactClass props
 foreign import registerClass :: ∀ ev props. ReactClass props -> String -> HTML ev -> HTML ev
+foreign import registerProps :: ∀ props. props -> (String -> Attribute) -> Attribute
 foreign import renderToDOM_ :: ∀ props fx. String -> ReactClass props -> Eff fx Unit
 foreign import renderToString_ :: ∀ props fx. ReactClass props -> Eff fx String
 foreign import renderToStaticMarkup_ :: ∀ props fx. ReactClass props -> Eff fx String

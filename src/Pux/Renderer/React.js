@@ -5,7 +5,11 @@
 var React = (typeof require === 'function' && require('react'))
          || (typeof window === 'object' && window.React);
 
-var reactClasses = {};
+var class_cache = {};
+
+var props_cache = {
+  index: 0
+};
 
 exports.renderToDOM_ = function (selector) {
   var ReactDOM = (typeof require === 'function' && require('react-dom'))
@@ -66,7 +70,10 @@ exports.toReact = function (vdomSignal) {
       });
     },
     componentDidMount: setFocus,
-    componentDidUpdate: setFocus,
+    componentDidUpdate: function () {
+      props_cache.index = 0;
+      setFocus();
+    },
     render: function () {
       var vdom = vdomSignal.get();
 
@@ -82,10 +89,18 @@ exports.toReact = function (vdomSignal) {
 // When rendered this element is replaced by the class.
 exports.registerClass = function (reactClass) {
   return function (key) {
+    class_cache[key] = reactClass;
     return function (markup) {
-      reactClasses[key] = reactClass;
       return markup;
     };
+  };
+};
+
+exports.registerProps = function (props) {
+  var key = String(++props_cache.index);
+  props_cache[key] = props;
+  return function (attr) {
+    return attr(key);
   };
 };
 
@@ -126,11 +141,19 @@ exports.reactElement = function (node, name, attrs, children) {
   } else if (name === 'reactclass') {
     // Support rendering of foreign react classes registered through
     // `registerClass`
-    var key = reactAttrs.key;
-    var reactClass = reactClasses[key];
+    var component = class_cache[reactAttrs['data-pux-react-class']];
+    var props = props_cache[reactAttrs['data-pux-react-props']];
 
-    if (reactClass) {
-      return React.createElement(reactClass, reactAttrs, children);
+    if (props === undefined) props = {};
+
+    for (var key in reactAttrs) {
+      if (key !== 'data-pux-react-class') {
+        props[key] = reactAttrs[key];
+      }
+    }
+
+    if (component) {
+      return React.createElement(component, props, children);
     } else {
       return React.createElement('div', reactAttrs, children);
     }
