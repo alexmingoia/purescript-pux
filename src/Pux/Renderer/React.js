@@ -56,8 +56,13 @@ exports.toReact = function (vdomSignal) {
   return React.createClass({
     componentWillMount: function () {
       var ctx = this;
+      var subscribed = false;
       vdomSignal.subscribe(function () {
-        ctx.forceUpdate();
+        if (subscribed === true) {
+          ctx.forceUpdate();
+        } else {
+          subscribed = true;
+        }
       });
     },
     componentDidMount: setFocus,
