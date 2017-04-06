@@ -1,6 +1,6 @@
 module BasicExample where
 
-import BasicExample.Counter (State(..), foldp, view)
+import BasicExample.Counter (foldp, view)
 import Control.Bind (bind)
 import Control.Monad.Eff (Eff)
 import Data.Unit (Unit)
@@ -10,7 +10,7 @@ import Pux.Renderer.React (renderToDOM)
 main :: ∀ fx. Eff (CoreEffects fx) Unit
 main = do
   app <- start
-    { initialState: State 0
+    { initialState: 0
     , view
     , foldp
     , inputs: []

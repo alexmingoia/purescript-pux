@@ -12,15 +12,15 @@ import Text.Smolder.Markup (text, (#!))
 
 data Event = Increment | Decrement
 
-newtype State = State Int
+type State = Int
 
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
-foldp Increment (State n) = { state: State (n + 1), effects: [] }
-foldp Decrement (State n) = { state: State (n - 1), effects: [] }
+foldp Increment n = { state: n + 1, effects: [] }
+foldp Decrement n = { state: n - 1, effects: [] }
 
 view :: State -> HTML Event
-view (State n) =
+view count =
   div do
     button #! onClick (const Increment) $ text "Increment"
-    span $ text (show n)
+    span $ text (show count)
     button #! onClick (const Decrement) $ text "Decrement"
