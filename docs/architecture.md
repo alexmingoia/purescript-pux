@@ -7,13 +7,13 @@ A Pux application consists of two types and two functions:
 3. A function which produces a new state from events, **`foldp`**.
 4. A function which produces HTML from the current state, **`view`**.
 
-For every event, `foldp` produces a new state which is used by the `view`
-function to produce HTML to render.
+Upon each event `foldp` produces a new state which is used by the `view`
+function to return HTML to be rendered.
 
 ### 1. State
 
 A type for the application's state. For example, the state of a simple counter
-that can be incremented or decremented may just be an integer:
+that can be incremented or decremented may be an integer:
 
 ```purescript
 type State = Int

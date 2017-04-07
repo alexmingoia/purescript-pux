@@ -49,8 +49,19 @@ Return a ReactClass from a component's HTML signal.
 reactClass :: forall ev props. ReactClass props -> String -> (HTML ev -> HTML ev)
 ```
 
-Create an HTML constructor for a React class using a unique key. When
+Create an HTML constructor for a React class using a unique name. When
 rendered this element is replaced with the class.
+
+#### `reactClassWithProps`
+
+``` purescript
+reactClassWithProps :: forall ev props. ReactClass props -> String -> (props -> HTML ev -> HTML ev)
+```
+
+Create an HTML constructor for a React class using a unique name. When
+rendered this element is replaced with the class. The returned constructor
+takes an arbitrary props argument, which will be passed to the React class
+when rendered.
 
 #### `dangerouslySetInnerHTML`
 

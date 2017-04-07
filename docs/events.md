@@ -37,7 +37,7 @@ foldp Decrement n = { state: n - 1, effects: [] }
 
 foldp produces a new state along with effects. These are wrapped in a record
 that Pux calls an
-[`EffModel`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux#t:EffModel).
+[`EffModel`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#t:EffModel).
 
 ```purescript
 type EffModel st ev fx =
@@ -90,15 +90,13 @@ foldp (ReceiveTodos t) st =
 
 ### Nesting events
 
->> Nesting events is not recommended as a way to organize application code.
->> Instead, use a single event type for all of your application events (similar
->> to Redux and its reducers). You can split up your foldp function into multiple files
->> as needed.
+> Read the [Components](/docs/components) section to learn more
+> about organizing your app.
 
 Sometimes you want to compose foldp functions with different event and state
-types when using external libraries or components. To do this, create a parent
-event type wrapping the child's type and embed the child state in the parent
-state:
+types when using external libraries or splitting your foldp function into
+submodules. To do this, create a parent event type wrapping the child's type and
+embed the child state in the parent state:
 
 ```purescript
 -- | Wrap the child event type
@@ -115,8 +113,8 @@ type State =
 
 Whenever a child event occurs pass it to the child's foldp function, then map
 over the returned EffModel using Pux's
-[`mapEffects`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux#v:mapEffects)
-and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux#v:mapState):
+[`mapEffects`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:mapEffects)
+and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:mapState):
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx

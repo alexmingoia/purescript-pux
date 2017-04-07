@@ -80,7 +80,7 @@ button !? state.loading (className "loading") $ text "Save"
 The
 [`#!`](https://pursuit.purescript.org/packages/purescript-smolder/6.0.0/docs/Text.Smolder.Markup#v:%28#!%29)
 operator is used with constructors from
-[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.Events) to add event handlers to
+[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events) to add event handlers to
 elements:
 
 ```purescript
@@ -88,7 +88,7 @@ button #! onClick (const Increment) $ text "Increment"
 ```
 
 Pux provides constructors for creating event handlers for all the DOM events via
-[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.Events).
+[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events).
 These constructors take an argument of type `DOMEvent -> ev` where `ev` is the
 type of your application events. This is so that data in the raw DOM event can
 be used in the application events. If the DOM event is not needed by the
@@ -104,20 +104,20 @@ function as shown in the example above.
 ## Pux elements and attributes
 
 In addition to purescript-smolder, Pux provides its own element and attribute
-constructors in [`Pux.DOM.HTML`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML) and
-[`Pux.DOM.HTML.Attributes`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes):
+constructors in [`Pux.DOM.HTML`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML) and
+[`Pux.DOM.HTML.Attributes`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML.Attributes):
 
-- The `style` [element](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML#v:style) and
-  [attribute](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes#v:style) take `CSS` from
+- The `style` [element](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML#v:style) and
+  [attribute](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML.Attributes#v:style) take `CSS` from
   purescript-css.
-- [`focus`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes#v:focus) declaratively controls
+- [`focus`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML.Attributes#v:focus) declaratively controls
   input focus. 
-- [`key`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes#v:key) is for rendering optimization
+- [`key`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML.Attributes#v:key) is for rendering optimization
   (used by React and others).
-- [`data_`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML.Attributes#v:data_) constructs properties
+- [`data_`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML.Attributes#v:data_) constructs properties
   prefixed with "data-".
 
-## Folding elements
+## HTML from lists
 
 Often elements need to be generated from a
 [`Foldable`](https://pursuit.purescript.org/packages/purescript-foldable-traversable/2.0.0/docs/Data.Foldable),
@@ -139,7 +139,7 @@ view = ul $ for_ colors color
 
 ## Memoization
 
-Use Pux's [`memoize`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.HTML#v:memoize)
+Use Pux's [`memoize`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML#v:memoize)
 where it's important to avoid unnecessary rendering:
 
 ```purescript
@@ -147,10 +147,10 @@ view :: State -> HTML Event
 view = memoize \state -> div $ text state.message
 ```
 
->> It's important that `memoize` is only used at a top-level declaration –
->> not inside a view. This is because PureScript is eagerly evaluated like
->> JavaScript. If `memoize` is used inside a view, it will recreate the memoized
->> function every time the view is called.
+> It's important that `memoize` is only used at a top-level declaration and
+> not inside a view. This is because PureScript is eagerly evaluated like
+> JavaScript. If `memoize` is used inside a view it will recreate the memoized
+> function every time the view is called.
 
 > #### Next: [Rendering](/docs/rendering)
 > #### Previous: [Events](/docs/events)

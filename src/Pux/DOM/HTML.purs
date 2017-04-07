@@ -15,10 +15,20 @@ import Text.Smolder.Markup (MarkupM(Return, Content, Element), Markup, text)
 type HTML ev = Markup (DOMEvent -> ev)
 
 -- | Memoize child view and map event handlers with parent event type.
+-- |
+-- | It's important that `child` is only used at a top-level declaration and
+-- | not inside a view. This is because PureScript is eagerly evaluated like
+-- | JavaScript. If `child` is used inside a view it will recreate the memoized
+-- | function every time the view is called.
 child :: ∀ s a b. (a -> b) -> (s -> HTML a) -> (s -> HTML b)
 child f view = memoize $ \s -> mapEvent f (view s)
 
 -- | Map HTML with event type `a` to HTML with event type `b`.
+-- |
+-- | It's important that `memoize` is only used at a top-level declaration –
+-- | not inside a view. This is because PureScript is eagerly evaluated like
+-- | JavaScript. If `memoize` is used inside a view it will recreate the memoized
+-- | function every time the view is called.
 mapEvent :: ∀ a b. (a -> b) -> HTML a -> HTML b
 mapEvent f (Element n c a e r) =
   Element n (map (mapEvent f) c) a (map (mapEventHandler f) e) (mapEvent f r)

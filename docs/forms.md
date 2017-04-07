@@ -34,11 +34,11 @@ foldp (PasswordChange ev) state =
 ```
 
 The raw DOM event is used to get the value of the inputs. Pux provides
-[`targetValue`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.Events#v:targetValue)
-which takes a `DOMEvent` and returns the value of `ev.currentTarget.value`.
+[`targetValue`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events#v:targetValue)
+which takes a `DOMEvent` and returns the value of `ev.target.value`.
 
 The view uses `onChange` and `onSubmit` handlers from
-[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.Events)
+[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events)
 to hook application events to DOM events:
 
 ```purescript
@@ -51,4 +51,4 @@ view state =
 ```
 
 > #### Next: [Routing](/docs/routing)
-> #### Previous: [Rendering](/docs/rendering)
+> #### Previous: [Components](/docs/components)

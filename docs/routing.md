@@ -44,7 +44,7 @@ would never be tried!
 
 Now that we have a function for making a route from a url, we can map it over
 the url signal provided by
-[`sampleURL`](https://pursuit.purescript.org/packages/purescript-pux/8.0.0/docs/Pux.DOM.History#v:sampleURL)
+[`sampleURL`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.History#v:sampleURL)
 takes a window history object from purescript-dom and returns a signal of the
 URL which is updated whenever the `popstate` event occurs:
 

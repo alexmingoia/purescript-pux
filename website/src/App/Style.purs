@@ -95,12 +95,15 @@ appStyle = do
     margin (0.0 #px) (0.0 #px) (1.0 #em) (0.0 #px)
 
   fromString "h2" ? do
+    fontSize (19.0 #px)
     margin (1.6 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h3" ? do
+    fontSize (15.0 #px)
     margin (1.8 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h4" ? do
+    fontSize (15.0 #px)
     margin (2.0 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h4" ? fromString "code" ? do
