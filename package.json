@@ -1,7 +1,7 @@
 {
   "name": "purescript-pux",
   "description": "Pux is a library for building purely functional interactive UIs with PureScript.",
-  "version": "8.6.0",
+  "version": "8.7.0",
   "scripts": {
     "postinstall": "bower install",
     "build:clean": "rm -rf dist output",

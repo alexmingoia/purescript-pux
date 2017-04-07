@@ -1,5 +1,11 @@
 # Change Log
 
+## [v8.7] - 2017-04-07
+
+- Fix redundant initial render.
+- Add `reactClassWithProps` for using arbitrary props with external React classes.
+- Add HMR support to pux-devtool.
+
 ## [v8.6] - 2017-04-04
 
 - Use `ev.target` instead of `ev.currentTarget` for `targetValue` function.
