@@ -19,6 +19,7 @@ const options = {
     '/docs/css',
     '/docs/react-interop',
     '/docs/learn-purescript',
+    '/docs/components',
     '/404.html'
   ].map(url => ('http://localhost:3000' + url)),
   filenameGenerator: 'bySiteStructure',
