@@ -132,6 +132,32 @@ exports.reactElement = function (node, name, attrs, children) {
     }
   }
 
+  if (reactAttrs.dangerouslySetInnerHTML !== undefined) {
+    reactAttrs.dangerouslySetInnerHTML = { __html : reactAttrs.dangerouslySetInnerHTML };
+  }
+
+  // Support declarative focus attribute
+  if (reactAttrs.focused !== undefined) {
+    if (typeof window === 'object') {
+      window.__puxActiveElement = true;
+      reactAttrs['data-focused'] = 'focused';
+    }
+  }
+
+  // Parse inline style, because React expects a map instead of a string.
+  if (reactAttrs.style !== undefined) {
+    reactAttrs.style = reactAttrs.style.split(';').reduce(function (prev, curr) {
+      if (!curr) return prev;
+      var prop = curr.split(':');
+      var key = prop[0].replace(/^ */, '').replace(/ *$/, '').replace(/(-\w)/g, function (m, w) {
+        return w[1].toUpperCase();
+      });
+      var val = prop[1].replace(/^ */, '').replace(/ *$/, '');
+      prev[key] = val;
+      return prev;
+    }, {});
+  }
+
   if (name === 'style') {
     // Convert style element children to string
     if (children !== null && children.length) {
@@ -157,32 +183,6 @@ exports.reactElement = function (node, name, attrs, children) {
     } else {
       return React.createElement('div', reactAttrs, children);
     }
-  }
-
-  // Support declarative focus attribute
-  if (reactAttrs.focused !== undefined) {
-    if (typeof window === 'object') {
-      window.__puxActiveElement = true;
-      reactAttrs['data-focused'] = 'focused';
-    }
-  }
-
-  // Parse inline style, because React expects a map instead of a string.
-  if (reactAttrs.style !== undefined) {
-    reactAttrs.style = reactAttrs.style.split(';').reduce(function (prev, curr) {
-      if (!curr) return prev;
-      var prop = curr.split(':');
-      var key = prop[0].replace(/^ */, '').replace(/ *$/, '').replace(/(-\w)/g, function (m, w) {
-        return w[1].toUpperCase();
-      });
-      var val = prop[1].replace(/^ */, '').replace(/ *$/, '');
-      prev[key] = val;
-      return prev;
-    }, {});
-  }
-
-  if (reactAttrs.dangerouslySetInnerHTML !== undefined) {
-    reactAttrs.dangerouslySetInnerHTML = { __html : reactAttrs.dangerouslySetInnerHTML };
   }
 
   // Eliminate React "key" errors for parents with a single child
