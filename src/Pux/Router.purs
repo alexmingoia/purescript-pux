@@ -8,6 +8,7 @@ module Pux.Router
   , num
   , int
   , bool
+  , parseSegment
   , param
   , params
   , any
@@ -21,6 +22,7 @@ import Control.Bind (bind)
 import Control.MonadPlus (guard)
 import Control.Plus (class Plus)
 import Data.Array as A
+import Data.Boolean (otherwise)
 import Data.Eq ((==))
 import Data.Functor (class Functor, map, (<$>))
 import Data.Function (($), (<<<))
@@ -48,40 +50,39 @@ end = Match $ \r ->
     _ -> Nothing
 
 lit :: String -> Match Unit
-lit part = Match $ \r ->
+lit part = parseSegment parse
+  where
+    parse s
+      | s == part = Just unit
+      | otherwise = Nothing
+
+parseSegment :: forall a. (String -> Maybe a) -> Match a
+parseSegment parser = Match $ \r ->
   case r of
-    Cons (Path p) ps | p == part -> Just $ Tuple ps unit
+    Cons (Path p) ps -> map (Tuple ps) $ parser p
     _ -> Nothing
 
 num :: Match Number
-num = Match $ \r ->
-  case r of
-    Cons (Path p) ps ->
-      let res = readFloat p in
+num = parseSegment parse
+  where
+    parse p = let res = readFloat p in
       if isNaN res then
         Nothing
       else
-        Just $ Tuple ps res
-    _ -> Nothing
+        Just res
 
 int :: Match Int
-int = Match $ \r ->
-  case r of
-    Cons (Path p) ps -> maybe Nothing (Just <<< Tuple ps) $ fromString p
-    _ -> Nothing
+int = parseSegment fromString
 
 bool :: Match Boolean
-bool = Match $ \r ->
-  case r of
-    Cons (Path p) ps | p == "true" -> Just $ Tuple ps true
-    Cons (Path p) ps | p == "false" -> Just $ Tuple ps false
-    _ -> Nothing
+bool = parseSegment parse
+  where
+    parse "true" = Just true
+    parse "false" = Just false
+    parse _ = Nothing
 
 str :: Match String
-str = Match $ \r ->
-  case r of
-    Cons (Path p) ps -> Just $ Tuple ps p
-    _ -> Nothing
+str = parseSegment Just
 
 param :: String -> Match String
 param key = Match $ \r ->
