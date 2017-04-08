@@ -1,5 +1,9 @@
 # Change Log
 
+## [v8.9] - 2017-04-08
+
+- Fix rendering of `style` element contents.
+
 ## [v8.8] - 2017-04-07
 
 - Add `parseSegment` to Pux.Router

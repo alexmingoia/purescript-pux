@@ -37,7 +37,12 @@ mapEvent f (Content str rest) =
 mapEvent f (Return a) =
   Return a
 
--- | Memoize view. Works with records, ADTs, and arrays.
+-- | Memoize view. Uses JavaScript equality to match states.
+-- |
+-- | It's important that `memoize` is only used at a top-level declaration and
+-- | not inside a view. This is because PureScript is eagerly evaluated like
+-- | JavaScript. If `memoize` is used inside a view it will recreate the memoized
+-- | function every time the view is called.
 foreign import memoize :: ∀ st ev. (st -> HTML ev) -> (st -> HTML ev)
 
 -- | Render CSS stylesheet and return a style element.

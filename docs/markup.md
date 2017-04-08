@@ -139,7 +139,7 @@ view = ul $ for_ colors color
 
 ## Memoization
 
-Use Pux's [`memoize`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.HTML#v:memoize)
+Use Pux's [`memoize`](https://pursuit.purescript.org/packages/purescript-pux/8.9.0/docs/Pux.DOM.HTML#v:memoize)
 where it's important to avoid unnecessary rendering:
 
 ```purescript
