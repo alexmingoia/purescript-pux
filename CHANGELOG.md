@@ -1,5 +1,14 @@
 # Change Log
 
+## [v7.2] - 2017-04-07
+
+- Add `parseSegment` function for router
+  [#103](https://github.com/alexmingoia/purescript-pux/pull/103)
+- Add `evt` function
+  [#94](https://github.com/alexmingoia/purescript-pux/pull/94/)
+- Namespace Pux events
+  [#96](https://github.com/alexmingoia/purescript-pux/pull/96)
+
 ## [v7.1] - 2017-03-30
 
 - Remove unused `(<|>)` import
