@@ -94,6 +94,10 @@ type MediaEvent =
   , currentTarget :: Target
   }
 
+-- Handle user-defined type of event.
+evt :: forall event action. String -> (event -> action) -> Attribute action
+evt eventName = runFn2 handler eventName
+
 onCopy :: forall action. (ClipboardEvent -> action) -> Attribute action
 onCopy = runFn2 handler "onCopy"
 

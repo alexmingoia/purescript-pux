@@ -18,8 +18,14 @@ exports.createUrlSignal = function locationChanged(constant) {
   };
 };
 
+
+function puxHandler(h) {
+  h.isPuxHandler = true
+  return h;
+};
+
 exports.linkHandler = function (url) {
-  return ['onClick', function (input, parentAction) {
+  return ['onClick', puxHandler(function (input, parentAction) {
     return function (ev) {
       ev.preventDefault();
       if (typeof window !== 'undefined') {
@@ -27,7 +33,7 @@ exports.linkHandler = function (url) {
         window.dispatchEvent(new CustomEvent('popstate'));
       }
     };
-  }];
+  })];
 };
 
 exports.navigateTo = function (url) {
