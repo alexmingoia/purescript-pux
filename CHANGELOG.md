@@ -1,5 +1,10 @@
 # Change Log
 
+## [v8.8] - 2017-04-07
+
+- Add `parseSegment` to Pux.Router
+  [#103](https://github.com/alexmingoia/purescript-pux/pull/103)
+
 ## [v8.7] - 2017-04-07
 
 - Fix redundant initial render.
@@ -57,6 +62,21 @@ This is a major upgrade and rewrite with breaking changes:
   code and documentation.
 
 See the updated [guide](https://www.purescript-pux.org) for help upgrading to Pux 8.
+
+## [v7.2] - 2017-04-07
+
+- Add `parseSegment` function for router
+  [#103](https://github.com/alexmingoia/purescript-pux/pull/103)
+- Add `evt` function
+  [#94](https://github.com/alexmingoia/purescript-pux/pull/94/)
+- Namespace Pux events
+  [#96](https://github.com/alexmingoia/purescript-pux/pull/96)
+
+## [v7.1] - 2017-03-30
+
+- Remove unused `(<|>)` import
+- Use `CustomEvent` instead of `Event` (fixes #76)
+- Fix #102
 
 ## [v7.0] - 2016-10-24
 

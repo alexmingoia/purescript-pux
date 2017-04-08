@@ -42,6 +42,12 @@ end :: Match Unit
 lit :: String -> Match Unit
 ```
 
+#### `parseSegment`
+
+``` purescript
+parseSegment :: forall a. (String -> Maybe a) -> Match a
+```
+
 #### `num`
 
 ``` purescript
