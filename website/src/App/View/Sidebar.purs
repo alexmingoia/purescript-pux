@@ -48,8 +48,6 @@ view st = do
       li $ navLink st "/docs/markup" "Markup"
       li $ navLink st "/docs/rendering" "Rendering"
       li $ navLink st "/docs/components" "Components"
-
-    ul do
       li $ navLink st "/docs/forms" "Forms"
       li $ navLink st "/docs/routing" "Routing"
       li $ navLink st "/docs/css" "CSS"
