@@ -1,5 +1,6 @@
 module AjaxExample.Todos where
 
+import Prelude (discard)
 import Control.Applicative (pure)
 import Control.Bind (bind)
 import Control.Monad.Aff (attempt)

@@ -1,6 +1,6 @@
 module CounterPairExample.Counter where
 
-import Control.Bind (bind)
+import Prelude (discard)
 import Data.Function (($), const)
 import Data.Ring ((+), (-))
 import Data.Show (show)

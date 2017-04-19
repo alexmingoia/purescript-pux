@@ -105,7 +105,7 @@ foreign import reactText :: String -> ReactElement
 foreign import reactHandler :: ∀ a e fx. (a -> Eff (channel :: CHANNEL | fx) Unit) -> e -> ReactAttribute
 foreign import reactAttr :: String -> ReactAttribute
 
-foreign import data ReactAttribute :: *
+foreign import data ReactAttribute :: Type
 
 renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
 renderNodes input node@(Element n c a e r) =
