@@ -9,7 +9,7 @@ import Pux (start)
 import Pux.Renderer.React (renderToDOM)
 import Signal.Channel (CHANNEL)
 
-main :: ∀ fx. Eff (channel :: CHANNEL, err :: EXCEPTION | fx) Unit
+main :: ∀ fx. Eff (channel :: CHANNEL, exception :: EXCEPTION | fx) Unit
 main = do
   app <- start
     { initialState: init

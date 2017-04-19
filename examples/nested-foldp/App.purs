@@ -1,7 +1,7 @@
 module CounterPairExample.App where
 
+import Prelude (discard)
 import CounterPairExample.Counter as Counter
-import Control.Bind (bind)
 import Data.Function (const, ($), (#))
 import Pux (EffModel, noEffects, mapEffects, mapState)
 import Pux.DOM.Events (onClick)

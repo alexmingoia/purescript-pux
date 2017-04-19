@@ -26,6 +26,6 @@ sampleURL win = do
         url <- pathname loc
         send chan url
 
-  addEventListener (EventType "popstate") listener false (windowToEventTarget win)
+  _ <- addEventListener (EventType "popstate") listener false (windowToEventTarget win)
 
   pure (subscribe chan)
