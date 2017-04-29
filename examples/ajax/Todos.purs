@@ -1,15 +1,11 @@
 module AjaxExample.Todos where
 
-import Control.Applicative (pure)
-import Control.Bind (bind)
+import Prelude hiding (div)
 import Control.Monad.Aff (attempt)
 import Data.Argonaut (class DecodeJson, decodeJson, (.?))
 import Data.Either (Either(Left, Right), either)
 import Data.Foldable (for_)
-import Data.Function (($), (<<<), const)
 import Data.Maybe (Maybe(..))
-import Data.Semigroup ((<>))
-import Data.Show (show)
 import Network.HTTP.Affjax (AJAX, get)
 import Pux (EffModel, noEffects)
 import Pux.DOM.Events (onClick)

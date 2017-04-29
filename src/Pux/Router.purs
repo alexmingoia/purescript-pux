@@ -15,10 +15,10 @@ module Pux.Router
   , end
   ) where
 
+import Prelude (discard)
 import Control.Alt (class Alt)
 import Control.Applicative (class Applicative, pure)
 import Control.Apply (class Apply, (<*>))
-import Control.Bind (bind)
 import Control.MonadPlus (guard)
 import Control.Plus (class Plus)
 import Data.Array as A
