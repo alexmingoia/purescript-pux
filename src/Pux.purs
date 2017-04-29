@@ -13,9 +13,11 @@ module Pux
   , waitState
   ) where
 
+import Prelude (discard)
+import Data.Time.Duration (Milliseconds(..))
 import Control.Applicative (pure)
 import Control.Bind (bind)
-import Control.Monad.Aff (Aff, later, launchAff, makeAff)
+import Control.Monad.Aff (Aff, delay, launchAff, makeAff)
 import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
@@ -59,7 +61,8 @@ start config = do
       htmlSignal = stateSignal ~> config.view
       mapAffect affect = launchAff $ unsafeCoerceAff do
         ev <- affect
-        later $ case ev of
+        delay (Milliseconds 0.0)
+        case ev of
           Nothing -> pure unit
           Just e -> liftEff $ send evChannel (singleton e)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
@@ -96,7 +99,7 @@ type Config e ev st fx =
 -- | main state = do
 -- |   -- ...
 -- | ```
-type CoreEffects fx = (channel :: CHANNEL, err :: EXCEPTION | fx)
+type CoreEffects fx = (channel :: CHANNEL, exception :: EXCEPTION | fx)
 
 -- | An `App` is a record consisting of:
 -- |

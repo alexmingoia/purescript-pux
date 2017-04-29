@@ -1,7 +1,6 @@
 module FormsExample.Form where
 
-import Control.Bind (bind)
-import Data.Function (($), const)
+import Prelude hiding (div)
 import Pux (EffModel, noEffects)
 import Pux.DOM.Events (DOMEvent, onSubmit, onChange, targetValue)
 import Pux.DOM.HTML (HTML)
@@ -32,4 +31,3 @@ view state =
     input ! type' "text" ! value state.username #! onChange UsernameChange
     input ! type' "password" ! value state.password #! onChange PasswordChange
     button ! type' "submit" $ text "Sign In"
-

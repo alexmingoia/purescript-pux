@@ -1,9 +1,6 @@
 module BasicExample.Counter where
 
-import Control.Bind (bind)
-import Data.Function (const, ($))
-import Data.Ring ((+), (-))
-import Data.Show (show)
+import Prelude hiding (div)
 import Pux (EffModel)
 import Pux.DOM.Events (onClick)
 import Pux.DOM.HTML (HTML)
