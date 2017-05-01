@@ -1,6 +1,6 @@
 module FormsExample.Form where
 
-import Control.Bind (bind)
+import Prelude (discard)
 import Data.Function (($), const)
 import Pux (EffModel, noEffects)
 import Pux.DOM.Events (DOMEvent, onSubmit, onChange, targetValue)
