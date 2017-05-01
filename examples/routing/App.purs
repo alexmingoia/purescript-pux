@@ -1,5 +1,6 @@
 module RoutingExample.App where
 
+import Prelude (discard)
 import Control.Applicative (pure)
 import Control.Bind ((=<<), bind)
 import Control.Monad.Eff.Class (liftEff)
