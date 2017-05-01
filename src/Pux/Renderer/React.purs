@@ -18,6 +18,7 @@ import Data.Function.Uncurried (Fn4, runFn4)
 import Data.Functor ((<$>), map)
 import Data.List (List(..), singleton)
 import Data.Nullable (Nullable, toNullable)
+import Data.Maybe (Maybe(..))
 import Data.Semigroup ((<>))
 import Data.StrMap (fromFoldable) as StrMap
 import Data.StrMap (StrMap)

@@ -10,6 +10,7 @@ import DOM.HTML.Location (pathname, search)
 import DOM.HTML.Types (HISTORY, Window, windowToEventTarget)
 import DOM.HTML.Window (location)
 import Data.Semigroup ((<>))
+import Prelude (discard)
 import Signal (Signal)
 import Signal.Channel (CHANNEL, channel, send, subscribe)
 
@@ -26,6 +27,6 @@ sampleURL win = do
         url <- pathname loc
         send chan url
 
-  _ <- addEventListener (EventType "popstate") listener false (windowToEventTarget win)
+  addEventListener (EventType "popstate") listener false (windowToEventTarget win)
 
   pure (subscribe chan)

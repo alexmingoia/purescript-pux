@@ -27,6 +27,7 @@ import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe (fromJust, Maybe(..))
 import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
+import Prelude (discard)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 import Text.Smolder.Markup (Markup)
@@ -63,7 +64,7 @@ start config = do
           Nothing -> pure unit
           Just e -> liftEff $ send evChannel (singleton e)
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
-  _ <- runSignal $ effectsSignal ~> sequence_
+  runSignal $ effectsSignal ~> sequence_
   pure $ start_ $
     { markup: htmlSignal
     , state: stateSignal

@@ -35,6 +35,7 @@ import Data.Profunctor (lmap)
 import Data.String as S
 import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Unit (Unit, unit)
+import Prelude (discard)
 import Global (readFloat, isNaN)
 
 data RoutePart = Path String | Query (M.Map String String)
@@ -151,7 +152,7 @@ parseQuery s = Query <<< M.fromFoldable <<< catMaybes <<< map part2tuple $ parts
   part2tuple :: String -> Maybe (Tuple String String)
   part2tuple part = do
     let param' = S.split (S.Pattern "=") part
-    _ <- guard $ A.length param' == 2
+    guard $ A.length param' == 2
     Tuple <$> (A.head param') <*> (param' A.!! 1)
 
 router :: ∀ a. String -> Match a -> Maybe a
