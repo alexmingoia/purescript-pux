@@ -111,7 +111,7 @@ function eventToString (a) {
     var name = a.constructor.name.match(/(String|Number|Boolean)/) ? a : a.constructor.name;
     var str = [name];
     if (a.constructor.name === 'Object') {
-      return JSON.stringify(stateToString(a));
+      return stateToString(a);
     }
     Object.keys(a).forEach(function (key) {
       if (key[0] === 'v' && key[4] === 'e') {
