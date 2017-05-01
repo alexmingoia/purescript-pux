@@ -108,6 +108,8 @@ foreign import reactAttr :: String -> ReactAttribute
 foreign import data ReactAttribute :: *
 
 renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
+renderNodes input node@(Element n (Just (Return _)) a e r) =
+  runFn4 reactElement node n (renderAttrs input a e) (toNullable Nothing) : renderNodes input r
 renderNodes input node@(Element n c a e r) =
   runFn4 reactElement node n (renderAttrs input a e) (toNullable (renderNodes input <$> c)) : renderNodes input r
 renderNodes input (Content t r) =
