@@ -18,7 +18,7 @@ module Pux.Router
 import Control.Alt (class Alt)
 import Control.Applicative (class Applicative, pure)
 import Control.Apply (class Apply, (<*>))
-import Control.Bind (bind)
+import Control.Bind (discard)
 import Control.MonadPlus (guard)
 import Control.Plus (class Plus)
 import Data.Array as A
@@ -35,7 +35,6 @@ import Data.Profunctor (lmap)
 import Data.String as S
 import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Unit (Unit, unit)
-import Prelude (discard)
 import Global (readFloat, isNaN)
 
 data RoutePart = Path String | Query (M.Map String String)

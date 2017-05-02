@@ -14,7 +14,7 @@ module Pux
   ) where
 
 import Control.Applicative (pure)
-import Control.Bind (bind)
+import Control.Bind (bind, discard)
 import Control.Monad.Aff (Aff, launchAff, makeAff)
 import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
@@ -27,7 +27,6 @@ import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
 import Data.Maybe (fromJust, Maybe(..))
 import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
-import Prelude (discard)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
 import Text.Smolder.Markup (Markup)
