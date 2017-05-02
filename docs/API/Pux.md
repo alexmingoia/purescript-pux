@@ -23,7 +23,7 @@ main = do
 #### `Config`
 
 ``` purescript
-type Config e ev st fx = { "initialState" :: st, "view" :: st -> Markup e, "foldp" :: FoldP st ev fx, "inputs" :: Array (Signal ev) }
+type Config e ev st fx = { initialState :: st, view :: st -> Markup e, foldp :: FoldP st ev fx, inputs :: Array (Signal ev) }
 ```
 
 The configuration of an app consists of foldp and view functions along
@@ -36,7 +36,7 @@ be merged into the app's input signal.
 #### `CoreEffects`
 
 ``` purescript
-type CoreEffects fx = ("channel" :: CHANNEL, "err" :: EXCEPTION | fx)
+type CoreEffects fx = (channel :: CHANNEL, exception :: EXCEPTION | fx)
 ```
 
 The set of effects every Pux app needs to allow through when using `start`.
@@ -53,7 +53,7 @@ main state = do
 #### `App`
 
 ``` purescript
-type App e ev st = { "markup" :: Signal (Markup e), "state" :: Signal st, "events" :: Signal (List ev), "input" :: Channel (List ev) }
+type App e ev st = { markup :: Signal (Markup e), state :: Signal st, events :: Signal (List ev), input :: Channel (List ev) }
 ```
 
 An `App` is a record consisting of:
@@ -76,7 +76,7 @@ Return an `EffModel` from the current event and state.
 #### `EffModel`
 
 ``` purescript
-type EffModel st ev fx = { "state" :: st, "effects" :: Array (Aff (CoreEffects fx) (Maybe ev)) }
+type EffModel st ev fx = { state :: st, effects :: Array (Aff (CoreEffects fx) (Maybe ev)) }
 ```
 
 `EffModel` is a container for state and asynchronous effects which return

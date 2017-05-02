@@ -3,7 +3,7 @@
 #### `renderToDOM`
 
 ``` purescript
-renderToDOM :: forall ev fx. String -> Signal (HTML ev) -> Channel (List ev) -> Eff ("channel" :: CHANNEL | fx) Unit
+renderToDOM :: forall ev fx. String -> Signal (HTML ev) -> Channel (List ev) -> Eff (channel :: CHANNEL | fx) Unit
 ```
 
 ```purescript
@@ -20,7 +20,7 @@ main = do
 #### `renderToString`
 
 ``` purescript
-renderToString :: forall ev fx. Signal (HTML ev) -> Eff ("channel" :: CHANNEL | fx) String
+renderToString :: forall ev fx. Signal (HTML ev) -> Eff (channel :: CHANNEL | fx) String
 ```
 
 Return an HTML string from a component's HTML signal. The HTML returned
@@ -29,7 +29,7 @@ includes React-specific attributes for fast mounting in the browser.
 #### `renderToStaticMarkup`
 
 ``` purescript
-renderToStaticMarkup :: forall ev fx. Signal (HTML ev) -> Eff ("channel" :: CHANNEL | fx) String
+renderToStaticMarkup :: forall ev fx. Signal (HTML ev) -> Eff (channel :: CHANNEL | fx) String
 ```
 
 Return an HTML string from a component's HTML signal. The HTML returned is
@@ -38,7 +38,7 @@ stripped of all React-specific attributes.
 #### `renderToReact`
 
 ``` purescript
-renderToReact :: forall ev props fx. Signal (HTML ev) -> Channel (List ev) -> Eff ("channel" :: CHANNEL | fx) (ReactClass props)
+renderToReact :: forall ev props fx. Signal (HTML ev) -> Channel (List ev) -> Eff (channel :: CHANNEL | fx) (ReactClass props)
 ```
 
 Return a ReactClass from a component's HTML signal.

@@ -3,7 +3,7 @@
 #### `sampleURL`
 
 ``` purescript
-sampleURL :: forall eff. Window -> Eff ("channel" :: CHANNEL, "history" :: HISTORY, "dom" :: DOM | eff) (Signal String)
+sampleURL :: forall eff. Window -> Eff (channel :: CHANNEL, history :: HISTORY, dom :: DOM | eff) (Signal String)
 ```
 
 Returns a signal containing the current window.location pathname and search query,

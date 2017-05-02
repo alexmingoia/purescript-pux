@@ -1,5 +1,13 @@
 # Change Log
 
+## [v9.0] - 2017-05-01
+
+- Update for PureScript 0.11
+  [#116](https://github.com/alexmingoia/purescript-pux/pull/116)
+- Remove redundant arrays in rendered React VDOM
+- Fixed type error in devtool state serialization
+  [#117](https://github.com/alexmingoia/purescript-pux/pull/117)
+
 ## [v8.9] - 2017-04-08
 
 - Fix rendering of `style` element contents.

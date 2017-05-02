@@ -1,11 +1,11 @@
 {
   "name": "purescript-pux",
-  "description": "Pux is a library for building purely functional interactive UIs with PureScript.",
-  "version": "8.9.0",
+  "description": "Build purely functional type-safe web apps with PureScript.",
+  "version": "9.0.0",
   "scripts": {
     "postinstall": "bower install",
     "build:clean": "rm -rf dist output",
-    "docs": "rm -rf docs/API && pulp docs && mkdir -p docs/API && mv docs/Pux docs/API/Pux && mv docs/Pux.md docs/API/Pux.md",
+    "docs": "rm -rf docs/API && pulp docs && mkdir -p docs/API && mv generated-docs/Pux docs/API/Pux && mv generated-docs/Pux.md docs/API/Pux.md && rm -r generated-docs",
     "publish:website": "npm run docs && cd website && npm run build && cd dist/www && git init && git commit --allow-empty -m 'Update website.' && git checkout -b gh-pages && touch .nojekyll && echo purescript-pux.org > CNAME && git add . && git commit -am 'Update website.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "publish:packages": "pulp publish && npm publish",
     "publish": "npm run publish:packages && npm run publish:website",
