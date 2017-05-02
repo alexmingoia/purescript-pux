@@ -1,5 +1,10 @@
 # Change Log
 
+## [v9.1] - 2017-05-02
+
+- Send events returned by effects after the current execution context.
+  Fixes issue with event ordering.
+
 ## [v9.0] - 2017-05-01
 
 - Update for PureScript 0.11
