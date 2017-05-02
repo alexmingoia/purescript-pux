@@ -6,7 +6,7 @@ Pux components can be rendered to a React class instead of the DOM for use
 inside an existing React application.
 
 Use `start` to initialize your component with state, then use
-[`renderToReact`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.Renderer.React#v:renderToReact)
+[`renderToReact`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:renderToReact)
 to return a React class.
 
 ```purescript
@@ -46,7 +46,7 @@ exports.fancyComponent = React.createClass(..)
 
 In your PureScript code, add a foreign module definition for the
 fancyComponent, and use the
-[`reactClass`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.Renderer.React#v:reactClass)
+[`reactClass`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:reactClass)
 function to create an HTML element constructor which you can use in your views.
 
 ```purescript
@@ -72,4 +72,4 @@ view count =
     button #! onClick (const Decrement) $ text "Decrement" 
 ```
 
-> To pass arbitrary props to a react class use [`reactClassWithProps`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.Renderer.React#v:reactClassWithProps).
+> To pass arbitrary props to a react class use [`reactClassWithProps`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:reactClassWithProps).

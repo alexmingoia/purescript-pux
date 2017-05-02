@@ -37,7 +37,7 @@ foldp Decrement n = { state: n - 1, effects: [] }
 
 foldp produces a new state along with effects. These are wrapped in a record
 that Pux calls an
-[`EffModel`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#t:EffModel).
+[`EffModel`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#t:EffModel).
 
 ```purescript
 type EffModel st ev fx =
@@ -113,8 +113,8 @@ type State =
 
 Whenever a child event occurs pass it to the child's foldp function, then map
 over the returned EffModel using Pux's
-[`mapEffects`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:mapEffects)
-and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:mapState):
+[`mapEffects`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:mapEffects)
+and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:mapState):
 
 ```purescript
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx

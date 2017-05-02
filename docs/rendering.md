@@ -3,7 +3,7 @@
 ## Rendering with React
 
 Create an application by providing `initialState`, `view`, and `foldp`
-to Pux's [`start`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:start):
+to Pux's [`start`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:start):
 
 ```purescript
 main :: ∀ fx. Eff (CoreEffects fx) Unit
@@ -30,7 +30,7 @@ type App e ev st =
 ```
 
 Render in the browser by passing the markup and event signal to
-[`renderToDOM`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.Renderer.React#v:renderToDOM)
+[`renderToDOM`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:renderToDOM)
 from Pux.Renderer.React:
 
 ```purescript
@@ -38,7 +38,7 @@ from Pux.Renderer.React:
 ```
 
 Render to a string using
-[`renderToString`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.Renderer.React#v:renderToString):
+[`renderToString`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:renderToString):
 
 ```purescript
   html <- renderToString app.markup
@@ -82,7 +82,7 @@ renderApp = do
 ### Waiting for events and data to load before rendering
 
 When loading data asynchronously on the server you may want to wait for the
-data to load before rendering. Pux provides [`waitState`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux#v:waitState)
+data to load before rendering. Pux provides [`waitState`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:waitState)
 which blocks the monadic context until the provided test function returns true.
 
 > #### Next: [Components](/docs/components)

@@ -18,9 +18,9 @@ data Event
 
 `UsernameChange` and `PasswordChange` events happen every time the inputs
 change, and receive a
-[DOM `Event`](https://pursuit.purescript.org/packages/purescript-dom/3.3.0/docs/DOM.Event.Types#t:Event)
+[DOM `Event`](https://pursuit.purescript.org/packages/purescript-dom/4.3.1/docs/DOM.Event.Types#t:Event)
 from
-[purescript-dom](https://pursuit.purescript.org/packages/purescript-dom/3.3.0).
+[purescript-dom](https://pursuit.purescript.org/packages/purescript-dom/4.3.1).
 The `SignIn` event is triggered when the form is submitted.
 
 ```purescript
@@ -34,11 +34,11 @@ foldp (PasswordChange ev) state =
 ```
 
 The raw DOM event is used to get the value of the inputs. Pux provides
-[`targetValue`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events#v:targetValue)
+[`targetValue`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.DOM.Events#v:targetValue)
 which takes a `DOMEvent` and returns the value of `ev.target.value`.
 
 The view uses `onChange` and `onSubmit` handlers from
-[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/8.7.0/docs/Pux.DOM.Events)
+[`Pux.DOM.Events`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.DOM.Events)
 to hook application events to DOM events:
 
 ```purescript
