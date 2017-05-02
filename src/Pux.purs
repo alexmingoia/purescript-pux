@@ -15,17 +15,19 @@ module Pux
 
 import Control.Applicative (pure)
 import Control.Bind (bind, discard)
-import Control.Monad.Aff (Aff, launchAff, makeAff)
+import Control.Monad.Aff (Aff, launchAff, makeAff, delay)
 import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (EXCEPTION)
+import Data.Array (snoc)
 import Data.Foldable (foldl, sequence_)
 import Data.Function (($), (<<<))
 import Data.Functor (map)
-import Data.List (List(Nil), singleton, (:), reverse, fromFoldable)
+import Data.List (List(Nil), singleton)
 import Data.Maybe (fromJust, Maybe(..))
 import Data.Unit (Unit, unit)
+import Data.Time.Duration (Milliseconds(Milliseconds))
 import Partial.Unsafe (unsafePartial)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
@@ -49,22 +51,24 @@ start config = do
   evChannel <- channel Nil
   let evSignal = subscribe evChannel
       input = unsafePartial $ fromJust $ mergeMany $
-        reverse (evSignal : map (map singleton) (fromFoldable $ config.inputs))
+        snoc (map (map singleton) config.inputs) evSignal
       foldState effModel ev = config.foldp ev effModel.state
       foldEvents evs effModel =
         foldl foldState (noEffects effModel.state) evs
       effModelSignal =
         foldp foldEvents (noEffects config.initialState) input
-      stateSignal = dropRepeats' $ effModelSignal ~> _.state
+      stateSignal = dropRepeats' (effModelSignal ~> _.state)
       htmlSignal = stateSignal ~> config.view
       mapAffect affect = launchAff $ unsafeCoerceAff do
         ev <- affect
         case ev of
           Nothing -> pure unit
-          Just e -> liftEff $ send evChannel (singleton e)
+          Just e -> do
+            delay (Milliseconds 0.0)
+            liftEff (send evChannel (singleton e))
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
-  pure $ start_ $
+  pure $ start_
     { markup: htmlSignal
     , state: stateSignal
     , events: input

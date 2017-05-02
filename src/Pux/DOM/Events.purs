@@ -4,7 +4,7 @@ import DOM.Event.Types (Event)
 import Text.Smolder.Markup (EventHandler(..), EventHandlers, on)
 
 -- | Synonym for
--- | [DOM.Event.Types.Event](https://pursuit.purescript.org/packages/purescript-dom/3.3.1/docs/DOM.Event.Types#t:Event)
+-- | [DOM.Event.Types.Event](https://pursuit.purescript.org/packages/purescript-dom/4.3.1/docs/DOM.Event.Types#t:Event)
 -- | to distinguish from application events.
 type DOMEvent = Event
 
