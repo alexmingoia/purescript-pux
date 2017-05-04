@@ -1,8 +1,8 @@
 <div align="center">
 <h1>PUX</h1>
-<blockquote>
-
-</blockquote>
+<p align="center">
+<em>Build purely functional type-safe web applications with PureScript.</em>
+</p>
 <a href="https://www.purescript-pux.org">Documentation</a>
 | <a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/">Examples</a>
 | <a href="https://gitter.im/alexmingoia/purescript-pux">Chat</a>
@@ -10,10 +10,10 @@
 
 <hr />
 
-Pux is a PureScript library for building purely functional type-safe web
-applications. Interactive UI is modeled as a single state transition function,
-`Event -> State -> (State, HTML)` which is run for every event. Pux provides
-the necessary tooling to build modern web applications, including:
+Pux is a PureScript library for building web applications. Interactive
+UI is modeled as a single state transition function,
+`Event -> State -> (State, HTML)` which is run for every event. Pux
+provides the necessary tooling to build modern web applications, including:
 
 - Isomorphic routing and rendering
 - Hot reloading
