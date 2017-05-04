@@ -1,20 +1,29 @@
-# Pux
+<div style="text-align: center">
+<h1 style="text-transform: uppercase">Pux</h1>
+<blockquote>
 
-[![Latest Release](http://img.shields.io/github/release/alexmingoia/purescript-pux.svg)](https://pursuit.purescript.org/packages/purescript-pux)
-[![ComVer](https://img.shields.io/badge/comver-compliant-brightgreen.svg)](https://github.com/staltz/comver)
-[![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux)
-[![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/purescript-pux)
+</blockquote>
+<a href="https://www.purescript-pux.org">Documentation</a>
+| <a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/">Examples</a>
+| <a href="https://gitter.im/alexmingoia/purescript-pux">Chat</a>
+</div>
 
-Build purely functional, type-safe web applications.
+<hr />
+
+Pux is a PureScript library for building purely functional type-safe web
+applications. Interactive UI is modeled as a single state transition function,
+`Event -> State -> (State, HTML)` which is run for every event. Pux provides
+the necessary tooling to build modern web applications, including:
 
 - Isomorphic routing and rendering
 - Hot reloading
 - Render to React (or any virtual DOM library)
 - Time-travelling debug extension
 
-### Learn more
-
-Read the [Guide](https://www.purescript-pux.org/docs/architecture) to learn more about Pux.
+[![Latest Release](http://img.shields.io/github/release/alexmingoia/purescript-pux.svg)](https://pursuit.purescript.org/packages/purescript-pux)
+[![ComVer](https://img.shields.io/badge/comver-compliant-brightgreen.svg)](https://github.com/staltz/comver)
+[![Build Status](https://travis-ci.org/alexmingoia/purescript-pux.svg?branch=master)](https://travis-ci.org/alexmingoia/purescript-pux)
+[![Gitter Chat](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/alexmingoia/purescript-pux)
 
 ### Quick start
 
@@ -36,13 +45,9 @@ decremented:
 ```purescript
 module Main where
 
-import Control.Bind (bind)
+import Prelude hiding (div)
 import Control.Monad.Eff (Eff)
-import Data.Function (const, ($))
-import Data.Ring ((+), (-))
-import Data.Show (show)
-import Data.Unit (Unit)
-import Pux (CoreEffects, start)
+import Pux (CoreEffects, EffModel, start)
 import Pux.DOM.Events (onClick)
 import Pux.DOM.HTML (HTML)
 import Pux.Renderer.React (renderToDOM)
