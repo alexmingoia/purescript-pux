@@ -1,5 +1,5 @@
-<div style="text-align: center">
-<h1 style="text-transform: uppercase">Pux</h1>
+<div align="center">
+<h1>PUX</h1>
 <blockquote>
 
 </blockquote>
