@@ -71,10 +71,7 @@ foldp (LoadMarkdown filepath) st =
         true -> do
           buffer <- readFile path
           md <- toString UTF8 buffer
-          let sliced = case st.route of
-                Home _ -> "# Build purely" <> (fromMaybe "" $ last $ split (Pattern "Build purely") md)
-                _ -> md
-          pure $ case (parseMd sliced) of
+          pure $ case (parseMd md) of
             Left err -> Just $ FileNotFound filepath
             Right parsed -> Just $ MarkdownLoaded parsed
     ]

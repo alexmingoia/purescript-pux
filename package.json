@@ -8,7 +8,6 @@
     "docs": "rm -rf docs/API && pulp docs && mkdir -p docs/API && mv generated-docs/Pux docs/API/Pux && mv generated-docs/Pux.md docs/API/Pux.md && rm -r generated-docs",
     "publish:website": "npm run docs && cd website && npm run build && cd dist/www && git init && git commit --allow-empty -m 'Update website.' && git checkout -b gh-pages && touch .nojekyll && echo purescript-pux.org > CNAME && git add . && git commit -am 'Update website.' && git push git@github.com:alexmingoia/purescript-pux gh-pages --force",
     "publish:packages": "pulp publish && npm publish",
-    "publish": "npm run publish:packages && npm run publish:website",
     "build": "pulp build",
     "build:example:counter": "pulp build --main BasicExample --to output/bundle.js -I examples/counter",
     "build:example:nested-foldp": "pulp build --main CounterPairExample --to output/bundle.js -I examples/nested-foldp",
