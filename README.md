@@ -17,8 +17,8 @@
 
 Pux is a PureScript library for building web applications. Interactive
 UI is modeled as a single state transition function,
-`Event -> State -> (State, HTML)` which is run for every event. Pux
-provides the necessary tooling to build modern web applications, including:
+`Event -> State -> (State, HTML)` which is run for every event. Pux also
+provides tooling such as:
 
 - Isomorphic routing and rendering
 - Hot reloading
