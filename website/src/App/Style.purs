@@ -27,26 +27,22 @@ textColor :: Color
 textColor = rgb 65 68 74
 
 darkColor :: Color
-darkColor = rgb 38 35 41
+darkColor = rgb 40 44 52
 
 lightColor :: Color
 lightColor = rgb 245 245 245
 
-redColor :: Color
-redColor = rgb 222 79 86
-
-orangeColor :: Color
-orangeColor = rgb 217 91 67
-
-yellowColor :: Color
-yellowColor = rgb 236 208 120
+greenColor :: Color
+greenColor = rgb 78 217 166
 
 appStyle :: CSS
 appStyle = do
   fromString "body" ? do
+    margin (0.0 #px) (0.0 #px) (0.0 #px) (0.0 #px)
+    padding (0.0 #px) (0.0 #px) (0.0 #px) (0.0 #px)
     backgroundColor (rgb 253 253 253)
     fontSize (15.0 #px)
-    fontFamily ["Source Sans Pro"] (singleton sansSerif)
+    key (fromString "font-family") (value "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif")
     lineHeight (165.0 #pct)
     color textColor
 
@@ -87,23 +83,22 @@ appStyle = do
     border solid (0.0 #px) (rgb 220 220 220)
 
   fromString "h1, h2, h3, h4" ? do
-    key (fromString "font-family") (value "\"Bitter\", Georgia, serif")
     lineHeight (140.0 #pct)
 
   fromString "h1" ? do
-    fontSize (26.0 #px)
+    fontSize (28.0 #px)
     margin (0.0 #px) (0.0 #px) (1.0 #em) (0.0 #px)
 
   fromString "h2" ? do
-    fontSize (19.0 #px)
+    fontSize (21.0 #px)
     margin (1.6 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h3" ? do
-    fontSize (15.0 #px)
+    fontSize (17.0 #px)
     margin (1.8 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h4" ? do
-    fontSize (15.0 #px)
+    fontSize (17.0 #px)
     margin (2.0 #em) (0.0 #px) (0.7 #em) (0.0 #px)
 
   fromString "h4" ? fromString "code" ? do
@@ -153,17 +148,22 @@ appStyle = do
     maxWidth (720.0 #px)
 
   fromString ".main" ? do
-    margin (100.0 #px) auto (0.0 #px) auto
-    position relative
-    maxWidth (720.0 #px)
+    position absolute
+    left (248.0 #px)
+    right (0.0 #px)
+    top (0.0 #px)
+    bottom (0.0 #px)
+    overflow overflowAuto
 
     fromString ".inner" ? do
-      padding (0.0 #px) (36.0 #px) (36.0 #px) (36.0 #px)
+      padding (48.0 #px) (36.0 #px) (16.0 #px) (36.0 #px)
 
     fromString "h1" ? do
+      lineHeight (100.0 #pct)
       marginTop (0.0 #px)
 
     fromString "li" ? do
+      fontSize (15.0 #px)
       margin (0.3 #em) (0.0 #px) (0.3 #em) (0.0 #px)
       listStyleType none
 
@@ -190,30 +190,8 @@ appStyle = do
       fromString "ul" ? do
         fontSize (17.0 #px)
 
-  query Media.screen (singleton (Media.maxWidth (1360.0 #px))) do
-    fromString ".main" ? do
-      position absolute
-      margin (0.0 #px) (0.0 #px) (0.0 #px) (0.0 #px)
-      padding (0.0 #px) (0.0 #px) (0.0 #px) (90.0 #px)
-      top (100.0 #px)
-      left (0.0 #px)
-      right (284.0 #px)
-      bottom (0.0 #px)
-
-  query Media.screen (singleton (Media.maxWidth (1140.0 #px))) do
-    fromString ".main" ? do
-      position absolute
-      margin (0.0 #px) (0.0 #px) (0.0 #px) (0.0 #px)
-      padding (0.0 #px) (48.0 #px) (0.0 #px) (48.0 #px)
-      top (100.0 #px)
-      left (0.0 #px)
-      right (234.0 #px)
-      bottom (0.0 #px)
-
   query Media.screen (singleton (Media.maxWidth (720.0 #px))) do
     fromString ".main" ? do
-      margin (24.0 #px) (0.0 #px) (0.0 #px) (0.0 #px)
-      padding (0.0 #px) (24.0 #px) (0.0 #px) (24.0 #px)
       position relative
       right (0.0 #px)
       top (0.0 #px)

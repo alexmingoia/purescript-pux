@@ -1,12 +1,13 @@
 module App.Sidebar where
 
-import App.Style (textColor)
+import App.Style (textColor, lightColor, darkColor, greenColor)
+import CSS (backgroundColor)
 import CSS.Border (borderLeft, solid)
 import CSS.Color (rgb)
 import CSS.Common (none)
-import CSS.Display (fixed, position, relative)
-import CSS.Font (color)
-import CSS.Geometry (margin, marginLeft, marginTop, padding, paddingLeft, right, top, width)
+import CSS.Display (absolute, position, relative)
+import CSS.Font (color, fontWeight, lighter)
+import CSS.Geometry (lineHeight, margin, marginLeft, marginTop, padding, paddingLeft, left, bottom, right, top, width)
 import CSS.ListStyle.Type (listStyleType)
 import CSS.Media (screen)
 import CSS.Media (maxWidth) as MediaQuery
@@ -14,6 +15,7 @@ import CSS.Size (pct, px, em)
 import CSS.String (fromString)
 import CSS.Stylesheet (CSS, query, (?))
 import CSS.Text (letterSpacing)
+import CSS.Text.Transform (textTransform, uppercase)
 import Control.Bind (bind)
 import Data.Eq ((==))
 import Data.Function ((#), ($))
@@ -41,8 +43,6 @@ view st = do
 
     ul do
       li $ navLink st "/" "Introduction"
-
-    ul do
       li $ navLink st "/docs/architecture" "Architecture"
       li $ navLink st "/docs/events" "Events"
       li $ navLink st "/docs/markup" "Markup"
@@ -51,7 +51,6 @@ view st = do
       li $ navLink st "/docs/forms" "Forms"
       li $ navLink st "/docs/routing" "Routing"
       li $ navLink st "/docs/css" "CSS"
-      li $ navLink st "/docs/react-interop" "React Interop"
 
     ul do
       li $ navLink st "https://pursuit.purescript.org/packages/purescript-pux" "API Reference"
@@ -68,32 +67,38 @@ view st = do
 viewStyle :: CSS
 viewStyle = do
   fromString ".sidebar" ? do
-    position fixed
-    right (0.0 #px)
-    top (100.0 #px)
-    width (284.0 #px)
+    backgroundColor darkColor
+    position absolute
+    left (0.0 #px)
+    top (0.0 #px)
+    bottom (0.0 #px)
+    width (248.0 #px)
 
     fromString "h2" ? do
-      color (rgb 134 133 220)
       letterSpacing (1.0 #px)
-      margin (0.0 #px) (0.0 #px) (0.8 #em) (0.0 #px)
+      margin (0.0 #px) (0.0 #px) (32.0 #px) (0.0 #px)
       paddingLeft (15.0 #px)
+      lineHeight (100.0 #pct)
+      textTransform uppercase
+
+      fromString "a" ? do
+        color lightColor
 
     fromString "li a" ? do
-      borderLeft solid (3.0 #px) (rgb 255 255 255)
+      borderLeft solid (3.0 #px) darkColor
       paddingLeft (12.0 #px)
-      color textColor
+      color lightColor
+      fontWeight lighter
 
     fromString "a:hover" ? do
-      color (rgb 73 204 156)
+      color greenColor
 
     fromString ".selected" ? do
-      borderLeft solid (3.0 #px) (rgb 78 217 166)
+      borderLeft solid (3.0 #px) greenColor
 
     fromString ".inner" ? do
-      borderLeft solid (1.0 #px) (rgb 230 230 230)
       marginLeft (24.0 #px)
-      padding (0.0 #px) (36.0 #px) (36.0 #px) (0.0 #px)
+      padding (52.0 #px) (16.0 #px) (16.0 #px) (16.0 #px)
 
     fromString "ul" ? do
       listStyleType none
@@ -103,13 +108,8 @@ viewStyle = do
     fromString "ul ul li a" ? do
       paddingLeft (24.0 #px)
 
-  query screen (singleton (MediaQuery.maxWidth (1140.0 #px))) do
-    fromString ".sidebar" ? do
-      width (234.0 #px)
-
   query screen (singleton (MediaQuery.maxWidth (720.0 #px))) do
     fromString ".sidebar" ? do
       position relative
-      marginTop (24.0 #px)
       top (0.0 #px)
       width (100.0 #pct)

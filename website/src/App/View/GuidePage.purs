@@ -16,7 +16,7 @@ view st =
   div ! className "guidepage" $ do
     Sidebar.view st.url
 
-    div ! className "main" $ do
+    div ! className "main" $ div ! className "inner" $ do
       case st.guidepage.markdown of
         Nothing -> text "Loading..."
         Just md -> toMarkup md
