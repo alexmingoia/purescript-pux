@@ -1,4 +1,7 @@
 exports.targetValue = function (ev) {
-  if (ev.target === undefined) return '';
-  return ev.target.value;
+  var target = ev['target'];
+  if (target === undefined) return '';
+  var value = target['value'];
+  if (value === undefined) return '';
+  return value;
 };
