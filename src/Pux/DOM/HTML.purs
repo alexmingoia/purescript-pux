@@ -1,13 +1,22 @@
-module Pux.DOM.HTML where
+module Pux.DOM.HTML
+  ( HTML
+  , child
+  , mapEvent
+  , memoize
+  , style
+  ) where
 
 import CSS.Render (render, renderedSheet)
 import CSS.Stylesheet (CSS)
+import Data.CatList (snoc)
 import Data.Function (($))
 import Data.Functor (map)
-import Data.Maybe (fromMaybe)
+import Data.Maybe (fromMaybe, Maybe(..))
+import Data.Monoid (mempty)
+import Data.Unit (unit)
 import Pux.DOM.Events (DOMEvent, mapEventHandler)
 import Text.Smolder.HTML (style) as E
-import Text.Smolder.Markup (MarkupM(Return, Content, Element), Markup, text)
+import Text.Smolder.Markup (MarkupM(Return, Content, Element), Markup, Attr(Attr), text)
 
 -- | A type for HTML markup, parametized by the events it may trigger. It is a
 -- | synonym for the `Markup` monad from
@@ -43,7 +52,14 @@ mapEvent f (Return a) =
 -- | not inside a view. This is because PureScript is eagerly evaluated like
 -- | JavaScript. If `memoize` is used inside a view it will recreate the memoized
 -- | function every time the view is called.
-foreign import memoize :: ∀ st ev. (st -> HTML ev) -> (st -> HTML ev)
+memoize :: ∀ st ev. (st -> HTML ev) -> (st -> HTML ev)
+memoize = memoize_ wrapper
+  where
+  -- | Wraps memoized vdom in a thunk element that stores the current state
+  -- | out-of-band, which allows renderers to cache views by state.
+  wrapper s c = Element "thunk" (Just c) (snoc mempty (Attr "state" s)) mempty (Return unit)
+
+foreign import memoize_ :: ∀ st ev. (String -> HTML ev -> HTML ev) -> (st -> HTML ev) -> (st -> HTML ev)
 
 -- | Render CSS stylesheet and return a style element.
 style :: ∀ ev. CSS -> HTML ev

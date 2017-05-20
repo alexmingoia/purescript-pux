@@ -119,9 +119,19 @@ exports.reactHandler = function (input) {
   };
 };
 
-exports.reactElement = function (node, name, attrs, children) {
-  if (node.__pux_react_elm !== undefined) return node.__pux_react_elm;
+// Wraps memoized views in a component class which only re-renders if the state
+// has changed.
+var PureComponent = React.createClass({
+  shouldComponentUpdate: function (nextProps) {
+    if (nextProps.state.st === undefined) return true;
+    return nextProps.state.st !== this.props.state.st;
+  },
+  render: function () {
+    return this.props.children;
+  }
+});
 
+exports.reactElement = function (node, name, attrs, children) {
   // convert smolder attribute names to react attribute names
   var reactAttrs = {};
   for (var key in attrs) {
@@ -145,6 +155,7 @@ exports.reactElement = function (node, name, attrs, children) {
   }
 
   // Parse inline style, because React expects a map instead of a string.
+  // Skipped if Preact is detected, because it supports a string.
   if (reactAttrs.style !== undefined) {
     reactAttrs.style = reactAttrs.style.split(';').reduce(function (prev, curr) {
       if (!curr) return prev;
@@ -192,9 +203,11 @@ exports.reactElement = function (node, name, attrs, children) {
   }
 
   // Cache react element. If the same node is rendered again the cached element will be used.
-  node.__pux_react_elm = React.createElement(name, reactAttrs, children);
+  if (name === 'thunk') {
+    return React.createElement(PureComponent, reactAttrs, children);
+  }
 
-  return node.__pux_react_elm;
+  return React.createElement(name, reactAttrs, children);
 };
 
 exports.reactText = function (string) {
