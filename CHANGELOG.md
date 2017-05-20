@@ -1,5 +1,13 @@
 # Change Log
 
+## [v9.2] - 2017-05-19
+
+- Use React component class for memoized views.
+  Significantly improves performance by avoiding unnecessary React VDOM
+  subtree comparison. This brings performance characteristics in line with
+  vanilla React and a single state atom and PureRenderMixin.
+- Check for target.value. Fixes [#119](https://github.com/alexmingoia/purescript-pux/issues/119)
+
 ## [v9.1] - 2017-05-02
 
 - Send events returned by effects after the current execution context.
