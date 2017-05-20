@@ -1,4 +1,4 @@
-module Main where
+module BasicExample where
 
 import Prelude hiding (div)
 import Control.Monad.Eff (Eff)
