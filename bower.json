@@ -1,6 +1,6 @@
 {
   "name": "purescript-pux",
-  "description": "Pux is a library for building purely functional interactive UIs with PureScript.",
+  "description": "Build type-safe web apps with PureScript.",
   "authors": [
     "Alexander Mingoia <talk@alexmingoia.com>"
   ],

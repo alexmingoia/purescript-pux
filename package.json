@@ -1,6 +1,6 @@
 {
   "name": "purescript-pux",
-  "description": "Build purely functional type-safe web apps with PureScript.",
+  "description": "Build type-safe web applications with PureScript.",
   "version": "9.2.0",
   "scripts": {
     "postinstall": "bower install",

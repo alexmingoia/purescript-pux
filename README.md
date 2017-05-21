@@ -1,7 +1,7 @@
 <div align="center">
 <h1>PUX</h1>
 <p align="center">
-<em>Build purely functional type-safe web applications with PureScript.</em>
+<em>Build type-safe web applications with PureScript.</em>
 </p>
 <a href="https://www.purescript-pux.org">Documentation</a>
 | <a href="https://github.com/alexmingoia/purescript-pux/tree/master/examples/">Examples</a>
