@@ -1,9 +1,8 @@
 module ReactInteropExample where
 
-import Control.Bind (bind)
+import Prelude hiding (div)
 import Control.Monad.Eff (Eff)
-import Data.Function (($))
-import Data.Unit (Unit, unit)
+import Data.Monoid (mempty)
 import Pux (CoreEffects, FoldP, start)
 import Pux.DOM.HTML (HTML)
 import Pux.Renderer.React (renderToDOM)
@@ -22,7 +21,7 @@ view :: State -> HTML Event
 view state =
   div do
     h1 $ text "Rendered by PureScript"
-    component { message: "Rendered by external React component" }
+    component { message: "Rendered by external React component" } mempty
 
 main :: ∀ fx. Eff (CoreEffects fx) Unit
 main = do
