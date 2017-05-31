@@ -77,7 +77,7 @@ foldp (RequestTodos) st =
   { state: st { status = "Fetching todos..." }
   , effects: [ do
       res <- attempt $ get "http://jsonplaceholder.typicode.com/users/1/todos"
-      let todos = either (Left <<< show) (decodeJson r.response :: Either String Todos)
+      let todos = either (Left <<< show) (decodeJson res.response :: Either String Todos)
       pure $ Just $ ReceiveTodos todos
     ]
   }
