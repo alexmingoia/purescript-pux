@@ -15,7 +15,7 @@
     "build:example:ajax": "pulp build --main AjaxExample --to output/bundle.js -I examples/ajax",
     "build:example:routing": "pulp build --main RoutingExample --to output/bundle.js -I examples/routing",
     "build:example:react-interop": "pulp build --main ReactInteropExample --to output/bundle.js -I examples/react-interop",
-    "test": "npm run build:example:counter && npm run build:example:nested-foldp && npm run build:example:ajax && npm run build:example:routing && npm run build:example:form"
+    "test": "npm run build:example:counter && npm run build:example:nested-foldp && npm run build:example:ajax && npm run build:example:routing && npm run build:example:form && npm run build:example:react-interop"
   },
   "dependencies": {
     "bower": "^1.8.0",
