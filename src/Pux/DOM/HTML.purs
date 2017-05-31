@@ -11,7 +11,7 @@ import CSS.Stylesheet (CSS)
 import Data.CatList (snoc)
 import Data.Function (($))
 import Data.Functor (map)
-import Data.Maybe (fromMaybe, Maybe(..))
+import Data.Maybe (fromMaybe)
 import Data.Monoid (mempty)
 import Data.Unit (unit)
 import Pux.DOM.Events (DOMEvent, mapEventHandler)
@@ -40,7 +40,7 @@ child f view = memoize $ \s -> mapEvent f (view s)
 -- | function every time the view is called.
 mapEvent :: ∀ a b. (a -> b) -> HTML a -> HTML b
 mapEvent f (Element n c a e r) =
-  Element n (map (mapEvent f) c) a (map (mapEventHandler f) e) (mapEvent f r)
+  Element n (mapEvent f c) a (map (mapEventHandler f) e) (mapEvent f r)
 mapEvent f (Content str rest) =
   Content str (mapEvent f rest)
 mapEvent f (Return a) =
@@ -57,7 +57,7 @@ memoize = memoize_ wrapper
   where
   -- | Wraps memoized vdom in a thunk element that stores the current state
   -- | out-of-band, which allows renderers to cache views by state.
-  wrapper s c = Element "thunk" (Just c) (snoc mempty (Attr "state" s)) mempty (Return unit)
+  wrapper s c = Element "thunk" c (snoc mempty (Attr "state" s)) mempty (Return unit)
 
 foreign import memoize_ :: ∀ st ev. (String -> HTML ev -> HTML ev) -> (st -> HTML ev) -> (st -> HTML ev)
 

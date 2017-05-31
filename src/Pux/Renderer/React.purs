@@ -8,22 +8,17 @@ module Pux.Renderer.React
   , reactClassWithProps
   ) where
 
-import Control.Applicative (pure)
-import Control.Bind (bind, (=<<))
+import Prelude
 import Control.Monad.Eff (Eff)
 import Data.Array ((:))
 import Data.CatList (CatList)
-import Data.Function (($))
 import Data.Function.Uncurried (Fn4, runFn4)
-import Data.Functor ((<$>), map)
 import Data.List (List(..), singleton)
 import Data.Nullable (Nullable, toNullable)
 import Data.Maybe (Maybe(..))
-import Data.Semigroup ((<>))
 import Data.StrMap (fromFoldable) as StrMap
 import Data.StrMap (StrMap)
 import Data.Tuple (Tuple(..))
-import Data.Unit (Unit)
 import Pux.DOM.HTML (HTML)
 import Pux.DOM.HTML.Attributes (data_)
 import React (ReactClass, ReactElement)
@@ -109,10 +104,10 @@ foreign import reactAttr :: String -> ReactAttribute
 foreign import data ReactAttribute :: Type
 
 renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
-renderNodes input node@(Element n (Just (Return _)) a e r) =
+renderNodes input node@(Element n (Return _) a e r) =
   runFn4 reactElement node n (renderAttrs input a e) (toNullable Nothing) : renderNodes input r
 renderNodes input node@(Element n c a e r) =
-  runFn4 reactElement node n (renderAttrs input a e) (toNullable (renderNodes input <$> c)) : renderNodes input r
+  runFn4 reactElement node n (renderAttrs input a e) (toNullable (Just (renderNodes input c))) : renderNodes input r
 renderNodes input (Content t r) =
   reactText t : renderNodes input r
 renderNodes input (Return _) = []
