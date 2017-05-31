@@ -113,8 +113,9 @@ exports.reactHandler = function (input) {
     return function (ev) {
       if (ev.nativeEvent === undefined) {
         input(handler(ev))();
+      } else {
+        input(handler(ev.nativeEvent))();
       }
-      input(handler(ev.nativeEvent))();
     };
   };
 };
