@@ -1,5 +1,10 @@
 # Change Log
 
+## [v9.3] - 2017-05-31
+
+- Fix rendering duplicate Preact events. Fixes [#124](https://github.com/alexmingoia/purescript-pux/issues/124)
+- Fix React interop example and add to test suite.
+
 ## [v9.2] - 2017-05-19
 
 - Use React component class for memoized views.

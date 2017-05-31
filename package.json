@@ -1,7 +1,7 @@
 {
   "name": "purescript-pux",
   "description": "Build type-safe web applications with PureScript.",
-  "version": "9.2.0",
+  "version": "9.3.0",
   "scripts": {
     "postinstall": "bower install",
     "build:clean": "rm -rf dist output",
