@@ -1,5 +1,9 @@
 # Change Log
 
+## [v10.0] - 2017-05-31
+
+- Support for purescript-smolder 9
+
 ## [v9.3] - 2017-05-31
 
 - Fix rendering duplicate Preact events. Fixes [#124](https://github.com/alexmingoia/purescript-pux/issues/124)
