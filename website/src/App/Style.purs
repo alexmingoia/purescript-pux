@@ -156,7 +156,7 @@ appStyle = do
     overflow overflowAuto
 
     fromString ".inner" ? do
-      padding (48.0 #px) (36.0 #px) (16.0 #px) (36.0 #px)
+      padding (48.0 #px) (48.0 #px) (16.0 #px) (60.0 #px)
 
     fromString "h1" ? do
       lineHeight (100.0 #pct)
@@ -196,3 +196,6 @@ appStyle = do
       right (0.0 #px)
       top (0.0 #px)
       left (0.0 #px)
+
+      fromString ".inner" ? do
+        padding (48.0 #px) (36.0 #px) (16.0 #px) (36.0 #px)

@@ -8,7 +8,7 @@
   "main": "support/server.entry.js",
   "license": "BSD3",
   "dependencies": {
-    "purescript-pux": "^7.0.0",
+    "purescript-pux": "^10.0.0",
     "purescript-express": "git://github.com/dancingrobot84/purescript-express.git#eca1708754dbef90835228f36c57ef8149af5baa",
     "purescript-node-process": "^3.0.0",
     "purescript-foreign-generic": "^3.0.0",
