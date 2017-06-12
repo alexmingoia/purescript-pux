@@ -1,6 +1,6 @@
 # Change Log
 
-## [v10.0] - 2017-05-31
+## [v10.0] - 2017-06-11
 
 - Support for purescript-smolder 9
 
