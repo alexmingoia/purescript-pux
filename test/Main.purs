@@ -2,6 +2,8 @@ module Test.Main where
 
 import Prelude hiding (div)
 
+import Data.Monoid (mempty)
+
 import Control.Monad.Aff.AVar (AVAR)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
@@ -25,8 +27,6 @@ type TestEffects = (console :: CONSOLE, testOutput :: TESTOUTPUT, avar:: AVAR)
 main :: Eff (CoreEffects TestEffects) Unit
 main = runTest do
   test "render simple div to string" $ do
-    res <- liftEff $ do
-      let foldp Noop st = { state: st,  effects: []}
     result <- liftEff $ do
       let foldp Noop st = { state: st, effects: []}
           view _ = div $ text "hi"
@@ -83,9 +83,6 @@ main = runTest do
         , foldp
         , inputs: []
         }
-      app_html <- renderToStaticMarkup testDivApp.markup
-      pure app_html
-    equal """<div>hi</div>""" res
       rendered <- renderToStaticMarkup component.markup
       pure rendered
     equal """<ul></ul>""" result
