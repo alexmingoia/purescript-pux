@@ -9,3 +9,4 @@ install:
   - bower install
 script:
   npm test
+  npm run build:examples

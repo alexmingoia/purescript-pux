@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "purescript-affjax": "^4.0.0",
-    "purescript-argonaut": "^3.0.0"
+    "purescript-argonaut": "^3.0.0",
+    "purescript-test-unit": "^11.0.0"
   }
 }
