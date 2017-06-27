@@ -14,7 +14,7 @@ module FancyComponent where
 
 -- State, Event, foldp, view functions...
 
-toReact :: ∀ props fx. Eff (CoreEffects fx) (ReactClass props)
+toReact :: ∀ props fx. State -> Eff (CoreEffects fx) (ReactClass props)
 toReact state = do
   app <- start
     { initialState: state
@@ -23,7 +23,7 @@ toReact state = do
     , inputs: []
     }
 
-  pure $ renderToReact app.markup app.input
+  renderToReact app.markup app.input
 ```
 
 After your PureScript has been compiled, call this module's `toReact` method to
@@ -59,7 +59,7 @@ import React (ReactClass)
 foreign import fancyClass :: ∀ props. ReactClass props
 
 fancy :: ∀ ev. HTML ev
-fancy = reactClass "fancy" fancyClass
+fancy = reactClass fancyClass "fancy"
 ```
 
 You can then use `fancy` in your views:
