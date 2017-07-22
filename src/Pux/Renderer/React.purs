@@ -9,15 +9,19 @@ module Pux.Renderer.React
   ) where
 
 import Prelude
+
 import Control.Monad.Eff (Eff)
-import Data.Array ((:))
+import Control.Monad.Free (foldFree)
+import Control.Monad.State (State, state, execState)
+import Data.Array (snoc)
 import Data.CatList (CatList)
-import Data.Function.Uncurried (Fn4, runFn4)
+import Data.Function.Uncurried (Fn3, runFn3)
 import Data.List (List(..), singleton)
-import Data.Nullable (Nullable, toNullable)
 import Data.Maybe (Maybe(..))
-import Data.StrMap (fromFoldable) as StrMap
+import Data.NaturalTransformation (NaturalTransformation)
+import Data.Nullable (Nullable, toNullable)
 import Data.StrMap (StrMap)
+import Data.StrMap (fromFoldable) as StrMap
 import Data.Tuple (Tuple(..))
 import Pux.DOM.HTML (HTML)
 import Pux.DOM.HTML.Attributes (data_)
@@ -96,21 +100,24 @@ foreign import registerProps :: ∀ props. props -> (String -> Attribute) -> Att
 foreign import renderToDOM_ :: ∀ props fx. String -> ReactClass props -> Eff fx Unit
 foreign import renderToString_ :: ∀ props fx. ReactClass props -> Eff fx String
 foreign import renderToStaticMarkup_ :: ∀ props fx. ReactClass props -> Eff fx String
-foreign import reactElement :: ∀ e. Fn4 (Markup e) String (StrMap ReactAttribute) (Nullable (Array ReactElement)) ReactElement
+foreign import reactElement :: Fn3 String (StrMap ReactAttribute) (Nullable (Array ReactElement)) ReactElement
 foreign import reactText :: String -> ReactElement
 foreign import reactHandler :: ∀ a e fx. (a -> Eff (channel :: CHANNEL | fx) Unit) -> e -> ReactAttribute
 foreign import reactAttr :: String -> ReactAttribute
 
 foreign import data ReactAttribute :: Type
 
+renderItem :: ∀ e. (e -> ReactAttribute) -> NaturalTransformation (MarkupM e) (State (Array ReactElement))
+renderItem input (Element n c a e r) =
+  let kids = renderNodes input c
+      el = runFn3 reactElement n (renderAttrs input a e) (toNullable (Just kids))
+  in state \s -> Tuple r $ snoc s el
+renderItem input (Content t r) =
+  state \s -> Tuple r $ snoc s $ reactText t
+renderItem input (Empty r) = pure r
+
 renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
-renderNodes input node@(Element n (Return _) a e r) =
-  runFn4 reactElement node n (renderAttrs input a e) (toNullable Nothing) : renderNodes input r
-renderNodes input node@(Element n c a e r) =
-  runFn4 reactElement node n (renderAttrs input a e) (toNullable (Just (renderNodes input c))) : renderNodes input r
-renderNodes input (Content t r) =
-  reactText t : renderNodes input r
-renderNodes input (Return _) = []
+renderNodes input markup = execState (foldFree (renderItem input) markup) []
 
 renderAttrs :: ∀ e. (e -> ReactAttribute) -> CatList Attr -> CatList (EventHandler e) -> StrMap ReactAttribute
 renderAttrs input attrs handlers = StrMap.fromFoldable tuples

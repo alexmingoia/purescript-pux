@@ -8,15 +8,16 @@ module Pux.DOM.HTML
 
 import CSS.Render (render, renderedSheet)
 import CSS.Stylesheet (CSS)
+import Control.Monad.Free (liftF)
 import Data.CatList (snoc)
 import Data.Function (($))
-import Data.Functor (map)
 import Data.Maybe (fromMaybe)
 import Data.Monoid (mempty)
 import Data.Unit (unit)
-import Pux.DOM.Events (DOMEvent, mapEventHandler)
+import Pux.DOM.Events (DOMEvent)
 import Text.Smolder.HTML (style) as E
-import Text.Smolder.Markup (MarkupM(Return, Content, Element), Markup, Attr(Attr), text)
+import Text.Smolder.Markup as Markup
+import Text.Smolder.Markup (MarkupM(..), Markup, Attr(Attr), text)
 
 -- | A type for HTML markup, parametized by the events it may trigger. It is a
 -- | synonym for the `Markup` monad from
@@ -39,12 +40,7 @@ child f view = memoize $ \s -> mapEvent f (view s)
 -- | JavaScript. If `memoize` is used inside a view it will recreate the memoized
 -- | function every time the view is called.
 mapEvent :: ∀ a b. (a -> b) -> HTML a -> HTML b
-mapEvent f (Element n c a e r) =
-  Element n (mapEvent f c) a (map (mapEventHandler f) e) (mapEvent f r)
-mapEvent f (Content str rest) =
-  Content str (mapEvent f rest)
-mapEvent f (Return a) =
-  Return a
+mapEvent f = Markup.mapEvent \handler -> \event -> f (handler event)
 
 -- | Memoize view. Uses JavaScript equality to match states.
 -- |
@@ -57,7 +53,7 @@ memoize = memoize_ wrapper
   where
   -- | Wraps memoized vdom in a thunk element that stores the current state
   -- | out-of-band, which allows renderers to cache views by state.
-  wrapper s c = Element "thunk" c (snoc mempty (Attr "state" s)) mempty (Return unit)
+  wrapper s c = liftF $ Element "thunk" c (snoc mempty (Attr "state" s)) mempty unit
 
 foreign import memoize_ :: ∀ st ev. (String -> HTML ev -> HTML ev) -> (st -> HTML ev) -> (st -> HTML ev)
 
