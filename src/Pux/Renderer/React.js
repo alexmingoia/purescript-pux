@@ -132,7 +132,7 @@ var PureComponent = React.createClass({
   }
 });
 
-exports.reactElement = function (node, name, attrs, children) {
+exports.reactElement = function (name, attrs, children) {
   // convert smolder attribute names to react attribute names
   var reactAttrs = {};
   for (var key in attrs) {

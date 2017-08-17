@@ -34,7 +34,7 @@
     "purescript-react": "^3.0.0",
     "purescript-globals": "^3.0.0",
     "purescript-dom": "^4.2.0",
-    "purescript-smolder": "^9.0.0",
+    "purescript-smolder": "^10.1.0",
     "purescript-css": "^3.0.0"
   },
   "devDependencies": {
