@@ -2,22 +2,20 @@ module Test.Main where
 
 import Prelude hiding (div)
 
-import Data.Monoid (mempty)
-
 import Control.Monad.Aff.AVar (AVAR)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Console (CONSOLE)
 
-import Pux (CoreEffects,  start)
+import Pux (CoreEffects, start)
+import Pux.DOM.HTML (HTML)
 import Pux.Renderer.React (renderToStaticMarkup)
 import Test.Unit (test)
 import Test.Unit.Assert (equal)
 import Test.Unit.Console (TESTOUTPUT)
 import Test.Unit.Main (runTest)
-import Text.Smolder.HTML (div)
 import Text.Smolder.HTML (div, li)
-import Text.Smolder.Markup (text, (!))
+import Text.Smolder.Markup (text)
 
 import Test.React (list)
 data Event = Noop
@@ -75,8 +73,8 @@ main = runTest do
   test "renders react-interop list component with no elements to string" $ do
     result <- liftEff $ do
       let foldp Noop st = { state: st, effects: []}
-          view _ = list $ do
-            mempty
+          view :: Int -> HTML Event
+          view _ = list $ text ""
       component <- start
         { initialState: 0
         , view
