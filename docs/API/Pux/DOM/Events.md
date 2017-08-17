@@ -18,15 +18,6 @@ targetValue :: DOMEvent -> String
 
 Return `event.target.value` if it exists, or an empty string if not.
 
-#### `mapEventHandler`
-
-``` purescript
-mapEventHandler :: forall a b. (a -> b) -> EventHandler (DOMEvent -> a) -> EventHandler (DOMEvent -> b)
-```
-
-Map event handler that returns event type `a` to event handler that returns
-event type `b`.
-
 #### `onCopy`
 
 ``` purescript
