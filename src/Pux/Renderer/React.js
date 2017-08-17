@@ -2,7 +2,8 @@
 
 // module Pux.Renderer.React
 
-const createReactClass = require('create-react-class');
+var createReactClass = (typeof require === 'function' && require('create-react-class'))
+         || (typeof window === 'object' && window.createReactClass);
 
 var React = (typeof require === 'function' && require('react'))
          || (typeof window === 'object' && window.React);
@@ -201,8 +202,12 @@ exports.reactElement = function (name, attrs, children) {
 
   // Eliminate React "key" errors for parents with a single child
   // (React checks for keys when children is passed as an array)
-  if (children !== null && children.length === 1) {
-    children = children[0];
+  if (children !== null) {
+    if (children.length === 1) {
+      children = children[0];
+    } else if (children.length === 0) {
+      children = undefined;
+    }
   }
 
   // Cache react element. If the same node is rendered again the cached element will be used.
