@@ -1,5 +1,13 @@
 # Change Log
 
+## [v11.0] - 2017-08-17
+
+- Support for purescript-smolder 10 (fixes tail-recursive/stack issue with
+  large num of elements) [#139](https://github.com/alexmingoia/purescript-pux/pulls/139).
+- Use create-react-class module to avoid deprecation warning [#142](https://github.com/alexmingoia/purescript-pux/pulls/142).
+- Fix crash when React event object is null [#136](https://github.com/alexmingoia/purescript-pux/pulls/136).
+- Add basic test suite [#133](https://github.com/alexmingoia/purescript-pux/pulls/133).
+
 ## [v10.0] - 2017-06-11
 
 - Support for purescript-smolder 9
