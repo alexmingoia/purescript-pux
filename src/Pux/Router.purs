@@ -105,6 +105,15 @@ any = Match $ \r ->
     Cons p ps -> Just $ Tuple ps unit
     _ -> Nothing
 
+manyAny :: Match Unit
+manyAny = Match $ manyAny_
+  where
+    manyAny_ r =
+        case r of
+            Cons (Query map) ps -> Just $ Tuple (Cons (Query map) Nil) unit
+            Cons (Path p) ps -> manyAny_ ps
+            _ -> Nothing
+
 instance matchFunctor :: Functor Match where
   map f (Match r2t) = Match $ \r ->
     maybe Nothing (\t -> Just $ Tuple (fst t) (f (snd t))) $ r2t r
