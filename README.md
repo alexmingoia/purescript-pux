@@ -100,8 +100,9 @@ Below are the render steps for the other libraries compared, which shows that
 Pux is the only one that has an intermediate virtual DOM representation (it has
 to render to React first then React has to render):
 
-Elm = Virtual DOM -> DOM patch
-React = Virtual DOM -> DOM patch
-Thermite = Virtual DOM -> DOM patch
-Halogen = Virtual DOM -> DOM patch
-Pux = Smolder Markup -> React Virtual DOM -> DOM patch
+- Elm = Virtual DOM -> DOM patch
+- React = Virtual DOM -> DOM patch
+- Thermite = Virtual DOM -> DOM patch
+- Halogen = Virtual DOM -> DOM patch
+- Pux = Smolder Markup -> React Virtual DOM -> DOM patch
+
