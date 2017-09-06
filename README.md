@@ -83,3 +83,25 @@ main = do
 
   renderToDOM "#app" app.markup app.input
 ```
+
+## Benchmarks
+
+![Table of benchmarks comparing rendering speed of similar libraries](https://cdn-images-1.medium.com/max/1600/1*6EjJTf1mhlTxd4QWsygCwA.png)
+
+### Why is Pux slow?
+
+Pux has not focused on performance yet. The slow performance arises from
+translating Pux's (smolder) virtual DOM to React's virtual DOM. The goal is to
+write a purescript virtual DOM module for smolder, which would avoid that
+translation step and could be optimized for a monadic datastructure. I suspect
+this would achieve performance on par with Halogen.
+
+Below are the render steps for the other libraries compared, which shows that
+Pux is the only one that has an intermediate virtual DOM representation (it has
+to render to React first then React has to render):
+
+Elm = Virtual DOM -> DOM patch
+React = Virtual DOM -> DOM patch
+Thermite = Virtual DOM -> DOM patch
+Halogen = Virtual DOM -> DOM patch
+Pux = Smolder Markup -> React Virtual DOM -> DOM patch
