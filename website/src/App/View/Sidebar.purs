@@ -51,6 +51,7 @@ view st = do
       li $ navLink st "/docs/forms" "Forms"
       li $ navLink st "/docs/routing" "Routing"
       li $ navLink st "/docs/css" "CSS"
+      li $ navLink st "/docs/react-interop" "React Interop"
 
     ul do
       li $ navLink st "https://pursuit.purescript.org/packages/purescript-pux" "API Reference"
