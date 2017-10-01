@@ -23,11 +23,12 @@ import Control.Monad.Eff.Exception (EXCEPTION)
 import Data.Array (snoc)
 import Data.Foldable (foldl, sequence_)
 import Data.Function (($), (<<<))
-import Data.Functor (map)
+import Data.Functor (map, (<$))
 import Data.List (List(Nil), singleton)
 import Data.Maybe (fromJust, Maybe(..))
-import Data.Unit (Unit, unit)
+import Data.Monoid (mempty)
 import Data.Time.Duration (Milliseconds(Milliseconds))
+import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
 import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
@@ -147,7 +148,7 @@ mapEffects a2b effmodel =
 -- | Wait for a specific event until returning the app state.
 waitEvent :: ∀ e ev st fx.
              (ev -> Boolean) -> App e ev st -> Aff fx st
-waitEvent until app = makeAff \error success -> waitEvent_ until app success
+waitEvent until app = makeAff \cb -> mempty <$ waitEvent_ until app (cb <<< pure)
 
 foreign import waitEvent_ :: ∀ e ev st fx
                              .  (ev -> Boolean)
@@ -158,7 +159,7 @@ foreign import waitEvent_ :: ∀ e ev st fx
 -- | Wait for a specific state before returning the app state.
 waitState :: ∀ e ev st fx.
              (st -> Boolean) -> App e ev st -> Aff fx st
-waitState until app = makeAff \error success -> waitState_ until app success
+waitState until app = makeAff \cb -> mempty <$ waitState_ until app (cb <<< pure)
 
 foreign import waitState_ :: ∀ e ev st fx
                              .  (st -> Boolean)
