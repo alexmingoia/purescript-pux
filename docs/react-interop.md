@@ -1,5 +1,7 @@
 # Interoperate with React
 
+**React is used by Pux merely as a renderer. Any React component interoperation is not recommended or supported by the library.**
+
 ## Using Pux components in React
 
 Pux components can be rendered to a React class instead of the DOM for use
