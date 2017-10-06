@@ -21,10 +21,10 @@
     "test:preact": "pulp test --runtime babel-node"
   },
   "dependencies": {
-    "bower": "^1.8.0",
-    "create-react-class": "^15.6.0",
-    "pulp": "^11.0.0",
-    "purescript": "^0.11.4"
+    "bower": "^1.8.2",
+    "create-react-class": "^15.6.2",
+    "pulp": "^12.0.1",
+    "purescript": "^0.11.6"
   },
   "directories": {
     "doc": "docs",
@@ -50,11 +50,11 @@
     "url": "https://github.com/alexmingoia/purescript-pux/issues"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-plugin-module-resolver": "^2.7.1",
-    "preact": "^8.1.0",
-    "preact-compat": "^3.16.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react": "^16.0.0",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0",
+    "react-dom": "^16.0.0"
   }
 }
