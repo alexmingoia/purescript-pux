@@ -28,9 +28,9 @@ foldp :: ∀ fx. Event -> State -> EffModel State Event fx
 foldp (SignIn) state =
   { state, effects: [ log "sign in" *> pure Nothing ] }
 foldp (UsernameChange ev) state =
-  { state: state { username = targetValue ev, effects: [] }
+  { state: state { username = targetValue ev }, effects: [] }
 foldp (PasswordChange ev) state =
-  { state: state { password = targetValue ev, effects: [] }
+  { state: state { password = targetValue ev }, effects: [] }
 ```
 
 The raw DOM event is used to get the value of the inputs. Pux provides
