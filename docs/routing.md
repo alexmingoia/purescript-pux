@@ -50,7 +50,7 @@ URL which is updated whenever the `popstate` event occurs:
 
 ```purescript
 main = do
-  url <- sampleURL =<< window
+  urlSignal <- sampleURL =<< window
   let routeSignal = urlSignal ~> match
 
   app <- start
