@@ -60,7 +60,7 @@ import React (ReactClass)
 
 foreign import fancyClass :: ∀ props. ReactClass props
 
-fancy :: ∀ ev. HTML ev
+fancy :: ∀ ev. HTML ev -> HTML ev
 fancy = reactClass fancyClass "fancy"
 ```
 
