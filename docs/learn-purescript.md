@@ -20,4 +20,4 @@
 
 ### Develop
 
-- [Editor and tool support](https://github.com/purescript/purescript/wiki/Editor-and-tool-support)
+- [Editor and tool support](https://github.com/purescript/documentation/blob/master/ecosystem/Editor-and-tool-support.md)
