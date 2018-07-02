@@ -17,7 +17,7 @@ import Data.Unit (unit)
 import Pux.DOM.Events (DOMEvent)
 import Text.Smolder.HTML (style) as E
 import Text.Smolder.Markup as Markup
-import Text.Smolder.Markup (MarkupM(..), Markup, Attr(Attr), text)
+import Text.Smolder.Markup (MarkupM(..), Markup, Attr(Attr), text, NS(..))
 
 -- | A type for HTML markup, parametized by the events it may trigger. It is a
 -- | synonym for the `Markup` monad from
@@ -53,7 +53,7 @@ memoize = memoize_ wrapper
   where
   -- | Wraps memoized vdom in a thunk element that stores the current state
   -- | out-of-band, which allows renderers to cache views by state.
-  wrapper s c = liftF $ Element "thunk" c (snoc mempty (Attr "state" s)) mempty unit
+  wrapper s c = liftF $ Element HTMLns "thunk" c (snoc mempty (Attr "state" s)) mempty unit
 
 foreign import memoize_ :: ∀ st ev. (String -> HTML ev -> HTML ev) -> (st -> HTML ev) -> (st -> HTML ev)
 

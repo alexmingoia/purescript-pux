@@ -3,7 +3,6 @@ module Pux
   , Config
   , FoldP
   , EffModel
-  , CoreEffects
   , noEffects
   , onlyEffects
   , mapState
@@ -15,11 +14,9 @@ module Pux
 
 import Control.Applicative (pure)
 import Control.Bind (bind, discard)
-import Control.Monad.Aff (Aff, launchAff, makeAff, delay)
-import Control.Monad.Aff.Unsafe (unsafeCoerceAff)
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Class (liftEff)
-import Control.Monad.Eff.Exception (EXCEPTION)
+import Effect.Aff (Aff, launchAff, makeAff, delay)
+import Effect (Effect)
+import Effect.Class (liftEffect)
 import Data.Array (snoc)
 import Data.Foldable (foldl, sequence_)
 import Data.Function (($), (<<<))
@@ -31,7 +28,7 @@ import Data.Time.Duration (Milliseconds(Milliseconds))
 import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
-import Signal.Channel (CHANNEL, Channel, channel, subscribe, send)
+import Signal.Channel (Channel, channel, channel, subscribe, send)
 import Text.Smolder.Markup (Markup)
 
 -- | Create an application, which exposes a markup signal that can be used by
@@ -47,7 +44,7 @@ import Text.Smolder.Markup (Markup)
 -- |
 -- |   renderToDOM "#app" app.markup app.input
 -- | ```
-start :: ∀ e ev st fx. Config e ev st fx -> Eff (CoreEffects fx) (App e ev st)
+start :: ∀ e ev st. Config e ev st -> Effect (App e ev st)
 start config = do
   evChannel <- channel Nil
   let evSignal = subscribe evChannel
@@ -60,13 +57,13 @@ start config = do
         foldp foldEvents (noEffects config.initialState) input
       stateSignal = dropRepeats' (effModelSignal ~> _.state)
       htmlSignal = stateSignal ~> config.view
-      mapAffect affect = launchAff $ unsafeCoerceAff do
+      mapAffect affect = launchAff do
         ev <- affect
         case ev of
           Nothing -> pure unit
           Just e -> do
             delay (Milliseconds 0.0)
-            liftEff (send evChannel (singleton e))
+            liftEffect (send evChannel (singleton e))
       effectsSignal = effModelSignal ~> map mapAffect <<< _.effects
   runSignal $ effectsSignal ~> sequence_
   pure $ start_
@@ -84,24 +81,12 @@ foreign import start_ :: ∀ e ev st. App e ev st -> App e ev st
 -- |
 -- | The `inputs` array is for any external inputs you might need. These will
 -- | be merged into the app's input signal.
-type Config e ev st fx =
+type Config e ev st =
   { initialState :: st
   , view :: st -> Markup e
-  , foldp :: FoldP st ev fx
+  , foldp :: FoldP st ev
   , inputs :: Array (Signal ev)
   }
-
--- | The set of effects every Pux app needs to allow through when using `start`.
--- | Extend this type with your own app's effects, for example:
--- |
--- | ```purescript
--- | type AppEffects = (console :: CONSOLE, dom :: DOM)
--- |
--- | main :: State -> Eff (CoreEffects AppEffects) (App DOMEvent State Event)
--- | main state = do
--- |   -- ...
--- | ```
-type CoreEffects fx = (channel :: CHANNEL, exception :: EXCEPTION | fx)
 
 -- | An `App` is a record consisting of:
 -- |
@@ -119,50 +104,50 @@ type App e ev st =
   }
 
 -- | Return an `EffModel` from the current event and state.
-type FoldP st ev fx = ev -> st -> EffModel st ev fx
+type FoldP st ev = ev -> st -> EffModel st ev
 
 -- | `EffModel` is a container for state and asynchronous effects which return
 -- | an event.
-type EffModel st ev fx =
+type EffModel st ev =
   { state :: st
-  , effects :: Array (Aff (CoreEffects fx) (Maybe ev)) }
+  , effects :: Array (Aff (Maybe ev)) }
 
 -- | Create an `EffModel` with no effects from a given state.
-noEffects :: ∀ st ev fx. st -> EffModel st ev fx
+noEffects :: ∀ st ev. st -> EffModel st ev
 noEffects state = { state: state, effects: [] }
 
-onlyEffects :: ∀ st ev fx.
-               st -> Array (Aff (CoreEffects fx) (Maybe ev)) -> EffModel st ev fx
+onlyEffects :: ∀ st ev.
+               st -> Array (Aff (Maybe ev)) -> EffModel st ev
 onlyEffects state effects = { state: state, effects: effects }
 
 -- | Map over the state of an `EffModel`.
-mapState :: ∀ a b ev fx. (a -> b) -> EffModel a ev fx -> EffModel b ev fx
+mapState :: ∀ a b ev. (a -> b) -> EffModel a ev -> EffModel b ev
 mapState a2b effmodel =
   { state: a2b effmodel.state, effects: effmodel.effects }
 
 -- | Map over the effects of an `EffModel`.
-mapEffects :: ∀ a b st fx. (a -> b) -> EffModel st a fx -> EffModel st b fx
+mapEffects :: ∀ a b st. (a -> b) -> EffModel st a -> EffModel st b
 mapEffects a2b effmodel =
   { state: effmodel.state, effects: map (map (map a2b)) effmodel.effects }
 
 -- | Wait for a specific event until returning the app state.
-waitEvent :: ∀ e ev st fx.
-             (ev -> Boolean) -> App e ev st -> Aff fx st
+waitEvent :: ∀ e ev st.
+             (ev -> Boolean) -> App e ev st -> Aff st
 waitEvent until app = makeAff \cb -> mempty <$ waitEvent_ until app (cb <<< pure)
 
-foreign import waitEvent_ :: ∀ e ev st fx
+foreign import waitEvent_ :: ∀ e ev st
                              .  (ev -> Boolean)
                              -> App e ev st
-                             -> (st -> Eff fx Unit)
-                             -> Eff fx Unit
+                             -> (st -> Effect Unit)
+                             -> Effect Unit
 
 -- | Wait for a specific state before returning the app state.
-waitState :: ∀ e ev st fx.
-             (st -> Boolean) -> App e ev st -> Aff fx st
+waitState :: ∀ e ev st.
+             (st -> Boolean) -> App e ev st -> Aff st
 waitState until app = makeAff \cb -> mempty <$ waitState_ until app (cb <<< pure)
 
-foreign import waitState_ :: ∀ e ev st fx
+foreign import waitState_ :: ∀ e ev st
                              .  (st -> Boolean)
                              -> App e ev st
-                             -> (st -> Eff fx Unit)
-                             -> Eff fx Unit
+                             -> (st -> Effect Unit)
+                             -> Effect Unit

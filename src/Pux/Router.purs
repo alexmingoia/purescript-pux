@@ -31,7 +31,7 @@ import Data.Int (fromString)
 import Data.List (catMaybes, List(Nil, Cons), fromFoldable, drop)
 import Data.Maybe (Maybe(Just, Nothing), maybe)
 import Data.Map as M
-import Data.Profunctor (lmap)
+import Data.Profunctor (lcmap)
 import Data.String as S
 import Data.Tuple (Tuple(Tuple), fst, snd)
 import Data.Unit (Unit, unit)
@@ -149,7 +149,7 @@ routeFromUrl url = case S.indexOf (S.Pattern "?") url of
   where
     parsePath :: Route -> String -> Route
     parsePath query = drop 1 <<< foldr prependPath query <<< S.split (S.Pattern "/")
-      where prependPath = lmap Path Cons
+      where prependPath = lcmap Path Cons
 
 parseQuery :: String -> RoutePart
 parseQuery s = Query <<< M.fromFoldable <<< catMaybes <<< map part2tuple $ parts

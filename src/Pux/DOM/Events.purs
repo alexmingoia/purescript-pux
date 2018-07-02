@@ -1,6 +1,6 @@
 module Pux.DOM.Events where
 
-import DOM.Event.Types (Event)
+import Web.Event.Internal.Types (Event)
 import Text.Smolder.Markup (EventHandlers, on)
 
 -- | Synonym for

@@ -25,22 +25,23 @@
     "url": "git://github.com/alexmingoia/purescript-pux.git"
   },
   "dependencies": {
-    "purescript-aff": "^4.0.0",
-    "purescript-eff": "^3.1.0",
-    "purescript-lists": "^4.10.0",
-    "purescript-signal": "^9.0.0",
-    "purescript-maps": "^3.5.2",
-    "purescript-functions": "^3.0.0",
-    "purescript-profunctor": "^3.2.0",
-    "purescript-react": "^4.3.0",
-    "purescript-globals": "^3.0.0",
-    "purescript-dom": "^4.9.0",
-    "purescript-smolder": "^10.1.0",
-    "purescript-css": "^3.3.0"
+    "purescript-aff": "^5.0.0",
+    "purescript-effect": "^2.0.0",
+    "purescript-lists": "^5.0.0",
+    "purescript-signal": "^10.1.0",
+    "purescript-ordered-collections": "^1.0.0",
+    "purescript-functions": "^4.0.0",
+    "purescript-profunctor": "^4.0.0",
+    "purescript-react": "^6.0.0",
+    "purescript-globals": "^4.0.0",
+    "purescript-web-html": "^1.0.0",
+    "purescript-web-uievents": "^1.0.0",
+    "purescript-smolder": "^11.0.0",
+    "purescript-css": "^4.0.0"
   },
   "devDependencies": {
-    "purescript-affjax": "^5.0.0",
-    "purescript-argonaut": "^3.1.0",
-    "purescript-test-unit": "^13.0.0"
+    "purescript-affjax": "^6.0.0",
+    "purescript-argonaut": "^4.0.1",
+    "purescript-test-unit": "^14.0.0"
   }
 }
