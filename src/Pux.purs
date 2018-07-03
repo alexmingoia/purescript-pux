@@ -28,7 +28,7 @@ import Data.Time.Duration (Milliseconds(Milliseconds))
 import Data.Unit (Unit, unit)
 import Partial.Unsafe (unsafePartial)
 import Signal (Signal, dropRepeats', foldp, mergeMany, runSignal, (~>))
-import Signal.Channel (Channel, channel, channel, subscribe, send)
+import Signal.Channel (Channel, channel, subscribe, send)
 import Text.Smolder.Markup (Markup)
 
 -- | Create an application, which exposes a markup signal that can be used by
