@@ -28,7 +28,7 @@ the counter example, the previous count is combined with the current event to
 produce a new count:
 
 ```purescript
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp Increment n = { state: n + 1, effects: [] }
 foldp Decrement n = { state: n - 1, effects: [] }
 ```
@@ -40,9 +40,9 @@ that Pux calls an
 [`EffModel`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#t:EffModel).
 
 ```purescript
-type EffModel st ev fx =
+type EffModel st ev =
   { state   :: st
-  , effects :: Array (Aff (CoreEffects fx) (Maybe ev))
+  , effects :: Array (Aff (Maybe ev))
   }
 ```
 
@@ -72,7 +72,7 @@ event occurs `foldp` returns an effect – the AJAX request – which returns a 
 event `ReceiveTodos`:
 
 ```purescript
-foldp :: Event -> State -> EffModel State Event (ajax :: AJAX)
+foldp :: Event -> State -> EffModel State Event
 foldp (RequestTodos) st =
   { state: st { status = "Fetching todos..." }
   , effects: [ do
@@ -117,7 +117,7 @@ over the returned EffModel using Pux's
 and [`mapState`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:mapState):
 
 ```purescript
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp (PageView r) st = noEffects $ st { route = r }
 foldp (ChildEvent e) st =
   Child.foldp e st.child

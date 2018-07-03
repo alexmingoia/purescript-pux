@@ -6,7 +6,7 @@ Create an application by providing `initialState`, `view`, and `foldp`
 to Pux's [`start`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux#v:start):
 
 ```purescript
-main :: ∀ fx. Eff (CoreEffects fx) Unit
+main :: Effect Unit
 main = do
   app <- start
     { initialState: 0
@@ -54,7 +54,7 @@ reference.
 
 The Pux [starter app](https://github.com/alexmingoia/pux-starter-app) provides a
 complete isomorphic configuration including sharing state, routes and other code
-between client and server. 
+between client and server.
 
 ### Server-side rendering
 
@@ -63,11 +63,11 @@ and `renderToString` can be used to render the app on the
 server.
 
 ```purescript
-renderApp :: ∀ fx. Handler (channel :: CHANNEL | fx)
+renderApp :: Handler
 renderApp = do
   url <- getOriginalUrl
 
-  app <- liftEff $ start
+  app <- liftEffect $ start
     { initialState: App.init url
     , view: App.view
     , foldp: App.foldp

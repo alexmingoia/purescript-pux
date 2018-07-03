@@ -16,7 +16,7 @@ module FancyComponent where
 
 -- State, Event, foldp, view functions...
 
-toReact :: ∀ props fx. State -> Eff (CoreEffects fx) (ReactClass props)
+toReact :: ∀ props. State -> Effect (ReactClass props)
 toReact state = do
   app <- start
     { initialState: state
@@ -71,7 +71,7 @@ view count =
   div
     button #! onClick (const Increment) $ text "Increment"
     fancy $ text ("Fancy " <> (show count))
-    button #! onClick (const Decrement) $ text "Decrement" 
+    button #! onClick (const Decrement) $ text "Decrement"
 ```
 
 > To pass arbitrary props to a react class use [`reactClassWithProps`](https://pursuit.purescript.org/packages/purescript-pux/9.0.0/docs/Pux.Renderer.React#v:reactClassWithProps).

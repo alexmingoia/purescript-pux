@@ -24,7 +24,7 @@ from
 The `SignIn` event is triggered when the form is submitted.
 
 ```purescript
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp (SignIn) state =
   { state, effects: [ log "sign in" *> pure Nothing ] }
 foldp (UsernameChange ev) state =
