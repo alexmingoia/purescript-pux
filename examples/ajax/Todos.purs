@@ -3,7 +3,7 @@ module AjaxExample.Todos where
 import Prelude (discard)
 import Control.Applicative (pure)
 import Control.Bind (bind)
-import Control.Monad.Aff (attempt)
+import Effect.Aff (attempt)
 import Data.Argonaut (class DecodeJson, decodeJson, (.?))
 import Data.Either (Either(Left, Right), either)
 import Data.Foldable (for_)
@@ -11,7 +11,8 @@ import Data.Function (($), (<<<), const)
 import Data.Maybe (Maybe(..))
 import Data.Semigroup ((<>))
 import Data.Show (show)
-import Network.HTTP.Affjax (AJAX, get)
+import Network.HTTP.Affjax (get)
+import Network.HTTP.Affjax.Response as AXRes
 import Pux (EffModel, noEffects)
 import Pux.DOM.Events (onClick)
 import Pux.DOM.HTML (HTML)
@@ -47,7 +48,7 @@ instance decodeJsonTodo :: DecodeJson Todo where
 
 -- | Our update function requests data from the server, and handles data
 -- | received from input.
-foldp :: Event -> State -> EffModel State Event (ajax :: AJAX)
+foldp :: Event -> State -> EffModel State Event
 foldp (ReceiveTodos (Left err)) state =
   noEffects $ state { status = "Error fetching todos: " <> show err }
 foldp (ReceiveTodos (Right todos)) state =
@@ -55,7 +56,7 @@ foldp (ReceiveTodos (Right todos)) state =
 foldp (RequestTodos) state =
   { state: state { status = "Fetching todos..." }
   , effects: [ do
-      res <- attempt $ get "http://jsonplaceholder.typicode.com/users/1/todos"
+      res <- attempt $ get AXRes.json "http://jsonplaceholder.typicode.com/users/1/todos"
       let decode r = decodeJson r.response :: Either String Todos
       let todos = either (Left <<< show) decode res
       pure $ Just $ ReceiveTodos todos

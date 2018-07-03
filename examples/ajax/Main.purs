@@ -2,13 +2,12 @@ module AjaxExample where
 
 import AjaxExample.Todos (init, foldp, view)
 import Control.Bind (bind)
-import Control.Monad.Eff (Eff)
+import Effect (Effect)
 import Data.Unit (Unit)
-import Network.HTTP.Affjax (AJAX)
-import Pux (start, CoreEffects)
+import Pux (start)
 import Pux.Renderer.React (renderToDOM)
 
-main :: Eff (CoreEffects (ajax :: AJAX)) Unit
+main :: Effect Unit
 main = do
   app <- start
     { initialState: init

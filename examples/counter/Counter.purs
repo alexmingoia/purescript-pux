@@ -14,7 +14,7 @@ data Event = Increment | Decrement
 
 type State = Int
 
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp Increment n = { state: n + 1, effects: [] }
 foldp Decrement n = { state: n - 1, effects: [] }
 

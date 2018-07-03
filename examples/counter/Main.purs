@@ -1,8 +1,8 @@
 module BasicExample where
 
 import Prelude hiding (div)
-import Control.Monad.Eff (Eff)
-import Pux (CoreEffects, EffModel, start)
+import Effect (Effect)
+import Pux (EffModel, start)
 import Pux.DOM.Events (onClick)
 import Pux.DOM.HTML (HTML)
 import Pux.Renderer.React (renderToDOM)
@@ -14,7 +14,7 @@ data Event = Increment | Decrement
 type State = Int
 
 -- | Return a new state (and effects) from each event
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp Increment n = { state: n + 1, effects: [] }
 foldp Decrement n = { state: n - 1, effects: [] }
 
@@ -27,7 +27,7 @@ view count =
     button #! onClick (const Decrement) $ text "Decrement"
 
 -- | Start and render the app
-main :: ∀ fx. Eff (CoreEffects fx) Unit
+main :: Effect Unit
 main = do
   app <- start
     { initialState: 0
