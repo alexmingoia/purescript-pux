@@ -3,14 +3,12 @@ module RoutingExample.App where
 import Prelude (discard)
 import Control.Applicative (pure)
 import Control.Bind ((=<<), bind)
-import Control.Monad.Eff.Class (liftEff)
-import DOM (DOM)
-import DOM.Event.Event (preventDefault)
-import DOM.HTML (window)
-import DOM.HTML.History (DocumentTitle(..), URL(..), pushState)
-import DOM.HTML.Types (HISTORY)
-import DOM.HTML.Window (history)
-import Data.Foreign (toForeign)
+import Effect.Class (liftEffect)
+import Web.Event.Event (preventDefault)
+import Web.HTML (window)
+import Web.HTML.History (DocumentTitle(..), URL(..), pushState)
+import Web.HTML.Window (history)
+import Foreign (unsafeToForeign)
 import Data.Function (($))
 import Data.Maybe (Maybe(..))
 import Data.Semigroup ((<>))
@@ -30,14 +28,14 @@ type State = { currentRoute :: Route }
 init :: State
 init = { currentRoute: Home }
 
-foldp :: ∀ fx. Event -> State -> EffModel State Event (history :: HISTORY, dom :: DOM | fx)
+foldp :: Event -> State -> EffModel State Event
 foldp (Navigate url ev) st =
   { state: st
   , effects: [
-      liftEff do
+      liftEffect do
         preventDefault ev
         h <- history =<< window
-        pushState (toForeign {}) (DocumentTitle "") (URL url) h
+        pushState (unsafeToForeign {}) (DocumentTitle "") (URL url) h
         pure $ Just $ PageView (match url)
     ]
   }
