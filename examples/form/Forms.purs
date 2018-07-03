@@ -1,10 +1,9 @@
 module FormsExample.Form where
 
 import Prelude
-import Control.Monad.Eff.Class (liftEff)
+import Effect.Class (liftEffect)
 import Data.Maybe (Maybe(..))
-import DOM (DOM)
-import DOM.Event.Event (preventDefault)
+import Web.Event.Event (preventDefault)
 import Pux (EffModel, noEffects)
 import Pux.DOM.Events (DOMEvent, onSubmit, onChange, targetValue)
 import Pux.DOM.HTML (HTML)
@@ -24,8 +23,8 @@ data Event
 init :: State
 init = { username: "user", password: "pass" }
 
-foldp :: ∀ fx. Event -> State -> EffModel State Event (dom :: DOM | fx)
-foldp (SignIn ev) state = { state, effects: [ liftEff (preventDefault ev) *> pure Nothing ] }
+foldp :: Event -> State -> EffModel State Event
+foldp (SignIn ev) state = { state, effects: [ liftEffect (preventDefault ev) *> pure Nothing ] }
 foldp (UsernameChange ev) st = noEffects $ st { username = targetValue ev }
 foldp (PasswordChange ev) st = noEffects $ st { password = targetValue ev }
 
@@ -35,4 +34,3 @@ view state =
     input ! type' "text" ! value state.username #! onChange UsernameChange
     input ! type' "password" ! value state.password #! onChange PasswordChange
     button ! type' "submit" $ text "Sign In"
-

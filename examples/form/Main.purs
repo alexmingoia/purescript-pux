@@ -1,16 +1,13 @@
 module FormsExample where
 
 import Control.Bind (bind)
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Exception (EXCEPTION)
+import Effect (Effect)
 import Data.Unit (Unit)
-import DOM (DOM)
 import FormsExample.Form (foldp, view, init)
 import Pux (start)
 import Pux.Renderer.React (renderToDOM)
-import Signal.Channel (CHANNEL)
 
-main :: ∀ fx. Eff (channel :: CHANNEL, dom :: DOM, exception :: EXCEPTION | fx) Unit
+main :: Effect Unit
 main = do
   app <- start
     { initialState: init
