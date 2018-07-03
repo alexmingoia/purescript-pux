@@ -23,7 +23,7 @@ init count =
   { topCount: Counter.init count
   , bottomCount: Counter.init count }
 
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp (Top ev) st =
   Counter.foldp ev st.topCount
     # mapEffects Top # mapState \s -> st { topCount = s }

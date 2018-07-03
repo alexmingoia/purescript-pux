@@ -17,7 +17,7 @@ type State = { count :: Int }
 init :: Int -> State
 init count = { count: count }
 
-foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp :: Event -> State -> EffModel State Event
 foldp Increment st = noEffects $ st { count = st.count + 1 }
 foldp Decrement st = noEffects $ st { count = st.count - 1 }
 

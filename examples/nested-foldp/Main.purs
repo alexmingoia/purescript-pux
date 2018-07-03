@@ -1,13 +1,13 @@
 module CounterPairExample where
 
 import Control.Bind (bind)
-import Control.Monad.Eff (Eff)
+import Effect (Effect)
 import CounterPairExample.App (init, foldp, view)
 import Data.Unit (Unit)
-import Pux (start, CoreEffects)
+import Pux (start)
 import Pux.Renderer.React (renderToDOM)
 
-main :: ∀ fx. Eff (CoreEffects fx) Unit
+main :: Effect Unit
 main = do
   app <- start
     { initialState: init 0
