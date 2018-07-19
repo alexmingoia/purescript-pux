@@ -1,5 +1,13 @@
 # Change Log
 
+## [v13.0] - 2018-07-19
+
+- Update for PureScript 0.12 compatibility
+
+## [v12.0] - 2017-10-06
+
+- Upgrade to Aff 4.0
+
 ## [v11.0] - 2017-08-17
 
 - Support for purescript-smolder 10 (fixes tail-recursive/stack issue with

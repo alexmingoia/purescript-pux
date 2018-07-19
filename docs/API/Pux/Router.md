@@ -1,19 +1,5 @@
 ## Module Pux.Router
 
-#### `RoutePart`
-
-``` purescript
-data RoutePart
-  = Path String
-  | Query (Map String String)
-```
-
-#### `Route`
-
-``` purescript
-type Route = List RoutePart
-```
-
 #### `Match`
 
 ``` purescript
@@ -30,10 +16,24 @@ Plus Match
 Applicative Match
 ```
 
-#### `end`
+#### `Route`
 
 ``` purescript
-end :: Match Unit
+type Route = List RoutePart
+```
+
+#### `RoutePart`
+
+``` purescript
+data RoutePart
+  = Path String
+  | Query (Map String String)
+```
+
+#### `router`
+
+``` purescript
+router :: forall a. String -> Match a -> Maybe a
 ```
 
 #### `lit`
@@ -42,10 +42,10 @@ end :: Match Unit
 lit :: String -> Match Unit
 ```
 
-#### `parseSegment`
+#### `str`
 
 ``` purescript
-parseSegment :: forall a. (String -> Maybe a) -> Match a
+str :: Match String
 ```
 
 #### `num`
@@ -66,10 +66,10 @@ int :: Match Int
 bool :: Match Boolean
 ```
 
-#### `str`
+#### `parseSegment`
 
 ``` purescript
-str :: Match String
+parseSegment :: forall a. (String -> Maybe a) -> Match a
 ```
 
 #### `param`
@@ -90,10 +90,10 @@ params :: Match (Map String String)
 any :: Match Unit
 ```
 
-#### `router`
+#### `end`
 
 ``` purescript
-router :: forall a. String -> Match a -> Maybe a
+end :: Match Unit
 ```
 
 
