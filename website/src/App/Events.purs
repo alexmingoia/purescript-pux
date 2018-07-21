@@ -72,7 +72,7 @@ foldp (LoadMarkdown filepath) st =
           buffer <- readFile path
           md <- toString UTF8 buffer
           let sliced = case st.route of
-                Home _ -> "# Build type-safe web applications with PureScript\n\nPux is" <> (fromMaybe "" $ last $ split (Pattern "Pux is") md)
+                Home _ -> "# Build type-safe web applications with PureScript\n\nPux is a PureScript library" <> (fromMaybe "" $ last $ split (Pattern "Pux is a PureScript library") md)
                 _ -> md
           pure $ case (parseMd sliced) of
             Left err -> Just $ FileNotFound filepath
