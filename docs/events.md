@@ -54,13 +54,15 @@ Effectful computations returned by foldp are asynchronous and handled by the
 computations may return new events which are again handled by foldp.
 
 For example, to log to the console when an event occurs we can use
-purescript-aff's `log`:
+a lifted `log`:
 
 ```purescript
+liftedLog = liftEff <<< log
+
 foldp :: Event -> State -> EffModel State Event (console :: CONSOLE)
 foldp Increment count =
   { state: count + 1
-  , effects: [ log "increment" *> pure Nothing ]
+  , effects: [ liftedLog "increment" *> pure Nothing ]
   }
 ```
 
