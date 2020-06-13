@@ -36,7 +36,7 @@
     "purescript-globals": "^4.0.0",
     "purescript-web-html": "^2.2.0",
     "purescript-web-uievents": "^2.0.0",
-    "purescript-smolder": "^12.0.0",
+    "purescript-smolder": "^12.3.0",
     "purescript-css": "^4.0.0"
   },
   "devDependencies": {

@@ -114,6 +114,7 @@ renderItem input (Element _ n c a e r) =
   in state \s -> Tuple r $ snoc s el
 renderItem input (Content t r) =
   state \s -> Tuple r $ snoc s $ reactText t
+renderItem input (Doctype t r) = pure r
 renderItem input (Empty r) = pure r
 
 renderNodes :: ∀ e. (e -> ReactAttribute) -> Markup e -> Array ReactElement
@@ -125,6 +126,7 @@ renderAttrs input attrs handlers = Object.fromFoldable tuples
   tuples = map toTupleA attrs <> map toTupleH handlers
   toTupleH (EventHandler key value) = Tuple key (input value)
   toTupleA (Attr key value) = Tuple key (reactAttr value)
+  toTupleA (SafeAttr key value) = Tuple key (reactAttr value)
 
 hook :: ∀ a. Channel (List a) -> (a -> Effect Unit)
 hook input = \a -> do
